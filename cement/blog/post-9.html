@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Why TwoSuns keeps humans at the center of every decision, and how our collaborative Room architecture improves outcomes in high-stakes commercial markets.">
+    <meta name="author" content="TwoSuns">
+    <meta property="og:title" content="Collaborative Intelligence: How TwoSuns Keeps Humans at the Center of Every Decision">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="TwoSuns">
+    <link rel="canonical" href="https://twosuns.ai/blog/post-9.html">
+    <meta property="og:description" content="Why TwoSuns keeps humans at the center of every decision, and how our collaborative Room architecture improves outcomes in high-stakes commercial markets.">
+    <meta property="og:image" content="https://twosuns.ai/og-image.jpg">
+    <meta property="og:url" content="https://twosuns.ai/blog/post-9.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://twosuns.ai/og-image.jpg">
+    <title>Collaborative Intelligence: How TwoSuns Keeps Humans at the Center of Every Decision | TwoSuns</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1E1A14;
+            --sun: #E0641E;
+            --sun-deep: #C45213; --sun-bright: #CC9900;
+            --sun-pale: #FFEDD0;
+            --text: #3A3A3A;
+            --text-mid: #3A3A3A;
+            --text-muted: #5A554C;
+            --bg: #FFF5DD;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        .article-container {
+            max-width: 740px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem 4rem;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--navy);
+            text-decoration: none;
+            margin-bottom: 2.5rem;
+            transition: color 0.2s;
+        }
+        .back-link:hover { color: var(--sun-deep); }
+        .back-link svg { width: 16px; height: 16px; }
+        .category-tag {
+            display: inline-block;
+            background: var(--sun-pale);
+            color: var(--sun-deep);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.3rem 0.75rem;
+            border-radius: 100px;
+            margin-bottom: 1rem;
+        }
+        .article-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.25;
+            margin-bottom: 1.25rem;
+        }
+        .article-meta {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #E8E1D6;
+        }
+        .meta-separator { color: #D7D0C5; }
+        .article-body h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin: 2.5rem 0 1rem;
+            line-height: 1.3;
+        }
+        .article-body h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text);
+            margin: 2rem 0 0.75rem;
+        }
+        .article-body p {
+            color: var(--text-mid);
+            margin-bottom: 1.25rem;
+            font-size: 1.0625rem;
+        }
+        .article-body blockquote {
+            border-left: 3px solid var(--sun);
+            padding: 1rem 1.5rem;
+            margin: 2rem 0;
+            background: var(--sun-pale);
+            border-radius: 0 8px 8px 0;
+        }
+        .article-body blockquote p {
+            color: var(--text);
+            font-style: italic;
+            margin-bottom: 0;
+        }
+        .article-body ul, .article-body ol {
+            margin: 1rem 0 1.5rem 1.5rem;
+            color: var(--text-mid);
+        }
+        .article-body li {
+            margin-bottom: 0.5rem;
+            font-size: 1.0625rem;
+        }
+        .author-box {
+            display: flex;
+            gap: 1.25rem;
+            align-items: flex-start;
+            background: white;
+            border: 1px solid #E8E1D6;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 3rem;
+        }
+        .author-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--navy);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+        .author-info h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.25rem;
+        }
+        .author-info .author-role {
+            font-size: 0.8125rem;
+            color: var(--sun-deep);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        .author-info p {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        .bottom-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 2.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--navy);
+            text-decoration: none;
+        }
+        .bottom-back:hover { color: var(--sun-deep); }
+          /* === FOOTER base (synced from main site) === */
+  footer { background:var(--bg2); padding:64px 0 32px; border-top:3px solid var(--sun); }
+  .footer-top { display:grid; grid-template-columns:1fr 1fr 1.6fr 1fr; gap:40px; margin-bottom:48px; align-items:start; padding-bottom:48px; border-bottom:1px solid rgba(30,26,20,0.12); }
+  .footer-col h4 { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:18px; color:var(--sun-deep); }
+  .footer-col ul { list-style:none; }
+  .footer-col ul li { padding:5px 0; font-size:14px; color:rgba(30,26,20,0.72); cursor:pointer; transition:color .2s; }
+  .footer-col ul li:hover, .footer-col ul li a:hover { color:#9A7209; }
+  .footer-col ul li a { color:rgba(30,26,20,0.72); }
+  .footer-contact-item { font-size:14px; color:rgba(30,26,20,0.72); padding:5px 0; line-height:1.6; }
+  .footer-contact-item a { color:rgba(30,26,20,0.72); }
+  .footer-contact-item a:hover { color:#9A7209; }
+  .footer-newsletter-row { display:grid; grid-template-columns:1fr 1fr; gap:64px; padding:40px 48px; border-radius:16px; margin-bottom:48px; align-items:center; background:linear-gradient(135deg,#FEFAE8 0%,#FFF8D6 50%,#FAF0B8 100%); }
+  .footer-brand { display:flex; flex-direction:column; justify-content:center; }
+  .footer-brand p { color:var(--navy); font-size:14px; line-height:1.75; margin:16px 0 8px; }
+  .footer-newsletter h3 { font-size:18px; font-weight:700; color:var(--navy); margin-bottom:10px; line-height:1.3; }
+  .footer-newsletter p { font-size:13px; color:rgba(30,26,20,0.65); margin-bottom:20px; line-height:1.6; }
+  .fn-field { display:flex; flex-direction:column; gap:10px; margin-bottom:16px; }
+  .fn-field input { background:#FFFFFF; border:1px solid rgba(30,26,20,0.15); border-radius:8px; padding:12px 14px; font-size:14px; color:var(--navy); outline:none; transition:border-color .2s; font-family:inherit; }
+  .fn-field input::placeholder { color:rgba(30,26,20,0.35); }
+  .fn-field input:focus { border-color:var(--sun); }
+  .fn-check { display:flex; align-items:flex-start; gap:10px; margin-bottom:14px; }
+  .fn-check input[type=checkbox] { margin-top:3px; accent-color:var(--sun); width:14px; height:14px; flex-shrink:0; cursor:pointer; }
+  .fn-check label { font-size:12px; color:rgba(30,26,20,0.6); line-height:1.5; cursor:pointer; }
+  .fn-legal { font-size:11px; color:rgba(30,26,20,0.45); margin-bottom:16px; line-height:1.5; }
+  .fn-btn { background:linear-gradient(135deg,var(--sun),var(--sun-deep)); color:#FFFFFF; border:none; border-radius:8px; padding:12px 24px; font-size:13px; font-weight:700; letter-spacing:1px; text-transform:uppercase; cursor:pointer; width:100%; transition:opacity .2s, transform .2s; }
+  .fn-btn:hover { opacity:.88; transform:translateY(-1px); }
+  .footer-bottom { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; }
+  .footer-bottom p { font-size:12px; color:rgba(30,26,20,0.5); }
+  .footer-legal { display:flex; gap:0; flex-wrap:wrap; }
+  .footer-legal a { font-size:12px; color:rgba(30,26,20,0.7); text-decoration:none; padding:0 14px; border-right:1px solid rgba(30,26,20,0.15); transition:color .2s; }
+  .footer-legal a:last-child { border-right:none; }
+  .footer-legal a:hover { color:var(--sun-deep); }
+
+        @media (max-width: 768px) {
+            .article-container { padding: 2rem 18px 3rem !important; }
+            .article-body { padding: 0 18px !important; }
+            .article-title { font-size: 1.75rem; }
+            .author-box { flex-direction: column; align-items: center; text-align: center; }
+            .footer-newsletter-row { grid-template-columns: 1fr !important; gap: 32px !important; padding: 24px !important; }
+            .footer-top { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
+            .footer-bottom { flex-direction: column !important; align-items: flex-start !important; }
+            .footer-legal a:first-child { padding-left: 0 !important; }
+        }
+        @media (max-width: 640px) {
+            .article-title { font-size: 1.75rem; }
+            .article-container { padding: 2rem 1rem 3rem; }
+            .author-box { flex-direction: column; align-items: center; text-align: center; }
+        }
+        @media (max-width: 480px) {
+            .article-container { padding: 1.5rem 14px 2rem !important; }
+            .article-title { font-size: 1.5rem !important; }
+            .footer-top { grid-template-columns: 1fr !important; }
+        }
+    
+  @media(max-width:768px){
+    body{overflow-x:hidden!important;}
+    *{max-width:100%!important;box-sizing:border-box!important;}
+    img,svg,video{max-width:100%!important;height:auto!important;}
+    .container{padding:0 18px!important;}
+    .article-container,.article-wrap{padding:0 18px!important;max-width:100%!important;}
+    .article-body{padding:0!important;}
+    .article-title,h1{font-size:clamp(24px,6vw,36px)!important;}
+    .highlight-box{padding:20px!important;}
+    .author-box{flex-direction:column!important;text-align:center!important;}
+    .footer-newsletter-row{grid-template-columns:1fr!important;gap:32px!important;padding:24px!important;}
+    .footer-top{grid-template-columns:1fr 1fr!important;gap:24px!important;}
+    .footer-bottom{flex-direction:column!important;align-items:flex-start!important;}
+    .footer-legal a:first-child{padding-left:0!important;}
+    .footer-brand img{max-width:280px!important;}
+    .fn-row{flex-direction:column!important;}
+    .fn-row input,.fn-row select{width:100%!important;}
+    table{display:block!important;overflow-x:auto!important;max-width:100%!important;}
+    pre,code{overflow-x:auto!important;max-width:100%!important;word-break:break-word!important;}
+    [style*="gap:64px"]{gap:24px!important;}
+    [style*="gap:48px"]{gap:24px!important;}
+    [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}
+    [style*="grid-template-columns:repeat(2,1fr)"]{grid-template-columns:1fr!important;}
+    [style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:1fr!important;}
+  }
+  @media(max-width:480px){
+    .footer-top{grid-template-columns:1fr!important;}
+    .article-title,h1{font-size:clamp(22px,5.5vw,30px)!important;}
+    .article-container,.article-wrap{padding:0 14px!important;}
+  }
+</style>
+</head>
+<body>
+    <article class="article-container">
+        <a href="/resources" class="back-link">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
+            Back to Resources
+        </a>
+
+        <span class="category-tag">Platform</span>
+        <h1 class="article-title">Collaborative Intelligence: How TwoSuns Keeps Humans at the Center of Every Decision</h1>
+        <div class="article-meta">
+            <span>TwoSuns Team</span>
+            <span class="meta-separator">|</span>
+            <span>November 21, 2025</span>
+            <span class="meta-separator">|</span>
+            <span>9 min read</span>
+        </div>
+
+        <div class="article-body">
+            <p>When we started building TwoSuns, the prevailing narrative in AI was about replacement. Autonomous trading systems, fully automated risk management, decision engines that could outperform human judgment at every turn. The pitch was seductive: remove the slow, biased, emotional human from the loop and let the machines optimize. Some of the most well-funded AI startups in commercial markets were built on exactly this premise.</p>
+
+            <p>We took a different path, not because we doubted the power of AI, but because we had spent enough time in commercial orchestration to understand where full automation fails, and why.</p>
+
+            <h2>The Automation Fallacy</h2>
+
+            <p>The case for fully automated commercial orchestration decisions rests on a specific assumption: that markets are pattern-generating systems whose future states can be reliably predicted from historical data. In many financial domains, this assumption holds well enough to support algorithmic strategies. High-frequency equity trading, statistical arbitrage in liquid futures markets, and systematic trend-following all demonstrate that algorithms can identify and exploit patterns faster and more consistently than human operational leaders.</p>
+
+            <p>Commodity markets, particularly in energy, break this assumption regularly. The reason is straightforward: enterprise prices are determined not just by financial flows but by physical realities, geopolitical decisions, weather events, infrastructure failures, regulatory changes, and the strategic behavior of a small number of very large actors. These factors create discontinuities that look nothing like the patterns in historical data.</p>
+
+            <p>When Russia invaded Ukraine in February 2022, no historical dataset contained a relevant precedent for the speed and scale of the resulting enterprise market disruption. When the Francis Scott Key Bridge collapsed in Baltimore in March 2024, the immediate implications for coal export logistics and Appalachian basis spreads required contextual knowledge that no model trained on price history could provide. When OPEC+ surprises the market with production cuts deeper than any analyst expected, the appropriate trading response depends on reading the political dynamics within the coalition, not running a regression.</p>
+
+            <blockquote>
+                <p>The most consequential decisions in commercial markets happen precisely at the moments when historical patterns become unreliable guides. These are the moments when human judgment is most essential, not least.</p>
+            </blockquote>
+
+            <p>This is not a theoretical concern. Several high-profile AI-driven enterprise funds have experienced significant drawdowns during market dislocations, precisely because their models were optimized for pattern recognition in regimes that were about to change. The lesson is not that AI is useless in these markets. The lesson is that AI is most valuable when it augments human judgment rather than attempting to replace it.</p>
+
+            <h2>Designing for Collaboration, Not Automation</h2>
+
+            <p>At TwoSuns, every design decision starts from a simple question: how does this help a human make a better decision, faster? This is not a marketing slogan. It is a design constraint that shapes our architecture, our interface, and our AI model development.</p>
+
+            <p>The core of our platform is built around what we call Rooms, structured collaboration environments where teams work together on specific decisions with AI-generated intelligence embedded directly in the workflow. Rooms are not chat channels or generic collaboration spaces. Each Room type is designed for a specific decision-making pattern, and the AI's role is calibrated to that pattern.</p>
+
+            <h3>Cooperative Rooms</h3>
+
+            <p>Cooperative Rooms are designed for situations where a team shares a common objective and needs to converge on a decision. A typical use case is a operations team evaluating whether to take a position based on a complex set of market signals. In a Cooperative Room, TwoSuns' AI layer surfaces relevant data, highlights areas of uncertainty, presents scenario analyses, and tracks the evolution of the group's reasoning over time. The AI does not make a recommendation. It organizes the information architecture so the team can reach a well-informed consensus more efficiently.</p>
+
+            <p>What makes this different from simply sharing a dashboard is the active synthesis. As team members contribute observations, the AI identifies potential contradictions between their assessments, flags data that supports or undermines specific hypotheses, and ensures that critical risk factors are not overlooked in the discussion. This is the role of a highly capable analyst sitting in the room, not making the decision, but ensuring the decision-makers have everything they need.</p>
+
+            <h3>Negotiation Rooms</h3>
+
+            <p>Negotiation Rooms address a different dynamic: situations where parties have potentially conflicting interests and need to reach an agreement. In commercial markets, this is the daily reality of commercial teams negotiating physical supply contracts, basis swaps, or long-term procurement agreements. The AI in a Negotiation Room provides each party with private intelligence, market benchmarks, and scenario modeling relevant to their position, while the shared space facilitates structured communication that moves toward resolution.</p>
+
+            <p>The design principle here is transparency about the process, not the positions. Each party can see the negotiation framework, understand the data sources being used for benchmarking, and trust that the AI is providing factual, not adversarial, intelligence. This builds the institutional trust that makes complex commercial negotiations more efficient.</p>
+
+            <h3>Broadcast Rooms</h3>
+
+            <p>Broadcast Rooms serve a one-to-many communication pattern: a portfolio manager sharing a market view with the team, a risk officer disseminating updated exposure limits, or a research analyst publishing an outlook. Here, the AI's role shifts to comprehension support. It summarizes key points, highlights how the broadcast content relates to each recipient's current positions or responsibilities, and enables asynchronous engagement by tracking questions and responses.</p>
+
+            <p>This addresses a persistent problem in large trading organizations: critical intelligence gets published but does not reach the people who need it, or reaches them without the context needed to act on it. Broadcast Rooms solve this by making the AI responsible for the "last mile" of intelligence distribution, ensuring that insights translate into awareness across the organization.</p>
+
+            <h3>Review Rooms</h3>
+
+            <p>Review Rooms are designed for post-decision analysis and continuous improvement. After a trade is executed, a hedge is placed, or a market call proves right or wrong, the Review Room provides a structured environment for examining what happened, why, and what should be learned. The AI contributes by reconstructing the information state at the time of the decision, showing what was known and unknown, and comparing the actual outcome against the scenario analysis that informed the decision.</p>
+
+            <p>This is one of the most undervalued capabilities in commercial orchestration. Most organizations conduct post-trade reviews informally, if at all. The result is that individual and institutional learning is slow, and the same analytical errors recur. Review Rooms formalize this process without creating bureaucratic overhead, because the AI handles the data reconstruction that would otherwise require hours of manual work.</p>
+
+            <h2>Why Structure Matters More Than Speed</h2>
+
+            <p>A common misconception about AI in decision-making is that the primary value is speed, getting to a decision faster. Speed matters, but in our experience, the more significant value comes from structure. Most poor decisions in commercial markets are not made because the decision-maker was too slow. They are made because critical information was not considered, because cognitive biases distorted the analysis, or because the decision process skipped steps that would have caught errors.</p>
+
+            <p>Our Room architecture addresses each of these failure modes. By making AI responsible for ensuring information completeness, surfacing contradictions, and maintaining process discipline, we reduce the frequency of avoidable errors without slowing down experienced operational leaders who know their markets.</p>
+
+            <p>The data supports this. Across our early adopter clients, we have observed a measurable reduction in what we call "information gaps," instances where a post-trade review reveals that relevant, available information was not considered at the time of the decision. In traditional workflows, information gaps appeared in approximately 23% of reviewed decisions. In TwoSuns Room-based workflows, that figure dropped to under 8%.</p>
+
+            <h2>The Human-AI Partnership in Practice</h2>
+
+            <p>The most effective use of our platform that we have seen comes from teams that treat TwoSuns' AI as a disciplined research partner, not an oracle. These teams use the AI to stress-test their theses, not to generate them. They use scenario modeling to understand the range of possible outcomes, not to find a single "right answer." They rely on the Review Room process to build institutional knowledge over time, creating a compounding advantage that no AI model can replicate on its own.</p>
+
+            <p>This is what we mean by collaborative intelligence. It is not about making AI smarter. It is about designing systems where human expertise and AI capability reinforce each other in structured, repeatable ways. The human brings contextual judgment, relationship knowledge, ethical reasoning, and the ability to navigate genuine uncertainty. The AI brings processing speed, data comprehensiveness, pattern recognition, and tireless consistency. Neither is sufficient alone. Together, they produce decisions that are better than either could achieve independently.</p>
+
+            <blockquote>
+                <p>The future of orchestration in commercial markets is not human versus machine. It is the organizations that learn to combine them most effectively, winning consistently against those that rely too heavily on either one.</p>
+            </blockquote>
+
+            <p>We built TwoSuns on this conviction, and everything we have seen since launch has reinforced it. The most sophisticated market participants in the world are not looking for a black box that makes decisions for them. They are looking for tools that make their best people even better. That is what we are building.</p>
+        </div>
+
+        <a href="/resources" class="bottom-back">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:16px;height:16px"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
+            Back to Resources
+        </a>
+    </article>
+
+<footer>
+  <div class="container">
+
+    <!-- Links columns -->
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <ul>
+          <li><a href="../platform.html">Platform Overview</a></li>
+          <li><a href="../how-it-works.html">How It Works</a></li>
+          <li><a href="../modules.html">Capabilities</a></li>
+          <li><a href="../technology.html">Technology</a></li>
+          <li><a href="../trust.html">Trust Centre</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="../about.html">About Us</a></li>
+          <li><a href="../why-twosuns.html">Why TwoSuns</a></li>
+          <li><a href="../industries.html">Industries</a></li>
+          <li><a href="../partners.html">Partner Centre</a></li>
+          <li><a href="../investors.html">Investor Centre</a></li>
+          <li><a href="../press.html">Press &amp; Media</a></li>
+          <li><a href="../careers.html">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="../blog.html">Insights</a></li>
+          <li><a href="../blog.html">Use Cases</a></li>
+          <li><a href="../blog.html">Platform Briefs</a></li>
+          <li><a href="../blog.html">Case Studies</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <div class="footer-contact-item" style="padding:2px 0;"><a href="mailto:info@twosuns.ai" style="color:var(--sun-bright)">info@twosuns.ai</a></div>
+        <div class="footer-contact-item" style="padding:2px 0;"><a href="mailto:invest@twosuns.ai" style="color:var(--sun-bright)">invest@twosuns.ai</a></div>
+        <div class="footer-contact-item"><a href="https://twosuns.ai">TwoSuns &#8599;</a></div>
+      </div>
+    </div>
+
+    <!-- Brand + Newsletter row -->
+    <div class="footer-newsletter-row">
+      <div class="footer-brand">
+        <img src="../logo-color.svg" alt="TwoSuns" style="width:340px;max-width:100%;height:auto;display:block;">
+        <p style="font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#9A7209;margin:10px 0 0;opacity:0.85;">Light on Complexity.&nbsp; Power in Decisions.</p>
+      </div>
+      <div class="footer-newsletter">
+        <h3>Stay ahead of the market</h3>
+        <p>Get the latest market briefings from TwoSuns, platform updates, and enterprise market intelligence delivered monthly.</p>
+        <div class="fn-field">
+          <input type="text" placeholder="Full name" id="fn-name">
+          <input type="email" placeholder="Work email" id="fn-email">
+          <input type="text" placeholder="Company" id="fn-company">
+        </div>
+        <div class="fn-check">
+          <input type="checkbox" id="fn-updates">
+          <label for="fn-updates">Also send me platform release notes and product updates.</label>
+        </div>
+        <p class="fn-legal">By subscribing, you agree to receive email communications from TwoSuns. You can unsubscribe at any time.</p>
+        <button class="fn-btn" onclick="fnSubmit()">Subscribe Now</button>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-legal">
+        <a href="../privacy.html">Privacy Policy</a>
+        <a href="../cookies.html">Cookie Policy</a>
+        <a href="../terms.html">Terms &amp; Conditions</a>
+        <a href="../trust.html">Trust Centre</a>
+      </div>
+      <p>&#169; 2026 TwoSuns. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+<script>
+function fnSubmit(){
+  var e=document.getElementById('fn-email');
+  if(!e||!e.value.includes('@')){alert('Please enter a valid email address.');return;}
+  var btn=document.querySelector('.fn-btn');
+  btn.textContent='Subscribed \u2713';
+  btn.style.background='#4EA72E';
+  btn.disabled=true;
+}
+</script>
+
+</body>
+</html>
