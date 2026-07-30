@@ -436,11 +436,13 @@
 </style>
 <style>
 /* single-colour headings across the microsite */
-h1 span, h2 span, h3 span, h4 span,
-.section-heading span, .sec-h span, .page-hero h1 span,
-.ir-hero h1 span, .sol-hero h1 span, .gname span { color: inherit !important; }
+h1 span, h2 span, h3 span, h4 span, h5 span, h6 span,
+[class*="headline"] span, [class*="heading"] span, [class*="title"] span,
+[class*="hero"] h1 span, [class*="hero"] h2 span, .gname span, .sec-h span,
+.partners-hero-headline span, .page-hero h1 span, .ir-hero h1 span, .sol-hero h1 span
+{ color: inherit !important; background: none !important; -webkit-text-fill-color: currentColor !important; }
 h1 span::after, h2 span::after, .hero-heading .chaos::after,
-.section-heading span::after { display: none !important; }
+.section-heading span::after, [class*="headline"] span::after { display: none !important; }
 </style>
 </head>
 <body>
