@@ -46,6 +46,14 @@
         .foot-links a:hover { color:var(--gold); }
         @media (max-width:768px){ .article-container{padding:2rem 18px;} h1{font-size:1.75rem;} .hero-img{border-radius:8px;} }
     </style>
+<style>
+/* single-colour headings across the microsite */
+h1 span, h2 span, h3 span, h4 span,
+.section-heading span, .sec-h span, .page-hero h1 span,
+.ir-hero h1 span, .sol-hero h1 span, .gname span { color: inherit !important; }
+h1 span::after, h2 span::after, .hero-heading .chaos::after,
+.section-heading span::after { display: none !important; }
+</style>
 </head>
 <body>
     <article class="article-container">
