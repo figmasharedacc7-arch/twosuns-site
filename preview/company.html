@@ -106,75 +106,6 @@
     .hero-vid{background:url('hero-build-poster.jpg') center/cover no-repeat;}
   }
 
-  /* TWIN SUNS HERO VISUAL (carried over from the original site) */
-  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;width:100%;}
-  .hero-grid > *{min-width:0;}
-  .sun-visual{position:relative;display:flex;align-items:center;justify-content:center;}
-  .sun-rays-svg{position:absolute;width:540px;height:540px;animation:rotateSun 40s linear infinite;z-index:0;}
-  @keyframes rotateSun{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-  .twin-suns{position:relative;width:384px;height:340px;}
-  .twin-suns .sun{position:absolute;border-radius:50%;will-change:transform;}
-  @keyframes sunBreath{0%,100%{transform:scale(1)}50%{transform:scale(1.045)}}
-  .sun-gold{width:250px;height:250px;top:6px;left:0;z-index:1;
-    background:radial-gradient(ellipse at 37% 37%,#FFFFFF 0%,#F4D26B 40%,#D9B341 64%,#CC9900 100%);
-    box-shadow:0 0 0 14px rgba(217,179,65,.10),0 0 0 38px rgba(217,179,65,.06),0 18px 70px rgba(204,153,0,.28);
-    animation:sunBreath 5s ease-in-out infinite;}
-  .sun-orange{width:228px;height:228px;bottom:4px;right:0;z-index:2;
-    background:radial-gradient(ellipse at 37% 37%,#FFFFFF 0%,#FF8939 38%,#FF6803 72%,#E0641E 100%);
-    box-shadow:0 0 0 14px rgba(224,100,30,.10),0 0 0 38px rgba(224,100,30,.06),0 18px 70px rgba(205,84,28,.30);
-    animation:sunBreath 5s ease-in-out infinite 1.4s;}
-  .sun-inner-text{position:absolute;top:53%;left:53%;transform:translate(-50%,-50%);z-index:4;text-align:center;pointer-events:none;}
-  .sun-inner-text .sun-label{font-size:12px;color:#fff;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;
-    text-shadow:0 1px 3px rgba(120,45,0,.85),0 2px 12px rgba(120,45,0,.6);}
-  .sun-inner-text .sun-stat{font-size:34px;font-weight:900;color:#fff;line-height:1;
-    text-shadow:0 2px 4px rgba(120,45,0,.85),0 3px 16px rgba(120,45,0,.65);}
-  .sun-floating-chips{position:absolute;width:100%;height:100%;pointer-events:none;z-index:6;}
-  @keyframes floatChip{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-10px) scale(1.03)}}
-  .chip{position:absolute;background:#fff;border-radius:12px;padding:10px 15px;
-    box-shadow:0 4px 20px rgba(0,0,0,.1);font-size:11.5px;font-weight:800;color:var(--navy);
-    max-width:180px;line-height:1.3;animation:floatChip 3s ease-in-out infinite;}
-  .chip span{color:#9A7209;font-size:12px;font-weight:700;display:block;margin-top:3px;}
-  .chip:nth-child(1){top:6%;left:-14%;animation-delay:0s;}
-  .chip:nth-child(2){top:12%;right:-14%;animation-delay:.8s;}
-  .chip:nth-child(3){bottom:22%;left:-14%;animation-delay:1.4s;}
-  .chip:nth-child(4){bottom:4%;right:-14%;animation-delay:.4s;}
-  @media(prefers-reduced-motion:reduce){
-    .sun-rays-svg,.sun-gold,.sun-orange,.chip,.hero{animation:none;}
-    .vidband > video{display:none;}
-    .vidband.vid-plant{background:url('vid-plant-poster.jpg') center/cover no-repeat;}
-    .vidband.vid-aerial{background:url('vid-aerial-poster.jpg') center/cover no-repeat;}
-  }
-
-
-  /* ECLIPSE: the two suns are the diagram, the overlap is the lifecycle */
-  .ecl{position:relative;width:100%;max-width:1140px;margin:34px auto 0;aspect-ratio:1280/800;
-    container-type:inline-size;}
-  .ecl svg{position:absolute;inset:0;width:100%;height:100%;}
-  .ecl-lab{position:absolute;transform:translateY(-50%);width:15.5%;}
-  .ecl-lab .i{font-size:10px;font-size:.86cqw;font-weight:800;letter-spacing:2px;}
-  .ecl-lab .r{height:1px;opacity:.45;margin:5px 0 6px;}
-  .ecl-lab .t{font-size:13px;font-size:1.12cqw;font-weight:700;color:var(--navy);line-height:1.36;}
-  .ecl-core{position:absolute;left:50%;transform:translate(-50%,-50%);width:20%;text-align:center;
-    background:#FFFBF0;padding:12px 8px 14px;border-radius:8px;}
-  .ecl-core .k{font-size:9.5px;font-size:.82cqw;font-weight:800;letter-spacing:2.6px;
-    text-transform:uppercase;color:#8C6500;}
-  .ecl-core .v{font-size:19px;font-size:1.62cqw;font-weight:900;color:var(--navy);line-height:1.2;margin-top:5px;}
-  .ecl-core .c{font-size:11.5px;font-size:1.0cqw;color:var(--text-muted);margin-top:5px;}
-  .ecl-fallback{display:none;}
-
-  @media(max-width:860px){
-    .ecl{display:none;}
-    .ecl-fallback{display:block;margin-top:26px;}
-    .ecl-mini{position:relative;height:150px;margin:0 auto 22px;max-width:300px;}
-    .ecl-mini svg{width:100%;height:100%;}
-    .ecl-list{display:grid;gap:10px;}
-    .ecl-list li{list-style:none;display:flex;gap:12px;align-items:flex-start;
-      background:#fff;border:1px solid var(--border-soft);border-radius:12px;padding:12px 14px;}
-    .ecl-list .n{flex-shrink:0;width:24px;height:24px;border-radius:8px;color:#fff;font-size:12px;
-      font-weight:900;display:flex;align-items:center;justify-content:center;}
-    .ecl-list .t{font-size:14px;font-weight:700;color:var(--navy);line-height:1.4;}
-  }
-
   /* PHOTO AND VIDEO SECTIONS (same system as the cement microsite) */
   .imgsec{position:relative;overflow:hidden;isolation:isolate;}
   .imgsec::before{content:"";position:absolute;inset:0;z-index:-2;background-size:cover;background-repeat:no-repeat;}
@@ -405,8 +336,6 @@
     .imgsec-r .sec-split,.imgsec-l .sec-split{max-width:100%;margin:0;}
     .imgsec-r::after,.imgsec-l::after{background:linear-gradient(175deg,rgba(255,246,226,.96) 0%,rgba(255,246,226,.90) 55%,rgba(255,244,220,.60) 100%);}
     .hero-photo.wall-construction{background-image:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,rgba(255,244,220,.58) 80%,rgba(255,242,214,.24) 100%),url('img-construction.jpg');background-position:center,center;}
-    .hero-grid{grid-template-columns:1fr;gap:36px;}
-    .sun-visual{transform:scale(.86);}
     .grid3,.grid4{grid-template-columns:repeat(2,1fr);}
     .people{grid-template-columns:repeat(2,1fr);}
     .uc-grid{grid-template-columns:1fr;}
@@ -419,7 +348,6 @@
   }
   @media(max-width:760px){
     .container{padding:0 20px;}
-    .sun-visual{transform:scale(.62);margin:-46px 0;}
     .area-sec{min-height:0;padding:60px 0;}
     .split2{grid-template-columns:1fr;gap:28px;}
     .chip{max-width:150px;font-size:11px;}
