@@ -9,6 +9,7 @@ from content import HOME, PLATFORM, CAPABILITIES, HORIZON_GROUPS, PULSE_GROUPS
 from content2 import (BUILT, USECASES, UC_THEMES, UC_ITEMS, COMPANY, DISCUSS,
                       UC_AREA_LABELS, UC_GROUP_LABELS, UC_TAGS, CAP_LINKS)
 import eclipse
+import arch
 
 OUT = "/Users/mohammaddidarulalam/Documents/Claude/twosuns-live/preview"
 ACCENTS = ["var(--a1)", "var(--a2)", "var(--a3)", "var(--a4)", "var(--a5)", "var(--a6)"]
@@ -164,21 +165,10 @@ def build_home():
 </section>
 """ % (e(d["evolving_h"]), "".join("<p>%s</p>" % e(p) for p in d["evolving"]))
 
-    L = dict(d["layers"])
-    s += """<section class="band-alt">
-  <div class="container">
-    <div class="section-tag">Architecture</div>
-    <h2 class="section-heading">%s</h2>
-    %s
-    <div style="margin-top:30px;">%s</div>
-  </div>
-</section>
-""" % (e(d["platform_h"]),
-       arch3(L["Horizon"], L["Core"], L["Pulse"], L["Ray"],
-             {"horizon": "Where to compete and win",
-              "core": "The organizational backbone",
-              "pulse": "How we execute and protect margin"}),
-       btn("Explore the Platform", "platform.html", ghost=True))
+    s += arch.section(
+        "Enterprise context becomes coordinated action",
+        "Commercial intelligence and operational execution, connected through one governed enterprise context.",
+        btn("Explore the Platform", "platform.html", ghost=True))
 
     areas = ""
     for i, a in enumerate(d["industry_areas"]):

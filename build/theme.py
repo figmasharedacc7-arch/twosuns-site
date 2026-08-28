@@ -439,6 +439,8 @@ CSS = r"""
 import reveal as _rv
 REVEAL_HEAD = _rv.HEAD
 REVEAL_CSS = _rv.CSS
+import arch as _ax
+ARCH_CSS = _ax.CSS
 
 
 def head(title, desc, active=None, extra_css=""):
@@ -451,7 +453,7 @@ def head(title, desc, active=None, extra_css=""):
 <meta name="description" content="{desc}">
 <meta name="robots" content="noindex">
 <link rel="icon" type="image/svg+xml" href="logo-mini.svg">
-<style>{CSS}{REVEAL_CSS}{extra_css}</style>
+<style>{CSS}{ARCH_CSS}{REVEAL_CSS}{extra_css}</style>
 {REVEAL_HEAD}
 </head>
 <body>
