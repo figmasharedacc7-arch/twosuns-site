@@ -130,6 +130,14 @@
   .area-sec > .container{width:100%;}
   .fam-band{min-height:470px;}
   /* a photo free area section still has to fill its width, or it reads as a missing image */
+  /* a two paragraph statement, set as a pair so it fills its width */
+  .stmt{display:grid;grid-template-columns:1fr 1fr;gap:46px;margin-top:26px;align-items:start;}
+  .stmt > p{margin:0;font-size:16.5px;line-height:1.8;color:var(--text-muted);max-width:none;}
+  .stmt > p:first-child{position:relative;padding-left:22px;}
+  .stmt > p:first-child::before{content:'';position:absolute;left:0;top:6px;bottom:6px;width:3px;
+    border-radius:2px;background:linear-gradient(180deg,var(--sun),var(--gold));}
+  .stmt > p:last-child{font-weight:600;color:var(--navy);}
+  @media(max-width:760px){.stmt{grid-template-columns:1fr;gap:22px;}}
   .split2{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center;}
   .split2 > *{min-width:0;}
   .split2 .section-sub{max-width:none;}
