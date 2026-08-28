@@ -382,15 +382,6 @@
     display:flex;flex-wrap:wrap;gap:10px 20px;justify-content:space-between;font-size:13px;color:var(--text-muted);}
   .foot-bot a:hover{color:var(--sun-deep);}
 
-  /* SCROLL REVEALS (only active once the head script adds .rv) */
-  .rv .section-tag, .rv .section-heading, .rv .section-sub, .rv .lede, .rv .card, .rv .cardimg, .rv .person, .rv .step, .rv .callout, .rv .layer, .rv .arch3, .rv .ecl, .rv .ecl-fallback, .rv .a3-ray, .rv details.acc, .rv .uc-frow, .rv .split2-panel, .rv .grid2 > *, .rv .grid3 > *{opacity:0;transform:translateY(20px);
-    transition:opacity .68s cubic-bezier(.22,1,.36,1),transform .68s cubic-bezier(.22,1,.36,1);}
-  .rv .in{opacity:1;transform:none;}
-  .rv .hero .hero-eyebrow,.rv .hero h1,.rv .hero .hero-sub,.rv .hero .hero-actions{
-    opacity:0;transform:translateY(16px);
-    transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);}
-  .rv .hero .in{opacity:1;transform:none;}
-
   /* RESPONSIVE */
   @media(max-width:1000px){
     .imgsec-r .sec-split,.imgsec-l .sec-split{max-width:100%;margin:0;}
@@ -424,6 +415,16 @@
     .form-card{padding:24px;}
     .layer{padding:24px;}
   }
+
+  /* SCROLL REVEALS (only active once the head script adds .rv) */
+  .rv .section-tag, .rv .section-heading, .rv .section-sub, .rv .lede, .rv .card, .rv .cardimg, .rv .person, .rv .step, .rv .callout, .rv .layer, .rv .arch3, .rv .ecl, .rv .ecl-fallback, .rv .a3-ray, .rv .acc, .rv .uc-frow, .rv .split2-panel, .rv .grid2 > *, .rv .grid3 > *{opacity:0;transform:translateY(20px);
+    transition:opacity .68s cubic-bezier(.22,1,.36,1),transform .68s cubic-bezier(.22,1,.36,1);}
+  .rv .in.in{opacity:1;transform:none;}
+  .rv .hero .hero-eyebrow,.rv .hero h1,.rv .hero .hero-sub,.rv .hero .hero-actions{
+    opacity:0;transform:translateY(16px);
+    transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);}
+  .rv .hero .in.in{opacity:1;transform:none;}
+
 </style>
 <script>
 (function(){
@@ -754,7 +755,7 @@
   var root=document.documentElement;
   if(!root.classList.contains('rv')) return;
 
-  var SEL = [".section-tag", ".section-heading", ".section-sub", ".lede", ".card", ".cardimg", ".person", ".step", ".callout", ".layer", ".arch3", ".ecl", ".ecl-fallback", ".a3-ray", "details.acc", ".uc-frow", ".split2-panel", ".grid2 > *", ".grid3 > *"];
+  var SEL = [".section-tag", ".section-heading", ".section-sub", ".lede", ".card", ".cardimg", ".person", ".step", ".callout", ".layer", ".arch3", ".ecl", ".ecl-fallback", ".a3-ray", ".acc", ".uc-frow", ".split2-panel", ".grid2 > *", ".grid3 > *"];
   var els = [];
   SEL.forEach(function(s){
     [].forEach.call(document.querySelectorAll(s), function(el){
