@@ -1,0 +1,7 @@
+*.jpg
+*.jpeg
+*.png
+*.webp
+*.mp4
+*.mov
+!README.md
