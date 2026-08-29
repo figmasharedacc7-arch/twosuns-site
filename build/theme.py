@@ -154,6 +154,9 @@ CSS = r"""
   .img-operations::before{background-image:url('img-operations.jpg');}
   /* a photo section that carries a video instead of a still */
   .imgsec > video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;}
+  /* the pour is a tight close up, so hold it to a narrower column on the left */
+  .imgsec-work > video{width:auto;height:100%;left:0;right:auto;}
+  .imgsec-work::after{background:linear-gradient(260deg,#FFF6E2 0%,#FFF6E2 58%,rgba(255,246,226,.97) 66%,rgba(255,246,226,.86) 74%,rgba(255,245,222,.52) 84%,rgba(255,244,218,.18) 94%,rgba(255,243,216,.04) 100%);}
   @media(prefers-reduced-motion:reduce){
     .imgsec > video{display:none;}
     .imgsec-work::before{background-image:url('vid-work-poster.jpg');}
