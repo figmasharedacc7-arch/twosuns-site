@@ -555,11 +555,17 @@ def build_usecases():
       the work, or by the part of the platform involved. Filters combine.</p>
     <div class="uc-filterset">%s</div>
     <button class="uc-clear" id="ucclear" hidden type="button">Clear all filters</button>
-    <div class="uc-grid" id="ucgrid">%s</div>
+    <div class="uc-grid" id="ucgrid">%s<div class="uc-ask" id="ucask">
+      <div class="lab">Not listed here</div>
+      <h3>Your workflow probably looks a little different</h3>
+      <p>These are representative, not exhaustive. Describe the work you are trying to
+        advance and we will show you how it would be configured.</p>
+      %s
+    </div></div>
     <p class="form-note" id="uccount"></p>
   </div>
 </section>
-""" % (filters, cards)
+""" % (filters, cards, btn("Describe Your Workflow", ghost=True))
 
     s += """<section class="band-warm">
   <div class="container">
@@ -597,6 +603,8 @@ def build_usecases():
       ? 'Showing all ' + cards.length + ' use cases.'
       : 'Showing ' + shown + ' of ' + cards.length + ' use cases.';
     clear.hidden = !wanted.length;
+    var askc = document.getElementById('ucask');
+    if(askc) askc.classList.toggle('wide', shown % 2 === 0);
   }
 
   btns.forEach(function(b){
