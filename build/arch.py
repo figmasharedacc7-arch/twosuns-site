@@ -73,7 +73,10 @@ def _pct(x, y):
     return "left:%.2f%%;top:%.2f%%" % (x / VB_W * 100, (y - VB_Y0) / VB_VIS * 100)
 
 
-def section(heading, sub, explore_btn):
+def section(heading, sub, explore_btn="", tag="Architecture", band="band-alt",
+            foot="One governed context. Two operating domains. Continuous enterprise awareness."):
+    """The diagram, wrapped in its own band. Home introduces it as the architecture,
+    Platform reuses it to show the same context circulating."""
     s = ['<svg viewBox="0 %d %d %d" role="img" aria-label="Horizon and Pulse as two operating '
          'domains, Core as the governed context between them, Ray spanning beneath.">' % (VB_Y0, VB_W, VB_VIS)]
     s.append("""<defs>
@@ -196,15 +199,16 @@ def section(heading, sub, explore_btn):
         <ul><li>Contextual continuity</li><li>Enterprise awareness</li><li>Coordinated action</li></ul></div>
     </div>"""
 
-    return """<section class="band-alt">
+    tail = ('<div style="margin-top:30px;">%s</div>' % explore_btn) if explore_btn else ""
+    return """<section class="%s">
   <div class="container">
-    <div class="section-tag">Architecture</div>
+    <div class="section-tag">%s</div>
     <h2 class="section-heading">%s</h2>
     <p class="section-sub">%s</p>
     <div class="arx">%s%s%s%s%s%s</div>
     %s
-    <div class="arx-foot">One governed context. Two operating domains. Continuous enterprise awareness.</div>
-    <div style="margin-top:30px;">%s</div>
+    <div class="arx-foot">%s</div>
+    %s
   </div>
 </section>
-""" % (heading, sub, "".join(s), horizon, core, pulse, orbits, ray, fb, explore_btn)
+""" % (band, tag, heading, sub, "".join(s), horizon, core, pulse, orbits, ray, fb, foot, tail)

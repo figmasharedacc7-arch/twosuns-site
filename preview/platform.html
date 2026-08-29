@@ -229,38 +229,6 @@
   .layer-chip{font-size:11px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:#fff;padding:5px 12px;border-radius:20px;}
   .layer p{color:var(--text-muted);font-size:15.5px;line-height:1.78;}
 
-  /* ARCHITECTURE: Horizon and Pulse flanking Core, Ray spanning beneath */
-  .arch3{margin-top:86px;}
-  .arch3-band{position:relative;display:grid;grid-template-columns:1fr 1.06fr 1fr;gap:0;
-    background:#FCF3E2;border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow);
-    padding:66px 40px;overflow:visible;}
-  .arch3-band > *{min-width:0;position:relative;z-index:2;}
-  .a3{padding:0 26px;}
-  .a3-name{font-size:27px;font-weight:900;letter-spacing:-.4px;line-height:1;margin-bottom:14px;}
-  .a3 p{font-size:14.5px;line-height:1.7;color:var(--text-muted);}
-  .a3-note{margin-top:16px;font-size:13.5px;font-weight:800;color:var(--navy);}
-  .a3-h{text-align:left;}
-  .a3-p{text-align:right;}
-  .a3-core{text-align:center;padding:0 30px;}
-  .a3-core::before{content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-    width:340px;height:340px;border-radius:50%;background:#fff;
-    border:9px solid var(--bg2);box-shadow:0 12px 36px rgba(60,50,30,.12);z-index:-1;}
-  .a3-ray{margin-top:56px;display:grid;grid-template-columns:auto 1fr;gap:34px;align-items:center;
-    background:linear-gradient(135deg,#FFF6E2,#FCE2BC);border:1px solid var(--border);
-    border-radius:20px;padding:26px 40px;box-shadow:var(--shadow);}
-  .a3-ray .a3-name{margin-bottom:0;white-space:nowrap;}
-  .a3-ray p{font-size:14.5px;line-height:1.7;color:var(--text-muted);}
-
-  @media(max-width:900px){
-    .arch3-band{grid-template-columns:1fr;gap:30px;padding:32px 24px;}
-    .a3,.a3-core{padding:0;text-align:left;}
-    .a3-p{text-align:left;}
-    .a3-core::before{display:none;}
-    .a3-core{background:#FFFDF6;border:1px solid var(--border);border-radius:16px;padding:22px;}
-    .a3-ray{grid-template-columns:1fr;gap:12px;padding:24px;}
-    .a3-ray .a3-name{white-space:normal;}
-  }
-
   /* ECLIPSE: the two suns are the diagram, the overlap is the lifecycle */
   .ecl{position:relative;width:100%;max-width:1140px;margin:34px auto 0;aspect-ratio:1280/800;
     container-type:inline-size;}
@@ -511,7 +479,7 @@
   }
 
   /* SCROLL REVEALS (only active once the head script adds .rv) */
-  .rv .section-tag, .rv .section-heading, .rv .section-sub, .rv .lede, .rv .card, .rv .cardimg, .rv .person, .rv .step, .rv .callout, .rv .layer, .rv .arch3, .rv .ecl, .rv .ecl-fallback, .rv .a3-ray, .rv .acc, .rv .uc-frow, .rv .split2-panel, .rv .grid2 > *, .rv .grid3 > *{opacity:0;transform:translateY(20px);
+  .rv .section-tag, .rv .section-heading, .rv .section-sub, .rv .lede, .rv .card, .rv .cardimg, .rv .person, .rv .step, .rv .callout, .rv .layer, .rv .ecl, .rv .ecl-fallback, .rv .acc, .rv .uc-frow, .rv .split2-panel, .rv .grid2 > *, .rv .grid3 > *{opacity:0;transform:translateY(20px);
     transition:opacity .68s cubic-bezier(.22,1,.36,1),transform .68s cubic-bezier(.22,1,.36,1);}
   .rv .in.in{opacity:1;transform:none;}
   .rv .hero .hero-eyebrow,.rv .hero h1,.rv .hero .hero-sub,.rv .hero .hero-actions{
@@ -592,28 +560,64 @@
   <div class="container">
     <div class="section-tag">Continuity</div>
     <h2 class="section-heading">Context and results circulate through the platform</h2>
-    <p class="lede">Horizon and Pulse can use the same approved inputs and organizational context. Activities and results generated in one area can inform related work elsewhere, while Core maintains continuity and Ray supports users across the environment.</p>
-    <div class="arch3">
-  <div class="arch3-band">
-    <div class="a3 a3-h">
-      <div class="a3-name" style="color:#B07E00;">Horizon</div>
-      <p>Market-facing work drawing on the shared context.</p>
+    <p class="section-sub">Horizon and Pulse can use the same approved inputs and organizational context. Activities and results generated in one area can inform related work elsewhere, while Core maintains continuity and Ray supports users across the environment.</p>
+    <div class="arx"><svg viewBox="0 195 2000 990" role="img" aria-label="Horizon and Pulse as two operating domains, Core as the governed context between them, Ray spanning beneath."><defs>
+      <radialGradient id="axh" cx="36%" cy="30%">
+        <stop offset="0" stop-color="#FBEBB4"/><stop offset=".55" stop-color="#EFCE6B"/>
+        <stop offset="1" stop-color="#E0B33A"/></radialGradient>
+      <radialGradient id="axp" cx="36%" cy="30%">
+        <stop offset="0" stop-color="#FFD3A8"/><stop offset=".5" stop-color="#FBA05A"/>
+        <stop offset="1" stop-color="#F97316"/></radialGradient>
+      <linearGradient id="axc" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#2E2822"/><stop offset="1" stop-color="#141110"/></linearGradient>
+      <marker id="axag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M0 0 L10 5 L0 10 z" fill="#E0B33A"/></marker>
+      <marker id="axao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M0 0 L10 5 L0 10 z" fill="#F97316"/></marker>
+    </defs><ellipse cx="1020" cy="575" rx="840" ry="336" fill="none" stroke="rgba(140,101,0,.30)" stroke-dasharray="3 11"/><ellipse cx="1020" cy="575" rx="792" ry="300" fill="none" stroke="rgba(224,100,30,.10)" stroke-width="26"/><circle cx="660" cy="575" r="278" fill="url(#axh)"/><circle cx="1400" cy="575" r="278" fill="url(#axp)"/><path d="M470 352 C640 236 860 250 946 292" fill="none" stroke="#E0B33A" stroke-width="7" stroke-linecap="round" opacity=".85" marker-end="url(#axag)"/><path d="M1584 300 C1420 238 1180 250 1074 292" fill="none" stroke="#F97316" stroke-width="7" stroke-linecap="round" opacity=".85" marker-end="url(#axao)"/><path d="M660 848 C790 906 930 878 1012 846" fill="none" stroke="#E0B33A" stroke-width="7" stroke-linecap="round" opacity=".8" marker-end="url(#axag)"/><path d="M1382 848 C1268 906 1140 878 1074 846" fill="none" stroke="#F97316" stroke-width="7" stroke-linecap="round" opacity=".8" marker-end="url(#axao)"/><line x1="1005" y1="820" x2="1005" y2="884" stroke="rgba(60,50,30,.30)" stroke-width="3"/><rect x="804" y="335" width="402" height="486" rx="30" fill="#fff"/><rect x="813" y="344" width="384" height="468" rx="24" fill="url(#axc)"/><rect x="821" y="352" width="368" height="452" rx="20" fill="none" stroke="rgba(224,178,80,.35)"/><line x1="872" y1="430" x2="1005" y2="396" stroke="rgba(224,178,80,.16)"/><line x1="872" y1="430" x2="866" y2="566" stroke="rgba(224,178,80,.16)"/><line x1="1005" y1="396" x2="1140" y2="432" stroke="rgba(224,178,80,.16)"/><line x1="1005" y1="396" x2="1006" y2="604" stroke="rgba(224,178,80,.16)"/><line x1="1140" y1="432" x2="1150" y2="560" stroke="rgba(224,178,80,.16)"/><line x1="1150" y1="560" x2="1006" y2="604" stroke="rgba(224,178,80,.16)"/><line x1="1150" y1="560" x2="1132" y2="700" stroke="rgba(224,178,80,.16)"/><line x1="1006" y1="604" x2="866" y2="566" stroke="rgba(224,178,80,.16)"/><line x1="1006" y1="604" x2="1010" y2="742" stroke="rgba(224,178,80,.16)"/><line x1="866" y1="566" x2="884" y2="700" stroke="rgba(224,178,80,.16)"/><line x1="884" y1="700" x2="1010" y2="742" stroke="rgba(224,178,80,.16)"/><line x1="1010" y1="742" x2="1132" y2="700" stroke="rgba(224,178,80,.16)"/><circle cx="872" cy="430" r="4" fill="rgba(224,178,80,.45)"/><circle cx="1005" cy="396" r="4" fill="rgba(224,178,80,.45)"/><circle cx="1140" cy="432" r="4" fill="rgba(224,178,80,.45)"/><circle cx="1150" cy="560" r="4" fill="rgba(224,178,80,.45)"/><circle cx="1006" cy="604" r="4" fill="rgba(224,178,80,.45)"/><circle cx="866" cy="566" r="4" fill="rgba(224,178,80,.45)"/><circle cx="884" cy="700" r="4" fill="rgba(224,178,80,.45)"/><circle cx="1010" cy="742" r="4" fill="rgba(224,178,80,.45)"/><circle cx="1132" cy="700" r="4" fill="rgba(224,178,80,.45)"/><line x1="948" y1="756" x2="1062" y2="756" stroke="rgba(246,238,222,.35)" stroke-width="2"/><circle cx="948" cy="756" r="7" fill="#E0B33A"/><circle cx="1005" cy="756" r="7" fill="#fff"/><circle cx="1062" cy="756" r="7" fill="#F97316"/></svg><div class="arx-lab arx-domain" style="left:29.80%;top:37.78%;">
+      <div class="arx-k" style="color:#8A6A12;">Commercial intelligence</div>
+      <div class="arx-n">HORIZON</div>
+      <div class="arx-rule" style="background:rgba(90,70,15,.35);"></div>
+      <ul class="arx-list"><li>Market and account intelligence</li><li>Revenue coordination</li><li>GTM execution</li></ul>
+    </div><div class="arx-lab arx-core" style="left:50.25%;top:35.25%;">
+      <div class="arx-k" style="color:#E0B33A;">Governed context</div>
+      <div class="arx-n" style="color:#fff;">CORE</div>
+      <div class="arx-rule" style="background:rgba(224,178,80,.4);"></div>
+      <div class="arx-lines">
+        <div>Governance and permissions</div>
+        <div>Organizational memory and logs</div>
+        <div>Decision continuity</div>
+      </div>
+    </div><div class="arx-lab arx-domain" style="left:72.70%;top:37.78%;">
+      <div class="arx-k" style="color:#8C3D0B;">Operational execution</div>
+      <div class="arx-n">PULSE</div>
+      <div class="arx-rule" style="background:rgba(120,55,10,.35);"></div>
+      <ul class="arx-list"><li>Operational workflows</li><li>Supply and resource coordination</li><li>Performance management</li></ul>
+    </div><div class="arx-orbit" style="left:15.00%;top:15.86%;transform:translateY(-50%);"><i style="background:#E0B33A;"></i>Markets</div><div class="arx-orbit" style="left:16.50%;top:60.10%;transform:translateY(-50%);"><i style="background:#E0B33A;"></i>Customers</div><div class="arx-orbit" style="left:79.80%;top:13.64%;transform:translateY(-50%);"><i style="background:#F97316;"></i>Operations</div><div class="arx-orbit" style="left:83.60%;top:61.72%;transform:translateY(-50%);"><i style="background:#F97316;"></i>People and systems</div><div class="arx-ray" style="left:50%;top:76.46%;width:54.50%;padding:1.9cqw 2.4cqw;">
+      <div class="arx-ray-top">
+        <span class="arx-ray-name">RAY</span>
+        <span class="arx-ray-sub">Persistent enterprise companion</span>
+      </div>
+      <div class="arx-ray-items">
+        <span><i style="background:#E0B33A;"></i>Contextual continuity</span>
+        <span><i style="background:#F97316;"></i>Enterprise awareness</span>
+        <span><i style="background:#B8860B;"></i>Coordinated action</span>
+      </div>
+    </div></div>
+    <div class="arx-fallback">
+      <div class="arxf arxf-h"><div class="k">Commercial intelligence</div><div class="n">HORIZON</div>
+        <ul><li>Market and account intelligence</li><li>Revenue coordination</li><li>GTM execution</li></ul></div>
+      <div class="arxf arxf-c"><div class="k">Governed context</div><div class="n">CORE</div>
+        <ul><li>Governance and permissions</li><li>Organizational memory and logs</li>
+        <li>Decision continuity</li></ul></div>
+      <div class="arxf arxf-p"><div class="k">Operational execution</div><div class="n">PULSE</div>
+        <ul><li>Operational workflows</li><li>Supply and resource coordination</li>
+        <li>Performance management</li></ul></div>
+      <div class="arxf arxf-r"><div class="k">Persistent enterprise companion</div><div class="n">RAY</div>
+        <ul><li>Contextual continuity</li><li>Enterprise awareness</li><li>Coordinated action</li></ul></div>
     </div>
-    <div class="a3 a3-core">
-      <div class="a3-name" style="color:#E0641E;">Core</div>
-      <p>Inputs enter here. Activities and results return here as continuing context.</p>
-    </div>
-    <div class="a3 a3-p">
-      <div class="a3-name" style="color:#C45213;">Pulse</div>
-      <p>Delivery and operating work drawing on the same context.</p>
-    </div>
-  </div>
-  <div class="a3-ray">
-    <div class="a3-name" style="color:#E0641E;">Ray</div>
-    <p>Context-aware support spanning the full environment.</p>
-  </div>
-</div>
-
+    <div class="arx-foot">Approved inputs and organizational context, circulating between the two domains.</div>
+    
   </div>
 </section>
 <section class="imgsec imgsec-l img-operations">
@@ -711,7 +715,7 @@
   var root=document.documentElement;
   if(!root.classList.contains('rv')) return;
 
-  var SEL = [".section-tag", ".section-heading", ".section-sub", ".lede", ".card", ".cardimg", ".person", ".step", ".callout", ".layer", ".arch3", ".ecl", ".ecl-fallback", ".a3-ray", ".acc", ".uc-frow", ".split2-panel", ".grid2 > *", ".grid3 > *"];
+  var SEL = [".section-tag", ".section-heading", ".section-sub", ".lede", ".card", ".cardimg", ".person", ".step", ".callout", ".layer", ".ecl", ".ecl-fallback", ".acc", ".uc-frow", ".split2-panel", ".grid2 > *", ".grid3 > *"];
   var els = [];
   SEL.forEach(function(s){
     [].forEach.call(document.querySelectorAll(s), function(el){

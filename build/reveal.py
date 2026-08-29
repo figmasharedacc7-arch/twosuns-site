@@ -11,7 +11,7 @@ CSS block and one script.
 TARGETS = [
     ".section-tag", ".section-heading", ".section-sub", ".lede",
     ".card", ".cardimg", ".person", ".step", ".callout", ".layer",
-    ".arch3", ".ecl", ".ecl-fallback", ".a3-ray",
+    ".ecl", ".ecl-fallback",
     ".acc", ".uc-frow", ".split2-panel", ".grid2 > *", ".grid3 > *",
 ]
 

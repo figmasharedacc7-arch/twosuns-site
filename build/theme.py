@@ -231,38 +231,6 @@ CSS = r"""
   .layer-chip{font-size:11px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:#fff;padding:5px 12px;border-radius:20px;}
   .layer p{color:var(--text-muted);font-size:15.5px;line-height:1.78;}
 
-  /* ARCHITECTURE: Horizon and Pulse flanking Core, Ray spanning beneath */
-  .arch3{margin-top:86px;}
-  .arch3-band{position:relative;display:grid;grid-template-columns:1fr 1.06fr 1fr;gap:0;
-    background:#FCF3E2;border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow);
-    padding:66px 40px;overflow:visible;}
-  .arch3-band > *{min-width:0;position:relative;z-index:2;}
-  .a3{padding:0 26px;}
-  .a3-name{font-size:27px;font-weight:900;letter-spacing:-.4px;line-height:1;margin-bottom:14px;}
-  .a3 p{font-size:14.5px;line-height:1.7;color:var(--text-muted);}
-  .a3-note{margin-top:16px;font-size:13.5px;font-weight:800;color:var(--navy);}
-  .a3-h{text-align:left;}
-  .a3-p{text-align:right;}
-  .a3-core{text-align:center;padding:0 30px;}
-  .a3-core::before{content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-    width:340px;height:340px;border-radius:50%;background:#fff;
-    border:9px solid var(--bg2);box-shadow:0 12px 36px rgba(60,50,30,.12);z-index:-1;}
-  .a3-ray{margin-top:56px;display:grid;grid-template-columns:auto 1fr;gap:34px;align-items:center;
-    background:linear-gradient(135deg,#FFF6E2,#FCE2BC);border:1px solid var(--border);
-    border-radius:20px;padding:26px 40px;box-shadow:var(--shadow);}
-  .a3-ray .a3-name{margin-bottom:0;white-space:nowrap;}
-  .a3-ray p{font-size:14.5px;line-height:1.7;color:var(--text-muted);}
-
-  @media(max-width:900px){
-    .arch3-band{grid-template-columns:1fr;gap:30px;padding:32px 24px;}
-    .a3,.a3-core{padding:0;text-align:left;}
-    .a3-p{text-align:left;}
-    .a3-core::before{display:none;}
-    .a3-core{background:#FFFDF6;border:1px solid var(--border);border-radius:16px;padding:22px;}
-    .a3-ray{grid-template-columns:1fr;gap:12px;padding:24px;}
-    .a3-ray .a3-name{white-space:normal;}
-  }
-
   /* ECLIPSE: the two suns are the diagram, the overlap is the lifecycle */
   .ecl{position:relative;width:100%;max-width:1140px;margin:34px auto 0;aspect-ratio:1280/800;
     container-type:inline-size;}

@@ -22,6 +22,7 @@ blocks, so a lost CSS block fails loudly instead of shipping an unstyled page.
 | `content.py` | Home, Platform, Capabilities copy |
 | `content2.py` | Built Industry, Use Cases, Company, Discuss copy, plus the filter and cross-link tables |
 | `build.py` | Page assembly, `OUT` points at `../preview` |
+| `arch.py` | The architecture diagram. Home shows it as Architecture, Platform reuses it as Continuity |
 | `eclipse.py` | The lifecycle diagram, its own CSS and SVG geometry |
 | `herorot.py` | The hero clip rotation, its own CSS and script |
 | `herovid.py` | Cuts and colour matches the hero clips from the Envato originals |

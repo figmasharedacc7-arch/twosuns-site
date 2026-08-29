@@ -80,34 +80,6 @@ def slug(title):
     return "uc-" + s.strip("-")
 
 
-def arch3(horizon, core, pulse, ray, notes=None):
-    """Horizon and Pulse flanking Core, Ray spanning beneath."""
-    n = notes or {}
-    def note(k):
-        return ('<div class="a3-note">%s</div>' % e(n[k])) if k in n else ""
-    return """<div class="arch3">
-  <div class="arch3-band">
-    <div class="a3 a3-h">
-      <div class="a3-name" style="color:#B07E00;">Horizon</div>
-      <p>%s</p>%s
-    </div>
-    <div class="a3 a3-core">
-      <div class="a3-name" style="color:#E0641E;">Core</div>
-      <p>%s</p>%s
-    </div>
-    <div class="a3 a3-p">
-      <div class="a3-name" style="color:#C45213;">Pulse</div>
-      <p>%s</p>%s
-    </div>
-  </div>
-  <div class="a3-ray">
-    <div class="a3-name" style="color:#E0641E;">Ray</div>
-    <p>%s</p>
-  </div>
-</div>
-""" % (e(horizon), note("horizon"), e(core), note("core"), e(pulse), note("pulse"), e(ray))
-
-
 def ticks(items):
     return '<ul class="tick">' + "".join("<li>%s</li>" % e(i) for i in items) + "</ul>"
 
@@ -115,7 +87,7 @@ def ticks(items):
 REQUIRED_CSS = [
     ".ecl{", ".ecl-lab", ".ecl-fallback",          # lifecycle diagram
     ".imgsec{", ".imgsec-r::after", ".vidband",     # photo and video sections
-    ".arch3-band", ".a3-core::before",              # architecture
+    ".arx{", ".arx-fallback", ".arx-ray",            # architecture diagram
     ".hero-vid", ".hero-vid video.on", ".uc-frow", ".acc-rel",   # hero, filters, cross links
     ".split2", ".steps", ".uc-grid",
 ]
@@ -277,19 +249,9 @@ def build_platform():
        e(d["pulse_h"]), e(d["pulse_p"]),
        btn("Explore Pulse Capabilities", "capabilities.html#pulse", ghost=True))
 
-    s += """<section class="band-warm">
-  <div class="container">
-    <div class="section-tag">Continuity</div>
-    <h2 class="section-heading">%s</h2>
-    <p class="lede">%s</p>
-    %s
-  </div>
-</section>
-""" % (e(d["circ_h"]), e(d["circ_p"]),
-       arch3("Market-facing work drawing on the shared context.",
-             "Inputs enter here. Activities and results return here as continuing context.",
-             "Delivery and operating work drawing on the same context.",
-             "Context-aware support spanning the full environment."))
+    s += arch.section(
+        d["circ_h"], d["circ_p"], tag="Continuity", band="band-warm",
+        foot="Approved inputs and organizational context, circulating between the two domains.")
 
     s += """<section class="imgsec imgsec-l img-operations">
   <div class="container">
