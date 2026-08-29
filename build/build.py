@@ -198,7 +198,10 @@ def build_home():
       <h3>%s</h3><p>%s</p>
     </div>""" % (ACCENTS[i], i + 1, e(h), e(p))
 
-    s += """<section class="imgsec imgsec-l bg-work area-sec">
+    s += """<section class="imgsec imgsec-l imgsec-work area-sec">
+  <video autoplay muted loop playsinline preload="metadata" poster="vid-work-poster.jpg" aria-hidden="true">
+    <source src="vid-work.mp4" type="video/mp4">
+  </video>
   <div class="container">
    <div class="sec-split">
     <div class="section-tag">Where to start</div>

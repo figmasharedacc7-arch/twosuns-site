@@ -124,7 +124,6 @@
   .bg-horizon::before{background-image:url('fam-horizon.jpg');}
   .bg-pulse::before{background-image:url('fam-pulse.jpg');}
   .bg-integration::before{background-image:url('plat-integration.jpg');}
-  .bg-work::before{background-image:url('home-work.jpg');}
   .bg-deploy::before{background-image:url('plat-deploy.jpg');}
   .area-sec{padding:76px 0;min-height:720px;display:flex;align-items:center;}
   .area-sec > .container{width:100%;}
@@ -151,6 +150,12 @@
   .area-sec .card-num{margin-bottom:16px;}
   .img-industrial::before{background-image:url('img-industrial.jpg');}
   .img-operations::before{background-image:url('img-operations.jpg');}
+  /* a photo section that carries a video instead of a still */
+  .imgsec > video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;}
+  @media(prefers-reduced-motion:reduce){
+    .imgsec > video{display:none;}
+    .imgsec-work::before{background-image:url('vid-work-poster.jpg');}
+  }
   .sec-split{display:block;}
   .imgsec-r .sec-split{max-width:58%;}
   .imgsec-l .sec-split{max-width:58%;margin-left:auto;}
