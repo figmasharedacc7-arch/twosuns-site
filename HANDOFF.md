@@ -34,6 +34,8 @@ away on the next rebuild. Source and instructions are in `build/README.md`.
   functional-palette proposal exists at `preview/built-industry-alt.html` and
   `preview/use-cases-alt.html`, awaiting the CEO's call.
 - **Built Industry uses full-bleed photo sections**, chosen over cards.
+- **The hero rotates three clips**, 7.5s each with a 1.4s crossfade. Only the
+  first loads eagerly. See `build/README.md` under Hero clips.
 - The architecture layout follows Aiman's deck: Horizon and Pulse flanking Core
   in a white disc, Ray spanning beneath.
 - An animated product-visual pilot for the architecture section was **built and

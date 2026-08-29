@@ -92,7 +92,6 @@
 
   /* HERO VIDEO */
   .hero-vid{position:absolute;inset:0;z-index:0;overflow:hidden;}
-  .hero-vid video{width:100%;height:100%;object-fit:cover;display:block;}
   .hero-vid::after{content:'';position:absolute;inset:0;
     background:linear-gradient(100deg,#FFF6E2 0%,rgba(255,246,226,.97) 30%,rgba(255,246,226,.86) 44%,
       rgba(255,245,222,.62) 56%,rgba(255,244,218,.34) 68%,rgba(255,243,216,.14) 82%,rgba(255,243,216,.04) 100%);}
@@ -101,10 +100,7 @@
     .hero-vid::after{background:linear-gradient(178deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.90) 46%,
       rgba(255,245,222,.72) 74%,rgba(255,244,218,.46) 100%);}
   }
-  @media(prefers-reduced-motion:reduce){
-    .hero-vid video{display:none;}
-    .hero-vid{background:url('hero-build-poster.jpg') center/cover no-repeat;}
-  }
+  /* the reduced-motion still lives in herorot.CSS, after the video rules */
 
   /* PHOTO AND VIDEO SECTIONS (same system as the cement microsite) */
   .imgsec{position:relative;overflow:hidden;isolation:isolate;}
@@ -487,6 +483,17 @@
     .arxf-p{background:linear-gradient(140deg,#FDBA74,#F97316);color:#2A231B;}
     .arxf-r{background:#fff;border:1px solid var(--border);color:#5A554C;}
     .arxf-r .n{color:#B8860B;}
+  }
+
+  /* HERO VIDEO ROTATION */
+  .hero-vid video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    display:block;opacity:0;transition:opacity 1400ms ease-in-out;}
+  .hero-vid video.on{opacity:1;}
+  .hero-vid.solo video{opacity:1;transition:none;}
+  /* after the rules above, so the still wins over display:block */
+  @media(prefers-reduced-motion:reduce){
+    .hero-vid video{display:none;}
+    .hero-vid{background:url('hero-build-poster.jpg') center/cover no-repeat;}
   }
 
   /* SCROLL REVEALS (only active once the head script adds .rv) */

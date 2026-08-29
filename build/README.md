@@ -23,6 +23,8 @@ blocks, so a lost CSS block fails loudly instead of shipping an unstyled page.
 | `content2.py` | Built Industry, Use Cases, Company, Discuss copy, plus the filter and cross-link tables |
 | `build.py` | Page assembly, `OUT` points at `../preview` |
 | `eclipse.py` | The lifecycle diagram, its own CSS and SVG geometry |
+| `herorot.py` | The hero clip rotation, its own CSS and script |
+| `herovid.py` | Cuts and colour matches the hero clips from the Envato originals |
 | `reveal.py` | Scroll reveals, its own CSS and scripts |
 | `legal.py` | Reads Privacy and Terms out of `nexsun/` and reskins them |
 | `sideaware.py` | Turns originals in `../preview/incoming/` into the cropped, graded files the pages use |
@@ -44,6 +46,25 @@ and a vertical anchor.
 
 Adding an image: drop the original in `incoming/`, add a `PLAN` row, run
 `python3 sideaware.py`, then `python3 build.py`.
+
+## Hero clips
+
+The hero cycles through `hero-build.mp4`, `hero-crane.mp4` and `hero-rise.mp4`,
+7.5 seconds each with a 1.4 second crossfade. `herovid.py` cuts the last two
+from the Envato originals in `~/Downloads`; it encodes each one twice, measuring
+its mean channel levels after the first pass and applying the gain that lands it
+on `hero-build.mp4`, so the three read as one continuous piece of footage rather
+than three stock clips. Change `PLAN` and `HERO_CLIPS` in `build.py` to swap a
+clip.
+
+`hero-build.mp4` was cut from `apartment-construction-site-at-golden-sunset`.
+Do not take a second window from that source for the rotation, it reads as the
+hero stuttering. A frame comparison is the quick way to tell: the same source
+scores about 1.4 mean difference per channel, an unrelated one about 35.
+
+Only the first clip is in the document with a source. The others carry
+`data-src` and are attached once the page is idle, so the rotation costs nothing
+on first paint.
 
 ## Checking work
 

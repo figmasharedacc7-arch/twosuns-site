@@ -5,6 +5,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import theme
 from theme import head, chrome_nav, TAIL
+import herorot
 from content import HOME, PLATFORM, CAPABILITIES, HORIZON_GROUPS, PULSE_GROUPS
 from content2 import (BUILT, USECASES, UC_THEMES, UC_ITEMS, COMPANY, DISCUSS,
                       UC_AREA_LABELS, UC_GROUP_LABELS, UC_TAGS, CAP_LINKS)
@@ -115,8 +116,16 @@ REQUIRED_CSS = [
     ".ecl{", ".ecl-lab", ".ecl-fallback",          # lifecycle diagram
     ".imgsec{", ".imgsec-r::after", ".vidband",     # photo and video sections
     ".arch3-band", ".a3-core::before",              # architecture
-    ".hero-vid", ".uc-frow", ".acc-rel",            # hero video, filters, cross links
+    ".hero-vid", ".hero-vid video.on", ".uc-frow", ".acc-rel",   # hero, filters, cross links
     ".split2", ".steps", ".uc-grid",
+]
+
+
+# the hero cycles through these, first one eager, the rest deferred by herorot
+HERO_CLIPS = [
+    ("hero-build.mp4", "hero-build-poster.jpg"),
+    ("hero-crane.mp4", "hero-crane-poster.jpg"),
+    ("hero-rise.mp4", "hero-rise-poster.jpg"),
 ]
 
 
@@ -140,9 +149,7 @@ def build_home():
 
     s += """<section class="hero tall has-vid">
   <div class="hero-vid">
-    <video autoplay muted loop playsinline preload="metadata" poster="hero-build-poster.jpg" aria-hidden="true">
-      <source src="hero-build.mp4" type="video/mp4">
-    </video>
+    """ + herorot.markup(HERO_CLIPS) + """
   </div>
   <div class="hero-glow"></div>
   <div class="container">
@@ -214,7 +221,7 @@ def build_home():
 """ % (e(d["work_h"]), work, btn("Explore Use Cases", "use-cases.html", ghost=True))
 
     s += vid_band("vid-aerial", d["close_h"], d["close_p"], d["close_primary"], d["close_secondary"])
-    return s + TAIL
+    return s + herorot.SCRIPT + TAIL
 
 
 # ================================================================ PLATFORM

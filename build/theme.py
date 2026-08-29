@@ -94,7 +94,6 @@ CSS = r"""
 
   /* HERO VIDEO */
   .hero-vid{position:absolute;inset:0;z-index:0;overflow:hidden;}
-  .hero-vid video{width:100%;height:100%;object-fit:cover;display:block;}
   .hero-vid::after{content:'';position:absolute;inset:0;
     background:linear-gradient(100deg,#FFF6E2 0%,rgba(255,246,226,.97) 30%,rgba(255,246,226,.86) 44%,
       rgba(255,245,222,.62) 56%,rgba(255,244,218,.34) 68%,rgba(255,243,216,.14) 82%,rgba(255,243,216,.04) 100%);}
@@ -103,10 +102,7 @@ CSS = r"""
     .hero-vid::after{background:linear-gradient(178deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.90) 46%,
       rgba(255,245,222,.72) 74%,rgba(255,244,218,.46) 100%);}
   }
-  @media(prefers-reduced-motion:reduce){
-    .hero-vid video{display:none;}
-    .hero-vid{background:url('hero-build-poster.jpg') center/cover no-repeat;}
-  }
+  /* the reduced-motion still lives in herorot.CSS, after the video rules */
 
   /* PHOTO AND VIDEO SECTIONS (same system as the cement microsite) */
   .imgsec{position:relative;overflow:hidden;isolation:isolate;}
@@ -449,6 +445,8 @@ REVEAL_HEAD = _rv.HEAD
 REVEAL_CSS = _rv.CSS
 import arch as _ax
 ARCH_CSS = _ax.CSS
+import herorot as _hr
+HERO_CSS = _hr.CSS
 
 
 def head(title, desc, active=None, extra_css=""):
@@ -461,7 +459,7 @@ def head(title, desc, active=None, extra_css=""):
 <meta name="description" content="{desc}">
 <meta name="robots" content="noindex">
 <link rel="icon" type="image/svg+xml" href="logo-mini.svg">
-<style>{CSS}{ARCH_CSS}{REVEAL_CSS}{extra_css}</style>
+<style>{CSS}{ARCH_CSS}{HERO_CSS}{REVEAL_CSS}{extra_css}</style>
 {REVEAL_HEAD}
 </head>
 <body>

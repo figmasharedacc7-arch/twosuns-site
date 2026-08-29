@@ -12,6 +12,8 @@ async function ev(x){const r=await c.send('Runtime.evaluate',{expression:x,retur
 const contradiction = `[...document.querySelectorAll('.rv .in')].filter(e=>getComputedStyle(e).opacity==='0').length`;
 // and anything on screen still invisible
 const stuck = `(()=>{var bad=[];document.querySelectorAll('.rv *').forEach(function(e){
+  // the hero's off-turn clips are meant to sit at zero, they are not stuck
+  if(e.closest('.hero-vid'))return;
   var r=e.getBoundingClientRect();
   if(r.top<innerHeight-40&&r.bottom>40&&r.height>4&&getComputedStyle(e).opacity==='0')bad.push((e.className||e.tagName).toString().slice(0,28));
 });return bad.slice(0,4).join(' | ')||'none';})()`;
