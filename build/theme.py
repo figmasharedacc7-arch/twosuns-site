@@ -154,13 +154,20 @@ CSS = r"""
   .img-operations::before{background-image:url('img-operations.jpg');}
   /* a photo section that carries a video instead of a still */
   .imgsec > video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;}
-  /* the pour is a tight close up, so hold it to a narrower column on the left */
-  .imgsec-work > video{width:auto;height:100%;left:0;right:auto;}
-  .imgsec-work::after{background:linear-gradient(260deg,#FFF6E2 0%,#FFF6E2 58%,rgba(255,246,226,.97) 66%,rgba(255,246,226,.86) 74%,rgba(255,245,222,.52) 84%,rgba(255,244,218,.18) 94%,rgba(255,243,216,.04) 100%);}
+  /* a video that sits as a contained panel beside the copy, not a bleed */
+  .vidsplit{display:grid;grid-template-columns:.86fr 1.14fr;gap:52px;align-items:center;margin-top:34px;}
+  .vidsplit > *{min-width:0;}
+  .vidsplit video{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;border-radius:20px;
+    box-shadow:0 18px 46px rgba(60,50,30,.18);border:1px solid rgba(140,101,0,.20);}
   @media(prefers-reduced-motion:reduce){
-    .imgsec > video{display:none;}
-    .imgsec-work::before{background-image:url('vid-work-poster.jpg');}
+    .vidsplit video{display:none;}
+    .vidsplit .vidsplit-still{display:block;width:100%;aspect-ratio:16/9;border-radius:20px;
+      background:url('vid-work-poster.jpg') center/cover no-repeat;
+      box-shadow:0 18px 46px rgba(60,50,30,.18);}
   }
+  .vidsplit-still{display:none;}
+  @media(max-width:860px){.vidsplit{grid-template-columns:1fr;gap:26px;}}
+
   .sec-split{display:block;}
   .imgsec-r .sec-split{max-width:58%;}
   .imgsec-l .sec-split{max-width:58%;margin-left:auto;}
