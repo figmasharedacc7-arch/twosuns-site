@@ -244,24 +244,6 @@ COMPANY = dict(
              "Ahmed leads engineering delivery and coordinates the technical work required to configure, extend "
              "and implement TwoSuns for enterprise use."),
         ]),
-        ("Growth and engagement", False, [
-            ("Belen Welch", "Growth Officer",
-             "Belen supports growth strategy, opportunity development and the relationships that connect TwoSuns "
-             "with prospective clients and partners."),
-            ("Michelle Mollineaux", "Marketing Director",
-             "Michelle leads marketing direction, communications and market-facing programs that build awareness "
-             "and engagement around TwoSuns."),
-            ("Nour Eldin", "Business Development",
-             "Nour supports business development, client relationships and the coordination of opportunities from "
-             "initial interest through active engagement."),
-            ("Raihaan Mohammad", "Digital Assets",
-             "Raihaan develops and coordinates digital assets that support product communication, demonstrations "
-             "and market engagement."),
-            ("Alexa Marquez", "Marketing Coordinator",
-             "Alexa supports campaign, content and marketing coordination across TwoSuns growth activities."),
-            ("Mariam Ibrahim", "Marketing Coordinator",
-             "Mariam supports marketing programs, communications and the continuing coordination of campaign activity."),
-        ]),
         ("Product, analytics and engineering", False, [
             ("Sara ElElimy", "Director, Analytics",
              "Sara leads analytics and business discovery, translating enterprise priorities, workflows and inputs "
@@ -285,6 +267,24 @@ COMPANY = dict(
             ("AbdelRahmen", "Systems Engineer",
              "AbdelRahmen supports the systems, environments and technical operations required for dependable "
              "platform delivery."),
+        ]),
+        ("Growth and engagement", False, [
+            ("Belen Welch", "Growth Officer",
+             "Belen supports growth strategy, opportunity development and the relationships that connect TwoSuns "
+             "with prospective clients and partners."),
+            ("Michelle Mollineaux", "Marketing Director",
+             "Michelle leads marketing direction, communications and market-facing programs that build awareness "
+             "and engagement around TwoSuns."),
+            ("Nour Eldin", "Business Development",
+             "Nour supports business development, client relationships and the coordination of opportunities from "
+             "initial interest through active engagement."),
+            ("Raihaan Mohammad", "Digital Assets",
+             "Raihaan develops and coordinates digital assets that support product communication, demonstrations "
+             "and market engagement."),
+            ("Alexa Marquez", "Marketing Coordinator",
+             "Alexa supports campaign, content and marketing coordination across TwoSuns growth activities."),
+            ("Mariam Ibrahim", "Marketing Coordinator",
+             "Mariam supports marketing programs, communications and the continuing coordination of campaign activity."),
         ]),
         ("Principal Advisory Team", False, [
             ("Dr. Ahmed Korayem", "Principal Adviser, Global Markets",
