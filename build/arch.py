@@ -10,6 +10,7 @@ scales with the container. Below 900px it stacks.
 """
 
 VB_W, VB_H = 2000, 1130
+VB_Y0, VB_VIS = 195, 990   # crop the viewBox to where the drawing actually starts
 
 HX, HY, HR = 660, 575, 278          # Horizon disc
 PX, PY, PR = 1400, 575, 278         # Pulse disc
@@ -18,7 +19,7 @@ GOLD, ORANGE, DEEP = "#E0B33A", "#F97316", "#C45213"
 
 CSS = r"""
   /* PLATFORM ARCHITECTURE */
-  .arx{position:relative;width:100%;max-width:1180px;margin:44px auto 0;aspect-ratio:2000/1130;
+  .arx{position:relative;width:100%;max-width:1180px;margin:22px auto 0;aspect-ratio:2000/990;
     container-type:inline-size;}
   .arx svg{position:absolute;inset:0;width:100%;height:100%;}
   .arx-lab{position:absolute;transform:translate(-50%,-50%);text-align:center;}
@@ -69,12 +70,12 @@ CSS = r"""
 
 
 def _pct(x, y):
-    return "left:%.2f%%;top:%.2f%%" % (x / VB_W * 100, y / VB_H * 100)
+    return "left:%.2f%%;top:%.2f%%" % (x / VB_W * 100, (y - VB_Y0) / VB_VIS * 100)
 
 
 def section(heading, sub, explore_btn):
-    s = ['<svg viewBox="0 0 %d %d" role="img" aria-label="Horizon and Pulse as two operating '
-         'domains, Core as the governed context between them, Ray spanning beneath.">' % (VB_W, VB_H)]
+    s = ['<svg viewBox="0 %d %d %d" role="img" aria-label="Horizon and Pulse as two operating '
+         'domains, Core as the governed context between them, Ray spanning beneath.">' % (VB_Y0, VB_W, VB_VIS)]
     s.append("""<defs>
       <radialGradient id="axh" cx="36%%" cy="30%%">
         <stop offset="0" stop-color="#FBEBB4"/><stop offset=".55" stop-color="#EFCE6B"/>
@@ -180,7 +181,7 @@ def section(heading, sub, explore_btn):
         <span><i style="background:%s;"></i>Enterprise awareness</span>
         <span><i style="background:%s;"></i>Coordinated action</span>
       </div>
-    </div>""" % (952 / VB_H * 100, 1090 / VB_W * 100, GOLD, ORANGE, "#B8860B")
+    </div>""" % ((952 - VB_Y0) / VB_VIS * 100, 1090 / VB_W * 100, GOLD, ORANGE, "#B8860B")
 
     fb = """<div class="arx-fallback">
       <div class="arxf arxf-h"><div class="k">Commercial intelligence</div><div class="n">HORIZON</div>
