@@ -152,19 +152,12 @@
   .img-operations::before{background-image:url('img-operations.jpg');}
   /* a photo section that carries a video instead of a still */
   .imgsec > video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;}
-  /* a video that sits as a contained panel beside the copy, not a bleed */
-  .vidsplit{display:grid;grid-template-columns:.86fr 1.14fr;gap:52px;align-items:center;margin-top:34px;}
-  .vidsplit > *{min-width:0;}
-  .vidsplit video{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;border-radius:20px;
-    box-shadow:0 18px 46px rgba(60,50,30,.18);border:1px solid rgba(140,101,0,.20);}
+  /* a photo section that carries a video instead of a still */
+  .imgsec > video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;}
   @media(prefers-reduced-motion:reduce){
-    .vidsplit video{display:none;}
-    .vidsplit .vidsplit-still{display:block;width:100%;aspect-ratio:16/9;border-radius:20px;
-      background:url('vid-work-poster.jpg') center/cover no-repeat;
-      box-shadow:0 18px 46px rgba(60,50,30,.18);}
+    .imgsec > video{display:none;}
+    .imgsec-work::before{background-image:url('vid-work-poster.jpg');}
   }
-  .vidsplit-still{display:none;}
-  @media(max-width:860px){.vidsplit{grid-template-columns:1fr;gap:26px;}}
 
   .sec-split{display:block;}
   .imgsec-r .sec-split{max-width:58%;}
@@ -644,19 +637,15 @@
    </div>
   </div>
 </section>
-<section class="band-warm">
+<section class="imgsec imgsec-l imgsec-work area-sec">
+  <video autoplay muted loop playsinline preload="metadata" poster="vid-work-poster.jpg" aria-hidden="true">
+    <source src="vid-work.mp4" type="video/mp4">
+  </video>
   <div class="container">
+   <div class="sec-split">
     <div class="section-tag">Where to start</div>
     <h2 class="section-heading">Begin with the work that matters now</h2>
-    <div class="vidsplit">
-      <div>
-        <video autoplay muted loop playsinline preload="metadata" poster="vid-work-poster.jpg" aria-hidden="true">
-          <source src="vid-work.mp4" type="video/mp4">
-        </video>
-        <div class="vidsplit-still"></div>
-      </div>
-      <div>
-        <div class="grid2" style="margin-top:0;"><div class="card">
+    <div class="grid3"><div class="card">
       <span class="card-num" style="background:var(--a1);">1</span>
       <h3>Find and develop growth opportunities</h3><p>Bring markets, competitors, relationships, projects and organizational priorities into a connected growth environment.</p>
     </div><div class="card">
@@ -666,9 +655,8 @@
       <span class="card-num" style="background:var(--a3);">3</span>
       <h3>Strengthen asset and enterprise performance</h3><p>Combine financial, operational, market and asset context to improve visibility, coordination and continuing performance.</p>
     </div></div>
-        <div style="margin-top:26px;"><a class="btn-ghost" href="use-cases.html">Explore Use Cases</a></div>
-      </div>
-    </div>
+    <div style="margin-top:30px;"><a class="btn-ghost" href="use-cases.html">Explore Use Cases</a></div>
+   </div>
   </div>
 </section>
 <section class="vidband vid-aerial" style="padding:96px 0;">

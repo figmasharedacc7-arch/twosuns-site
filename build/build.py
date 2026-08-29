@@ -198,22 +198,17 @@ def build_home():
       <h3>%s</h3><p>%s</p>
     </div>""" % (ACCENTS[i], i + 1, e(h), e(p))
 
-    s += """<section class="band-warm">
+    s += """<section class="imgsec imgsec-l imgsec-work area-sec">
+  <video autoplay muted loop playsinline preload="metadata" poster="vid-work-poster.jpg" aria-hidden="true">
+    <source src="vid-work.mp4" type="video/mp4">
+  </video>
   <div class="container">
+   <div class="sec-split">
     <div class="section-tag">Where to start</div>
     <h2 class="section-heading">%s</h2>
-    <div class="vidsplit">
-      <div>
-        <video autoplay muted loop playsinline preload="metadata" poster="vid-work-poster.jpg" aria-hidden="true">
-          <source src="vid-work.mp4" type="video/mp4">
-        </video>
-        <div class="vidsplit-still"></div>
-      </div>
-      <div>
-        <div class="grid2" style="margin-top:0;">%s</div>
-        <div style="margin-top:26px;">%s</div>
-      </div>
-    </div>
+    <div class="grid3">%s</div>
+    <div style="margin-top:30px;">%s</div>
+   </div>
   </div>
 </section>
 """ % (e(d["work_h"]), work, btn("Explore Use Cases", "use-cases.html", ghost=True))
