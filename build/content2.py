@@ -275,7 +275,7 @@ COMPANY = dict(
             ("Michelle Mollineaux", "Marketing Director",
              "Michelle leads marketing direction, communications and market-facing programs that build awareness "
              "and engagement around TwoSuns."),
-            ("Nour Eldin", "Business Development",
+            ("Nour Eldin", "AI Solution Advisor",
              "Nour supports business development, client relationships and the coordination of opportunities from "
              "initial interest through active engagement."),
             ("Raihaan Mohammad", "Digital Assets",
