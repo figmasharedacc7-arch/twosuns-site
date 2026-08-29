@@ -76,6 +76,10 @@
     background:linear-gradient(160deg,#FFF5DD 0%,#FFF3CD 30%,#FCE2BC 60%,#FEF9C3 100%);
     background-size:300% 300%;animation:heroBgBreath 14s ease-in-out infinite;}
   .hero.tall{padding:120px 0 110px;}
+  .hero.hero-form{padding:56px 0 46px;}
+  .hero.hero-form h1{font-size:clamp(30px,3.4vw,42px);margin-bottom:15px;max-width:22ch;}
+  .hero.hero-form p.hero-sub{font-size:16.5px;margin-bottom:0;}
+  section.form-sec{padding-top:40px;}
   .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--sun-pale);
     border:1px solid rgba(224,100,30,.4);color:#9A7209;font-size:11px;font-weight:800;
     letter-spacing:2.5px;text-transform:uppercase;padding:6px 16px;border-radius:20px;margin-bottom:22px;}
@@ -369,7 +373,7 @@
   .person.lead{border-color:rgba(224,100,30,.35);border-top:4px solid var(--sun);}
 
   /* FORM */
-  .form-card{background:#fff;border:1px solid var(--border-soft);border-radius:22px;padding:36px;box-shadow:var(--shadow-lg);max-width:720px;}
+  .form-card{background:#fff;border:1px solid var(--border-soft);border-radius:22px;padding:36px;box-shadow:var(--shadow-lg);max-width:720px;margin:0 auto;}
   .form-card label{display:block;font-size:12.5px;font-weight:800;letter-spacing:.6px;color:var(--navy);margin:18px 0 6px;text-transform:uppercase;}
   .form-card label .opt{color:var(--text-muted);font-weight:600;text-transform:none;letter-spacing:0;}
   .form-card input,.form-card select,.form-card textarea{width:100%;background:#FFFBF2;border:1px solid rgba(30,26,20,.15);
@@ -384,7 +388,7 @@
   .form-note{font-size:12.5px;color:var(--text-muted);margin-top:14px;line-height:1.6;}
   .ctx-chip{display:none;align-items:center;gap:8px;background:var(--sun-pale);border:1px solid rgba(224,100,30,.4);
     color:var(--sun-deep);font-size:12.5px;font-weight:700;padding:8px 14px;border-radius:20px;margin-bottom:6px;}
-  .form-ok{display:none;background:linear-gradient(135deg,#FEFAE8,#FAF0B8);border:1px solid rgba(204,153,0,.4);
+  .form-ok{display:none;max-width:720px;margin:0 auto;background:linear-gradient(135deg,#FEFAE8,#FAF0B8);border:1px solid rgba(204,153,0,.4);
     border-radius:18px;padding:30px;text-align:center;}
   .form-ok h3{font-size:21px;font-weight:800;color:var(--navy);margin-bottom:10px;}
   .form-ok p{color:var(--text-muted);font-size:15.5px;}
@@ -539,7 +543,7 @@
     </div>
   </div>
 </nav>
-<section class="hero">
+<section class="hero hero-form">
   <div class="hero-glow"></div>
   <div class="container">
     <div class="hero-eyebrow"><span class="dot"></span>Start a Conversation</div>
@@ -548,7 +552,7 @@
   </div>
 </section>
 <div class="sun-divider"></div>
-<section>
+<section class="form-sec">
   <div class="container">
     <div class="form-card" id="formwrap">
       <div class="ctx-chip" id="ctxchip"></div>
@@ -582,7 +586,7 @@
           for this conversation.</p>
       </form>
     </div>
-    <div class="form-ok" id="formok" style="max-width:720px;">
+    <div class="form-ok" id="formok">
       <h3>Thank you.</h3>
       <p>We have received your message and will review the context before following up.</p>
     </div>

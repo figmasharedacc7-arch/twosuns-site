@@ -702,7 +702,7 @@ def build_discuss():
     opts = "".join('<option value="%s">%s</option>' % (e(a), e(a)) for a in d["areas"])
 
     s = head(d["title"], d["desc"]) + chrome_nav("discuss.html")
-    s += """<section class="hero">
+    s += """<section class="hero hero-form">
   <div class="hero-glow"></div>
   <div class="container">
     <div class="hero-eyebrow"><span class="dot"></span>%s</div>
@@ -713,7 +713,7 @@ def build_discuss():
 <div class="sun-divider"></div>
 """ % (e(d["eyebrow"]), e(d["h1"]), e(d["sub"]))
 
-    s += """<section>
+    s += """<section class="form-sec">
   <div class="container">
     <div class="form-card" id="formwrap">
       <div class="ctx-chip" id="ctxchip"></div>
@@ -747,7 +747,7 @@ def build_discuss():
           for this conversation.</p>
       </form>
     </div>
-    <div class="form-ok" id="formok" style="max-width:720px;">
+    <div class="form-ok" id="formok">
       <h3>%s</h3>
       <p>%s</p>
     </div>
