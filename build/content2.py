@@ -286,17 +286,6 @@ COMPANY = dict(
             ("Mariam Ibrahim", "Marketing Coordinator",
              "Mariam supports marketing programs, communications and the continuing coordination of campaign activity."),
         ]),
-        ("Principal Advisory Team", False, [
-            ("Dr. Ahmed Korayem", "Principal Adviser, Global Markets",
-             "Dr. Korayem advises on global markets, international commercial context and the relationships that "
-             "shape cross-border opportunity development."),
-            ("Yasif Patel", "Principal Adviser, Finance and Human Resources",
-             "Yasif advises on financial management, organizational capability and the people considerations that "
-             "support sustainable enterprise growth."),
-            ("Kalpesh Bathella", "Principal Adviser, Information Technology",
-             "Kalpesh advises on enterprise technology, information environments and the practical requirements "
-             "involved in connecting platforms with organizational operations."),
-        ]),
     ],
     aepg_h="TwoSuns by AEPG",
     aepg_p="TwoSuns is developed by AEPG, an enterprise technology and growth organization that brings together "
