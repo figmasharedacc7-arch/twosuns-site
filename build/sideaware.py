@@ -32,7 +32,7 @@ PLAN = [
     ("plat-integration",  "r", 0.52, False, 1.08, 0.45),
     ("home-work",         "l", 0.30, False, None, 0.52),   # cranes left, open sky right
     ("plat-deploy",       "r", 0.62, False, 1.06, 0.48),
-    ("plat-hero",         "r", 0.50, False, 1.02, 0.30),   # crop up, the lower third is flat black
+    ("plat-hero",         "r", 0.50, False, 1.02, 0.12),   # frame high, the lower third is flat black
     ("cap-hero",          "r", 0.72, False, 1.30, 0.50),   # dark control room, needs a real lift
     ("uc-hero",           "r", 0.45, True,  1.02, 0.62),   # mirror so the pair sits right, frame low for the crane
     ("company-hero",      "r", 0.72, False, 1.02, 0.42),   # group already sits right, only a light touch
@@ -46,6 +46,9 @@ MILD = {"area-operations", "fam-pulse", "area-owners", "company-hero"}     # a g
 TARGET = {"l": 0.34, "r": 0.66}   # pulled in from the edges so less width is thrown away
 MIN_KEEP = 0.90                    # never crop away more than this much width
 KEEP_ALL = {"cap-hero", "company-hero"}   # the group is the subject, keep the full width
+# a subject sitting dead centre cannot reach the target on a 10% crop, so these
+# are allowed to give up more width
+DEEP = {"plat-hero": 0.86}
 
 
 def build(name, side, subj, mirror, lift, anchor):
@@ -59,7 +62,7 @@ def build(name, side, subj, mirror, lift, anchor):
 
     # narrowest crop that still reaches the target, so we throw away as little as possible
     frac, left_f, landed = 1.0, 0.0, subj
-    floor = 100 if name in KEEP_ALL else int(MIN_KEEP * 100)
+    floor = 100 if name in KEEP_ALL else int(DEEP.get(name, MIN_KEEP) * 100)
     for f in [x / 100.0 for x in range(100, floor - 1, -1)]:
         L = subj - f * t
         L = max(0.0, min(1.0 - f, L))
