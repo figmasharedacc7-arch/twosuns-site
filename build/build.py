@@ -735,7 +735,7 @@ def build_discuss():
 
     s += """<script>
 (function(){
-  var ENDPOINT="https://script.google.com/macros/s/AKfycbyz4qCsmkMasAHUe8ZZqTva4VvVGo-Q3vy3K_sTMIJY4Q3Mhnq_1HMg_-Z4DF_CUu9z/exec";
+  var ENDPOINT="https://script.google.com/macros/s/AKfycbwEm-PHev_stm8yLJHWLmuJ7_Tl68A556ImMH1QJMWvlRealsKsjPe12P08_o88QNOg/exec";
   var MAILFALLBACK="https://formsubmit.co/ajax/info@twosuns.ai";
 
   function param(k){
