@@ -32,7 +32,7 @@ PLAN = [
     ("plat-integration",  "r", 0.52, False, 1.08, 0.45),
     ("home-work",         "l", 0.30, False, None, 0.52),   # cranes left, open sky right
     ("plat-deploy",       "r", 0.62, False, 1.06, 0.48),
-    ("plat-hero",         "r", 0.48, False, 1.02, 0.55),
+    ("plat-hero",         "r", 0.50, False, 1.02, 0.30),   # crop up, the lower third is flat black
     ("cap-hero",          "r", 0.72, False, 1.30, 0.50),   # dark control room, needs a real lift
     ("uc-hero",           "r", 0.45, True,  1.02, 0.62),   # mirror so the pair sits right, frame low for the crane
     ("company-hero",      "r", 0.72, False, 1.02, 0.42),   # group already sits right, only a light touch
