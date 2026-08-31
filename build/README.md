@@ -12,6 +12,7 @@ cd /Users/mohammaddidarulalam/Documents/Claude/twosuns-live/build
 python3 build.py                  # the seven content pages
 python3 legal.py                  # privacy.html and terms.html
 python3 sitemap.py 2026-08-29     # robots.txt and sitemap.xml, pass today's date
+python3 redirects.py              # keeps the old /preview/ links alive
 python3 ogimage.py                # og-twosuns.jpg, only when the hero still changes
 ```
 

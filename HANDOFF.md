@@ -11,6 +11,7 @@ Written 2026-08-28. Everything a fresh session needs.
 | `twosuns.ai/` | The nine-page site | **Launched 2026-08-29.** Indexable, canonical, sitemap declared |
 | `twosuns.ai/cement/` | Cement campaign microsite, 34 pages | Live, self-contained, deliberately separate |
 | `twosuns.ai/contact.html` | Old contact form | Kept only because eight cement pages link to it |
+| `twosuns.ai/preview/*` | The old preview URLs | Redirect stubs to the root pages, carrying query and fragment |
 
 The site is built from the **TwoSuns Website Master Copy August 22 2026.docx**,
 which is the source of truth for all copy. `preview/` now holds only
