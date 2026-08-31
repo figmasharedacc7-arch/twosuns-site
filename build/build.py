@@ -471,7 +471,10 @@ def build_usecases():
     s = head(d["title"], d["desc"], "use-cases.html") + chrome_nav("use-cases.html")
     s += (hero(d, wide=True).replace('<section class="hero wide"',
                                      '<section class="hero wide hero-photo wall-usecases"')
-          % (btn(d["primary"]) + btn(d["secondary"], ghost=True)))
+          # the hero sits above every card, so the doc's "Discuss This Use Case"
+          # has nothing to refer to yet. It keeps its place in the closing band.
+          % (btn("Explore the Workflows", "#workflows")
+             + btn(d["secondary"], ghost=True)))
 
     def frow(label, dim, opts, prefix):
         btns = '<button class="uc-filter on" data-dim="%s" data-f="all">All</button>' % dim
@@ -509,7 +512,7 @@ def build_usecases():
 </article>
 """ % (slug(title), " ".join(tags), e(title), e(users), e(inputs), e(wf), e(out), e(lens), chips)
 
-    s += """<section>
+    s += """<section id="workflows">
   <div class="container">
     <div class="section-tag">Filter</div>
     <h2 class="section-heading">Representative workflows</h2>
@@ -592,6 +595,9 @@ def build_usecases():
   function jump(){
     var id=location.hash.slice(1); if(!id) return;
     var el=document.getElementById(id); if(!el) return;
+    // only a use case gets the reveal-and-centre treatment. Centring anything
+    // taller, such as the section wrapper, lands you in the middle of the grid.
+    if(!el.classList.contains('uc')) return;
     for(var k in picked) picked[k]='all';
     btns.forEach(function(o){ o.classList.toggle('on', o.getAttribute('data-f')==='all'); });
     apply();
