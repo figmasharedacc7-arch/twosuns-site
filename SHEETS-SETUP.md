@@ -36,6 +36,22 @@ The forms keep posting to the existing email bridge, so no lead is ever lost
 during the switchover. Once the URL is in, every submission writes a row to the
 sheet AND still emails info@twosuns.ai as a backup.
 
+## Attachments
+
+The discuss form accepts a file up to 4 MB. `sheets-script.gs` decodes it,
+saves it to a Drive folder called **TwoSuns Website Leads, attachments**, and
+writes the link into the Attachment column. The folder is created on first use.
+
+Files stay **private to the account that owns the script**. Share them
+deliberately rather than putting a lead's document behind a public link.
+
+If a file ever fails to save the lead is still recorded, with the reason in the
+Attachment column instead of a link.
+
+**After changing the script you must redeploy, or the website keeps hitting the
+old version:** Deploy > Manage deployments > pencil icon > Version: New version
+> Deploy. Keep the same deployment so the URL does not change.
+
 ## Getting the leads into Excel
 
 In the sheet: **File → Download → Microsoft Excel (.xlsx)**. Or keep it live in
