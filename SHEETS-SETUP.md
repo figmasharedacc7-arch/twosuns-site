@@ -36,6 +36,21 @@ The forms keep posting to the existing email bridge, so no lead is ever lost
 during the switchover. Once the URL is in, every submission writes a row to the
 sheet AND still emails info@twosuns.ai as a backup.
 
+## One tab per call to action
+
+Every lead is written twice on purpose. The first tab in the workbook stays the
+master, the single place to see the whole pipeline in date order. A second copy
+goes to a tab named after the call to action that produced it, created the first
+time a lead arrives from that button, so the workbook only grows as real demand
+does.
+
+The site has eleven distinct calls to action today. `Discuss Your Needs` is the
+general one and appears on every page; the rest are specific, so their tabs are
+the interesting ones. A lead with no campaign value lands in `Unattributed`.
+
+Set `ALSO_MASTER = false` in the script if you would rather have no master tab
+and no duplication.
+
 ## Attachments
 
 The discuss form accepts a file up to 4 MB. `sheets-script.gs` decodes it,
