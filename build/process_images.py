@@ -7,7 +7,7 @@ warm gradients over the top do not band. Reports every decision.
 import os, sys, glob
 from PIL import Image, ImageOps
 
-V2 = "/Users/mohammaddidarulalam/Documents/Claude/twosuns-live/preview"
+V2 = "/Users/mohammaddidarulalam/Documents/Claude/twosuns-live"
 DROP = os.path.join(V2, "incoming")
 
 # background photos are shown wide and cropped, so 2400 is the useful ceiling

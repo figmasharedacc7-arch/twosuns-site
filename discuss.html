@@ -3,9 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TwoSuns | Adaptive enterprise capability for the built industry</title>
-<meta name="description" content="TwoSuns is an adaptive enterprise platform for the built industry, combining trusted inputs, context-aware intelligence, agentic support and configurable workflows.">
-<meta name="robots" content="noindex">
+<title>Discuss Your Needs | TwoSuns</title>
+<meta name="description" content="Share the pain point, opportunity or workflow that matters to your organization.">
+<link rel="canonical" href="https://twosuns.ai/discuss.html">
+<meta name="theme-color" content="#FFF5DD">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TwoSuns">
+<meta property="og:title" content="Discuss Your Needs | TwoSuns">
+<meta property="og:description" content="Share the pain point, opportunity or workflow that matters to your organization.">
+<meta property="og:url" content="https://twosuns.ai/discuss.html">
+<meta property="og:image" content="https://twosuns.ai/og-twosuns.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Discuss Your Needs | TwoSuns">
+<meta name="twitter:description" content="Share the pain point, opportunity or workflow that matters to your organization.">
+<meta name="twitter:image" content="https://twosuns.ai/og-twosuns.jpg">
 <link rel="icon" type="image/svg+xml" href="logo-mini.svg">
 <style>
   :root{
@@ -215,12 +228,6 @@
   .cardimg p{font-size:14px;color:var(--text-muted);line-height:1.7;}
   .cardimg .tick{margin-top:14px;}
   .cardimg .tick li{font-size:13.5px;margin-bottom:6px;}
-  .ph-materials{background-image:url('area-materials-card.jpg');}
-  .ph-distribution{background-image:url('area-distribution-card.jpg');}
-  .ph-owners{background-image:url('area-owners-card.jpg');}
-  .ph-construction{background-image:url('area-construction-card.jpg');}
-  .ph-operations{background-image:url('area-operations-card.jpg');}
-  .ph-institutions{background-image:url('area-institutions-card.jpg');}
 
   /* LAYER BLOCKS (Core / Ray / Horizon / Pulse) */
   .layer{background:#fff;border:1px solid var(--border);border-radius:20px;padding:34px;box-shadow:var(--shadow);margin-top:24px;}
@@ -511,241 +518,130 @@
     </div>
   </div>
 </nav>
-<section class="hero tall has-vid">
-  <div class="hero-vid">
-    <video class="on" autoplay muted loop playsinline preload="auto" poster="hero-build-poster.jpg" aria-hidden="true"><source src="hero-build.mp4" type="video/mp4"></video>
-    <video muted loop playsinline preload="none" poster="hero-crane-poster.jpg" data-src="hero-crane.mp4" aria-hidden="true"></video>
-    <video muted loop playsinline preload="none" poster="hero-rise-poster.jpg" data-src="hero-rise.mp4" aria-hidden="true"></video>
-  </div>
+<section class="hero hero-form">
   <div class="hero-glow"></div>
   <div class="container">
-    <div class="hero-eyebrow"><span class="dot"></span>Adaptive enterprise capability for the built industry</div>
-    <h1>Grow, operate and coordinate complex work through shared enterprise context.</h1>
-    <p class="hero-sub">TwoSuns is an adaptive enterprise platform for the built industry. It combines trusted inputs, context-aware intelligence, agentic support and configurable workflows to help organizations grow, operate and benefit from more expansive and integrated context.</p>
-    <div class="hero-actions"><a class="btn-cta" href="discuss.html?ask=Discuss+Your+Needs">Discuss Your Needs</a><a class="btn-ghost" href="platform.html">Explore the Platform</a></div>
+    <div class="hero-eyebrow"><span class="dot"></span>Start a Conversation</div>
+    <h1 style="max-width:20ch;">Tell us what you are trying to advance.</h1>
+    <p class="hero-sub">Share the pain point, opportunity or workflow that matters to your organization. We will review the context and follow up with a focused conversation about the most useful next step.</p>
   </div>
 </section>
 <div class="sun-divider"></div>
-<section style="padding:88px 0 78px;">
+<section class="form-sec">
   <div class="container">
-    <div class="section-tag">The shift</div>
-    <h2 class="section-heading">Enterprise software is evolving</h2>
-    <div class="stmt"><p>SaaS remains an essential enterprise foundation. Its architecture is evolving through an AI lens as organizations gain access to richer inputs, stronger sense-making, agentic support and more adaptive workflows.</p><p>TwoSuns brings these capabilities into one enterprise environment that can grow with the organization, connect current systems and support new forms of coordinated work.</p></div>
+    <div class="form-card" id="formwrap">
+      <div class="ctx-chip" id="ctxchip"></div>
+      <form id="discussForm" novalidate>
+        <label for="f_name">Name</label>
+        <input id="f_name" name="name" type="text" required autocomplete="name">
+
+        <label for="f_org">Organization</label>
+        <input id="f_org" name="company" type="text" required autocomplete="organization">
+
+        <label for="f_role">Role <span class="opt">(optional)</span></label>
+        <input id="f_role" name="job_title" type="text" autocomplete="organization-title">
+
+        <label for="f_email">Email</label>
+        <input id="f_email" name="email" type="email" required autocomplete="email">
+
+        <label for="f_area">Area of interest <span class="opt">(optional)</span></label>
+        <select id="f_area" name="area">
+          <option value="">Select an area</option>
+          <option value="Platform">Platform</option><option value="Horizon">Horizon</option><option value="Pulse">Pulse</option><option value="Built Industry workflow">Built Industry workflow</option><option value="Implementation">Implementation</option><option value="General enquiry">General enquiry</option>
+        </select>
+
+        <label for="f_msg">Tell us about the pain point, opportunity or workflow you want to address.</label>
+        <textarea id="f_msg" name="message" required></textarea>
+
+        <label for="f_file">Attachment <span class="opt">(optional, up to 4 MB)</span></label>
+        <input id="f_file" name="attachment" type="file">
+
+        <button type="submit" id="f_submit">Discuss Your Needs</button>
+        <p class="form-note" id="f_note">We will review the context before following up. Your details are used only
+          for this conversation.</p>
+      </form>
+    </div>
+    <div class="form-ok" id="formok">
+      <h3>Thank you.</h3>
+      <p>We have received your message and will review the context before following up.</p>
+    </div>
   </div>
 </section>
 <section class="band-alt">
   <div class="container">
-    <div class="section-tag">Architecture</div>
-    <h2 class="section-heading">Enterprise context becomes coordinated action</h2>
-    <p class="section-sub">Commercial intelligence and operational execution, connected through one governed enterprise context.</p>
-    <div class="arx"><svg viewBox="0 195 2000 990" role="img" aria-label="Horizon and Pulse as two operating domains, Core as the governed context between them, Ray spanning beneath."><defs>
-      <radialGradient id="axh" cx="36%" cy="30%">
-        <stop offset="0" stop-color="#FBEBB4"/><stop offset=".55" stop-color="#EFCE6B"/>
-        <stop offset="1" stop-color="#E0B33A"/></radialGradient>
-      <radialGradient id="axp" cx="36%" cy="30%">
-        <stop offset="0" stop-color="#FFD3A8"/><stop offset=".5" stop-color="#FBA05A"/>
-        <stop offset="1" stop-color="#F97316"/></radialGradient>
-      <linearGradient id="axc" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stop-color="#2E2822"/><stop offset="1" stop-color="#141110"/></linearGradient>
-      <marker id="axag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-        <path d="M0 0 L10 5 L0 10 z" fill="#E0B33A"/></marker>
-      <marker id="axao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-        <path d="M0 0 L10 5 L0 10 z" fill="#F97316"/></marker>
-    </defs><ellipse cx="1020" cy="575" rx="840" ry="336" fill="none" stroke="rgba(140,101,0,.30)" stroke-dasharray="3 11"/><ellipse cx="1020" cy="575" rx="792" ry="300" fill="none" stroke="rgba(224,100,30,.10)" stroke-width="26"/><circle cx="660" cy="575" r="278" fill="url(#axh)"/><circle cx="1400" cy="575" r="278" fill="url(#axp)"/><path d="M470 352 C640 236 860 250 946 292" fill="none" stroke="#E0B33A" stroke-width="7" stroke-linecap="round" opacity=".85" marker-end="url(#axag)"/><path d="M1584 300 C1420 238 1180 250 1074 292" fill="none" stroke="#F97316" stroke-width="7" stroke-linecap="round" opacity=".85" marker-end="url(#axao)"/><path d="M660 848 C790 906 930 878 1012 846" fill="none" stroke="#E0B33A" stroke-width="7" stroke-linecap="round" opacity=".8" marker-end="url(#axag)"/><path d="M1382 848 C1268 906 1140 878 1074 846" fill="none" stroke="#F97316" stroke-width="7" stroke-linecap="round" opacity=".8" marker-end="url(#axao)"/><line x1="1005" y1="820" x2="1005" y2="884" stroke="rgba(60,50,30,.30)" stroke-width="3"/><rect x="804" y="335" width="402" height="486" rx="30" fill="#fff"/><rect x="813" y="344" width="384" height="468" rx="24" fill="url(#axc)"/><rect x="821" y="352" width="368" height="452" rx="20" fill="none" stroke="rgba(224,178,80,.35)"/><line x1="872" y1="430" x2="1005" y2="396" stroke="rgba(224,178,80,.16)"/><line x1="872" y1="430" x2="866" y2="566" stroke="rgba(224,178,80,.16)"/><line x1="1005" y1="396" x2="1140" y2="432" stroke="rgba(224,178,80,.16)"/><line x1="1005" y1="396" x2="1006" y2="604" stroke="rgba(224,178,80,.16)"/><line x1="1140" y1="432" x2="1150" y2="560" stroke="rgba(224,178,80,.16)"/><line x1="1150" y1="560" x2="1006" y2="604" stroke="rgba(224,178,80,.16)"/><line x1="1150" y1="560" x2="1132" y2="700" stroke="rgba(224,178,80,.16)"/><line x1="1006" y1="604" x2="866" y2="566" stroke="rgba(224,178,80,.16)"/><line x1="1006" y1="604" x2="1010" y2="742" stroke="rgba(224,178,80,.16)"/><line x1="866" y1="566" x2="884" y2="700" stroke="rgba(224,178,80,.16)"/><line x1="884" y1="700" x2="1010" y2="742" stroke="rgba(224,178,80,.16)"/><line x1="1010" y1="742" x2="1132" y2="700" stroke="rgba(224,178,80,.16)"/><circle cx="872" cy="430" r="4" fill="rgba(224,178,80,.45)"/><circle cx="1005" cy="396" r="4" fill="rgba(224,178,80,.45)"/><circle cx="1140" cy="432" r="4" fill="rgba(224,178,80,.45)"/><circle cx="1150" cy="560" r="4" fill="rgba(224,178,80,.45)"/><circle cx="1006" cy="604" r="4" fill="rgba(224,178,80,.45)"/><circle cx="866" cy="566" r="4" fill="rgba(224,178,80,.45)"/><circle cx="884" cy="700" r="4" fill="rgba(224,178,80,.45)"/><circle cx="1010" cy="742" r="4" fill="rgba(224,178,80,.45)"/><circle cx="1132" cy="700" r="4" fill="rgba(224,178,80,.45)"/><line x1="948" y1="756" x2="1062" y2="756" stroke="rgba(246,238,222,.35)" stroke-width="2"/><circle cx="948" cy="756" r="7" fill="#E0B33A"/><circle cx="1005" cy="756" r="7" fill="#fff"/><circle cx="1062" cy="756" r="7" fill="#F97316"/></svg><div class="arx-lab arx-domain" style="left:29.80%;top:37.78%;">
-      <div class="arx-k" style="color:#8A6A12;">Commercial intelligence</div>
-      <div class="arx-n">HORIZON</div>
-      <div class="arx-rule" style="background:rgba(90,70,15,.35);"></div>
-      <ul class="arx-list"><li>Market and account intelligence</li><li>Revenue coordination</li><li>GTM execution</li></ul>
-    </div><div class="arx-lab arx-core" style="left:50.25%;top:35.25%;">
-      <div class="arx-k" style="color:#E0B33A;">Governed context</div>
-      <div class="arx-n" style="color:#fff;">CORE</div>
-      <div class="arx-rule" style="background:rgba(224,178,80,.4);"></div>
-      <div class="arx-lines">
-        <div>Governance and permissions</div>
-        <div>Organizational memory and logs</div>
-        <div>Decision continuity</div>
-      </div>
-    </div><div class="arx-lab arx-domain" style="left:72.70%;top:37.78%;">
-      <div class="arx-k" style="color:#8C3D0B;">Operational execution</div>
-      <div class="arx-n">PULSE</div>
-      <div class="arx-rule" style="background:rgba(120,55,10,.35);"></div>
-      <ul class="arx-list"><li>Operational workflows</li><li>Supply and resource coordination</li><li>Performance management</li></ul>
-    </div><div class="arx-orbit" style="left:15.00%;top:15.86%;transform:translateY(-50%);"><i style="background:#E0B33A;"></i>Markets</div><div class="arx-orbit" style="left:16.50%;top:60.10%;transform:translateY(-50%);"><i style="background:#E0B33A;"></i>Customers</div><div class="arx-orbit" style="left:79.80%;top:13.64%;transform:translateY(-50%);"><i style="background:#F97316;"></i>Operations</div><div class="arx-orbit" style="left:83.60%;top:61.72%;transform:translateY(-50%);"><i style="background:#F97316;"></i>People and systems</div><div class="arx-ray" style="left:50%;top:76.46%;width:54.50%;padding:1.9cqw 2.4cqw;">
-      <div class="arx-ray-top">
-        <span class="arx-ray-name">RAY</span>
-        <span class="arx-ray-sub">Persistent enterprise companion</span>
-      </div>
-      <div class="arx-ray-items">
-        <span><i style="background:#E0B33A;"></i>Contextual continuity</span>
-        <span><i style="background:#F97316;"></i>Enterprise awareness</span>
-        <span><i style="background:#B8860B;"></i>Coordinated action</span>
-      </div>
-    </div></div>
-    <div class="arx-fallback">
-      <div class="arxf arxf-h"><div class="k">Commercial intelligence</div><div class="n">HORIZON</div>
-        <ul><li>Market and account intelligence</li><li>Revenue coordination</li><li>GTM execution</li></ul></div>
-      <div class="arxf arxf-c"><div class="k">Governed context</div><div class="n">CORE</div>
-        <ul><li>Governance and permissions</li><li>Organizational memory and logs</li>
-        <li>Decision continuity</li></ul></div>
-      <div class="arxf arxf-p"><div class="k">Operational execution</div><div class="n">PULSE</div>
-        <ul><li>Operational workflows</li><li>Supply and resource coordination</li>
-        <li>Performance management</li></ul></div>
-      <div class="arxf arxf-r"><div class="k">Persistent enterprise companion</div><div class="n">RAY</div>
-        <ul><li>Contextual continuity</li><li>Enterprise awareness</li><li>Coordinated action</li></ul></div>
-    </div>
-    <div class="arx-foot">One governed context. Two operating domains. Continuous enterprise awareness.</div>
-    <div style="margin-top:30px;"><a class="btn-ghost" href="platform.html">Explore the Platform</a></div>
-  </div>
-</section>
-<section class="imgsec imgsec-r img-construction">
-  <div class="container">
-   <div class="sec-split">
-    <div class="section-tag">Built industry</div>
-    <h2 class="section-heading">Built for the complete built-industry ecosystem</h2>
-    <p class="section-sub">TwoSuns is designed for the organizations, relationships and workflows that create, supply, finance, construct, own, operate and support built assets.</p>
-    <div class="grid3"><div class="card">
-      <span class="card-num" style="background:var(--a1);">1</span>
-      <h3>Materials and Manufacturing</h3>
-    </div><div class="card">
-      <span class="card-num" style="background:var(--a2);">2</span>
-      <h3>Distribution and Logistics</h3>
-    </div><div class="card">
-      <span class="card-num" style="background:var(--a3);">3</span>
-      <h3>Asset Owners and Investors</h3>
-    </div><div class="card">
-      <span class="card-num" style="background:var(--a4);">4</span>
-      <h3>Construction and Professional Services</h3>
-    </div><div class="card">
-      <span class="card-num" style="background:var(--a5);">5</span>
-      <h3>Asset Transactions and Operations</h3>
-    </div><div class="card">
-      <span class="card-num" style="background:var(--a6);">6</span>
-      <h3>Industry Institutions and Enablement</h3>
-    </div></div>
-    <div style="margin-top:30px;"><a class="btn-ghost" href="built-industry.html">Explore the Built Industry</a></div>
-   </div>
-  </div>
-</section>
-<section class="imgsec imgsec-l imgsec-work area-sec">
-  <video autoplay muted loop playsinline preload="metadata" poster="vid-work-poster.jpg" aria-hidden="true">
-    <source src="vid-work.mp4" type="video/mp4">
-  </video>
-  <div class="container">
-   <div class="sec-split">
-    <div class="section-tag">Where to start</div>
-    <h2 class="section-heading">Begin with the work that matters now</h2>
-    <div class="grid3"><div class="card">
-      <span class="card-num" style="background:var(--a1);">1</span>
-      <h3>Find and develop growth opportunities</h3><p>Bring markets, competitors, relationships, projects and organizational priorities into a connected growth environment.</p>
-    </div><div class="card">
-      <span class="card-num" style="background:var(--a2);">2</span>
-      <h3>Coordinate products, projects and operations</h3><p>Connect plans, resources, documents, dependencies and progress across the work that produces enterprise value.</p>
-    </div><div class="card">
-      <span class="card-num" style="background:var(--a3);">3</span>
-      <h3>Strengthen asset and enterprise performance</h3><p>Combine financial, operational, market and asset context to improve visibility, coordination and continuing performance.</p>
-    </div></div>
-    <div style="margin-top:30px;"><a class="btn-ghost" href="use-cases.html">Explore Use Cases</a></div>
-   </div>
-  </div>
-</section>
-<section class="vidband vid-aerial" style="padding:96px 0;">
-  <video autoplay muted loop playsinline preload="metadata" poster="vid-aerial-poster.jpg" aria-hidden="true">
-    <source src="vid-aerial.mp4" type="video/mp4">
-  </video>
-  <div class="container">
-    <h2>Configure TwoSuns around your organization</h2>
-    <p>Each deployment is shaped around a use case, operating environment, users, regions, inputs, integrations and expected value. TwoSuns can begin with a focused proof of concept or a structured enterprise implementation and expand as adoption develops.</p>
-    <div class="cta-actions"><a class="btn-cta" href="discuss.html?ask=Request+an+Opportunity+Assessment">Request an Opportunity Assessment</a> <a class="btn-ghost" href="discuss.html?ask=Discuss+Your+Needs">Discuss Your Needs</a></div>
+    <div class="section-tag">Supporting material</div>
+    <h2 class="section-heading">Contextual supporting material</h2>
+    <p class="section-sub">Product demonstrations, articles, presentations, technical material and training resources appear beside the page content they support. A central Resources page can be introduced when the available library provides sufficient depth.</p>
+    <div class="layer"><ul class="tick"><li>Platform demonstrations and architecture material on Platform</li><li>Capability walkthroughs within the relevant Horizon or Pulse group</li><li>Workflow demonstrations and examples within Use Cases</li><li>Team articles beside relevant industry or capability content</li><li>Training and enablement material within implementation-related content</li></ul></div>
   </div>
 </section>
 <script>
 (function(){
-  var box = document.querySelector('.hero-vid');
-  if (!box) return;
-  var vids = [].slice.call(box.querySelectorAll('video'));
-  if (!vids.length) return;
+  var ENDPOINT="https://script.google.com/macros/s/AKfycbyz4qCsmkMasAHUe8ZZqTva4VvVGo-Q3vy3K_sTMIJY4Q3Mhnq_1HMg_-Z4DF_CUu9z/exec";
+  var MAILFALLBACK="https://formsubmit.co/ajax/info@twosuns.ai";
 
-  function solo(){
-    box.classList.add('solo');
-    for (var i = vids.length - 1; i > 0; i--) vids[i].parentNode.removeChild(vids[i]);
-    vids = [vids[0]];
+  function param(k){
+    var m=new RegExp('[?&]'+k+'=([^&]*)').exec(location.search);
+    return m ? decodeURIComponent(m[1].replace(/\+/g,' ')) : '';
   }
-  function reduced(){
-    return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  }
-  function thin(){
-    var c = navigator.connection;
-    if (!c) return false;
-    return c.saveData === true || /^(slow-)?2g$/.test(c.effectiveType || '');
-  }
-  if (vids.length < 2 || reduced() || thin()){ solo(); return; }
+  // Retain the originating page and the selected invitation as hidden form context.
+  var invitation = param('ask') || 'Discuss Your Needs';
+  var origin = param('from') || document.referrer || '';
+  var chip=document.getElementById('ctxchip');
+  if(param('ask')){ chip.textContent='\u2600 '+invitation; chip.style.display='inline-flex'; }
 
-  var at = 0, visible = true;
+  var form=document.getElementById('discussForm'),
+      btn=document.getElementById('f_submit'),
+      note=document.getElementById('f_note'),
+      wrap=document.getElementById('formwrap'),
+      ok=document.getElementById('formok');
 
-  function attach(){
-    for (var i = 1; i < vids.length; i++){
-      var v = vids[i];
-      if (!v.getAttribute('src') && v.getAttribute('data-src')){
-        v.setAttribute('src', v.getAttribute('data-src'));
-        v.load();
-      }
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var E=form.elements;
+    var name=E['name'].value.trim(), org=E['company'].value.trim(),
+        email=E['email'].value.trim(), msg=E['message'].value.trim();
+    if(!name||!org||!email||!msg){ note.textContent='Please complete name, organization, email and your message.'; return; }
+    btn.disabled=true; btn.textContent='Sending...';
+
+    var file=document.getElementById('f_file').files[0];
+    if(file && file.size>4*1024*1024){
+      note.textContent='That attachment is larger than 4 MB. Please send it to info@twosuns.ai after submitting.';
+      btn.disabled=false; btn.textContent='Discuss Your Needs'; return;
     }
-  }
-  function ready(v){ return v.readyState >= 3; }
 
-  function step(){
-    if (!visible){ setTimeout(step, 7500); return; }
-    var next = (at + 1) % vids.length, tries = 0;
-    // a clip that has not buffered yet waits its turn rather than flashing black
-    while (!ready(vids[next]) && tries < vids.length){
-      next = (next + 1) % vids.length;
-      tries++;
+    function send(attachName, attachData){
+      var area=E['area'].value;
+      var body={
+        form:'Discuss Your Needs',
+        campaign:invitation,
+        name:name, email:email, company:org,
+        job_title:E['job_title'].value.trim(),
+        message:(area?('Area of interest: '+area+'\n\n'):'')+msg+(attachName?('\n\nAttachment: '+attachName):''),
+        page:origin||location.href
+      };
+      if(attachName){ body.attachment_name=attachName; body.attachment_b64=attachData; }
+      var enc=Object.keys(body).map(function(k){return encodeURIComponent(k)+'='+encodeURIComponent(body[k]);}).join('&');
+
+      fetch(ENDPOINT,{method:'POST',mode:'no-cors',
+        headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},body:enc}).catch(function(){});
+
+      fetch(MAILFALLBACK,{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({_subject:'TwoSuns enquiry: '+invitation,
+          Name:name,Organization:org,Role:body.job_title,Email:email,
+          Invitation:invitation,Page:body.page,Message:body.message})}).catch(function(){});
+
+      setTimeout(function(){ wrap.style.display='none'; ok.style.display='block';
+        window.scrollTo({top:ok.offsetTop-120,behavior:'smooth'}); }, 700);
     }
-    if (next !== at){
-      var cur = vids[at], nx = vids[next];
-      try { nx.currentTime = 0; } catch (e) {}
-      var p = nx.play();
-      if (p && p.catch) p.catch(function(){});
-      nx.classList.add('on');
-      cur.classList.remove('on');
-      (function(c){ setTimeout(function(){
-        if (!c.classList.contains('on')) c.pause();
-      }, 1400); })(cur);
-      at = next;
-    }
-    setTimeout(step, 7500);
-  }
 
-  function pauseAll(){ for (var i = 0; i < vids.length; i++) vids[i].pause(); }
-  function resume(){
-    var p = vids[at].play();
-    if (p && p.catch) p.catch(function(){});
-  }
-
-  document.addEventListener('visibilitychange', function(){
-    if (document.hidden) pauseAll(); else if (visible) resume();
+    if(file){
+      var r=new FileReader();
+      r.onload=function(){ send(file.name, String(r.result).split(',')[1]||''); };
+      r.onerror=function(){ send('', ''); };
+      r.readAsDataURL(file);
+    } else { send('', ''); }
   });
-  // the observer can report a false miss before the first frame settles, so the
-  // box's own rect gets the last word
-  function inView(){
-    var r = box.getBoundingClientRect();
-    return r.bottom > 0 && r.top < (window.innerHeight || document.documentElement.clientHeight);
-  }
-  if (window.IntersectionObserver){
-    new IntersectionObserver(function(es){
-      visible = es[0].isIntersecting || inView();
-      if (visible){ if (!document.hidden) resume(); } else pauseAll();
-    }, {threshold: 0.01}).observe(box);
-  }
-
-  function start(){
-    // nothing is playing, so the browser is refusing autoplay outright
-    if (vids[0].paused && vids[0].readyState >= 2){ solo(); return; }
-    attach();
-    setTimeout(step, 7500);
-  }
-  if (window.requestIdleCallback) requestIdleCallback(start, {timeout: 2500});
-  else setTimeout(start, 1200);
 })();
 </script>
 <footer>

@@ -11,8 +11,8 @@ from PIL import Image, ImageOps, ImageEnhance
 
 WARM = set()   # names that need pulling out of blue and into the palette
 
-V2 = "/Users/mohammaddidarulalam/Documents/Claude/twosuns-live/preview"
-DROP = os.path.join(V2, "incoming")
+V2 = "/Users/mohammaddidarulalam/Documents/Claude/twosuns-live"
+DROP = os.path.join(V2, "preview", "incoming")   # the originals stay out of the served root
 
 OUT_W, OUT_H = 2200, 1200         # 1.83:1, close to the 3:2 source so little is lost
 QUALITY = 82

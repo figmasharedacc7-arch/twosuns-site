@@ -8,7 +8,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from theme import head, chrome_nav, TAIL
 
 SRC = "/Users/mohammaddidarulalam/Documents/Claude/nexsun"
-OUT = "/Users/mohammaddidarulalam/Documents/Claude/twosuns-live/preview"
+OUT = "/Users/mohammaddidarulalam/Documents/Claude/twosuns-live"
 
 LEGAL_CSS = """
   .legal{max-width:860px;}
@@ -82,7 +82,7 @@ def strip(x):
 
 def build(src, dest, active):
     title, intro, content = extract(os.path.join(SRC, src))
-    page = head(title + " | TwoSuns", intro[:180], extra_css=LEGAL_CSS) + chrome_nav(active)
+    page = head(title + " | TwoSuns", intro[:180], dest, extra_css=LEGAL_CSS) + chrome_nav(active)
     page += """<section class="hero">
   <div class="hero-glow"></div>
   <div class="container">

@@ -30,7 +30,7 @@ from PIL import Image
 FFMPEG = os.path.expanduser("~/bin/ffmpeg")
 SRC = os.path.expanduser("~/Downloads")
 HERE = os.path.dirname(os.path.abspath(__file__))
-OUT = os.path.normpath(os.path.join(HERE, "..", "preview"))
+OUT = os.path.normpath(os.path.join(HERE, ".."))
 
 SEG = 10.0        # seconds cut from the source
 XF = 1.0          # loop crossfade, so each clip lands at 9.0s

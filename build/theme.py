@@ -217,12 +217,6 @@ CSS = r"""
   .cardimg p{font-size:14px;color:var(--text-muted);line-height:1.7;}
   .cardimg .tick{margin-top:14px;}
   .cardimg .tick li{font-size:13.5px;margin-bottom:6px;}
-  .ph-materials{background-image:url('area-materials-card.jpg');}
-  .ph-distribution{background-image:url('area-distribution-card.jpg');}
-  .ph-owners{background-image:url('area-owners-card.jpg');}
-  .ph-construction{background-image:url('area-construction-card.jpg');}
-  .ph-operations{background-image:url('area-operations-card.jpg');}
-  .ph-institutions{background-image:url('area-institutions-card.jpg');}
 
   /* LAYER BLOCKS (Core / Ray / Horizon / Pulse) */
   .layer{background:#fff;border:1px solid var(--border);border-radius:20px;padding:34px;box-shadow:var(--shadow);margin-top:24px;}
@@ -431,7 +425,14 @@ import herorot as _hr
 HERO_CSS = _hr.CSS
 
 
-def head(title, desc, active=None, extra_css=""):
+SITE = "https://twosuns.ai"
+OG_IMAGE = SITE + "/og-twosuns.jpg"
+
+
+def head(title, desc, page="index.html", extra_css=""):
+    canon = SITE + "/" + ("" if page == "index.html" else page)
+    esc_t = title.replace('"', "&quot;")
+    esc_d = desc.replace('"', "&quot;")
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -439,7 +440,20 @@ def head(title, desc, active=None, extra_css=""):
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{title}</title>
 <meta name="description" content="{desc}">
-<meta name="robots" content="noindex">
+<link rel="canonical" href="{canon}">
+<meta name="theme-color" content="#FFF5DD">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TwoSuns">
+<meta property="og:title" content="{esc_t}">
+<meta property="og:description" content="{esc_d}">
+<meta property="og:url" content="{canon}">
+<meta property="og:image" content="{OG_IMAGE}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{esc_t}">
+<meta name="twitter:description" content="{esc_d}">
+<meta name="twitter:image" content="{OG_IMAGE}">
 <link rel="icon" type="image/svg+xml" href="logo-mini.svg">
 <style>{CSS}{ARCH_CSS}{HERO_CSS}{REVEAL_CSS}{extra_css}</style>
 {REVEAL_HEAD}

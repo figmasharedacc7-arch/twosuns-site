@@ -3,9 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Discuss Your Needs | TwoSuns</title>
-<meta name="description" content="Share the pain point, opportunity or workflow that matters to your organization.">
-<meta name="robots" content="noindex">
+<title>Capabilities | TwoSuns</title>
+<meta name="description" content="Horizon and Pulse organize the capabilities available through TwoSuns, configured around the workflow, business objective and operating environment.">
+<link rel="canonical" href="https://twosuns.ai/capabilities.html">
+<meta name="theme-color" content="#FFF5DD">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TwoSuns">
+<meta property="og:title" content="Capabilities | TwoSuns">
+<meta property="og:description" content="Horizon and Pulse organize the capabilities available through TwoSuns, configured around the workflow, business objective and operating environment.">
+<meta property="og:url" content="https://twosuns.ai/capabilities.html">
+<meta property="og:image" content="https://twosuns.ai/og-twosuns.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Capabilities | TwoSuns">
+<meta name="twitter:description" content="Horizon and Pulse organize the capabilities available through TwoSuns, configured around the workflow, business objective and operating environment.">
+<meta name="twitter:image" content="https://twosuns.ai/og-twosuns.jpg">
 <link rel="icon" type="image/svg+xml" href="logo-mini.svg">
 <style>
   :root{
@@ -215,12 +228,6 @@
   .cardimg p{font-size:14px;color:var(--text-muted);line-height:1.7;}
   .cardimg .tick{margin-top:14px;}
   .cardimg .tick li{font-size:13.5px;margin-bottom:6px;}
-  .ph-materials{background-image:url('area-materials-card.jpg');}
-  .ph-distribution{background-image:url('area-distribution-card.jpg');}
-  .ph-owners{background-image:url('area-owners-card.jpg');}
-  .ph-construction{background-image:url('area-construction-card.jpg');}
-  .ph-operations{background-image:url('area-operations-card.jpg');}
-  .ph-institutions{background-image:url('area-institutions-card.jpg');}
 
   /* LAYER BLOCKS (Core / Ray / Horizon / Pulse) */
   .layer{background:#fff;border:1px solid var(--border);border-radius:20px;padding:34px;box-shadow:var(--shadow);margin-top:24px;}
@@ -506,137 +513,143 @@
   <div class="nav-in">
     <a class="brand" href="index.html"><img src="logo-color.svg" alt="TwoSuns"></a>
     <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('navlinks').classList.toggle('open')">&#9776;</button>
-    <div class="nav-links" id="navlinks"><a href="platform.html">Platform</a><a href="capabilities.html">Capabilities</a><a href="built-industry.html">Built Industry</a><a href="use-cases.html">Use Cases</a><a href="company.html">Company</a>
+    <div class="nav-links" id="navlinks"><a href="platform.html">Platform</a><a href="capabilities.html" class="active">Capabilities</a><a href="built-industry.html">Built Industry</a><a href="use-cases.html">Use Cases</a><a href="company.html">Company</a>
       <a class="btn-cta" href="discuss.html?ask=Discuss+Your+Needs">Discuss Your Needs</a>
     </div>
   </div>
 </nav>
-<section class="hero hero-form">
+<section class="hero wide hero-photo wall-capabilities">
   <div class="hero-glow"></div>
   <div class="container">
-    <div class="hero-eyebrow"><span class="dot"></span>Start a Conversation</div>
-    <h1 style="max-width:20ch;">Tell us what you are trying to advance.</h1>
-    <p class="hero-sub">Share the pain point, opportunity or workflow that matters to your organization. We will review the context and follow up with a focused conversation about the most useful next step.</p>
+    <div class="hero-eyebrow"><span class="dot"></span>Capabilities</div>
+    <h1>Configure the capabilities required by the work.</h1>
+    <p class="hero-sub">Horizon and Pulse organize the substantive capabilities available through TwoSuns. They can be configured independently or combined around a workflow, business objective and operating environment.</p>
+    <div class="hero-actions"><a class="btn-cta" href="discuss.html?ask=Discuss+Your+Capability+Needs">Discuss Your Capability Needs</a><a class="btn-ghost" href="use-cases.html">Explore Use Cases</a></div>
   </div>
 </section>
 <div class="sun-divider"></div>
-<section class="form-sec">
+<section id="horizon" class="imgsec imgsec-r bg-horizon area-sec fam-band">
   <div class="container">
-    <div class="form-card" id="formwrap">
-      <div class="ctx-chip" id="ctxchip"></div>
-      <form id="discussForm" novalidate>
-        <label for="f_name">Name</label>
-        <input id="f_name" name="name" type="text" required autocomplete="name">
-
-        <label for="f_org">Organization</label>
-        <input id="f_org" name="company" type="text" required autocomplete="organization">
-
-        <label for="f_role">Role <span class="opt">(optional)</span></label>
-        <input id="f_role" name="job_title" type="text" autocomplete="organization-title">
-
-        <label for="f_email">Email</label>
-        <input id="f_email" name="email" type="email" required autocomplete="email">
-
-        <label for="f_area">Area of interest <span class="opt">(optional)</span></label>
-        <select id="f_area" name="area">
-          <option value="">Select an area</option>
-          <option value="Platform">Platform</option><option value="Horizon">Horizon</option><option value="Pulse">Pulse</option><option value="Built Industry workflow">Built Industry workflow</option><option value="Implementation">Implementation</option><option value="General enquiry">General enquiry</option>
-        </select>
-
-        <label for="f_msg">Tell us about the pain point, opportunity or workflow you want to address.</label>
-        <textarea id="f_msg" name="message" required></textarea>
-
-        <label for="f_file">Attachment <span class="opt">(optional, up to 4 MB)</span></label>
-        <input id="f_file" name="attachment" type="file">
-
-        <button type="submit" id="f_submit">Discuss Your Needs</button>
-        <p class="form-note" id="f_note">We will review the context before following up. Your details are used only
-          for this conversation.</p>
-      </form>
-    </div>
-    <div class="form-ok" id="formok">
-      <h3>Thank you.</h3>
-      <p>We have received your message and will review the context before following up.</p>
-    </div>
+   <div class="sec-split">
+    <div class="section-tag">Capability family</div>
+    <h2 class="section-heading">Horizon</h2>
+    <p class="section-sub">Market, growth, relationship and commercial capabilities.</p>
+   </div>
   </div>
 </section>
-<section class="band-alt">
+<section style="padding:44px 0 88px;">
+  <div class="container"><details class="acc">
+  <summary>
+    <span class="acc-bar" style="background:var(--a1);"></span>
+    <span><span class="acc-title">Market and competitive intelligence</span><span class="acc-desc">Build a structured view of the markets, participants and conditions that influence growth.</span></span>
+  </summary>
+  <div class="acc-body"><ul class="tick"><li>Product market fit</li><li>Market sizing, segmentation and geographic analysis</li><li>Industry, customer and application analysis</li><li>Competitor profiles, positioning and participation</li><li>Owner, consultant, contractor and stakeholder ecosystems</li><li>News, trends and external-source monitoring</li><li>Market models, dashboards and intelligence briefs</li></ul><div class="acc-rel"><div class="k">Related use cases</div><ul><li><a href="use-cases.html#uc-regional-market-expansion">Regional market expansion</a></li><li><a href="use-cases.html#uc-commercial-ecosystem-and-relationship-analysis">Commercial ecosystem and relationship analysis</a></li></ul></div></div>
+</details>
+<details class="acc">
+  <summary>
+    <span class="acc-bar" style="background:var(--a2);"></span>
+    <span><span class="acc-title">Growth strategy and market expansion</span><span class="acc-desc">Turn market context into focused growth priorities and expansion pathways.</span></span>
+  </summary>
+  <div class="acc-body"><ul class="tick"><li>Regional and sector prioritization</li><li>Market-entry and expansion planning</li><li>Opportunity modelling and prioritization</li><li>Product, application and commercialization planning</li><li>Scenario evaluation and growth roadmaps</li><li>Investment frameworks and business cases</li></ul><div class="acc-rel"><div class="k">Related use cases</div><ul><li><a href="use-cases.html#uc-regional-market-expansion">Regional market expansion</a></li><li><a href="use-cases.html#uc-investment-resource-and-initiative-prioritization">Investment, resource and initiative prioritization</a></li></ul></div></div>
+</details>
+<details class="acc">
+  <summary>
+    <span class="acc-bar" style="background:var(--a3);"></span>
+    <span><span class="acc-title">Accounts, opportunities, tenders and proposals</span><span class="acc-desc">Coordinate the commercial work that moves an opportunity from identification through pursuit.</span></span>
+  </summary>
+  <div class="acc-body"><ul class="tick"><li>Strategic account planning and relationship tiers</li><li>Opportunity discovery, qualification and prioritization</li><li>Tender ingestion, comparison and monitoring</li><li>Bid strategy and submission planning</li><li>Proposal development and supporting content</li><li>Pipeline visibility and opportunity follow-through</li></ul><div class="acc-rel"><div class="k">Related use cases</div><ul><li><a href="use-cases.html#uc-accounts-opportunities-tenders-and-proposals">Accounts, opportunities, tenders and proposals</a></li><li><a href="use-cases.html#uc-estimating-quantity-take-offs-and-materials">Estimating, quantity take-offs and materials</a></li></ul></div></div>
+</details>
+<details class="acc">
+  <summary>
+    <span class="acc-bar" style="background:var(--a4);"></span>
+    <span><span class="acc-title">Campaigns, communications, events and stakeholders</span><span class="acc-desc">Plan and coordinate engagement across audiences, channels and activities.</span></span>
+  </summary>
+  <div class="acc-body"><ul class="tick"><li>Campaign planning, calendars and execution</li><li>Content development and approval workflows</li><li>Event planning, participation and follow-up</li><li>Member, community and stakeholder engagement</li><li>Audience and contact coordination</li><li>Engagement reporting and continuing relationship context</li></ul><div class="acc-rel"><div class="k">Related use cases</div><ul><li><a href="use-cases.html#uc-integrated-campaign-planning-and-execution">Integrated campaign planning and execution</a></li><li><a href="use-cases.html#uc-events-members-and-stakeholder-programs">Events, members and stakeholder programs</a></li></ul></div></div>
+</details>
+<details class="acc">
+  <summary>
+    <span class="acc-bar" style="background:var(--a5);"></span>
+    <span><span class="acc-title">Partnerships, investors, channels and relationships</span><span class="acc-desc">Understand and develop the ecosystems that support growth, capital and market access.</span></span>
+  </summary>
+  <div class="acc-body"><ul class="tick"><li>Investor and funding ecosystem analysis</li><li>Strategic partner and counterparty mapping</li><li>Channel and alliance development</li><li>Relationship strength and influence mapping</li><li>Partnership opportunity assessment</li><li>Engagement history, priorities and next actions</li></ul><div class="acc-rel"><div class="k">Related use cases</div><ul><li><a href="use-cases.html#uc-commercial-ecosystem-and-relationship-analysis">Commercial ecosystem and relationship analysis</a></li><li><a href="use-cases.html#uc-events-members-and-stakeholder-programs">Events, members and stakeholder programs</a></li></ul></div></div>
+</details>
+<details class="acc">
+  <summary>
+    <span class="acc-bar" style="background:var(--a6);"></span>
+    <span><span class="acc-title">Revenue coordination and commercial performance</span><span class="acc-desc">Connect commercial plans, activity and performance across the organization.</span></span>
+  </summary>
+  <div class="acc-body"><ul class="tick"><li>Revenue planning and growth targets</li><li>Pricing and commercial analysis</li><li>Sales and business-development coordination</li><li>Forecasts, dashboards and executive visibility</li><li>Commercial-to-operational handoffs</li><li>Performance review and continuing improvement</li></ul><div class="acc-rel"><div class="k">Related use cases</div><ul><li><a href="use-cases.html#uc-executive-planning-and-performance-visibility">Executive planning and performance visibility</a></li><li><a href="use-cases.html#uc-accounts-opportunities-tenders-and-proposals">Accounts, opportunities, tenders and proposals</a></li></ul></div></div>
+</details>
+</div>
+</section>
+<section id="pulse" class="imgsec imgsec-l bg-pulse area-sec fam-band">
   <div class="container">
-    <div class="section-tag">Supporting material</div>
-    <h2 class="section-heading">Contextual supporting material</h2>
-    <p class="section-sub">Product demonstrations, articles, presentations, technical material and training resources appear beside the page content they support. A central Resources page can be introduced when the available library provides sufficient depth.</p>
-    <div class="layer"><ul class="tick"><li>Platform demonstrations and architecture material on Platform</li><li>Capability walkthroughs within the relevant Horizon or Pulse group</li><li>Workflow demonstrations and examples within Use Cases</li><li>Team articles beside relevant industry or capability content</li><li>Training and enablement material within implementation-related content</li></ul></div>
+   <div class="sec-split">
+    <div class="section-tag">Capability family</div>
+    <h2 class="section-heading">Pulse</h2>
+    <p class="section-sub">Product, project, operational and asset capabilities.</p>
+   </div>
   </div>
 </section>
-<script>
-(function(){
-  var ENDPOINT="https://script.google.com/macros/s/AKfycbyz4qCsmkMasAHUe8ZZqTva4VvVGo-Q3vy3K_sTMIJY4Q3Mhnq_1HMg_-Z4DF_CUu9z/exec";
-  var MAILFALLBACK="https://formsubmit.co/ajax/info@twosuns.ai";
-
-  function param(k){
-    var m=new RegExp('[?&]'+k+'=([^&]*)').exec(location.search);
-    return m ? decodeURIComponent(m[1].replace(/\+/g,' ')) : '';
-  }
-  // Retain the originating page and the selected invitation as hidden form context.
-  var invitation = param('ask') || 'Discuss Your Needs';
-  var origin = param('from') || document.referrer || '';
-  var chip=document.getElementById('ctxchip');
-  if(param('ask')){ chip.textContent='\u2600 '+invitation; chip.style.display='inline-flex'; }
-
-  var form=document.getElementById('discussForm'),
-      btn=document.getElementById('f_submit'),
-      note=document.getElementById('f_note'),
-      wrap=document.getElementById('formwrap'),
-      ok=document.getElementById('formok');
-
-  form.addEventListener('submit', function(ev){
-    ev.preventDefault();
-    var E=form.elements;
-    var name=E['name'].value.trim(), org=E['company'].value.trim(),
-        email=E['email'].value.trim(), msg=E['message'].value.trim();
-    if(!name||!org||!email||!msg){ note.textContent='Please complete name, organization, email and your message.'; return; }
-    btn.disabled=true; btn.textContent='Sending...';
-
-    var file=document.getElementById('f_file').files[0];
-    if(file && file.size>4*1024*1024){
-      note.textContent='That attachment is larger than 4 MB. Please send it to info@twosuns.ai after submitting.';
-      btn.disabled=false; btn.textContent='Discuss Your Needs'; return;
-    }
-
-    function send(attachName, attachData){
-      var area=E['area'].value;
-      var body={
-        form:'Discuss Your Needs',
-        campaign:invitation,
-        name:name, email:email, company:org,
-        job_title:E['job_title'].value.trim(),
-        message:(area?('Area of interest: '+area+'\n\n'):'')+msg+(attachName?('\n\nAttachment: '+attachName):''),
-        page:origin||location.href
-      };
-      if(attachName){ body.attachment_name=attachName; body.attachment_b64=attachData; }
-      var enc=Object.keys(body).map(function(k){return encodeURIComponent(k)+'='+encodeURIComponent(body[k]);}).join('&');
-
-      fetch(ENDPOINT,{method:'POST',mode:'no-cors',
-        headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},body:enc}).catch(function(){});
-
-      fetch(MAILFALLBACK,{method:'POST',headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({_subject:'TwoSuns enquiry: '+invitation,
-          Name:name,Organization:org,Role:body.job_title,Email:email,
-          Invitation:invitation,Page:body.page,Message:body.message})}).catch(function(){});
-
-      setTimeout(function(){ wrap.style.display='none'; ok.style.display='block';
-        window.scrollTo({top:ok.offsetTop-120,behavior:'smooth'}); }, 700);
-    }
-
-    if(file){
-      var r=new FileReader();
-      r.onload=function(){ send(file.name, String(r.result).split(',')[1]||''); };
-      r.onerror=function(){ send('', ''); };
-      r.readAsDataURL(file);
-    } else { send('', ''); }
-  });
-})();
-</script>
+<section class="band-alt" style="padding:44px 0 88px;">
+  <div class="container"><details class="acc">
+  <summary>
+    <span class="acc-bar" style="background:var(--a4);"></span>
+    <span><span class="acc-title">Products, portfolios, programs and projects</span><span class="acc-desc">Coordinate the initiatives and work that develop and deliver enterprise value.</span></span>
+  </summary>
+  <div class="acc-body"><ul class="tick"><li>Product and research portfolio management</li><li>Program and project structures</li><li>Priorities, milestones and dependencies</li><li>Cross-functional planning and collaboration</li><li>Progress, issues and executive visibility</li><li>Knowledge capture across the lifecycle</li></ul><div class="acc-rel"><div class="k">Related use cases</div><ul><li><a href="use-cases.html#uc-product-and-research-portfolio-coordination">Product and research portfolio coordination</a></li><li><a href="use-cases.html#uc-project-planning-resources-and-progress">Project planning, resources and progress</a></li></ul></div></div>
+</details>
+<details class="acc">
+  <summary>
+    <span class="acc-bar" style="background:var(--a5);"></span>
+    <span><span class="acc-title">Estimating, costing and commercial delivery</span><span class="acc-desc">Develop and maintain the commercial foundations required to pursue and deliver work.</span></span>
+  </summary>
+  <div class="acc-body"><ul class="tick"><li>Estimate preparation and historical benchmarking</li><li>Cost modelling, pricing and margin analysis</li><li>Quantity take-offs and scope verification</li><li>Bill of materials development</li><li>Design and revision comparison</li><li>Bid profitability and commercial handover</li></ul><div class="acc-rel"><div class="k">Related use cases</div><ul><li><a href="use-cases.html#uc-estimating-quantity-take-offs-and-materials">Estimating, quantity take-offs and materials</a></li><li><a href="use-cases.html#uc-accounts-opportunities-tenders-and-proposals">Accounts, opportunities, tenders and proposals</a></li></ul></div></div>
+</details>
+<details class="acc">
+  <summary>
+    <span class="acc-bar" style="background:var(--a6);"></span>
+    <span><span class="acc-title">Planning, scheduling and resource coordination</span><span class="acc-desc">Connect time, people, equipment, dependencies and constraints across active work.</span></span>
+  </summary>
+  <div class="acc-body"><ul class="tick"><li>Schedules, milestones and critical paths</li><li>Labour, crew and specialist planning</li><li>Equipment and resource allocation</li><li>Dependencies, constraints and interdependencies</li><li>Progress monitoring and coordination</li><li>Program, project and executive reporting</li></ul><div class="acc-rel"><div class="k">Related use cases</div><ul><li><a href="use-cases.html#uc-project-planning-resources-and-progress">Project planning, resources and progress</a></li><li><a href="use-cases.html#uc-estimating-quantity-take-offs-and-materials">Estimating, quantity take-offs and materials</a></li></ul></div></div>
+</details>
+<details class="acc">
+  <summary>
+    <span class="acc-bar" style="background:var(--a1);"></span>
+    <span><span class="acc-title">Procurement, materials, inventory and supply chain</span><span class="acc-desc">Coordinate the flow of suppliers, commitments, materials and inventory.</span></span>
+  </summary>
+  <div class="acc-body"><ul class="tick"><li>Supplier intelligence and qualification</li><li>Purchase planning and procurement workflows</li><li>Materials comparison and availability</li><li>Inventory movement and position visibility</li><li>Logistics and delivery coordination</li><li>Working-capital and supply-performance context</li></ul><div class="acc-rel"><div class="k">Related use cases</div><ul><li><a href="use-cases.html#uc-procurement-inventory-and-supplier-coordination">Procurement, inventory and supplier coordination</a></li><li><a href="use-cases.html#uc-manufacturing-economics-and-production-performance">Manufacturing economics and production performance</a></li></ul></div></div>
+</details>
+<details class="acc">
+  <summary>
+    <span class="acc-bar" style="background:var(--a2);"></span>
+    <span><span class="acc-title">Manufacturing, operations, assets and maintenance</span><span class="acc-desc">Support the physical systems and operating activities that produce and preserve value.</span></span>
+  </summary>
+  <div class="acc-body"><ul class="tick"><li>Production planning and operating economics</li><li>Capacity, output and resource performance</li><li>Operational, machine and real-time inputs</li><li>Asset portfolios and operating context</li><li>Maintenance planning and reliability</li><li>Performance monitoring and exception response</li></ul><div class="acc-rel"><div class="k">Related use cases</div><ul><li><a href="use-cases.html#uc-manufacturing-economics-and-production-performance">Manufacturing economics and production performance</a></li><li><a href="use-cases.html#uc-asset-operations-maintenance-and-reliability">Asset operations, maintenance and reliability</a></li></ul></div></div>
+</details>
+<details class="acc">
+  <summary>
+    <span class="acc-bar" style="background:var(--a3);"></span>
+    <span><span class="acc-title">Workflows, documents, quality, compliance and performance</span><span class="acc-desc">Create connected operating workflows with visible context, outputs and accountability.</span></span>
+  </summary>
+  <div class="acc-body"><ul class="tick"><li>Document ingestion, extraction and comparison</li><li>Tasks, approvals and workflow coordination</li><li>Quality requirements and supporting evidence</li><li>Regulatory and compliance workflows</li><li>Operational reporting and oversight</li><li>Lessons learned and organizational knowledge</li></ul><div class="acc-rel"><div class="k">Related use cases</div><ul><li><a href="use-cases.html#uc-regulatory-quality-and-compliance-workflows">Regulatory, quality and compliance workflows</a></li><li><a href="use-cases.html#uc-document-intelligence-and-organizational-knowledge">Document intelligence and organizational knowledge</a></li></ul></div></div>
+</details>
+</div>
+</section>
+<section class="band-warm">
+  <div class="container">
+    <div class="section-tag">Adaptable</div>
+    <h2 class="section-heading">Adapt capabilities around the workflow</h2>
+    <p class="lede">The capability groups provide a practical starting structure. TwoSuns can model additional workflows as organizations introduce new operating requirements, industry relationships and opportunities across the built industry.</p>
+  </div>
+</section>
+<section class="cta-band">
+  <div class="container">
+    <h2>Configure the capabilities around your workflow</h2>
+    <p>Tell us the workflow, the operating environment and the outcome you need, and we will map the capabilities that apply.</p>
+    <div class="cta-actions"><a class="btn-cta" href="discuss.html?ask=Discuss+Your+Capability+Needs">Discuss Your Capability Needs</a> <a class="btn-ghost" href="use-cases.html">Explore Use Cases</a></div>
+  </div>
+</section>
 <footer>
   <div class="container">
     <div class="foot-top">

@@ -12,7 +12,7 @@ from content2 import (BUILT, USECASES, UC_THEMES, UC_ITEMS, COMPANY, DISCUSS,
 import eclipse
 import arch
 
-OUT = "/Users/mohammaddidarulalam/Documents/Claude/twosuns-live/preview"
+OUT = "/Users/mohammaddidarulalam/Documents/Claude/twosuns-live"
 ACCENTS = ["var(--a1)", "var(--a2)", "var(--a3)", "var(--a4)", "var(--a5)", "var(--a6)"]
 
 
@@ -117,7 +117,7 @@ def write(name, body):
 # ================================================================ HOME
 def build_home():
     d = HOME
-    s = head(d["title"], d["desc"]) + chrome_nav("index.html")
+    s = head(d["title"], d["desc"], "index.html") + chrome_nav("index.html")
 
     s += """<section class="hero tall has-vid">
   <div class="hero-vid">
@@ -199,7 +199,7 @@ def build_home():
 # ================================================================ PLATFORM
 def build_platform():
     d = PLATFORM
-    s = head(d["title"], d["desc"]) + chrome_nav("platform.html")
+    s = head(d["title"], d["desc"], "platform.html") + chrome_nav("platform.html")
     s += (hero(d, wide=True).replace('<section class="hero wide"',
                                      '<section class="hero wide hero-photo wall-platform"')
           % (btn(d["primary"]) + btn(d["secondary"], ghost=True)))
@@ -334,7 +334,7 @@ def acc_group(groups, base_accent):
 
 def build_capabilities():
     d = CAPABILITIES
-    s = head(d["title"], d["desc"]) + chrome_nav("capabilities.html")
+    s = head(d["title"], d["desc"], "capabilities.html") + chrome_nav("capabilities.html")
     s += (hero(d, wide=True).replace('<section class="hero wide"',
                                      '<section class="hero wide hero-photo wall-capabilities"')
           % (btn(d["primary"]) + btn(d["secondary"][0], d["secondary"][1], ghost=True)))
@@ -386,7 +386,7 @@ def build_capabilities():
 # ================================================================ BUILT INDUSTRY
 def build_built():
     d = BUILT
-    s = head(d["title"], d["desc"]) + chrome_nav("built-industry.html")
+    s = head(d["title"], d["desc"], "built-industry.html") + chrome_nav("built-industry.html")
     s += (hero(d, wide=True).replace('<section class="hero wide"', '<section class="hero wide hero-photo wall-construction"')
           % (btn(d["primary"][0], d["primary"][1]) + btn(d["secondary"], ghost=True)))
 
@@ -468,7 +468,7 @@ def build_built():
 # ================================================================ USE CASES
 def build_usecases():
     d = USECASES
-    s = head(d["title"], d["desc"]) + chrome_nav("use-cases.html")
+    s = head(d["title"], d["desc"], "use-cases.html") + chrome_nav("use-cases.html")
     s += (hero(d, wide=True).replace('<section class="hero wide"',
                                      '<section class="hero wide hero-photo wall-usecases"')
           % (btn(d["primary"]) + btn(d["secondary"], ghost=True)))
@@ -610,7 +610,7 @@ def build_usecases():
 # ================================================================ COMPANY
 def build_company():
     d = COMPANY
-    s = head(d["title"], d["desc"]) + chrome_nav("company.html")
+    s = head(d["title"], d["desc"], "company.html") + chrome_nav("company.html")
     s += (hero(d, wide=True).replace('<section class="hero wide"',
                                      '<section class="hero wide hero-photo wall-company"')
           % btn(d["primary"]))
@@ -663,7 +663,7 @@ def build_discuss():
     d = DISCUSS
     opts = "".join('<option value="%s">%s</option>' % (e(a), e(a)) for a in d["areas"])
 
-    s = head(d["title"], d["desc"]) + chrome_nav("discuss.html")
+    s = head(d["title"], d["desc"], "discuss.html") + chrome_nav("discuss.html")
     s += """<section class="hero hero-form">
   <div class="hero-glow"></div>
   <div class="container">

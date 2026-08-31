@@ -8,12 +8,14 @@ Written 2026-08-28. Everything a fresh session needs.
 
 | URL | What | State |
 |---|---|---|
-| `twosuns.ai/` | Homepage | **Maintenance page since 2026-08-24.** The real one is saved as `index.live-backup.html` |
+| `twosuns.ai/` | The nine-page site | **Launched 2026-08-29.** Indexable, canonical, sitemap declared |
 | `twosuns.ai/cement/` | Cement campaign microsite, 34 pages | Live, self-contained, deliberately separate |
-| `twosuns.ai/preview/` | The new nine-page site | Publicly reachable, `noindex`, not linked from anywhere |
+| `twosuns.ai/contact.html` | Old contact form | Kept only because eight cement pages link to it |
 
-The preview is the work in progress. It is built from the **TwoSuns Website
-Master Copy August 22 2026.docx**, which is the source of truth for all copy.
+The site is built from the **TwoSuns Website Master Copy August 22 2026.docx**,
+which is the source of truth for all copy. `preview/` now holds only
+`incoming/`, the image originals the build reads from. The maintenance page and
+`index.live-backup.html` are gone from the served root; git history has both.
 
 ## The single most important thing
 
@@ -43,12 +45,11 @@ away on the next rebuild. Source and instructions are in `build/README.md`.
 
 ## Open items
 
-**Blocking go-live**
-1. Remove `noindex` from all nine pages, or the new site is invisible.
-2. Decide the maintenance page. It has been up since 24 August.
-3. Privacy and Terms carry over the old market-intelligence positioning and the
-   phrase "Persistent Orchestration". They need a legal pass.
-4. Delete the test row from the leads Google Sheet.
+**Open after launch**
+1. Privacy and Terms still describe a commodity, energy and financial market
+   intelligence product, with trading disclaimers, watchlists and a "Persistent
+   Orchestration" trademark. They are wrong for this company and need replacing.
+2. Delete the test row from the leads Google Sheet.
 
 **Content still needed**
 5. `fam-pulse.jpg`, Capabilities. The current one is a whiteboard of stock

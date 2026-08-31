@@ -1,15 +1,22 @@
 # TwoSuns site build
 
-The nine pages under `../preview/` are **generated**. Do not hand-edit them, a
-rebuild overwrites everything. Edit the source here and rebuild.
+The nine pages at the **repo root** are generated and served live at
+twosuns.ai. Do not hand-edit them, a rebuild overwrites everything. Edit the
+source here and rebuild. `../preview/incoming/` holds the image originals the
+build reads from; nothing else lives under `preview/` any more.
 
 ## Rebuild
 
 ```bash
 cd /Users/mohammaddidarulalam/Documents/Claude/twosuns-live/build
-python3 build.py        # the seven content pages
-python3 legal.py        # privacy.html and terms.html, ported from the old site
+python3 build.py                  # the seven content pages
+python3 legal.py                  # privacy.html and terms.html
+python3 sitemap.py 2026-08-29     # robots.txt and sitemap.xml, pass today's date
+python3 ogimage.py                # og-twosuns.jpg, only when the hero still changes
 ```
+
+Everything lands in the repo root, which GitHub Pages serves at twosuns.ai off
+`main`. A push is a deploy.
 
 `build.py` refuses to write a page missing any of fifteen required stylesheet
 blocks, so a lost CSS block fails loudly instead of shipping an unstyled page.
