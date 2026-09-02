@@ -269,9 +269,6 @@ COMPANY = dict(
              "platform delivery."),
         ]),
         ("Growth and engagement", False, [
-            ("Belen Welch", "Growth Officer",
-             "Belen supports growth strategy, opportunity development and the relationships that connect TwoSuns "
-             "with prospective clients and partners."),
             ("Michelle Mollineaux", "Marketing Director",
              "Michelle leads marketing direction, communications and market-facing programs that build awareness "
              "and engagement around TwoSuns."),
