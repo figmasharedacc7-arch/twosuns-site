@@ -7,6 +7,7 @@ NAV = [
     ("Built Industry",   "built-industry.html"),
     ("Use Cases",        "use-cases.html"),
     ("Company",          "company.html"),
+    ("Events",           "events.html"),
 ]
 
 CSS = r"""
@@ -61,6 +62,7 @@ CSS = r"""
   .nav-in{max-width:1240px;margin:0 auto;padding:0 32px;display:flex;align-items:center;height:70px;gap:28px;}
   .nav-in>a.brand img{height:52px;width:auto;display:block;}
   .nav-links{display:flex;align-items:center;gap:26px;margin-left:auto;}
+  @media(max-width:1150px){ .nav-links{gap:19px;} .nav-links a{font-size:13.5px;} }
   .nav-links a{font-size:14px;font-weight:600;color:var(--ink);white-space:nowrap;transition:color .2s;}
   .nav-links a:hover,.nav-links a.active{color:var(--sun-deep);}
   .btn-cta{background:linear-gradient(135deg,var(--sun),var(--sun-deep));color:#fff;font-weight:700;

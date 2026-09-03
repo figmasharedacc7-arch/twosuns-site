@@ -72,6 +72,7 @@
   .nav-in{max-width:1240px;margin:0 auto;padding:0 32px;display:flex;align-items:center;height:70px;gap:28px;}
   .nav-in>a.brand img{height:52px;width:auto;display:block;}
   .nav-links{display:flex;align-items:center;gap:26px;margin-left:auto;}
+  @media(max-width:1150px){ .nav-links{gap:19px;} .nav-links a{font-size:13.5px;} }
   .nav-links a{font-size:14px;font-weight:600;color:var(--ink);white-space:nowrap;transition:color .2s;}
   .nav-links a:hover,.nav-links a.active{color:var(--sun-deep);}
   .btn-cta{background:linear-gradient(135deg,var(--sun),var(--sun-deep));color:#fff;font-weight:700;
@@ -554,7 +555,7 @@
   <div class="nav-in">
     <a class="brand" href="index.html"><img src="logo-color.svg" alt="TwoSuns"></a>
     <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('navlinks').classList.toggle('open')">&#9776;</button>
-    <div class="nav-links" id="navlinks"><a href="platform.html">Platform</a><a href="capabilities.html">Capabilities</a><a href="built-industry.html" class="active">Built Industry</a><a href="use-cases.html">Use Cases</a><a href="company.html">Company</a>
+    <div class="nav-links" id="navlinks"><a href="platform.html">Platform</a><a href="capabilities.html">Capabilities</a><a href="built-industry.html" class="active">Built Industry</a><a href="use-cases.html">Use Cases</a><a href="company.html">Company</a><a href="events.html">Events</a>
       <a class="btn-cta" href="discuss.html?ask=Discuss+Your+Needs">Discuss Your Needs</a>
     </div>
   </div>
