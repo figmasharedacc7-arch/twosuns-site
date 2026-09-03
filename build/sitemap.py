@@ -22,6 +22,7 @@ PAGES = [
     ("built-industry.html",  "monthly", "0.9"),
     ("use-cases.html",       "monthly", "0.9"),
     ("company.html",         "monthly", "0.7"),
+    ("events.html",          "weekly",  "0.7"),
     ("discuss.html",         "monthly", "0.8"),
     ("privacy.html",         "yearly",  "0.2"),
     ("terms.html",           "yearly",  "0.2"),

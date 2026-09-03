@@ -7,7 +7,7 @@ import theme
 from theme import head, chrome_nav, TAIL
 import herorot
 from content import HOME, PLATFORM, CAPABILITIES, HORIZON_GROUPS, PULSE_GROUPS
-from content2 import (BUILT, USECASES, UC_THEMES, UC_ITEMS, COMPANY, DISCUSS,
+from content2 import (BUILT, USECASES, UC_THEMES, UC_ITEMS, COMPANY, DISCUSS, EVENTS,
                       UC_AREA_LABELS, UC_GROUP_LABELS, UC_TAGS, CAP_LINKS)
 import eclipse
 import arch
@@ -658,6 +658,17 @@ def build_company():
 </section>
 """ % (e(d["aepg_h"]), e(d["aepg_p"]))
 
+    s += """<section>
+  <div class="container">
+    <div class="section-tag">Where to find us</div>
+    <h2 class="section-heading">Meet the team at an event</h2>
+    <p class="section-sub">We attend and speak at events across the built industry, building
+      materials and enterprise technology.</p>
+    <div style="margin-top:26px;">%s</div>
+  </div>
+</section>
+""" % btn("See upcoming events", "events.html", ghost=True)
+
     s += cta_band("Work with the team behind the platform",
                   "Tell us what you are trying to advance and we will bring the right people into the conversation.",
                   d["close_primary"], "Explore the Platform", "platform.html")
@@ -806,6 +817,62 @@ def build_discuss():
     return s + TAIL
 
 
+
+# ================================================================ EVENTS
+def build_events():
+    d = EVENTS
+    s = head(d["title"], d["desc"], "events.html") + chrome_nav("events.html")
+    s += (hero(d, wide=True) % (btn(d["primary"]) + btn(d["secondary"], ghost=True)))
+
+    cards = ""
+    # soonest first, so the page opens on what is actually next
+    for it in sorted(d["items"], key=lambda x: x["ends"]):
+        more = ('<a class="ev-more" href="%s" target="_blank" rel="noopener">%s</a>'
+                % (e(it["url"]), e(it["link"]))) if it["url"] else ""
+        cards += """<article class="ev" data-ends="%s">
+  <div class="ev-when">
+    <div class="d">%s</div>
+    <div class="w">%s</div>
+  </div>
+  <div class="ev-body">
+    <h3>%s</h3>
+    <p>%s</p>
+    <div class="ev-acts">
+      <a class="ev-meet" href="%s">Arrange a meeting</a>%s
+    </div>
+  </div>
+</article>
+""" % (e(it["ends"]), e(it["dates"]), e(it["venue"]), e(it["heading"]), e(it["body"]),
+       ask("Meet at " + it["name"]), more)
+
+    s += """<section>
+  <div class="container">
+    <div class="section-tag">Where to find us</div>
+    <h2 class="section-heading">Upcoming events</h2>
+    <p class="section-sub">Email <a href="mailto:info@twosuns.ai" style="color:var(--sun-deep);font-weight:700;">info@twosuns.ai</a>
+      to arrange a meeting at any of these, or use the form and we will come back to you.</p>
+    <div class="evlist">%s</div>
+  </div>
+</section>
+""" % cards
+
+    s += cta_band(d["close_h"], d["close_p"], d["close_primary"], d["close_secondary"])
+
+    # an events page rots the moment an event passes, so it retires them itself
+    s += """<script>
+(function(){
+  var today = new Date().toISOString().slice(0,10);
+  [].forEach.call(document.querySelectorAll('.ev[data-ends]'), function(el){
+    if (el.getAttribute('data-ends') < today){
+      el.classList.add('past');
+      el.parentNode.appendChild(el);
+    }
+  });
+})();
+</script>
+"""
+    return s + TAIL
+
 # ================================================================ RUN
 if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
@@ -816,6 +883,7 @@ if __name__ == "__main__":
         "built-industry.html": build_built(),
         "use-cases.html": build_usecases(),
         "company.html": build_company(),
+        "events.html": build_events(),
         "discuss.html": build_discuss(),
     }
     for n, b in pages.items():

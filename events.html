@@ -1,15 +1,26 @@
-# -*- coding: utf-8 -*-
-"""Shared chrome and stylesheet for the TwoSuns 7 page site."""
-
-NAV = [
-    ("Platform",         "platform.html"),
-    ("Capabilities",     "capabilities.html"),
-    ("Built Industry",   "built-industry.html"),
-    ("Use Cases",        "use-cases.html"),
-    ("Company",          "company.html"),
-]
-
-CSS = r"""
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Events | TwoSuns</title>
+<meta name="description" content="Meet the TwoSuns team at industry events across the built industry, technology and building materials sectors.">
+<link rel="canonical" href="https://twosuns.ai/events.html">
+<meta name="theme-color" content="#FFF5DD">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TwoSuns">
+<meta property="og:title" content="Events | TwoSuns">
+<meta property="og:description" content="Meet the TwoSuns team at industry events across the built industry, technology and building materials sectors.">
+<meta property="og:url" content="https://twosuns.ai/events.html">
+<meta property="og:image" content="https://twosuns.ai/og-twosuns.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Events | TwoSuns">
+<meta name="twitter:description" content="Meet the TwoSuns team at industry events across the built industry, technology and building materials sectors.">
+<meta name="twitter:image" content="https://twosuns.ai/og-twosuns.jpg">
+<link rel="icon" type="image/svg+xml" href="logo-mini.svg">
+<style>
   :root{
     --sun:#E0641E; --sun-deep:#C45213; --sun-bright:#CC9900; --sun-pale:#FFEDD0;
     --gold:#CC9900; --gold-deep:#9A7209; --gold-soft:#F7EDC8;
@@ -441,20 +452,86 @@ CSS = r"""
     .form-card{padding:24px;}
     .layer{padding:24px;}
   }
-"""
 
+  /* PLATFORM ARCHITECTURE */
+  .arx{position:relative;width:100%;max-width:1180px;margin:22px auto 0;aspect-ratio:2000/990;
+    container-type:inline-size;}
+  .arx svg{position:absolute;inset:0;width:100%;height:100%;}
+  .arx-lab{position:absolute;transform:translate(-50%,-50%);text-align:center;}
+  .arx-k{font-size:11px;font-size:.72cqw;font-weight:800;letter-spacing:.22em;text-transform:uppercase;}
+  .arx-n{font-size:34px;font-size:2.5cqw;font-weight:900;letter-spacing:-.01em;line-height:1;margin-top:.5cqw;}
+  .arx-rule{height:1px;margin:1.1cqw auto .9cqw;}
+  .arx-list{list-style:none;margin:0;padding:0;text-align:left;display:grid;gap:.55cqw;}
+  .arx-list li{position:relative;padding-left:1.35cqw;font-size:15px;font-size:1.02cqw;line-height:1.35;}
+  .arx-list li::before{content:'';position:absolute;left:0;top:.42em;width:.42cqw;height:.42cqw;
+    border-radius:50%;background:currentColor;opacity:.65;}
+  .arx-domain{width:19.5%;color:#2A231B;}
+  .arx-core{width:19.2%;color:#F6EEDE;}
+  .arx-core .arx-lines{display:grid;gap:.6cqw;font-size:15px;font-size:1.02cqw;line-height:1.35;}
+  .arx-orbit{position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;gap:.5cqw;
+    font-size:11px;font-size:.7cqw;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
+    color:#6E6152;white-space:nowrap;}
+  .arx-orbit i{width:.5cqw;height:.5cqw;border-radius:50%;flex-shrink:0;}
+  .arx-ray{position:absolute;left:50%;transform:translateX(-50%);background:#fff;border-radius:999px;
+    box-shadow:0 14px 40px rgba(60,50,30,.14);display:flex;align-items:center;justify-content:center;
+    flex-direction:column;gap:.7cqw;}
+  .arx-ray-top{display:flex;align-items:baseline;gap:.85cqw;}
+  .arx-ray-name{font-size:30px;font-size:2.1cqw;font-weight:900;color:#B8860B;letter-spacing:.01em;}
+  .arx-ray-sub{font-size:18px;font-size:1.25cqw;font-weight:800;color:#2A231B;}
+  .arx-ray-items{display:flex;gap:2.2cqw;font-size:15px;font-size:1.02cqw;color:#5A554C;}
+  .arx-ray-items span{display:flex;align-items:center;gap:.5cqw;}
+  .arx-ray-items i{width:.45cqw;height:.45cqw;border-radius:50%;}
+  .arx-foot{margin-top:22px;text-align:center;font-size:14.5px;font-weight:800;color:#5A554C;}
+  .arx-fallback{display:none;}
 
-import reveal as _rv
-REVEAL_HEAD = _rv.HEAD
-REVEAL_CSS = _rv.CSS
-import arch as _ax
-ARCH_CSS = _ax.CSS
-import herorot as _hr
-HERO_CSS = _hr.CSS
+  @media(max-width:900px){
+    .arx{display:none;}
+    .arx-fallback{display:grid;gap:14px;margin-top:28px;}
+    .arxf{border-radius:18px;padding:22px 22px 24px;}
+    .arxf .k{font-size:10.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;}
+    .arxf .n{font-size:26px;font-weight:900;line-height:1;margin-top:4px;}
+    .arxf ul{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:8px;}
+    .arxf li{position:relative;padding-left:18px;font-size:14.5px;line-height:1.5;}
+    .arxf li::before{content:'';position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:50%;
+      background:currentColor;opacity:.6;}
+    .arxf-h{background:linear-gradient(140deg,#F6DE93,#E0B33A);color:#2A231B;}
+    .arxf-c{background:linear-gradient(140deg,#2A2520,#171310);color:#F6EEDE;}
+    .arxf-c .n{color:#fff;}
+    .arxf-p{background:linear-gradient(140deg,#FDBA74,#F97316);color:#2A231B;}
+    .arxf-r{background:#fff;border:1px solid var(--border);color:#5A554C;}
+    .arxf-r .n{color:#B8860B;}
+  }
 
+  /* HERO VIDEO ROTATION */
+  .hero-vid video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    display:block;opacity:0;transition:opacity 1400ms ease-in-out;}
+  .hero-vid video.on{opacity:1;}
+  .hero-vid.solo video{opacity:1;transition:none;}
+  /* after the rules above, so the still wins over display:block */
+  @media(prefers-reduced-motion:reduce){
+    .hero-vid video{display:none;}
+    .hero-vid{background:url('hero-build-poster.jpg') center/cover no-repeat;}
+  }
 
-# LeadLander visitor identification, cookieless mode, account 36860
-LEADLANDER = """<script>
+  /* SCROLL REVEALS (only active once the head script adds .rv) */
+  .rv .section-tag, .rv .section-heading, .rv .section-sub, .rv .lede, .rv .card, .rv .cardimg, .rv .person, .rv .step, .rv .callout, .rv .layer, .rv .ecl, .rv .ecl-fallback, .rv .acc, .rv .uc-frow, .rv .split2-panel, .rv .grid2 > *, .rv .grid3 > *{opacity:0;transform:translateY(20px);
+    transition:opacity .68s cubic-bezier(.22,1,.36,1),transform .68s cubic-bezier(.22,1,.36,1);}
+  .rv .in.in{opacity:1;transform:none;}
+  .rv .hero .hero-eyebrow,.rv .hero h1,.rv .hero .hero-sub,.rv .hero .hero-actions{
+    opacity:0;transform:translateY(16px);
+    transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);}
+  .rv .hero .in.in{opacity:1;transform:none;}
+
+</style>
+<script>
+(function(){
+  try{
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(!reduce && 'IntersectionObserver' in window) document.documentElement.classList.add('rv');
+  }catch(e){}
+})();
+</script>
+<script>
   var llcookieless = true;
   var formalyze = [];
   formalyze.auto = true;
@@ -466,70 +543,151 @@ LEADLANDER = """<script>
     s.parentNode.insertBefore(a, s);
   })();
 </script>
-"""
 
-
-SITE = "https://twosuns.ai"
-OG_IMAGE = SITE + "/og-twosuns.jpg"
-
-
-def head(title, desc, page="index.html", extra_css=""):
-    canon = SITE + "/" + ("" if page == "index.html" else page)
-    esc_t = title.replace('"', "&quot;")
-    esc_d = desc.replace('"', "&quot;")
-    return f"""<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{title}</title>
-<meta name="description" content="{desc}">
-<link rel="canonical" href="{canon}">
-<meta name="theme-color" content="#FFF5DD">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="TwoSuns">
-<meta property="og:title" content="{esc_t}">
-<meta property="og:description" content="{esc_d}">
-<meta property="og:url" content="{canon}">
-<meta property="og:image" content="{OG_IMAGE}">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{esc_t}">
-<meta name="twitter:description" content="{esc_d}">
-<meta name="twitter:image" content="{OG_IMAGE}">
-<link rel="icon" type="image/svg+xml" href="logo-mini.svg">
-<style>{CSS}{ARCH_CSS}{HERO_CSS}{REVEAL_CSS}{extra_css}</style>
-{REVEAL_HEAD}
-{LEADLANDER}
 </head>
 <body>
 <canvas id="sun-canvas"></canvas>
-"""
-
-
-def chrome_nav(active=None):
-    parts = []
-    for n, u in NAV:
-        cls = ' class="active"' if active == u else ''
-        parts.append('<a href="' + u + '"' + cls + '>' + n + '</a>')
-    links = "".join(parts)
-    return f"""<div class="topbar"><div class="topbar-in">
+<div class="topbar"><div class="topbar-in">
   <span class="by-aepg">TwoSuns by AEPG</span>
 </div></div>
 <nav>
   <div class="nav-in">
     <a class="brand" href="index.html"><img src="logo-color.svg" alt="TwoSuns"></a>
     <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('navlinks').classList.toggle('open')">&#9776;</button>
-    <div class="nav-links" id="navlinks">{links}
+    <div class="nav-links" id="navlinks"><a href="platform.html">Platform</a><a href="capabilities.html">Capabilities</a><a href="built-industry.html">Built Industry</a><a href="use-cases.html">Use Cases</a><a href="company.html">Company</a>
       <a class="btn-cta" href="discuss.html?ask=Discuss+Your+Needs">Discuss Your Needs</a>
     </div>
   </div>
 </nav>
-"""
-
-
-FOOTER = """<footer>
+<section class="hero wide">
+  <div class="hero-glow"></div>
+  <div class="container">
+    <div class="hero-eyebrow"><span class="dot"></span>Events</div>
+    <h1>Meet the TwoSuns team.</h1>
+    <p class="hero-sub">We attend and speak at events across the built industry, building materials and enterprise technology. If you will be at one of these, we would welcome the conversation.</p>
+    <div class="hero-actions"><a class="btn-cta" href="discuss.html?ask=Discuss+Your+Needs">Discuss Your Needs</a><a class="btn-ghost" href="discuss.html?ask=Arrange+a+Meeting">Arrange a Meeting</a></div>
+  </div>
+</section>
+<div class="sun-divider"></div>
+<section>
+  <div class="container">
+    <div class="section-tag">Where to find us</div>
+    <h2 class="section-heading">Upcoming events</h2>
+    <p class="section-sub">Email <a href="mailto:info@twosuns.ai" style="color:var(--sun-deep);font-weight:700;">info@twosuns.ai</a>
+      to arrange a meeting at any of these, or use the form and we will come back to you.</p>
+    <div class="evlist"><article class="ev" data-ends="2026-09-03">
+  <div class="ev-when">
+    <div class="d">31 August to 3 September 2026</div>
+    <div class="w">RECC Malham, Riyadh, Saudi Arabia</div>
+  </div>
+  <div class="ev-body">
+    <h3>Meet TwoSuns.ai at LEAP 2026</h3>
+    <p>TwoSuns.ai will be attending LEAP 2026, where the global technology community gathers in Riyadh to connect, collaborate, and explore what is next.</p>
+    <div class="ev-acts">
+      <a class="ev-meet" href="discuss.html?ask=Meet+at+LEAP+2026">Arrange a meeting</a><a class="ev-more" href="https://onegiantleap.com/" target="_blank" rel="noopener">Visit the LEAP 2026 website</a>
+    </div>
+  </div>
+</article>
+<article class="ev" data-ends="2026-09-07">
+  <div class="ev-when">
+    <div class="d">5 to 7 September 2026</div>
+    <div class="w">Egypt International Exhibition Center, Cairo, Egypt</div>
+  </div>
+  <div class="ev-body">
+    <h3>Meet TwoSuns.ai at Egypt Projects 2026</h3>
+    <p>TwoSuns.ai will be attending Egypt Projects 2026, the 9th International Exhibition for Construction and Building Materials. The event brings together leading exhibitors, industry professionals, and government representatives from across the construction sector.</p>
+    <div class="ev-acts">
+      <a class="ev-meet" href="discuss.html?ask=Meet+at+Egypt+Projects+2026">Arrange a meeting</a><a class="ev-more" href="https://www.egypt-projects.com/" target="_blank" rel="noopener">Learn more about Egypt Projects 2026</a>
+    </div>
+  </div>
+</article>
+<article class="ev" data-ends="2026-09-10">
+  <div class="ev-when">
+    <div class="d">8 to 10 September 2026</div>
+    <div class="w">Swissotel The Bosphorus, Istanbul, Turkiye</div>
+  </div>
+  <div class="ev-body">
+    <h3>Meet TwoSuns.ai at INTERCEM 2026</h3>
+    <p>TwoSuns.ai will be attending INTERCEM 2026 in Istanbul, where our Founder and Chief Executive Officer, Aiman El-Ramly, will be speaking.</p>
+    <div class="ev-acts">
+      <a class="ev-meet" href="discuss.html?ask=Meet+at+INTERCEM+2026">Arrange a meeting</a><a class="ev-more" href="https://www.intercemevents.com/event/intercem2026/summary" target="_blank" rel="noopener">Learn more about INTERCEM 2026</a>
+    </div>
+  </div>
+</article>
+<article class="ev" data-ends="2026-09-27">
+  <div class="ev-when">
+    <div class="d">26 to 27 September 2026</div>
+    <div class="w">Ghurnata Community Space, Cairo, Egypt</div>
+  </div>
+  <div class="ev-body">
+    <h3>Meet TwoSuns.ai at Techne Summit Cairo 2026</h3>
+    <p>TwoSuns.ai will be attending Techne Summit Cairo, a flagship gathering where innovation meets capital and policy. The event brings together decision-makers, corporations, investors, and global technology leaders to build partnerships and help shape the future of emerging markets.</p>
+    <div class="ev-acts">
+      <a class="ev-meet" href="discuss.html?ask=Meet+at+Techne+Summit+Cairo+2026">Arrange a meeting</a><a class="ev-more" href="https://www.technesummit.com/2026" target="_blank" rel="noopener">Learn more about Techne Summit Cairo</a>
+    </div>
+  </div>
+</article>
+<article class="ev" data-ends="2026-09-29">
+  <div class="ev-when">
+    <div class="d">28 to 29 September 2026</div>
+    <div class="w">The St. Regis New Capital, Cairo, Egypt</div>
+  </div>
+  <div class="ev-body">
+    <h3>Meet TwoSuns.ai at Egypt Mining Forum 2026</h3>
+    <p>TwoSuns.ai will be attending the Egypt Mining Forum 2026, a leading platform bringing together government, industry, investors, and technology leaders to help shape the future of mining in Egypt and beyond.</p>
+    <div class="ev-acts">
+      <a class="ev-meet" href="discuss.html?ask=Meet+at+Egypt+Mining+Forum+2026">Arrange a meeting</a><a class="ev-more" href="https://www.egyptminingforum.com/" target="_blank" rel="noopener">Learn more about Egypt Mining Forum 2026</a>
+    </div>
+  </div>
+</article>
+<article class="ev" data-ends="2026-11-05">
+  <div class="ev-when">
+    <div class="d">4 to 5 November 2026</div>
+    <div class="w">Ottawa, Ontario, Canada</div>
+  </div>
+  <div class="ev-body">
+    <h3>Meet TwoSuns.ai at SaaS North 2026</h3>
+    <p>TwoSuns.ai is heading to SaaS North 2026 in Ottawa. Hear from Ryan Arian, Chief Digital Product Officer, during his speaking session and visit our booth to meet the team.</p>
+    <div class="ev-acts">
+      <a class="ev-meet" href="discuss.html?ask=Meet+at+SaaS+North+2026">Arrange a meeting</a><a class="ev-more" href="https://www.saasnorth.com/" target="_blank" rel="noopener">Learn more about SaaS North 2026</a>
+    </div>
+  </div>
+</article>
+<article class="ev" data-ends="2026-11-25">
+  <div class="ev-when">
+    <div class="d">23 to 25 November 2026</div>
+    <div class="w">Heliopolis Congress Complex, Waldorf Astoria and Hilton Heliopolis Hotels, Cairo, Egypt</div>
+  </div>
+  <div class="ev-body">
+    <h3>Meet TwoSuns.ai at AICCE29</h3>
+    <p>TwoSuns.ai will speak and exhibit at the 29th Arab International Cement and Building Materials Conference and Exhibition (AICCE29) in Cairo. Hear from our Founder and Chief Executive Officer, Aiman El-Ramly, during his speaking session and visit our booth to meet the team.</p>
+    <div class="ev-acts">
+      <a class="ev-meet" href="discuss.html?ask=Meet+at+AICCE29">Arrange a meeting</a><a class="ev-more" href="https://www.aucbm.net/welcome" target="_blank" rel="noopener">Learn more about AICCE29</a>
+    </div>
+  </div>
+</article>
+</div>
+  </div>
+</section>
+<section class="cta-band">
+  <div class="container">
+    <h2>Not attending one of these?</h2>
+    <p>Tell us what you are trying to advance and we will arrange a conversation, at an event or on a call.</p>
+    <div class="cta-actions"><a class="btn-cta" href="discuss.html?ask=Discuss+Your+Needs">Discuss Your Needs</a> <a class="btn-ghost" href="discuss.html?ask=Arrange+a+Meeting">Arrange a Meeting</a></div>
+  </div>
+</section>
+<script>
+(function(){
+  var today = new Date().toISOString().slice(0,10);
+  [].forEach.call(document.querySelectorAll('.ev[data-ends]'), function(el){
+    if (el.getAttribute('data-ends') < today){
+      el.classList.add('past');
+      el.parentNode.appendChild(el);
+    }
+  });
+})();
+</script>
+<footer>
   <div class="container">
     <div class="foot-top">
       <div class="foot-brand">
@@ -552,9 +710,7 @@ FOOTER = """<footer>
     </div>
   </div>
 </footer>
-"""
-
-PARTICLES = """<script>
+<script>
 (function(){
   var c=document.getElementById('sun-canvas'); if(!c) return;
   if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){c.style.display='none';return;}
@@ -573,7 +729,62 @@ PARTICLES = """<script>
   draw();
 })();
 </script>
-"""
+<script>
+(function(){
+  var root=document.documentElement;
+  if(!root.classList.contains('rv')) return;
 
-import reveal as _rv
-TAIL = FOOTER + PARTICLES + _rv.body_script() + "\n</body>\n</html>\n"
+  var SEL = [".section-tag", ".section-heading", ".section-sub", ".lede", ".card", ".cardimg", ".person", ".step", ".callout", ".layer", ".ecl", ".ecl-fallback", ".acc", ".uc-frow", ".split2-panel", ".grid2 > *", ".grid3 > *"];
+  var els = [];
+  SEL.forEach(function(s){
+    [].forEach.call(document.querySelectorAll(s), function(el){
+      if(els.indexOf(el)<0) els.push(el);
+    });
+  });
+
+  // never hide something that already contains a revealed ancestor's job
+  els = els.filter(function(el){
+    return !els.some(function(other){ return other!==el && other.contains(el); });
+  });
+
+  var JOINED = SEL.join(', ');
+  function show(el, delay){
+    if(delay) el.style.transitionDelay = delay + 'ms';
+    el.classList.add('in');
+    // the CSS hides by selector, so anything matching inside must come with it
+    [].forEach.call(el.querySelectorAll(JOINED), function(kid){ kid.classList.add('in'); });
+  }
+
+  // the hero plays on load, not on scroll
+  var hero = document.querySelector('.hero');
+  if(hero){
+    [].forEach.call(hero.querySelectorAll('.hero-eyebrow, h1, .hero-sub, .hero-actions'),
+      function(el,i){ setTimeout(function(){ show(el, 0); }, 90 + i*110); });
+  }
+
+  var seen = new WeakMap();
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting) return;
+      var el = e.target;
+      // stagger siblings that arrive together, capped so nothing waits long
+      var parent = el.parentNode, sibs = seen.get(parent) || 0;
+      seen.set(parent, sibs+1);
+      show(el, Math.min(sibs, 5) * 70);
+      io.unobserve(el);
+    });
+  }, {rootMargin: '0px 0px -8% 0px', threshold: 0.12});
+
+  els.forEach(function(el){
+    if(hero && hero.contains(el)) return;      // hero handled above
+    io.observe(el);
+  });
+
+  // failsafe: if anything is still hidden after 3s, show it
+  setTimeout(function(){
+    els.forEach(function(el){ if(!el.classList.contains('in')) show(el, 0); });
+  }, 1500);
+})();
+</script>
+</body>
+</html>

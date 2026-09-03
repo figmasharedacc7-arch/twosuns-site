@@ -376,3 +376,90 @@ CAP_LINKS = {
         "Regulatory, quality and compliance workflows",
         "Document intelligence and organizational knowledge"],
 }
+
+
+# Events, from Michelle's "Events for the website" document. Dates carry an ISO
+# end date so the page can retire an event once it has finished, and so the list
+# can be sorted without parsing prose.
+EVENTS = dict(
+    title="Events | TwoSuns",
+    desc="Meet the TwoSuns team at industry events across the built industry, technology and "
+         "building materials sectors.",
+    eyebrow="Events",
+    h1="Meet the TwoSuns team.",
+    sub="We attend and speak at events across the built industry, building materials and "
+        "enterprise technology. If you will be at one of these, we would welcome the conversation.",
+    primary="Discuss Your Needs",
+    secondary="Arrange a Meeting",
+    items=[
+        dict(name="Egypt Projects 2026",
+             ends="2026-09-07",
+             dates="5 to 7 September 2026",
+             venue="Egypt International Exhibition Center, Cairo, Egypt",
+             heading="Meet TwoSuns.ai at Egypt Projects 2026",
+             body="TwoSuns.ai will be attending Egypt Projects 2026, the 9th International "
+                  "Exhibition for Construction and Building Materials. The event brings together "
+                  "leading exhibitors, industry professionals, and government representatives "
+                  "from across the construction sector.",
+             link="Learn more about Egypt Projects 2026", url="https://www.egypt-projects.com/"),
+        dict(name="INTERCEM 2026",
+             ends="2026-09-10",
+             dates="8 to 10 September 2026",
+             venue="Swissotel The Bosphorus, Istanbul, Turkiye",
+             heading="Meet TwoSuns.ai at INTERCEM 2026",
+             body="TwoSuns.ai will be attending INTERCEM 2026 in Istanbul, where our Founder and "
+                  "Chief Executive Officer, Aiman El-Ramly, will be speaking.",
+             link="Learn more about INTERCEM 2026", url="https://www.intercemevents.com/event/intercem2026/summary"),
+        dict(name="Techne Summit Cairo 2026",
+             ends="2026-09-27",
+             dates="26 to 27 September 2026",
+             venue="Ghurnata Community Space, Cairo, Egypt",
+             heading="Meet TwoSuns.ai at Techne Summit Cairo 2026",
+             body="TwoSuns.ai will be attending Techne Summit Cairo, a flagship gathering where "
+                  "innovation meets capital and policy. The event brings together decision-makers, "
+                  "corporations, investors, and global technology leaders to build partnerships and "
+                  "help shape the future of emerging markets.",
+             link="Learn more about Techne Summit Cairo", url="https://www.technesummit.com/2026"),
+        dict(name="Egypt Mining Forum 2026",
+             ends="2026-09-29",
+             dates="28 to 29 September 2026",
+             venue="The St. Regis New Capital, Cairo, Egypt",
+             heading="Meet TwoSuns.ai at Egypt Mining Forum 2026",
+             body="TwoSuns.ai will be attending the Egypt Mining Forum 2026, a leading platform "
+                  "bringing together government, industry, investors, and technology leaders to "
+                  "help shape the future of mining in Egypt and beyond.",
+             link="Learn more about Egypt Mining Forum 2026", url="https://www.egyptminingforum.com/"),
+        dict(name="SaaS North 2026",
+             ends="2026-11-05",
+             dates="4 to 5 November 2026",
+             venue="Ottawa, Ontario, Canada",
+             heading="Meet TwoSuns.ai at SaaS North 2026",
+             body="TwoSuns.ai is heading to SaaS North 2026 in Ottawa. Hear from Ryan Arian, "
+                  "Chief Digital Product Officer, during his speaking session and visit our booth "
+                  "to meet the team.",
+             link="Learn more about SaaS North 2026", url="https://www.saasnorth.com/"),
+        dict(name="AICCE29",
+             ends="2026-11-25",
+             dates="23 to 25 November 2026",
+             venue="Heliopolis Congress Complex, Waldorf Astoria and Hilton Heliopolis Hotels, Cairo, Egypt",
+             heading="Meet TwoSuns.ai at AICCE29",
+             body="TwoSuns.ai will speak and exhibit at the 29th Arab International Cement and "
+                  "Building Materials Conference and Exhibition (AICCE29) in Cairo. Hear from our "
+                  "Founder and Chief Executive Officer, Aiman El-Ramly, during his speaking "
+                  "session and visit our booth to meet the team.",
+             link="Learn more about AICCE29", url="https://www.aucbm.net/welcome"),
+        dict(name="LEAP 2026",
+             ends="2026-09-03",
+             dates="31 August to 3 September 2026",
+             venue="RECC Malham, Riyadh, Saudi Arabia",
+             heading="Meet TwoSuns.ai at LEAP 2026",
+             body="TwoSuns.ai will be attending LEAP 2026, where the global technology community "
+                  "gathers in Riyadh to connect, collaborate, and explore what is next.",
+             link="Visit the LEAP 2026 website", url="https://onegiantleap.com/"),
+    ],
+    close_h="Not attending one of these?",
+    close_p="Tell us what you are trying to advance and we will arrange a conversation, at an "
+            "event or on a call.",
+    close_primary="Discuss Your Needs",
+    close_secondary="Arrange a Meeting",
+)
