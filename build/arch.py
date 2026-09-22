@@ -15,6 +15,7 @@ VB_Y0, VB_VIS = 195, 990   # crop the viewBox to where the drawing actually star
 HX, HY, HR = 660, 575, 278          # Horizon disc
 PX, PY, PR = 1400, 575, 278         # Pulse disc
 CX, CY, CW, CH = 1005, 578, 384, 468   # Core panel
+LAB_OUT = 46                           # how far each domain label sits out from its disc centre
 GOLD, ORANGE, DEEP = "#E0B33A", "#F97316", "#C45213"
 
 CSS = r"""
@@ -30,7 +31,7 @@ CSS = r"""
   .arx-list li{position:relative;padding-left:1.35cqw;font-size:15px;font-size:1.02cqw;line-height:1.35;}
   .arx-list li::before{content:'';position:absolute;left:0;top:.42em;width:.42cqw;height:.42cqw;
     border-radius:50%;background:currentColor;opacity:.65;}
-  .arx-domain{width:19.5%;color:#2A231B;}
+  .arx-domain{width:18.25%;color:#2A231B;}
   .arx-core{width:19.2%;color:#F6EEDE;}
   .arx-core .arx-lines{display:grid;gap:.6cqw;font-size:15px;font-size:1.02cqw;line-height:1.35;}
   .arx-orbit{position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;gap:.5cqw;
@@ -147,10 +148,10 @@ def section(heading, sub, explore_btn="", tag="Architecture", band="band-alt",
     </div>""" % (_pct(x, y), tone, kicker, name, rule,
                  "".join("<li>%s</li>" % i for i in items))
 
-    horizon = domain(596, HY - 6, "Commercial intelligence", "HORIZON",
+    horizon = domain(HX - LAB_OUT, HY - 6, "Commercial intelligence", "HORIZON",
                      ["Market and account intelligence", "Revenue coordination", "GTM execution"],
                      "#8A6A12", "rgba(90,70,15,.35)")
-    pulse = domain(1454, PY - 6, "Operational execution", "PULSE",
+    pulse = domain(PX + LAB_OUT, PY - 6, "Operational execution", "PULSE",
                    ["Operational workflows", "Supply and resource coordination", "Performance management"],
                    "#8C3D0B", "rgba(120,55,10,.35)")
 
