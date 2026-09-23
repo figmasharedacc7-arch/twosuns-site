@@ -6,9 +6,9 @@ HOME = dict(
     title="TwoSuns | Adaptive enterprise capability for the built industry",
     desc="TwoSuns is an adaptive enterprise platform for the built industry, combining trusted inputs, "
          "context-aware intelligence, agentic support and configurable workflows.",
-    eyebrow="Adaptive enterprise capability for the complex industry",
+    eyebrow="Adaptive enterprise capability for the built industry",
     h1="Grow, operate and coordinate complex work through shared enterprise context.",
-    sub="TwoSuns is an adaptive enterprise platform for the complex industry. It combines trusted inputs, "
+    sub="TwoSuns is an adaptive enterprise platform for the built industry. It combines trusted inputs, "
         "context-aware intelligence, agentic support and configurable workflows to help organizations grow, "
         "operate and benefit from more expansive and integrated context.",
     primary=("Discuss Your Needs", None),
