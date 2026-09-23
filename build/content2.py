@@ -463,3 +463,99 @@ EVENTS = dict(
     close_primary="Discuss Your Needs",
     close_secondary="Arrange a Meeting",
 )
+
+
+# Industries inside the built industry. The six operating areas answer "where do
+# you sit in the chain"; these answer "what sector are you in". Both axes are
+# kept, they are not the same question. Financial Markets from the cement
+# microsite is deliberately absent, it predates the built-industry positioning.
+#
+# "proof" is only ever a fact we can stand behind. Manufacturing has no event or
+# named deployment yet, so it says so rather than inventing one.
+INDUSTRIES = [
+    dict(
+        slug="building-materials",
+        name="Cement and Building Materials",
+        title="Cement and Building Materials | TwoSuns",
+        desc="TwoSuns for cement and building materials producers, connecting production, quality, "
+             "energy, maintenance and commercial context in one governed enterprise environment.",
+        eyebrow="Industry",
+        h1="Cement and building materials.",
+        sub="Producers run continuous plants against volatile inputs, tightening emissions "
+            "obligations and commercial commitments that change week to week. TwoSuns connects the "
+            "production, quality, energy, maintenance and commercial context that those decisions "
+            "depend on, and keeps a record of what was decided.",
+        areas=["Materials and Manufacturing", "Distribution and Logistics",
+               "Asset Transactions and Operations"],
+        horizon="Market position, customer demand, pricing and the commercial commitments that set "
+                "what the plant is asked to produce.",
+        pulse="Production performance, quality, energy intensity, maintenance and the supply "
+              "coordination that determines whether those commitments are met.",
+        cases=["Manufacturing economics and production performance",
+               "Asset operations, maintenance and reliability",
+               "Procurement, inventory and supplier coordination",
+               "Regulatory, quality and compliance workflows"],
+        proof_h="Running today",
+        proof="TwoSuns runs on cement kiln operations in the Gulf region, with live monitoring "
+              "against thresholds the operators govern. The team exhibits and speaks at INTERCEM "
+              "and at the Arab International Cement Conference.",
+        extra=("A dedicated cement programme runs alongside this page, with a solution brief and "
+               "an insight paper on closing the execution gap in cement manufacturing."),
+        extra_link=("Visit the cement programme", "cement/"),
+    ),
+    dict(
+        slug="construction",
+        name="Construction and Infrastructure",
+        title="Construction and Infrastructure | TwoSuns",
+        desc="TwoSuns for constructors, developers and infrastructure owners, connecting estimating, "
+             "project delivery, procurement and the record behind every decision.",
+        eyebrow="Industry",
+        h1="Construction and infrastructure.",
+        sub="Projects are won on estimates, delivered through changing conditions and judged long "
+            "after handover. TwoSuns connects the scope, resources, suppliers, documents and "
+            "progress that a project depends on, so the reasoning behind a decision survives the "
+            "people who made it.",
+        areas=["Construction and Professional Services", "Asset Owners and Investors",
+               "Distribution and Logistics"],
+        horizon="Pipeline, tenders, proposals and the client relationships that decide which work "
+                "is pursued and on what terms.",
+        pulse="Scope, schedule, resources, procurement and progress across the work that has been "
+              "won, with the document trail attached.",
+        cases=["Project planning, resources and progress",
+               "Estimating, quantity take-offs and materials",
+               "Accounts, opportunities, tenders and proposals",
+               "Document intelligence and organizational knowledge"],
+        proof_h="Where to find us",
+        proof="The team attends Egypt Projects 2026, the International Exhibition for Construction "
+              "and Building Materials, in Cairo.",
+        extra="", extra_link=None,
+    ),
+    dict(
+        slug="manufacturing",
+        name="Manufacturing",
+        title="Manufacturing | TwoSuns",
+        desc="TwoSuns for manufacturers supplying the built industry, connecting production, "
+             "procurement, asset performance and commercial context in one environment.",
+        eyebrow="Industry",
+        h1="Manufacturing.",
+        sub="Manufacturers supplying the built industry carry the same pressures as their "
+            "customers, on shorter cycles. TwoSuns connects production performance, asset "
+            "reliability, procurement and the commercial picture, so cost, capacity and "
+            "commitment are read against each other rather than in separate systems.",
+        areas=["Materials and Manufacturing", "Asset Transactions and Operations",
+               "Distribution and Logistics"],
+        horizon="Demand, customers, pricing and the product decisions that set what is worth "
+                "making and for whom.",
+        pulse="Production performance, asset reliability, inventory and supplier coordination "
+              "across the work that delivers it.",
+        cases=["Manufacturing economics and production performance",
+               "Product and research portfolio coordination",
+               "Procurement, inventory and supplier coordination",
+               "Executive planning and performance visibility"],
+        proof_h="Talk to us",
+        proof="Manufacturing is an active area of work rather than a published deployment. If you "
+              "are running one, we would rather show you the platform against your own numbers "
+              "than a reference from another sector.",
+        extra="", extra_link=None,
+    ),
+]
