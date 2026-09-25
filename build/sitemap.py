@@ -19,7 +19,7 @@ PAGES = [
     ("",                     "weekly",  "1.0"),
     ("platform.html",        "monthly", "0.9"),
     ("capabilities.html",    "monthly", "0.9"),
-    ("built-industry.html",  "monthly", "0.9"),
+    ("industries.html",       "monthly", "0.9"),
     ("use-cases.html",       "monthly", "0.9"),
     ("company.html",         "monthly", "0.7"),
     ("events.html",          "weekly",  "0.7"),

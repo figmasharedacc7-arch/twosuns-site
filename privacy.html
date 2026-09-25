@@ -72,6 +72,25 @@
   .nav-in{max-width:1240px;margin:0 auto;padding:0 32px;display:flex;align-items:center;height:70px;gap:28px;}
   .nav-in>a.brand img{height:52px;width:auto;display:block;}
   .nav-links{display:flex;align-items:center;gap:26px;margin-left:auto;}
+  /* NAV DROPDOWN */
+  .ndrop{position:relative;display:flex;align-items:center;}
+  .ndrop > a{display:inline-flex;align-items:center;gap:6px;}
+  .ncar{width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;
+    border-top:5px solid currentColor;opacity:.55;transition:transform .2s;}
+  .ndrop:hover .ncar,.ndrop:focus-within .ncar{transform:rotate(180deg);}
+  .ndrop-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(6px);
+    min-width:262px;background:rgba(255,250,240,.99);border:1px solid var(--border);
+    border-radius:12px;box-shadow:0 16px 38px rgba(60,50,30,.16);padding:8px;
+    display:flex;flex-direction:column;gap:2px;opacity:0;visibility:hidden;
+    transition:opacity .18s,transform .18s,visibility .18s;z-index:60;}
+  /* a bridge under the item, so the pointer can cross the gap without it closing */
+  .ndrop::after{content:'';position:absolute;top:100%;left:0;right:0;height:14px;}
+  .ndrop:hover .ndrop-menu,.ndrop:focus-within .ndrop-menu{
+    opacity:1;visibility:visible;transform:translateX(-50%) translateY(2px);}
+  .ndrop-menu a{display:block;padding:9px 13px;border-radius:8px;font-size:13.5px;
+    font-weight:600;white-space:nowrap;color:var(--ink);}
+  .ndrop-menu a:hover{background:var(--gold-soft);color:var(--navy);}
+  .ndrop-menu a.active{color:var(--sun-deep);font-weight:800;}
   @media(max-width:1150px){ .nav-links{gap:19px;} .nav-links a{font-size:13.5px;} }
   .nav-links a{font-size:14px;font-weight:600;color:var(--ink);white-space:nowrap;transition:color .2s;}
   .nav-links a:hover,.nav-links a.active{color:var(--sun-deep);}
@@ -433,6 +452,11 @@
       align-items:flex-start;gap:0;background:rgba(255,248,236,.99);border-bottom:1px solid var(--border);
       padding:8px 32px 18px;box-shadow:0 12px 24px rgba(60,50,30,.12);}
     .nav-links.open a{padding:12px 0;width:100%;border-bottom:1px solid var(--border-soft);}
+      .nav-links.open .ndrop{display:block;width:100%;}
+      .nav-links.open .ndrop-menu{position:static;transform:none;opacity:1;visibility:visible;
+        min-width:0;background:none;border:0;box-shadow:none;padding:0 0 0 16px;gap:0;}
+      .nav-links.open .ndrop-menu a{font-size:13.5px;color:var(--text-muted);}
+      .nav-links.open .ncar{display:none;}
     .nav-toggle{display:block;}
   }
   @media(max-width:760px){
@@ -466,7 +490,7 @@
   .arx-list li{position:relative;padding-left:1.35cqw;font-size:15px;font-size:1.02cqw;line-height:1.35;}
   .arx-list li::before{content:'';position:absolute;left:0;top:.42em;width:.42cqw;height:.42cqw;
     border-radius:50%;background:currentColor;opacity:.65;}
-  .arx-domain{width:19.5%;color:#2A231B;}
+  .arx-domain{width:18.25%;color:#2A231B;}
   .arx-core{width:19.2%;color:#F6EEDE;}
   .arx-core .arx-lines{display:grid;gap:.6cqw;font-size:15px;font-size:1.02cqw;line-height:1.35;}
   .arx-orbit{position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;gap:.5cqw;
@@ -567,7 +591,7 @@
   <div class="nav-in">
     <a class="brand" href="index.html"><img src="logo-color.svg" alt="TwoSuns"></a>
     <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('navlinks').classList.toggle('open')">&#9776;</button>
-    <div class="nav-links" id="navlinks"><a href="platform.html">Platform</a><a href="capabilities.html">Capabilities</a><a href="built-industry.html">Built Industry</a><a href="use-cases.html">Use Cases</a><a href="company.html">Company</a><a href="events.html">Events</a>
+    <div class="nav-links" id="navlinks"><a href="platform.html">Platform</a><a href="capabilities.html">Capabilities</a><div class="ndrop"><a href="industries.html">Industries<i class="ncar"></i></a><div class="ndrop-menu"><a href="building-materials.html">Cement and Building Materials</a><a href="construction.html">Construction and Infrastructure</a><a href="manufacturing.html">Manufacturing</a></div></div><a href="use-cases.html">Use Cases</a><a href="company.html">Company</a><a href="events.html">Events</a>
       <a class="btn-cta" href="discuss.html?ask=Discuss+Your+Needs">Discuss Your Needs</a>
     </div>
   </div>
@@ -653,7 +677,10 @@
       <div class="foot-links">
         <a href="platform.html">Platform</a>
         <a href="capabilities.html">Capabilities</a>
-        <a href="built-industry.html">Built Industry</a>
+        <a href="industries.html">Industries</a>
+        <a href="building-materials.html">Cement and Building Materials</a>
+        <a href="construction.html">Construction and Infrastructure</a>
+        <a href="manufacturing.html">Manufacturing</a>
         <a href="use-cases.html">Use Cases</a>
         <a href="company.html">Company</a>
         <a href="events.html">Events</a>

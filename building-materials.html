@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cement and Building Materials | TwoSuns</title>
-<meta name="description" content="TwoSuns for cement and building materials producers, connecting production, quality, energy, maintenance and commercial context in one governed enterprise environment.">
+<title>Building Materials | TwoSuns</title>
+<meta name="description" content="TwoSuns for building materials: the organizations that extract, process, produce and supply the materials incorporated into buildings and infrastructure.">
 <link rel="canonical" href="https://twosuns.ai/building-materials.html">
 <meta name="theme-color" content="#FFF5DD">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="TwoSuns">
-<meta property="og:title" content="Cement and Building Materials | TwoSuns">
-<meta property="og:description" content="TwoSuns for cement and building materials producers, connecting production, quality, energy, maintenance and commercial context in one governed enterprise environment.">
+<meta property="og:title" content="Building Materials | TwoSuns">
+<meta property="og:description" content="TwoSuns for building materials: the organizations that extract, process, produce and supply the materials incorporated into buildings and infrastructure.">
 <meta property="og:url" content="https://twosuns.ai/building-materials.html">
 <meta property="og:image" content="https://twosuns.ai/og-twosuns.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Cement and Building Materials | TwoSuns">
-<meta name="twitter:description" content="TwoSuns for cement and building materials producers, connecting production, quality, energy, maintenance and commercial context in one governed enterprise environment.">
+<meta name="twitter:title" content="Building Materials | TwoSuns">
+<meta name="twitter:description" content="TwoSuns for building materials: the organizations that extract, process, produce and supply the materials incorporated into buildings and infrastructure.">
 <meta name="twitter:image" content="https://twosuns.ai/og-twosuns.jpg">
 <link rel="icon" type="image/svg+xml" href="logo-mini.svg">
 <style>
@@ -72,6 +72,25 @@
   .nav-in{max-width:1240px;margin:0 auto;padding:0 32px;display:flex;align-items:center;height:70px;gap:28px;}
   .nav-in>a.brand img{height:52px;width:auto;display:block;}
   .nav-links{display:flex;align-items:center;gap:26px;margin-left:auto;}
+  /* NAV DROPDOWN */
+  .ndrop{position:relative;display:flex;align-items:center;}
+  .ndrop > a{display:inline-flex;align-items:center;gap:6px;}
+  .ncar{width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;
+    border-top:5px solid currentColor;opacity:.55;transition:transform .2s;}
+  .ndrop:hover .ncar,.ndrop:focus-within .ncar{transform:rotate(180deg);}
+  .ndrop-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(6px);
+    min-width:262px;background:rgba(255,250,240,.99);border:1px solid var(--border);
+    border-radius:12px;box-shadow:0 16px 38px rgba(60,50,30,.16);padding:8px;
+    display:flex;flex-direction:column;gap:2px;opacity:0;visibility:hidden;
+    transition:opacity .18s,transform .18s,visibility .18s;z-index:60;}
+  /* a bridge under the item, so the pointer can cross the gap without it closing */
+  .ndrop::after{content:'';position:absolute;top:100%;left:0;right:0;height:14px;}
+  .ndrop:hover .ndrop-menu,.ndrop:focus-within .ndrop-menu{
+    opacity:1;visibility:visible;transform:translateX(-50%) translateY(2px);}
+  .ndrop-menu a{display:block;padding:9px 13px;border-radius:8px;font-size:13.5px;
+    font-weight:600;white-space:nowrap;color:var(--ink);}
+  .ndrop-menu a:hover{background:var(--gold-soft);color:var(--navy);}
+  .ndrop-menu a.active{color:var(--sun-deep);font-weight:800;}
   @media(max-width:1150px){ .nav-links{gap:19px;} .nav-links a{font-size:13.5px;} }
   .nav-links a{font-size:14px;font-weight:600;color:var(--ink);white-space:nowrap;transition:color .2s;}
   .nav-links a:hover,.nav-links a.active{color:var(--sun-deep);}
@@ -342,6 +361,22 @@
   .uc-ask .btn-ghost{align-self:flex-start;margin-top:5px;background:#fff;}
   .uc-ask.wide{grid-column:1 / -1;}
 
+
+  /* INDUSTRY SUBPAGES, classes from Noureldin's content brief */
+  .hero p.hero-body{font-size:16.5px;line-height:1.8;color:var(--text-muted);max-width:620px;margin:-14px 0 32px;}
+  .bg-materials::before{background-image:url('area-materials.jpg');}
+  .bg-distribution::before{background-image:url('area-distribution.jpg');}
+  .bg-owners::before{background-image:url('area-owners.jpg');}
+  .bg-construction::before{background-image:url('area-construction.jpg');}
+  .bg-operations::before{background-image:url('area-operations.jpg');}
+  .bg-institutions::before{background-image:url('area-institutions.jpg');}
+  .dom-k{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+  .more-link{display:inline-block;margin-top:24px;font-size:14px;font-weight:700;}
+  .stages{list-style:none;display:flex;flex-wrap:wrap;gap:8px 10px;margin-top:22px;max-width:1000px;}
+  .stages li{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--border-soft);
+    border-radius:20px;padding:6px 14px;font-size:13.5px;font-weight:700;color:var(--navy);}
+  .stages li span{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:#8C6500;}
+
   /* EVENTS */
   .ev{display:grid;grid-template-columns:210px 1fr;gap:0;background:#fff;border:1px solid var(--border-soft);
     border-radius:18px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:20px;transition:all .3s;}
@@ -433,6 +468,11 @@
       align-items:flex-start;gap:0;background:rgba(255,248,236,.99);border-bottom:1px solid var(--border);
       padding:8px 32px 18px;box-shadow:0 12px 24px rgba(60,50,30,.12);}
     .nav-links.open a{padding:12px 0;width:100%;border-bottom:1px solid var(--border-soft);}
+      .nav-links.open .ndrop{display:block;width:100%;}
+      .nav-links.open .ndrop-menu{position:static;transform:none;opacity:1;visibility:visible;
+        min-width:0;background:none;border:0;box-shadow:none;padding:0 0 0 16px;gap:0;}
+      .nav-links.open .ndrop-menu a{font-size:13.5px;color:var(--text-muted);}
+      .nav-links.open .ncar{display:none;}
     .nav-toggle{display:block;}
   }
   @media(max-width:760px){
@@ -555,71 +595,39 @@
   <div class="nav-in">
     <a class="brand" href="index.html"><img src="logo-color.svg" alt="TwoSuns"></a>
     <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('navlinks').classList.toggle('open')">&#9776;</button>
-    <div class="nav-links" id="navlinks"><a href="platform.html">Platform</a><a href="capabilities.html">Capabilities</a><a href="built-industry.html" class="active">Built Industry</a><a href="use-cases.html">Use Cases</a><a href="company.html">Company</a><a href="events.html">Events</a>
+    <div class="nav-links" id="navlinks"><a href="platform.html">Platform</a><a href="capabilities.html">Capabilities</a><div class="ndrop"><a href="industries.html" class="active">Industries<i class="ncar"></i></a><div class="ndrop-menu"><a href="building-materials.html" class="active">Building Materials</a><a href="construction.html">Construction and Infrastructure</a><a href="manufacturing.html">Manufacturing</a></div></div><a href="use-cases.html">Use Cases</a><a href="company.html">Company</a><a href="events.html">Events</a>
       <a class="btn-cta" href="discuss.html?ask=Discuss+Your+Needs">Discuss Your Needs</a>
     </div>
   </div>
 </nav>
-<section class="hero wide">
-  <div class="hero-glow"></div>
-  <div class="container">
-    <div class="hero-eyebrow"><span class="dot"></span>Industry</div>
-    <h1>Cement and building materials.</h1>
-    <p class="hero-sub">Producers run continuous plants against volatile inputs, tightening emissions obligations and commercial commitments that change week to week. TwoSuns connects the production, quality, energy, maintenance and commercial context that those decisions depend on, and keeps a record of what was decided.</p>
-    <div class="hero-actions"><a class="btn-cta" href="discuss.html?ask=Discuss+Your+Needs">Discuss Your Needs</a><a class="btn-ghost" href="platform.html">Explore the Platform</a></div>
-  </div>
-</section>
+<section class="hero wide hero-photo wall-construction"> <div class="hero-glow"></div> <div class="container">
+<div class="hero-eyebrow"><span class="dot"></span>Building Materials</div>
+<h1 class="in">The materials every built asset starts from.</h1>
+<p class="hero-sub">Building materials includes the organizations that extract, process, produce and supply the materials incorporated into buildings and infrastructure, from raw inputs to delivery at the point of use.</p>
+<p class="hero-body">Producers run continuous plants against volatile inputs and commercial commitments that change week to week. TwoSuns connects the production, quality, energy, maintenance and commercial context that those decisions depend on, and keeps a record of what was decided.</p>
+<div class="hero-actions"><a class="btn-cta" href="discuss.html?ask=Discuss+Your+Needs">Discuss Your Needs</a><a class="btn-ghost" href="platform.html">Explore the Platform</a></div>
+</div> </section>
 <div class="sun-divider"></div>
-<section>
-  <div class="container">
-    <div class="section-tag">Where it sits</div>
-    <h2 class="section-heading">Operating areas this industry spans</h2>
-    <p class="section-sub">The built industry is one connected ecosystem. These are the parts of it
-      that cement and building materials work across most often.</p>
-    <div class="grid3"><div class="card"><p style="font-size:15.5px;color:var(--navy);font-weight:700;">Materials and Manufacturing</p></div><div class="card"><p style="font-size:15.5px;color:var(--navy);font-weight:700;">Distribution and Logistics</p></div><div class="card"><p style="font-size:15.5px;color:var(--navy);font-weight:700;">Asset Transactions and Operations</p></div></div>
-    <div style="margin-top:28px;"><a class="btn-ghost" href="built-industry.html">See all six operating areas</a></div>
-  </div>
-</section>
-<section class="band-alt">
-  <div class="container">
-    <div class="section-tag">Two domains</div>
-    <h2 class="section-heading">Commercial and operational, on one context</h2>
-    <div class="split2">
-      <div class="split2-panel">
-        <div class="a3-name" style="color:#B07E00;font-size:23px;font-weight:900;margin-bottom:12px;">Horizon</div>
-        <p>Market position, customer demand, pricing and the commercial commitments that set what the plant is asked to produce.</p>
-      </div>
-      <div class="split2-panel">
-        <div class="a3-name" style="color:#C45213;font-size:23px;font-weight:900;margin-bottom:12px;">Pulse</div>
-        <p>Production performance, quality, energy intensity, maintenance and the supply coordination that determines whether those commitments are met.</p>
-      </div>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="container">
-    <div class="section-tag">In practice</div>
-    <h2 class="section-heading">Representative workflows</h2>
-    <p class="section-sub">Configured from the same capabilities, around the work this industry
-      actually runs.</p>
-    <div class="grid2"><div class="card"><p style="font-size:15.5px;color:var(--navy);font-weight:700;margin-bottom:10px;">Manufacturing economics and production performance</p><a class="ev-more" href="use-cases.html#uc-manufacturing-economics-and-production-performance">Read the workflow</a></div><div class="card"><p style="font-size:15.5px;color:var(--navy);font-weight:700;margin-bottom:10px;">Asset operations, maintenance and reliability</p><a class="ev-more" href="use-cases.html#uc-asset-operations-maintenance-and-reliability">Read the workflow</a></div><div class="card"><p style="font-size:15.5px;color:var(--navy);font-weight:700;margin-bottom:10px;">Procurement, inventory and supplier coordination</p><a class="ev-more" href="use-cases.html#uc-procurement-inventory-and-supplier-coordination">Read the workflow</a></div><div class="card"><p style="font-size:15.5px;color:var(--navy);font-weight:700;margin-bottom:10px;">Regulatory, quality and compliance workflows</p><a class="ev-more" href="use-cases.html#uc-regulatory-quality-and-compliance-workflows">Read the workflow</a></div></div>
-    <div style="margin-top:28px;"><a class="btn-ghost" href="use-cases.html">Explore all use cases</a></div>
-  </div>
-</section>
-<section class="band-warm">
-  <div class="container">
-    <div class="section-tag">Running today</div>
-    <h2 class="section-heading">Cement and Building Materials</h2>
-    <p class="lede">TwoSuns runs on cement kiln operations in the Gulf region, with live monitoring against thresholds the operators govern. The team exhibits and speaks at INTERCEM and at the Arab International Cement Conference.</p><p class="lede" style="margin-top:18px;">A dedicated cement programme runs alongside this page, with a solution brief and an insight paper on closing the execution gap in cement manufacturing.</p><div style="margin-top:20px;"><a class="btn-ghost" href="cement/">Visit the cement programme</a></div>
-  </div>
-</section>
-<section class="cta-band">
-  <div class="container">
-    <h2>Configure TwoSuns around this industry</h2>
-    <p>Tell us how your organization operates and we will show you how it would be configured.</p>
-    <div class="cta-actions"><a class="btn-cta" href="discuss.html?ask=Discuss+Your+Needs">Discuss Your Needs</a> <a class="btn-ghost" href="use-cases.html">Explore Use Cases</a></div>
-  </div>
-</section>
+
+<section style="padding:88px 0 40px;"> <div class="container"> <div class="section-tag">Where it sits</div> <h2 class="section-heading">Six parts of building materials</h2> <p class="section-sub">Material passes through several organizations, and often several plants, before it reaches a project.</p> </div> </section>
+<section class="imgsec imgsec-l bg-materials area-sec"> <div class="container"> <div class="sec-split"> <span class="card-num" style="background:var(--a1);">1</span> <h2 class="section-heading">Extraction and Raw Materials</h2> <p class="section-sub">Organizations that source the natural and recovered inputs materials are made from.</p> <ul class="tick"><li>Quarrying and aggregates</li><li>Sand, clay and industrial minerals</li><li>Timber and forest products</li><li>Metals and ores</li><li>Recycled and secondary materials</li></ul> </div> </div> </section>
+<section class="imgsec imgsec-r bg-operations area-sec"> <div class="container"> <div class="sec-split"> <span class="card-num" style="background:var(--a2);">2</span> <h2 class="section-heading">Process Production</h2> <p class="section-sub">Continuous and batch plants that convert raw inputs into materials.</p> <ul class="tick"><li>Cement and binders</li><li>Steel and metals</li><li>Glass</li><li>Gypsum and lime</li><li>Chemicals, coatings and admixtures</li></ul> </div> </div> </section>
+<section class="imgsec imgsec-l bg-construction area-sec"> <div class="container"> <div class="sec-split"> <span class="card-num" style="background:var(--a3);">3</span> <h2 class="section-heading">Concrete and Manufactured Materials</h2> <p class="section-sub">Producers that turn materials into ready-to-use products.</p> <ul class="tick"><li>Ready-mix concrete</li><li>Precast and concrete products</li><li>Masonry, brick and block</li><li>Asphalt and paving materials</li><li>Insulation, boards and panels</li></ul> </div> </div> </section>
+<section class="imgsec imgsec-r bg-owners area-sec"> <div class="container"> <div class="sec-split"> <span class="card-num" style="background:var(--a4);">4</span> <h2 class="section-heading">Plant Operations and Assets</h2> <p class="section-sub">The equipment and operating activity that keep production running.</p> <ul class="tick"><li>Kilns, mills, furnaces and process lines</li><li>Quarry and mobile equipment</li><li>Energy and fuel supply</li><li>Maintenance, repair and reliability</li><li>Plant performance monitoring</li></ul> </div> </div> </section>
+<section class="imgsec imgsec-l bg-distribution area-sec"> <div class="container"> <div class="sec-split"> <span class="card-num" style="background:var(--a5);">5</span> <h2 class="section-heading">Distribution and Supply</h2> <p class="section-sub">Networks that move heavy, bulky material to regional markets.</p> <ul class="tick"><li>Bulk terminals and depots</li><li>Distributors and builders&#x27; merchants</li><li>Dealer and trade networks</li><li>Transportation and haulage</li><li>Inventory and yard management</li></ul> </div> </div> </section>
+<section class="imgsec imgsec-r bg-institutions area-sec"> <div class="container"> <div class="sec-split"> <span class="card-num" style="background:var(--a6);">6</span> <h2 class="section-heading">Quality, Standards and Compliance</h2> <p class="section-sub">Requirements that material and plant must meet.</p> <ul class="tick"><li>Product testing and quality control</li><li>Standards and certification</li><li>Environmental permits and reporting</li><li>Health and safety requirements</li><li>Technical specifications and declarations</li></ul> </div> </div> </section>
+
+<section class="band-alt"> <div class="container"> <div class="section-tag">Lifecycle</div> <h2 class="section-heading">The materials lifecycle connects them</h2> <p class="lede">Material moves through demand, extraction, processing, production, quality, storage, dispatch, delivery and use, and increasingly back into production through recovery and reuse.</p> <div class="ecl"><svg viewBox="0 0 1280 800" role="img" aria-label="The materials lifecycle at the centre, with the six parts of the industry around it."><defs> <radialGradient id="eg" cx="34%" cy="30%"> <stop offset="0" stop-color="#FFFDF0"></stop><stop offset=".34" stop-color="#F6E4A4"></stop> <stop offset=".72" stop-color="#DFC15C"></stop><stop offset="1" stop-color="#CC9900"></stop></radialGradient> <radialGradient id="eo" cx="34%" cy="30%"> <stop offset="0" stop-color="#FFF4E8"></stop><stop offset=".32" stop-color="#FFB077"></stop> <stop offset=".70" stop-color="#F2762A"></stop><stop offset="1" stop-color="#E0641E"></stop></radialGradient> <radialGradient id="ec"><stop offset=".55" stop-color="rgba(224,100,30,.20)"></stop> <stop offset="1" stop-color="rgba(224,100,30,0)"></stop></radialGradient> <filter id="eng" x="0" y="0" width="100%" height="100%"> <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"></feTurbulence> <feColorMatrix type="saturate" values="0"></feColorMatrix></filter> <clipPath id="el"><circle cx="544" cy="366" r="236"></circle></clipPath> </defs><circle cx="640" cy="366" r="420" fill="url(#ec)"></circle><circle cx="544" cy="366" r="236" fill="url(#eg)"></circle><circle cx="736" cy="366" r="236" fill="url(#eo)" opacity=".9"></circle><g clip-path="url(#el)"><circle cx="736" cy="366" r="236" fill="#FFFBF0" opacity=".96"></circle></g><g clip-path="url(#el)"><circle cx="736" cy="366" r="236" fill="none" stroke="#FFF6DC" stroke-width="3" opacity=".9"></circle></g><circle cx="544" cy="366" r="236" fill="none" stroke="rgba(140,101,0,.45)"></circle><circle cx="736" cy="366" r="236" fill="none" stroke="rgba(196,82,19,.45)"></circle><line x1="614" y1="231" x2="666" y2="231" stroke="rgba(140,101,0,.5)" stroke-width="1.5"><title>Demand</title></line><line x1="614" y1="261" x2="666" y2="261" stroke="rgba(140,101,0,.5)" stroke-width="1.5"><title>Extraction</title></line><line x1="614" y1="291" x2="666" y2="291" stroke="rgba(140,101,0,.5)" stroke-width="1.5"><title>Processing</title></line><line x1="614" y1="321" x2="666" y2="321" stroke="rgba(140,101,0,.5)" stroke-width="1.5"><title>Production</title></line><line x1="614" y1="351" x2="666" y2="351" stroke="rgba(140,101,0,.5)" stroke-width="1.5"><title>Quality</title></line><line x1="614" y1="381" x2="666" y2="381" stroke="rgba(140,101,0,.5)" stroke-width="1.5"><title>Storage</title></line><line x1="614" y1="411" x2="666" y2="411" stroke="rgba(140,101,0,.5)" stroke-width="1.5"><title>Dispatch</title></line><line x1="614" y1="441" x2="666" y2="441" stroke="rgba(140,101,0,.5)" stroke-width="1.5"><title>Delivery</title></line><line x1="614" y1="471" x2="666" y2="471" stroke="rgba(140,101,0,.5)" stroke-width="1.5"><title>Use</title></line><line x1="614" y1="501" x2="666" y2="501" stroke="rgba(140,101,0,.5)" stroke-width="1.5"><title>Recovery</title></line><line x1="351" y1="231" x2="300" y2="195" stroke="#E0641E" stroke-width="1.5" opacity=".6"></line><circle cx="351" cy="231" r="5" fill="#E0641E"></circle><circle cx="351" cy="231" r="9.5" fill="none" stroke="#E0641E" stroke-width="1" opacity=".4"></circle><line x1="308" y1="366" x2="246" y2="366" stroke="#CC9900" stroke-width="1.5" opacity=".6"></line><circle cx="308" cy="366" r="5" fill="#CC9900"></circle><circle cx="308" cy="366" r="9.5" fill="none" stroke="#CC9900" stroke-width="1" opacity=".4"></circle><line x1="351" y1="501" x2="300" y2="537" stroke="#C45213" stroke-width="1.5" opacity=".6"></line><circle cx="351" cy="501" r="5" fill="#C45213"></circle><circle cx="351" cy="501" r="9.5" fill="none" stroke="#C45213" stroke-width="1" opacity=".4"></circle><line x1="929" y1="231" x2="980" y2="195" stroke="#B07E00" stroke-width="1.5" opacity=".6"></line><circle cx="929" cy="231" r="5" fill="#B07E00"></circle><circle cx="929" cy="231" r="9.5" fill="none" stroke="#B07E00" stroke-width="1" opacity=".4"></circle><line x1="972" y1="366" x2="1034" y2="366" stroke="#D9822B" stroke-width="1.5" opacity=".6"></line><circle cx="972" cy="366" r="5" fill="#D9822B"></circle><circle cx="972" cy="366" r="9.5" fill="none" stroke="#D9822B" stroke-width="1" opacity=".4"></circle><line x1="929" y1="501" x2="980" y2="537" stroke="#8C6500" stroke-width="1.5" opacity=".6"></line><circle cx="929" cy="501" r="5" fill="#8C6500"></circle><circle cx="929" cy="501" r="9.5" fill="none" stroke="#8C6500" stroke-width="1" opacity=".4"></circle><rect width="1280" height="800" filter="url(#eng)" opacity=".055"></rect></svg><div class="ecl-core" style="top:45.75%;"> <div class="k">Where they overlap</div> <div class="v">The materials lifecycle</div> <div class="c">Ten stages</div> </div><div class="ecl-lab" style="right:77.66%;top:24.38%;text-align:right;"> <div class="i" style="color:#E0641E;">01</div> <div class="r" style="background:#E0641E;"></div> <div class="t">Extraction and Raw Materials</div> </div><div class="ecl-lab" style="right:81.88%;top:45.75%;text-align:right;"> <div class="i" style="color:#CC9900;">02</div> <div class="r" style="background:#CC9900;"></div> <div class="t">Process Production</div> </div><div class="ecl-lab" style="right:77.66%;top:67.12%;text-align:right;"> <div class="i" style="color:#C45213;">03</div> <div class="r" style="background:#C45213;"></div> <div class="t">Concrete and Manufactured Materials</div> </div><div class="ecl-lab" style="left:77.66%;top:24.38%;text-align:left;"> <div class="i" style="color:#B07E00;">04</div> <div class="r" style="background:#B07E00;"></div> <div class="t">Plant Operations and Assets</div> </div><div class="ecl-lab" style="left:81.88%;top:45.75%;text-align:left;"> <div class="i" style="color:#D9822B;">05</div> <div class="r" style="background:#D9822B;"></div> <div class="t">Distribution and Supply</div> </div><div class="ecl-lab" style="left:77.66%;top:67.12%;text-align:left;"> <div class="i" style="color:#8C6500;">06</div> <div class="r" style="background:#8C6500;"></div> <div class="t">Quality, Standards and Compliance</div> </div></div> <div class="ecl-fallback"><div class="ecl-mini"><svg viewBox="0 0 1280 800" aria-hidden="true"><defs> <radialGradient id="egm" cx="34%" cy="30%"> <stop offset="0" stop-color="#FFFDF0"></stop><stop offset=".34" stop-color="#F6E4A4"></stop> <stop offset=".72" stop-color="#DFC15C"></stop><stop offset="1" stop-color="#CC9900"></stop></radialGradient> <radialGradient id="eom" cx="34%" cy="30%"> <stop offset="0" stop-color="#FFF4E8"></stop><stop offset=".32" stop-color="#FFB077"></stop> <stop offset=".70" stop-color="#F2762A"></stop><stop offset="1" stop-color="#E0641E"></stop></radialGradient> <radialGradient id="ecm"><stop offset=".55" stop-color="rgba(224,100,30,.20)"></stop> <stop offset="1" stop-color="rgba(224,100,30,0)"></stop></radialGradient> <filter id="engm" x="0" y="0" width="100%" height="100%"> <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"></feTurbulence> <feColorMatrix type="saturate" values="0"></feColorMatrix></filter> <clipPath id="elm"><circle cx="544" cy="366" r="236"></circle></clipPath> </defs> <circle cx="544" cy="366" r="236" fill="url(#egm)"></circle> <circle cx="736" cy="366" r="236" fill="url(#eom)" opacity=".9"></circle> <g clip-path="url(#elm)"><circle cx="736" cy="366" r="236" fill="#FFFBF0" opacity=".96"></circle></g> </svg></div><ul class="ecl-list"><li><span class="n" style="background:#E0641E;">1</span><span class="t">Extraction and Raw Materials</span></li><li><span class="n" style="background:#CC9900;">2</span><span class="t">Process Production</span></li><li><span class="n" style="background:#C45213;">3</span><span class="t">Concrete and Manufactured Materials</span></li><li><span class="n" style="background:#B07E00;">4</span><span class="t">Plant Operations and Assets</span></li><li><span class="n" style="background:#D9822B;">5</span><span class="t">Distribution and Supply</span></li><li><span class="n" style="background:#8C6500;">6</span><span class="t">Quality, Standards and Compliance</span></li></ul></div> </div> </section>
+
+<section> <div class="container"> <div class="section-tag">Shared conditions</div> <h2 class="section-heading">Conditions shared across building materials</h2> <div class="grid2"><div class="card"><p style="font-size:15.5px;color:var(--navy);font-weight:600;">Capital-intensive plants operating continuously or in long campaigns</p></div><div class="card"><p style="font-size:15.5px;color:var(--navy);font-weight:600;">Energy, fuel and raw material costs that move with markets</p></div><div class="card"><p style="font-size:15.5px;color:var(--navy);font-weight:600;">Heavy, bulky products serving regional markets</p></div><div class="card"><p style="font-size:15.5px;color:var(--navy);font-weight:600;">Demand linked to construction and infrastructure activity</p></div><div class="card"><p style="font-size:15.5px;color:var(--navy);font-weight:600;">Quality set by standards and customer specification</p></div><div class="card"><p style="font-size:15.5px;color:var(--navy);font-weight:600;">Environmental and regulatory obligations tied to each plant</p></div></div> </div> </section>
+
+<section class="band-warm"> <div class="container"> <div class="section-tag">Connected work</div> <h2 class="section-heading">Follow the material from plant to project</h2> <p class="lede">A change in energy cost or equipment availability affects unit cost, output and what can be committed to customers. A shift in construction demand changes dispatch plans, inventory and pricing. TwoSuns connects these decisions and keeps a record of what was decided.</p> <div class="grid4"><div class="card" style="border-top:4px solid #9A7209;"><div class="dom-k" style="color:#9A7209;">Commercial</div><h3>Horizon</h3><p>Market position, customer demand, pricing and the commercial commitments that set what the plant is asked to produce.</p></div><div class="card" style="border-top:4px solid #C45213;"><div class="dom-k" style="color:#C45213;">Operational</div><h3>Pulse</h3><p>Production performance, quality, energy intensity, maintenance and the supply coordination that determines whether those commitments are met.</p></div><div class="card" style="border-top:4px solid #1E1A14;"><div class="dom-k" style="color:#1E1A14;">Foundation</div><h3>Core</h3><p>Plants, assets, products, customers and decisions held in one governed context.</p></div><div class="card" style="border-top:4px solid #B8860B;"><div class="dom-k" style="color:#B8860B;">Companion</div><h3>Ray</h3><p>Briefings, analysis and task support for commercial, plant and supply teams.</p></div></div> </div> </section>
+
+<section> <div class="container"> <div class="section-tag">In practice</div> <h2 class="section-heading">Representative workflows</h2> <p class="section-sub">Configured from the same capabilities, around the work this industry actually runs.</p> <div class="grid2"><div class="card"><p style="font-size:17px;color:var(--navy);font-weight:800;margin-bottom:14px;">Manufacturing economics and production performance</p><a class="ev-more" href="use-cases.html#uc-manufacturing-economics-and-production-performance">Read the workflow</a></div><div class="card"><p style="font-size:17px;color:var(--navy);font-weight:800;margin-bottom:14px;">Asset operations, maintenance and reliability</p><a class="ev-more" href="use-cases.html#uc-asset-operations-maintenance-and-reliability">Read the workflow</a></div><div class="card"><p style="font-size:17px;color:var(--navy);font-weight:800;margin-bottom:14px;">Procurement, inventory and supplier coordination</p><a class="ev-more" href="use-cases.html#uc-procurement-inventory-and-supplier-coordination">Read the workflow</a></div><div class="card"><p style="font-size:17px;color:var(--navy);font-weight:800;margin-bottom:14px;">Regulatory, quality and compliance workflows</p><a class="ev-more" href="use-cases.html#uc-regulatory-quality-and-compliance-workflows">Read the workflow</a></div></div> <a class="ev-more more-link" href="use-cases.html">Explore all use cases</a>  </div> </section>
+
+<section class="band-alt"> <div class="container"> <div class="section-tag">Industries</div> <h2 class="section-heading">Connected across the built industry</h2> <div class="grid3"><div class="card"> <p style="font-size:17px;color:var(--navy);font-weight:800;margin-bottom:10px;">Construction and Infrastructure</p> <p style="font-size:14.5px;color:var(--text-muted);line-height:1.7;margin-bottom:14px;">Projects are won on estimates, delivered through changing conditions and judged long after handover.</p> <a class="ev-more" href="construction.html">Explore this industry</a> </div><div class="card"> <p style="font-size:17px;color:var(--navy);font-weight:800;margin-bottom:10px;">Manufacturing</p> <p style="font-size:14.5px;color:var(--text-muted);line-height:1.7;margin-bottom:14px;">Manufacturers supplying the built industry carry the same pressures as their customers, on shorter cycles.</p> <a class="ev-more" href="manufacturing.html">Explore this industry</a> </div><div class="card"> <p style="font-size:17px;color:var(--navy);font-weight:800;margin-bottom:10px;">All Industries</p> <p style="font-size:14.5px;color:var(--text-muted);line-height:1.7;margin-bottom:14px;">The three sectors we work in, and the six operating areas behind them.</p> <a class="ev-more" href="industries.html">See all industries</a> </div></div> </div> </section>
+
+<section class="cta-band"> <div class="container"> <h2>Start from your part of building materials</h2> <p>Tell us where your organization sits in building materials and the workflow you want to advance.</p> <div class="cta-actions"><a class="btn-cta" href="discuss.html?ask=Discuss+Your+Needs">Discuss Your Needs</a> <a class="btn-ghost" href="use-cases.html">Explore Use Cases</a></div> </div> </section>
 <footer>
   <div class="container">
     <div class="foot-top">
@@ -630,7 +638,10 @@
       <div class="foot-links">
         <a href="platform.html">Platform</a>
         <a href="capabilities.html">Capabilities</a>
-        <a href="built-industry.html">Built Industry</a>
+        <a href="industries.html">Industries</a>
+        <a href="building-materials.html">Building Materials</a>
+        <a href="construction.html">Construction and Infrastructure</a>
+        <a href="manufacturing.html">Manufacturing</a>
         <a href="use-cases.html">Use Cases</a>
         <a href="company.html">Company</a>
         <a href="events.html">Events</a>

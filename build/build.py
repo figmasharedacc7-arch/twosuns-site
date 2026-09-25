@@ -8,7 +8,9 @@ from theme import head, chrome_nav, TAIL
 import herorot
 from content import HOME, PLATFORM, CAPABILITIES, HORIZON_GROUPS, PULSE_GROUPS
 from content2 import (BUILT, USECASES, UC_THEMES, UC_ITEMS, COMPANY, DISCUSS, EVENTS, INDUSTRIES,
+                      INDUSTRIES_HUB,
                       UC_AREA_LABELS, UC_GROUP_LABELS, UC_TAGS, CAP_LINKS)
+import industry_pages
 import eclipse
 import arch
 
@@ -894,79 +896,55 @@ def build_events():
 
 # ================================================================ INDUSTRIES
 def build_industry(d):
-    """One sector inside the built industry. The six operating areas stay the
-    other axis, so each page names which of them it spans rather than replacing
-    them, and every workflow links into a real use case instead of restating it."""
-    s = head(d["title"], d["desc"], d["slug"] + ".html") + chrome_nav("built-industry.html")
-    s += (hero(d, wide=True) % (btn("Discuss Your Needs") + btn("Explore the Platform", "platform.html", ghost=True)))
+    """The body is Noureldin's copy, reproduced exactly. Only head, nav and
+    footer are ours, so the chrome stays in step when the navigation changes."""
+    slug = d["slug"]
+    title, desc = industry_pages.META[slug]
+    s = head(title, desc, slug + ".html") + chrome_nav(slug + ".html")
+    s += industry_pages.BODIES[slug] + "\n"
+    return s + TAIL
 
-    areas = "".join('<div class="card"><p style="font-size:15.5px;color:var(--navy);font-weight:700;">%s</p></div>'
-                    % e(a) for a in d["areas"])
+
+
+def build_industries_hub():
+    d = INDUSTRIES_HUB
+    s = head(d["title"], d["desc"], "industries.html") + chrome_nav("industries.html")
+    s += (hero(d, wide=True) % (btn(d["primary"]) + btn(d["secondary"], "platform.html", ghost=True)))
+
+    cards = ""
+    for ind in INDUSTRIES:
+        areas = ", ".join(ind["areas"])
+        cards += """<div class="card">
+      <p style="font-size:18px;color:var(--navy);font-weight:800;margin-bottom:10px;">%s</p>
+      <p style="font-size:14.5px;color:var(--text-muted);line-height:1.7;margin-bottom:12px;">%s</p>
+      <p style="font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#8C6500;line-height:1.6;margin-bottom:14px;">%s</p>
+      <a class="ev-more" href="%s.html">Explore this industry</a>
+    </div>""" % (e(ind["name"]), e(ind["sub"].split(". ")[0] + "."), e(areas), e(ind["slug"]))
+
     s += """<section>
   <div class="container">
-    <div class="section-tag">Where it sits</div>
-    <h2 class="section-heading">Operating areas this industry spans</h2>
-    <p class="section-sub">The built industry is one connected ecosystem. These are the parts of it
-      that %s work across most often.</p>
+    <div class="section-tag">Industries</div>
+    <h2 class="section-heading">Three sectors, one platform</h2>
+    <p class="section-sub">Each is configured from the same capabilities. What changes is the work
+      it is configured around, and which parts of the industry it connects.</p>
     <div class="grid3">%s</div>
-    <div style="margin-top:28px;">%s</div>
   </div>
 </section>
-""" % (e(d["name"].lower()), areas, btn("See all six operating areas", "built-industry.html", ghost=True))
+""" % cards
 
     s += """<section class="band-alt">
   <div class="container">
-    <div class="section-tag">Two domains</div>
-    <h2 class="section-heading">Commercial and operational, on one context</h2>
-    <div class="split2">
-      <div class="split2-panel">
-        <div class="a3-name" style="color:#B07E00;font-size:23px;font-weight:900;margin-bottom:12px;">Horizon</div>
-        <p>%s</p>
-      </div>
-      <div class="split2-panel">
-        <div class="a3-name" style="color:#C45213;font-size:23px;font-weight:900;margin-bottom:12px;">Pulse</div>
-        <p>%s</p>
-      </div>
-    </div>
+    <div class="section-tag">The wider industry</div>
+    <h2 class="section-heading">Six operating areas sit behind all three</h2>
+    <p class="section-sub">A sector describes what an organization makes. An operating area
+      describes where it sits in the life of a built asset. Most organizations are both, and the
+      platform is configured against both.</p>
+    <div style="margin-top:26px;">%s</div>
   </div>
 </section>
-""" % (e(d["horizon"]), e(d["pulse"]))
+""" % btn("See the six operating areas", "built-industry.html", ghost=True)
 
-    cases = ""
-    for c in d["cases"]:
-        cases += ('<div class="card"><p style="font-size:15.5px;color:var(--navy);font-weight:700;'
-                  'margin-bottom:10px;">%s</p>'
-                  '<a class="ev-more" href="use-cases.html#%s">Read the workflow</a></div>'
-                  % (e(c), slug(c)))
-    s += """<section>
-  <div class="container">
-    <div class="section-tag">In practice</div>
-    <h2 class="section-heading">Representative workflows</h2>
-    <p class="section-sub">Configured from the same capabilities, around the work this industry
-      actually runs.</p>
-    <div class="grid2">%s</div>
-    <div style="margin-top:28px;">%s</div>
-  </div>
-</section>
-""" % (cases, btn("Explore all use cases", "use-cases.html", ghost=True))
-
-    extra = ""
-    if d["extra"]:
-        link = ('<div style="margin-top:20px;">%s</div>'
-                % btn(d["extra_link"][0], d["extra_link"][1], ghost=True)) if d["extra_link"] else ""
-        extra = '<p class="lede" style="margin-top:18px;">%s</p>%s' % (e(d["extra"]), link)
-    s += """<section class="band-warm">
-  <div class="container">
-    <div class="section-tag">%s</div>
-    <h2 class="section-heading">%s</h2>
-    <p class="lede">%s</p>%s
-  </div>
-</section>
-""" % (e(d["proof_h"]), e(d["name"]), e(d["proof"]), extra)
-
-    s += cta_band("Configure TwoSuns around this industry",
-                  "Tell us how your organization operates and we will show you how it would be configured.",
-                  "Discuss Your Needs", "Explore Use Cases", "use-cases.html")
+    s += cta_band(d["close_h"], d["close_p"], "Discuss Your Needs", "Explore Use Cases", "use-cases.html")
     return s + TAIL
 
 # ================================================================ RUN
@@ -980,6 +958,7 @@ if __name__ == "__main__":
         "use-cases.html": build_usecases(),
         "company.html": build_company(),
         "events.html": build_events(),
+        "industries.html": build_industries_hub(),
         **{d["slug"] + ".html": build_industry(d) for d in INDUSTRIES},
         "discuss.html": build_discuss(),
     }

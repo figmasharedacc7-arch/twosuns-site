@@ -475,16 +475,16 @@ EVENTS = dict(
 INDUSTRIES = [
     dict(
         slug="building-materials",
-        name="Cement and Building Materials",
+        name="Building Materials",
         title="Cement and Building Materials | TwoSuns",
         desc="TwoSuns for cement and building materials producers, connecting production, quality, "
              "energy, maintenance and commercial context in one governed enterprise environment.",
         eyebrow="Industry",
         h1="Cement and building materials.",
-        sub="Producers run continuous plants against volatile inputs, tightening emissions "
-            "obligations and commercial commitments that change week to week. TwoSuns connects the "
-            "production, quality, energy, maintenance and commercial context that those decisions "
-            "depend on, and keeps a record of what was decided.",
+        sub="Producers run continuous plants against volatile inputs and commercial commitments "
+            "that change week to week. TwoSuns connects the production, quality, energy, "
+            "maintenance and commercial context that those decisions depend on, and keeps a "
+            "record of what was decided.",
         areas=["Materials and Manufacturing", "Distribution and Logistics",
                "Asset Transactions and Operations"],
         horizon="Market position, customer demand, pricing and the commercial commitments that set "
@@ -559,3 +559,21 @@ INDUSTRIES = [
         extra="", extra_link=None,
     ),
 ]
+
+
+INDUSTRIES_HUB = dict(
+    title="Industries | TwoSuns",
+    desc="The sectors TwoSuns works in across the built industry: cement and building materials, "
+         "construction and infrastructure, and manufacturing.",
+    eyebrow="Industries",
+    h1="The sectors we work in.",
+    sub="TwoSuns is built for the built industry, the organizations, institutions, materials, "
+        "services and operating activities that create, supply, finance, construct, own, transact, "
+        "maintain and renew built assets. These are the sectors within it we work in today.",
+    primary="Discuss Your Needs",
+    secondary="Explore the Platform",
+    close_h="Your sector is not listed",
+    close_p="The platform is configured around how an organization operates rather than around a "
+            "sector template. Tell us what you are trying to advance and we will show you how it "
+            "would be configured.",
+)

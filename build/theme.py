@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
 """Shared chrome and stylesheet for the TwoSuns 7 page site."""
 
+# a third element, when present, is the dropdown under that item
 NAV = [
     ("Platform",         "platform.html"),
     ("Capabilities",     "capabilities.html"),
-    ("Built Industry",   "built-industry.html"),
+    ("Industries",       "industries.html", [
+        ("Building Materials", "building-materials.html"),
+        ("Construction and Infrastructure", "construction.html"),
+        ("Manufacturing", "manufacturing.html"),
+    ]),
     ("Use Cases",        "use-cases.html"),
     ("Company",          "company.html"),
     ("Events",           "events.html"),
@@ -62,6 +67,25 @@ CSS = r"""
   .nav-in{max-width:1240px;margin:0 auto;padding:0 32px;display:flex;align-items:center;height:70px;gap:28px;}
   .nav-in>a.brand img{height:52px;width:auto;display:block;}
   .nav-links{display:flex;align-items:center;gap:26px;margin-left:auto;}
+  /* NAV DROPDOWN */
+  .ndrop{position:relative;display:flex;align-items:center;}
+  .ndrop > a{display:inline-flex;align-items:center;gap:6px;}
+  .ncar{width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;
+    border-top:5px solid currentColor;opacity:.55;transition:transform .2s;}
+  .ndrop:hover .ncar,.ndrop:focus-within .ncar{transform:rotate(180deg);}
+  .ndrop-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(6px);
+    min-width:262px;background:rgba(255,250,240,.99);border:1px solid var(--border);
+    border-radius:12px;box-shadow:0 16px 38px rgba(60,50,30,.16);padding:8px;
+    display:flex;flex-direction:column;gap:2px;opacity:0;visibility:hidden;
+    transition:opacity .18s,transform .18s,visibility .18s;z-index:60;}
+  /* a bridge under the item, so the pointer can cross the gap without it closing */
+  .ndrop::after{content:'';position:absolute;top:100%;left:0;right:0;height:14px;}
+  .ndrop:hover .ndrop-menu,.ndrop:focus-within .ndrop-menu{
+    opacity:1;visibility:visible;transform:translateX(-50%) translateY(2px);}
+  .ndrop-menu a{display:block;padding:9px 13px;border-radius:8px;font-size:13.5px;
+    font-weight:600;white-space:nowrap;color:var(--ink);}
+  .ndrop-menu a:hover{background:var(--gold-soft);color:var(--navy);}
+  .ndrop-menu a.active{color:var(--sun-deep);font-weight:800;}
   @media(max-width:1150px){ .nav-links{gap:19px;} .nav-links a{font-size:13.5px;} }
   .nav-links a{font-size:14px;font-weight:600;color:var(--ink);white-space:nowrap;transition:color .2s;}
   .nav-links a:hover,.nav-links a.active{color:var(--sun-deep);}
@@ -332,6 +356,22 @@ CSS = r"""
   .uc-ask .btn-ghost{align-self:flex-start;margin-top:5px;background:#fff;}
   .uc-ask.wide{grid-column:1 / -1;}
 
+
+  /* INDUSTRY SUBPAGES, classes from Noureldin's content brief */
+  .hero p.hero-body{font-size:16.5px;line-height:1.8;color:var(--text-muted);max-width:620px;margin:-14px 0 32px;}
+  .bg-materials::before{background-image:url('area-materials.jpg');}
+  .bg-distribution::before{background-image:url('area-distribution.jpg');}
+  .bg-owners::before{background-image:url('area-owners.jpg');}
+  .bg-construction::before{background-image:url('area-construction.jpg');}
+  .bg-operations::before{background-image:url('area-operations.jpg');}
+  .bg-institutions::before{background-image:url('area-institutions.jpg');}
+  .dom-k{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+  .more-link{display:inline-block;margin-top:24px;font-size:14px;font-weight:700;}
+  .stages{list-style:none;display:flex;flex-wrap:wrap;gap:8px 10px;margin-top:22px;max-width:1000px;}
+  .stages li{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--border-soft);
+    border-radius:20px;padding:6px 14px;font-size:13.5px;font-weight:700;color:var(--navy);}
+  .stages li span{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:#8C6500;}
+
   /* EVENTS */
   .ev{display:grid;grid-template-columns:210px 1fr;gap:0;background:#fff;border:1px solid var(--border-soft);
     border-radius:18px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:20px;transition:all .3s;}
@@ -423,6 +463,11 @@ CSS = r"""
       align-items:flex-start;gap:0;background:rgba(255,248,236,.99);border-bottom:1px solid var(--border);
       padding:8px 32px 18px;box-shadow:0 12px 24px rgba(60,50,30,.12);}
     .nav-links.open a{padding:12px 0;width:100%;border-bottom:1px solid var(--border-soft);}
+      .nav-links.open .ndrop{display:block;width:100%;}
+      .nav-links.open .ndrop-menu{position:static;transform:none;opacity:1;visibility:visible;
+        min-width:0;background:none;border:0;box-shadow:none;padding:0 0 0 16px;gap:0;}
+      .nav-links.open .ndrop-menu a{font-size:13.5px;color:var(--text-muted);}
+      .nav-links.open .ncar{display:none;}
     .nav-toggle{display:block;}
   }
   @media(max-width:760px){
@@ -512,9 +557,20 @@ def head(title, desc, page="index.html", extra_css=""):
 
 def chrome_nav(active=None):
     parts = []
-    for n, u in NAV:
-        cls = ' class="active"' if active == u else ''
-        parts.append('<a href="' + u + '"' + cls + '>' + n + '</a>')
+    for item in NAV:
+        n, u = item[0], item[1]
+        kids = item[2] if len(item) > 2 else None
+        # a parent counts as active when the page sits under it
+        here = active == u or (kids and any(active == k[1] for k in kids))
+        cls = ' class="active"' if here else ''
+        if not kids:
+            parts.append('<a href="%s"%s>%s</a>' % (u, cls, n))
+            continue
+        sub = "".join('<a href="%s"%s>%s</a>'
+                      % (ku, ' class="active"' if active == ku else '', kn)
+                      for kn, ku in kids)
+        parts.append('<div class="ndrop"><a href="%s"%s>%s<i class="ncar"></i></a>'
+                     '<div class="ndrop-menu">%s</div></div>' % (u, cls, n, sub))
     links = "".join(parts)
     return f"""<div class="topbar"><div class="topbar-in">
   <span class="by-aepg">TwoSuns by AEPG</span>
@@ -541,7 +597,10 @@ FOOTER = """<footer>
       <div class="foot-links">
         <a href="platform.html">Platform</a>
         <a href="capabilities.html">Capabilities</a>
-        <a href="built-industry.html">Built Industry</a>
+        <a href="industries.html">Industries</a>
+        <a href="building-materials.html">Building Materials</a>
+        <a href="construction.html">Construction and Infrastructure</a>
+        <a href="manufacturing.html">Manufacturing</a>
         <a href="use-cases.html">Use Cases</a>
         <a href="company.html">Company</a>
         <a href="events.html">Events</a>
