@@ -170,7 +170,7 @@ def build_home():
   </div>
 </section>
 """ % (e(d["industry_h"]), e(d["industry_sub"]), areas,
-       btn("Explore the Built Industry", "built-industry.html", ghost=True))
+       btn("Explore the Industries", "industries.html", ghost=True))
 
     work = ""
     for i, (h, p) in enumerate(d["work"]):
@@ -387,6 +387,8 @@ def build_capabilities():
 
 # ================================================================ BUILT INDUSTRY
 def build_built():
+    """Kept as the backup. Not written to the served root any more, add
+    "built-industry.html": build_built() back to the page list to restore it."""
     d = BUILT
     s = head(d["title"], d["desc"], "built-industry.html") + chrome_nav("built-industry.html")
     s += (hero(d, wide=True).replace('<section class="hero wide"', '<section class="hero wide hero-photo wall-construction"')
@@ -937,12 +939,15 @@ def build_industries_hub():
     <div class="section-tag">The wider industry</div>
     <h2 class="section-heading">Six operating areas sit behind all three</h2>
     <p class="section-sub">A sector describes what an organization makes. An operating area
-      describes where it sits in the life of a built asset. Most organizations are both, and the
-      platform is configured against both.</p>
+      describes where it sits in the life of a built asset: materials and manufacturing,
+      distribution and logistics, asset owners and investors, construction and professional
+      services, asset transactions and operations, and industry institutions and enablement.
+      Most organizations are several at once, and the platform is configured against both
+      views.</p>
     <div style="margin-top:26px;">%s</div>
   </div>
 </section>
-""" % btn("See the six operating areas", "built-industry.html", ghost=True)
+""" % btn("Explore Use Cases", "use-cases.html", ghost=True)
 
     s += cta_band(d["close_h"], d["close_p"], "Discuss Your Needs", "Explore Use Cases", "use-cases.html")
     return s + TAIL
@@ -954,7 +959,6 @@ if __name__ == "__main__":
         "index.html": build_home(),
         "platform.html": build_platform(),
         "capabilities.html": build_capabilities(),
-        "built-industry.html": build_built(),
         "use-cases.html": build_usecases(),
         "company.html": build_company(),
         "events.html": build_events(),

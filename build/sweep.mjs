@@ -19,7 +19,7 @@ const stuck = `(()=>{var bad=[];document.querySelectorAll('.rv *').forEach(funct
   var r=e.getBoundingClientRect();
   if(r.top<innerHeight-40&&r.bottom>40&&r.height>4&&getComputedStyle(e).opacity==='0')bad.push((e.className||e.tagName).toString().slice(0,28));
 });return bad.slice(0,4).join(' | ')||'none';})()`;
-const pages=['index','platform','capabilities','built-industry','use-cases','company','discuss','privacy','terms'];
+const pages=['index','platform','capabilities','industries','building-materials','construction','manufacturing','use-cases','company','events','discuss','privacy','terms'];
 await c.send('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false});
 let fails=0;
 for(const p of pages){
