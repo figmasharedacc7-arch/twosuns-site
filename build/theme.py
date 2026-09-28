@@ -401,6 +401,11 @@ CSS = r"""
   /* PEOPLE */
   .people{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:28px;}
   .person{background:#fff;border:1px solid var(--border-soft);border-radius:16px;padding:24px;box-shadow:var(--shadow);}
+  .face{width:72px;height:72px;border-radius:50%;object-fit:cover;display:block;margin-bottom:16px;
+    border:2px solid #fff;box-shadow:0 3px 12px rgba(60,50,30,.18);background:var(--bg2);}
+  .face-mono{display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;
+    letter-spacing:.5px;color:#8C6500;background:linear-gradient(145deg,var(--gold-soft),#FFF3D6);
+    border:2px solid #fff;}
   .person .nm{font-size:17px;font-weight:800;color:var(--navy);}
   .person .rl{font-size:12.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--sun-deep);margin:5px 0 12px;}
   .person p{font-size:14.5px;color:var(--text-muted);line-height:1.7;}

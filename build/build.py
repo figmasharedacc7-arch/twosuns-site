@@ -655,12 +655,23 @@ def build_company():
     alt = False
     for gname, is_lead, people in d["groups"]:
         cards = ""
-        for (nm, role, bio) in people:
+        for person in people:
+            # a fourth element is a headshot; everyone else gets a monogram so a
+            # row with one photo in it still lines up
+            if len(person) == 4:
+                nm, role, photo, bio = person
+                face = ('<img class="face" src="%s" alt="" loading="lazy" width="400" height="400">'
+                        % e(photo))
+            else:
+                nm, role, bio = person
+                ini = "".join(w[0] for w in nm.split()[:2]).upper()
+                face = '<div class="face face-mono">%s</div>' % e(ini)
             cards += """<div class="person%s">
+      %s
       <div class="nm">%s</div>
       <div class="rl">%s</div>
       <p>%s</p>
-    </div>""" % (" lead" if is_lead else "", e(nm), e(role), e(bio))
+    </div>""" % (" lead" if is_lead else "", face, e(nm), e(role), e(bio))
         s += """<section%s>
   <div class="container">
     <div class="section-tag">%s</div>

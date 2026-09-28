@@ -233,11 +233,11 @@ COMPANY = dict(
     ],
     groups=[
         ("Leadership", True, [
-            ("Aiman El-Ramly", "Chief Executive Officer",
+            ("Aiman El-Ramly", "Chief Executive Officer", "face-aiman.jpg",
              "Aiman leads TwoSuns strategy, client engagement and enterprise development, bringing more than 30 "
              "years of experience serving clients across technology, heavy industry, construction, real estate and "
              "the broader built-industry landscape."),
-            ("Ryan Arian", "Chief Digital Product Officer",
+            ("Ryan Arian", "Chief Digital Product Officer", "face-ryan.jpg",
              "Ryan leads product strategy, platform architecture and the continuing development of TwoSuns, "
              "connecting enterprise requirements with scalable product, integration and implementation capability."),
             ("Ahmed Ghazey", "Director, Engineering and Delivery",
