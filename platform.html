@@ -604,6 +604,37 @@
     .tmb{aspect-ratio:auto;}
   }
 
+  /* HOME FILM BAND */
+  .film-in{display:grid;grid-template-columns:1fr 1.15fr;gap:60px;align-items:center;}
+  .film-copy .section-heading{margin-top:14px;}
+  .film-accent{display:block;color:var(--sun-deep);}
+  .film-stage{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;
+    background:#F3E3C4;box-shadow:0 26px 60px rgba(60,45,20,.20);}
+  .film-stage video,.film-stage img{position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;display:block;}
+  .film-stage video{opacity:0;transition:opacity .3s ease;}
+  .film-stage.on video{opacity:1;}
+  .film-stage.on img,.film-stage.on .film-play{opacity:0;pointer-events:none;}
+  .film-play{position:absolute;inset:0;width:100%;height:100%;border:0;background:none;
+    cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;
+    transition:opacity .3s ease;}
+  .film-play i{width:82px;height:82px;border-radius:50%;background:rgba(255,255,255,.92);
+    box-shadow:0 10px 30px rgba(60,45,20,.28);display:flex;align-items:center;
+    justify-content:center;transition:transform .2s ease,background .2s ease;}
+  .film-play i::after{content:"";width:0;height:0;margin-left:6px;
+    border-left:24px solid var(--sun-deep);border-top:15px solid transparent;
+    border-bottom:15px solid transparent;}
+  .film-play:hover i{transform:scale(1.07);background:#fff;}
+  .film-play:focus-visible i{outline:3px solid var(--sun-deep);outline-offset:4px;}
+  .film-note{margin-top:16px;font-size:13px;font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:#8C6500;}
+
+  @media(max-width:900px){
+    .film-in{grid-template-columns:1fr;gap:30px;}
+    .film-play i{width:64px;height:64px;}
+    .film-play i::after{border-left-width:19px;border-top-width:12px;border-bottom-width:12px;}
+  }
+
   /* SCROLL REVEALS (only active once the head script adds .rv) */
   .rv .section-tag, .rv .section-heading, .rv .section-sub, .rv .lede, .rv .card, .rv .cardimg, .rv .person, .rv .step, .rv .callout, .rv .layer, .rv .ecl, .rv .ecl-fallback, .rv .acc, .rv .uc-frow, .rv .split2-panel, .rv .grid2 > *, .rv .grid3 > *{opacity:0;transform:translateY(20px);
     transition:opacity .68s cubic-bezier(.22,1,.36,1),transform .68s cubic-bezier(.22,1,.36,1);}

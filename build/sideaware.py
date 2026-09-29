@@ -44,7 +44,7 @@ PLAN = [
     ("cons-trades",       "l", 0.26, False, None, 0.05),   # frame high, he reaches into the ceiling
     ("cons-design",       "r", 0.28, True,  None, 0.00),   # mirror puts the pair right, model left
     ("cons-logistics",    "l", 0.26, False, None, 0.50),   # golden hour, already on the palette
-    ("cons-assurance",    "r", 0.62, False, None, 0.00),   # anchor top, the hard hats were clipping
+    ("cons-assurance",    "r", 0.60, False, None, 0.30),   # the surveyor shot clipped hats at the source edge
 ]
 WARM.add("plat-integration")
 WARM.add("plat-hero")
