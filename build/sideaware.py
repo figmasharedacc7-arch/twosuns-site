@@ -45,6 +45,13 @@ PLAN = [
     ("cons-design",       "r", 0.28, True,  None, 0.00),   # mirror puts the pair right, model left
     ("cons-logistics",    "l", 0.26, False, None, 0.50),   # golden hour, already on the palette
     ("cons-assurance",    "r", 0.60, False, None, 0.30),   # the surveyor shot clipped hats at the source edge
+    # Manufacturing, its six sections
+    ("mfg-products",      "l", 0.40, False, None, 0.50),
+    ("mfg-equipment",     "r", 0.37, True,  None, 0.25),   # mirror: he stands left in the original
+    ("mfg-systems",       "l", 0.60, True,  None, 0.35),   # mirror: the handwheel sits right
+    ("mfg-offsite",       "r", 0.70, False, None, 0.40),
+    ("mfg-supply",        "l", 0.52, True,  None, 0.45),   # mirror: the truck sits centre right
+    ("mfg-support",       "r", 0.58, False, None, 0.25),   # anchor high, white hard hat
 ]
 WARM.add("plat-integration")
 WARM.add("plat-hero")
@@ -52,7 +59,9 @@ WARM.add("cap-hero")
 WARM.add("uc-hero")
 MILD = {"area-operations", "fam-pulse", "area-owners", "company-hero",
         "cons-hero", "cons-owners", "cons-logistics", "cons-trades",
-        "cons-design", "cons-assurance"}     # cons-contractors is already warm wood     # a gentle nudge, not the night-shot regrade
+        "cons-design", "cons-assurance",
+        "mfg-products", "mfg-equipment", "mfg-systems", "mfg-offsite",
+        "mfg-supply", "mfg-support"}     # cons-contractors is already warm wood     # a gentle nudge, not the night-shot regrade
 
 TARGET = {"l": 0.34, "r": 0.66}   # pulled in from the edges so less width is thrown away
 # a section shows the whole width of the file, so horizontal framing is decided here

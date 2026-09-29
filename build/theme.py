@@ -152,6 +152,12 @@ CSS = r"""
   .bg-cons-trades::before{background-image:url('cons-trades.jpg');}
   .bg-cons-design::before{background-image:url('cons-design.jpg');}
   .bg-cons-assurance::before{background-image:url('cons-assurance.jpg');}
+  .bg-mfg-products::before{background-image:url('mfg-products.jpg');}
+  .bg-mfg-equipment::before{background-image:url('mfg-equipment.jpg');}
+  .bg-mfg-systems::before{background-image:url('mfg-systems.jpg');}
+  .bg-mfg-offsite::before{background-image:url('mfg-offsite.jpg');}
+  .bg-mfg-supply::before{background-image:url('mfg-supply.jpg');}
+  .bg-mfg-support::before{background-image:url('mfg-support.jpg');}
   .bg-construction::before{background-image:url('area-construction.jpg');}
   .bg-operations::before{background-image:url('area-operations.jpg');}
   .bg-institutions::before{background-image:url('area-institutions.jpg');}
