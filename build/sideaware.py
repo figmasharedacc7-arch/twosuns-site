@@ -46,23 +46,25 @@ PLAN = [
     ("cons-logistics",    "l", 0.26, False, None, 0.50),   # golden hour, already on the palette
     ("cons-assurance",    "r", 0.60, False, None, 0.30),   # the surveyor shot clipped hats at the source edge
     # Manufacturing, its six sections
+    ("mfg-hero",          "r", 0.55, False, None, 0.40),   # the Manufacturing page hero
     ("mfg-products",      "l", 0.40, False, None, 0.50),
-    ("mfg-equipment",     "r", 0.37, True,  None, 0.25),   # mirror: he stands left in the original
+    ("mfg-equipment",     "r", 0.58, False, None, 0.35),   # rooftop chiller array
     ("mfg-systems",       "l", 0.60, True,  None, 0.35),   # mirror: the handwheel sits right
-    ("mfg-offsite",       "r", 0.70, False, None, 0.40),
+    ("mfg-offsite",       "r", 0.42, True,  None, 0.72),   # mirror the span right, anchor low, the sky is empty
     ("mfg-supply",        "l", 0.52, True,  None, 0.45),   # mirror: the truck sits centre right
-    ("mfg-support",       "r", 0.58, False, None, 0.25),   # anchor high, white hard hat
+    ("mfg-support",       "r", 0.62, False, None, 0.30),   # anchor high, yellow hard hat
     # Building Materials, its five sections. The hero stays as it is.
     ("bm-extraction",     "l", 0.42, False, None, 0.45),
-    ("bm-process",        "r", 0.35, True,  None, 0.40),   # mirror: the glow sits at .35 and the file has no horizontal slack
+    ("bm-process",        "r", 0.62, False, None, 0.40),   # bright plant hall, conveyors run to the right
     ("bm-concrete",       "l", 0.45, False, None, 0.45),
-    ("bm-operations",     "r", 0.62, False, None, 0.15),   # anchor high, he is looking up
+    ("bm-operations",     "r", 0.60, False, None, 0.30),   # sunlit plant, the tower needs its top
     ("bm-distribution",   "l", 0.30, False, None, 0.45),
 ]
 WARM.add("plat-integration")
 WARM.add("plat-hero")
 WARM.add("cap-hero")
 WARM.add("uc-hero")
+WARM.add("mfg-hero")
 MILD = {"area-operations", "fam-pulse", "area-owners", "company-hero",
         "cons-hero", "cons-owners", "cons-logistics", "cons-trades",
         "cons-design", "cons-assurance",
