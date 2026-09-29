@@ -116,9 +116,12 @@ def section(heading, sub, explore_btn="", tag="Architecture", band="band-alt", v
                  'stroke="rgba(224,178,80,.35)"/>' % (734, BY + 14, BW - 28, BH - 28))
         s.append("</svg>")
     else:
-        # the wide field the domains sit in
-        s.append('<ellipse cx="1020" cy="575" rx="840" ry="336" fill="none" '
-                 'stroke="rgba(140,101,0,.30)" stroke-dasharray="3 11"/>')
+        # the wide field the domains sit in. Left out of the explain variant: its
+        # top and bottom arcs run straight through the two flow labels, and no halo
+        # fixes that cleanly because home sits on band-alt and platform on a gradient.
+        if variant != "explain":
+            s.append('<ellipse cx="1020" cy="575" rx="840" ry="336" fill="none" '
+                     'stroke="rgba(140,101,0,.30)" stroke-dasharray="3 11"/>')
         s.append('<ellipse cx="1020" cy="575" rx="792" ry="300" fill="none" '
                  'stroke="rgba(224,100,30,.10)" stroke-width="26"/>')
 
