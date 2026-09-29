@@ -530,6 +530,11 @@
   .arx-ray-items{display:flex;gap:2.2cqw;font-size:15px;font-size:1.02cqw;color:#5A554C;}
   .arx-ray-items span{display:flex;align-items:center;gap:.5cqw;}
   .arx-ray-items i{width:.45cqw;height:.45cqw;border-radius:50%;}
+  .arx-orbs{margin-top:1.15cqw;padding-top:.85cqw;font-size:11px;font-size:.7cqw;font-weight:800;
+    letter-spacing:.18em;text-transform:uppercase;opacity:.75;}
+  .arx-strip .arx-domain,.arx-strip .arx-core{width:24%;}
+  .arx-strip .arx-domain{color:#2A231B;}
+  .arx-strip .arx-orbs{border-top:1px solid currentColor;border-color:rgba(60,45,15,.22);}
   .arx-foot{margin-top:22px;text-align:center;font-size:14.5px;font-weight:800;color:#5A554C;}
   .arx-fallback{display:none;}
 
@@ -560,6 +565,35 @@
   @media(prefers-reduced-motion:reduce){
     .hero-vid video{display:none;}
     .hero-vid{background:url('hero-build-poster.jpg') center/cover no-repeat;}
+  }
+
+  /* TEAM GRID */
+  .team{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:28px;}
+  .tmb{position:relative;aspect-ratio:720/756;overflow:hidden;background:var(--navy);
+    border-radius:4px;}
+  .tmb-img{position:absolute;inset:0;background-size:cover;background-position:50% 12%;
+    filter:grayscale(1) contrast(1.04);}
+  .tmb-wash{position:absolute;inset:0;background:var(--tmb-wash);opacity:var(--tmb-op);}
+  .tmb-mono{position:absolute;inset:0;background:var(--tmb-mono);display:flex;
+    align-items:center;justify-content:center;font-size:58px;font-weight:300;
+    letter-spacing:.04em;color:rgba(255,255,255,.62);}
+  .tmb-scrim{position:absolute;inset:auto 0 0;height:62%;
+    background:linear-gradient(to top,rgba(10,8,5,.72),rgba(10,8,5,0));}
+  .tmb-dl{position:absolute;inset:auto 0 0;padding:22px 22px 20px;z-index:2;}
+  .tmb-nm{font-size:22px;font-weight:300;line-height:1.2;color:#fff;}
+  .tmb-rl{margin-top:7px;font-size:11.5px;font-weight:700;letter-spacing:2.3px;
+    text-transform:uppercase;color:rgba(255,255,255,.88);}
+  .tmb-bio{position:absolute;inset:0;z-index:3;padding:26px 24px;display:flex;
+    align-items:center;background:rgba(14,11,7,.9);color:rgba(255,255,255,.9);
+    font-size:14px;line-height:1.65;opacity:0;transition:opacity .28s ease;}
+  .tmb:hover .tmb-bio,.tmb:focus-within .tmb-bio{opacity:1;}
+  .tmb-lead .tmb-nm{font-size:25px;}
+
+  @media(max-width:900px){
+    .team{grid-template-columns:repeat(2,1fr);}
+    .tmb-nm{font-size:19px;}
+    .tmb-bio{opacity:1;position:static;background:none;padding:14px 0 0;color:var(--text-muted);}
+    .tmb{aspect-ratio:auto;}
   }
 
   /* SCROLL REVEALS (only active once the head script adds .rv) */
@@ -626,103 +660,87 @@
   </div>
 </section>
 <section>
-  <div class="container">
+  <div class="container" style="--tmb-wash:#C45213;--tmb-op:.58;--tmb-mono:linear-gradient(150deg,#8C3D0B,#4E2206);">
     <div class="section-tag">Leadership</div>
     <h2 class="section-heading">Leadership</h2>
-    <div class="people"><div class="person lead">
-      <img class="face" src="face-aiman.jpg" alt="" loading="lazy" width="400" height="400">
-      <div class="nm">Aiman El-Ramly</div>
-      <div class="rl">Chief Executive Officer</div>
-      <p>Aiman leads TwoSuns strategy, client engagement and enterprise development, bringing more than 30 years of experience serving clients across technology, heavy industry, construction, real estate and the broader built-industry landscape.</p>
-    </div><div class="person lead">
-      <img class="face" src="face-ryan.jpg" alt="" loading="lazy" width="400" height="400">
-      <div class="nm">Ryan Arian</div>
-      <div class="rl">Chief Digital Product Officer</div>
-      <p>Ryan leads product strategy, platform architecture and the continuing development of TwoSuns, connecting enterprise requirements with scalable product, integration and implementation capability.</p>
-    </div><div class="person lead">
-      <div class="face face-mono">AG</div>
-      <div class="nm">Ahmed Ghazey</div>
-      <div class="rl">Director, Engineering and Delivery</div>
-      <p>Ahmed leads engineering delivery and coordinates the technical work required to configure, extend and implement TwoSuns for enterprise use.</p>
+    <div class="team"><div class="tmb tmb-lead" tabindex="0"><div class="tmb-img" style="background-image:url(team-aiman.jpg);"></div><div class="tmb-wash"></div>
+      <div class="tmb-scrim"></div>
+      <div class="tmb-dl"><div class="tmb-nm">Aiman El-Ramly</div><div class="tmb-rl">Chief Executive Officer</div></div>
+      <div class="tmb-bio"><div>Aiman leads TwoSuns strategy, client engagement and enterprise development, bringing more than 30 years of experience serving clients across technology, heavy industry, construction, real estate and the broader built-industry landscape.</div></div>
+    </div><div class="tmb tmb-lead" tabindex="0"><div class="tmb-img" style="background-image:url(team-ryan.jpg);"></div><div class="tmb-wash"></div>
+      <div class="tmb-scrim"></div>
+      <div class="tmb-dl"><div class="tmb-nm">Ryan Arian</div><div class="tmb-rl">Chief Digital Product Officer</div></div>
+      <div class="tmb-bio"><div>Ryan leads product strategy, platform architecture and the continuing development of TwoSuns, connecting enterprise requirements with scalable product, integration and implementation capability.</div></div>
+    </div><div class="tmb tmb-lead" tabindex="0"><div class="tmb-mono">AG</div>
+      <div class="tmb-scrim"></div>
+      <div class="tmb-dl"><div class="tmb-nm">Ahmed Ghazey</div><div class="tmb-rl">Director, Engineering and Delivery</div></div>
+      <div class="tmb-bio"><div>Ahmed leads engineering delivery and coordinates the technical work required to configure, extend and implement TwoSuns for enterprise use.</div></div>
     </div></div>
   </div>
 </section>
 <section class="band-alt">
-  <div class="container">
+  <div class="container" style="--tmb-wash:#C45213;--tmb-op:.58;--tmb-mono:linear-gradient(150deg,#8C3D0B,#4E2206);">
     <div class="section-tag">Product, analytics and engineering</div>
     <h2 class="section-heading">Product, analytics and engineering</h2>
-    <div class="people"><div class="person">
-      <div class="face face-mono">SE</div>
-      <div class="nm">Sara ElElimy</div>
-      <div class="rl">Director, Analytics</div>
-      <p>Sara leads analytics and business discovery, translating enterprise priorities, workflows and inputs into structured platform requirements and outputs.</p>
-    </div><div class="person">
-      <div class="face face-mono">BP</div>
-      <div class="nm">Bhupat Patel</div>
-      <div class="rl">Senior Full-Stack Engineer</div>
-      <p>Bhupat develops enterprise application capabilities, interfaces and integrations across the TwoSuns platform.</p>
-    </div><div class="person">
-      <div class="face face-mono">OE</div>
-      <div class="nm">Omar Ezzar</div>
-      <div class="rl">Product Engineer</div>
-      <p>Omar supports product engineering, configuration and the implementation of platform experiences around client requirements.</p>
-    </div><div class="person">
-      <div class="face face-mono">YR</div>
-      <div class="nm">Yuva Raja</div>
-      <div class="rl">Senior AI Engineer</div>
-      <p>Yuva leads applied intelligence and agentic capabilities that operate within the context, controls and workflows configured in TwoSuns.</p>
-    </div><div class="person">
-      <div class="face face-mono">MN</div>
-      <div class="nm">Mohamed Nasser</div>
-      <div class="rl">AI Engineer</div>
-      <p>Mohamed develops and supports context-aware intelligence, workflow assistance and related platform capabilities.</p>
-    </div><div class="person">
-      <div class="face face-mono">RB</div>
-      <div class="nm">Rakesh Bommavaram</div>
-      <div class="rl">Data Engineering</div>
-      <p>Rakesh develops the input pipelines, models and information structures that connect enterprise sources with the TwoSuns environment.</p>
-    </div><div class="person">
-      <div class="face face-mono">A</div>
-      <div class="nm">AbdelAziz</div>
-      <div class="rl">Data Engineer</div>
-      <p>AbdelAziz supports input integration, transformation and the reliable movement of enterprise information through the platform.</p>
-    </div><div class="person">
-      <div class="face face-mono">A</div>
-      <div class="nm">AbdelRahmen</div>
-      <div class="rl">Systems Engineer</div>
-      <p>AbdelRahmen supports the systems, environments and technical operations required for dependable platform delivery.</p>
+    <div class="team"><div class="tmb" tabindex="0"><div class="tmb-img" style="background-image:url(team-sara.jpg);"></div><div class="tmb-wash"></div>
+      <div class="tmb-scrim"></div>
+      <div class="tmb-dl"><div class="tmb-nm">Sara ElElimy</div><div class="tmb-rl">Director, Analytics</div></div>
+      <div class="tmb-bio"><div>Sara leads analytics and business discovery, translating enterprise priorities, workflows and inputs into structured platform requirements and outputs.</div></div>
+    </div><div class="tmb" tabindex="0"><div class="tmb-mono">BP</div>
+      <div class="tmb-scrim"></div>
+      <div class="tmb-dl"><div class="tmb-nm">Bhupat Patel</div><div class="tmb-rl">Senior Full-Stack Engineer</div></div>
+      <div class="tmb-bio"><div>Bhupat develops enterprise application capabilities, interfaces and integrations across the TwoSuns platform.</div></div>
+    </div><div class="tmb" tabindex="0"><div class="tmb-mono">OE</div>
+      <div class="tmb-scrim"></div>
+      <div class="tmb-dl"><div class="tmb-nm">Omar Ezzar</div><div class="tmb-rl">Product Engineer</div></div>
+      <div class="tmb-bio"><div>Omar supports product engineering, configuration and the implementation of platform experiences around client requirements.</div></div>
+    </div><div class="tmb" tabindex="0"><div class="tmb-mono">YR</div>
+      <div class="tmb-scrim"></div>
+      <div class="tmb-dl"><div class="tmb-nm">Yuva Raja</div><div class="tmb-rl">Senior AI Engineer</div></div>
+      <div class="tmb-bio"><div>Yuva leads applied intelligence and agentic capabilities that operate within the context, controls and workflows configured in TwoSuns.</div></div>
+    </div><div class="tmb" tabindex="0"><div class="tmb-mono">MN</div>
+      <div class="tmb-scrim"></div>
+      <div class="tmb-dl"><div class="tmb-nm">Mohamed Nasser</div><div class="tmb-rl">AI Engineer</div></div>
+      <div class="tmb-bio"><div>Mohamed develops and supports context-aware intelligence, workflow assistance and related platform capabilities.</div></div>
+    </div><div class="tmb" tabindex="0"><div class="tmb-mono">RB</div>
+      <div class="tmb-scrim"></div>
+      <div class="tmb-dl"><div class="tmb-nm">Rakesh Bommavaram</div><div class="tmb-rl">Data Engineering</div></div>
+      <div class="tmb-bio"><div>Rakesh develops the input pipelines, models and information structures that connect enterprise sources with the TwoSuns environment.</div></div>
+    </div><div class="tmb" tabindex="0"><div class="tmb-mono">AA</div>
+      <div class="tmb-scrim"></div>
+      <div class="tmb-dl"><div class="tmb-nm">AbdelAziz</div><div class="tmb-rl">Data Engineer</div></div>
+      <div class="tmb-bio"><div>AbdelAziz supports input integration, transformation and the reliable movement of enterprise information through the platform.</div></div>
+    </div><div class="tmb" tabindex="0"><div class="tmb-mono">AR</div>
+      <div class="tmb-scrim"></div>
+      <div class="tmb-dl"><div class="tmb-nm">AbdelRahmen</div><div class="tmb-rl">Systems Engineer</div></div>
+      <div class="tmb-bio"><div>AbdelRahmen supports the systems, environments and technical operations required for dependable platform delivery.</div></div>
     </div></div>
   </div>
 </section>
 <section>
-  <div class="container">
+  <div class="container" style="--tmb-wash:#C45213;--tmb-op:.58;--tmb-mono:linear-gradient(150deg,#8C3D0B,#4E2206);">
     <div class="section-tag">Growth and engagement</div>
     <h2 class="section-heading">Growth and engagement</h2>
-    <div class="people"><div class="person">
-      <div class="face face-mono">MM</div>
-      <div class="nm">Michelle Mollineaux</div>
-      <div class="rl">Marketing Director</div>
-      <p>Michelle leads marketing direction, communications and market-facing programs that build awareness and engagement around TwoSuns.</p>
-    </div><div class="person">
-      <div class="face face-mono">NE</div>
-      <div class="nm">Nour Eldin</div>
-      <div class="rl">AI Solution Advisor</div>
-      <p>Nour supports business development, client relationships and the coordination of opportunities from initial interest through active engagement.</p>
-    </div><div class="person">
-      <div class="face face-mono">RM</div>
-      <div class="nm">Raihaan Mohammad</div>
-      <div class="rl">Digital Assets</div>
-      <p>Raihaan develops and coordinates digital assets that support product communication, demonstrations and market engagement.</p>
-    </div><div class="person">
-      <div class="face face-mono">AM</div>
-      <div class="nm">Alexa Marquez</div>
-      <div class="rl">Marketing Coordinator</div>
-      <p>Alexa supports campaign, content and marketing coordination across TwoSuns growth activities.</p>
-    </div><div class="person">
-      <div class="face face-mono">MI</div>
-      <div class="nm">Mariam Ibrahim</div>
-      <div class="rl">Marketing Coordinator</div>
-      <p>Mariam supports marketing programs, communications and the continuing coordination of campaign activity.</p>
+    <div class="team"><div class="tmb" tabindex="0"><div class="tmb-img" style="background-image:url(team-michelle.jpg);"></div><div class="tmb-wash"></div>
+      <div class="tmb-scrim"></div>
+      <div class="tmb-dl"><div class="tmb-nm">Michelle Mollineaux</div><div class="tmb-rl">Marketing Director</div></div>
+      <div class="tmb-bio"><div>Michelle leads marketing direction, communications and market-facing programs that build awareness and engagement around TwoSuns.</div></div>
+    </div><div class="tmb" tabindex="0"><div class="tmb-img" style="background-image:url(team-nour.jpg);"></div><div class="tmb-wash"></div>
+      <div class="tmb-scrim"></div>
+      <div class="tmb-dl"><div class="tmb-nm">Nour Eldin</div><div class="tmb-rl">AI Solution Advisor</div></div>
+      <div class="tmb-bio"><div>Nour supports business development, client relationships and the coordination of opportunities from initial interest through active engagement.</div></div>
+    </div><div class="tmb" tabindex="0"><div class="tmb-img" style="background-image:url(team-raihaan.jpg);"></div><div class="tmb-wash"></div>
+      <div class="tmb-scrim"></div>
+      <div class="tmb-dl"><div class="tmb-nm">Raihaan Mohammad</div><div class="tmb-rl">Digital Assets</div></div>
+      <div class="tmb-bio"><div>Raihaan develops and coordinates digital assets that support product communication, demonstrations and market engagement.</div></div>
+    </div><div class="tmb" tabindex="0"><div class="tmb-img" style="background-image:url(team-alexa.jpg);"></div><div class="tmb-wash"></div>
+      <div class="tmb-scrim"></div>
+      <div class="tmb-dl"><div class="tmb-nm">Alexa Marquez</div><div class="tmb-rl">Marketing Coordinator</div></div>
+      <div class="tmb-bio"><div>Alexa supports campaign, content and marketing coordination across TwoSuns growth activities.</div></div>
+    </div><div class="tmb" tabindex="0"><div class="tmb-mono">MI</div>
+      <div class="tmb-scrim"></div>
+      <div class="tmb-dl"><div class="tmb-nm">Mariam Ibrahim</div><div class="tmb-rl">Marketing Coordinator</div></div>
+      <div class="tmb-bio"><div>Mariam supports marketing programs, communications and the continuing coordination of campaign activity.</div></div>
     </div></div>
   </div>
 </section>

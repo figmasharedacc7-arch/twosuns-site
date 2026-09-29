@@ -233,11 +233,11 @@ COMPANY = dict(
     ],
     groups=[
         ("Leadership", True, [
-            ("Aiman El-Ramly", "Chief Executive Officer", "face-aiman.jpg",
+            ("Aiman El-Ramly", "Chief Executive Officer", "team-aiman.jpg",
              "Aiman leads TwoSuns strategy, client engagement and enterprise development, bringing more than 30 "
              "years of experience serving clients across technology, heavy industry, construction, real estate and "
              "the broader built-industry landscape."),
-            ("Ryan Arian", "Chief Digital Product Officer", "face-ryan.jpg",
+            ("Ryan Arian", "Chief Digital Product Officer", "team-ryan.jpg",
              "Ryan leads product strategy, platform architecture and the continuing development of TwoSuns, "
              "connecting enterprise requirements with scalable product, integration and implementation capability."),
             ("Ahmed Ghazey", "Director, Engineering and Delivery",
@@ -245,7 +245,7 @@ COMPANY = dict(
              "and implement TwoSuns for enterprise use."),
         ]),
         ("Product, analytics and engineering", False, [
-            ("Sara ElElimy", "Director, Analytics",
+            ("Sara ElElimy", "Director, Analytics", "team-sara.jpg",
              "Sara leads analytics and business discovery, translating enterprise priorities, workflows and inputs "
              "into structured platform requirements and outputs."),
             ("Bhupat Patel", "Senior Full-Stack Engineer",
@@ -269,16 +269,16 @@ COMPANY = dict(
              "platform delivery."),
         ]),
         ("Growth and engagement", False, [
-            ("Michelle Mollineaux", "Marketing Director",
+            ("Michelle Mollineaux", "Marketing Director", "team-michelle.jpg",
              "Michelle leads marketing direction, communications and market-facing programs that build awareness "
              "and engagement around TwoSuns."),
-            ("Nour Eldin", "AI Solution Advisor",
+            ("Nour Eldin", "AI Solution Advisor", "team-nour.jpg",
              "Nour supports business development, client relationships and the coordination of opportunities from "
              "initial interest through active engagement."),
-            ("Raihaan Mohammad", "Digital Assets",
+            ("Raihaan Mohammad", "Digital Assets", "team-raihaan.jpg",
              "Raihaan develops and coordinates digital assets that support product communication, demonstrations "
              "and market engagement."),
-            ("Alexa Marquez", "Marketing Coordinator",
+            ("Alexa Marquez", "Marketing Coordinator", "team-alexa.jpg",
              "Alexa supports campaign, content and marketing coordination across TwoSuns growth activities."),
             ("Mariam Ibrahim", "Marketing Coordinator",
              "Mariam supports marketing programs, communications and the continuing coordination of campaign activity."),

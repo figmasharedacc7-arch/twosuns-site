@@ -506,6 +506,8 @@ import arch as _ax
 ARCH_CSS = _ax.CSS
 import herorot as _hr
 HERO_CSS = _hr.CSS
+import teamgrid as _tg
+TEAM_CSS = _tg.CSS
 
 
 # LeadLander visitor identification, cookieless mode, account 36860
@@ -554,7 +556,7 @@ def head(title, desc, page="index.html", extra_css=""):
 <meta name="twitter:description" content="{esc_d}">
 <meta name="twitter:image" content="{OG_IMAGE}">
 <link rel="icon" type="image/svg+xml" href="logo-mini.svg">
-<style>{CSS}{ARCH_CSS}{HERO_CSS}{REVEAL_CSS}{extra_css}</style>
+<style>{CSS}{ARCH_CSS}{HERO_CSS}{TEAM_CSS}{REVEAL_CSS}{extra_css}</style>
 {REVEAL_HEAD}
 {LEADLANDER}
 </head>

@@ -14,6 +14,9 @@ from content2 import (BUILT, USECASES, UC_THEMES, UC_ITEMS, COMPANY, DISCUSS, EV
 import industry_pages
 import eclipse
 import arch
+import teamgrid
+
+TEAM_TONE = "warm"   # the Company page portrait wash, see teamgrid.TONES
 
 OUT = "/Users/mohammaddidarulalam/Documents/Claude/twosuns-live"
 ACCENTS = ["var(--a1)", "var(--a2)", "var(--a3)", "var(--a4)", "var(--a5)", "var(--a6)"]
@@ -93,6 +96,7 @@ REQUIRED_CSS = [
     ".arx{", ".arx-fallback", ".arx-ray",            # architecture diagram
     ".hero-vid", ".hero-vid video.on", ".uc-frow", ".acc-rel",   # hero, filters, cross links
     ".split2", ".steps", ".uc-grid",
+    ".team{", ".tmb-img", ".tmb-mono", ".tmb-bio",   # Company portrait tiles
 ]
 
 
@@ -672,32 +676,15 @@ def build_company():
 
     alt = False
     for gname, is_lead, people in d["groups"]:
-        cards = ""
-        for person in people:
-            # a fourth element is a headshot; everyone else gets a monogram so a
-            # row with one photo in it still lines up
-            if len(person) == 4:
-                nm, role, photo, bio = person
-                face = ('<img class="face" src="%s" alt="" loading="lazy" width="400" height="400">'
-                        % e(photo))
-            else:
-                nm, role, bio = person
-                ini = "".join(w[0] for w in nm.split()[:2]).upper()
-                face = '<div class="face face-mono">%s</div>' % e(ini)
-            cards += """<div class="person%s">
-      %s
-      <div class="nm">%s</div>
-      <div class="rl">%s</div>
-      <p>%s</p>
-    </div>""" % (" lead" if is_lead else "", face, e(nm), e(role), e(bio))
         s += """<section%s>
-  <div class="container">
+  <div class="container" style="%s">
     <div class="section-tag">%s</div>
     <h2 class="section-heading">%s</h2>
-    <div class="people">%s</div>
+    %s
   </div>
 </section>
-""" % (' class="band-alt"' if alt else "", e(gname), e(gname), cards)
+""" % (' class="band-alt"' if alt else "", teamgrid.vars_for(TEAM_TONE),
+       e(gname), e(gname), teamgrid.grid(people, lead=is_lead, e=e))
         alt = not alt
 
     s += """<section class="band-warm">

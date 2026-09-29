@@ -530,6 +530,11 @@
   .arx-ray-items{display:flex;gap:2.2cqw;font-size:15px;font-size:1.02cqw;color:#5A554C;}
   .arx-ray-items span{display:flex;align-items:center;gap:.5cqw;}
   .arx-ray-items i{width:.45cqw;height:.45cqw;border-radius:50%;}
+  .arx-orbs{margin-top:1.15cqw;padding-top:.85cqw;font-size:11px;font-size:.7cqw;font-weight:800;
+    letter-spacing:.18em;text-transform:uppercase;opacity:.75;}
+  .arx-strip .arx-domain,.arx-strip .arx-core{width:24%;}
+  .arx-strip .arx-domain{color:#2A231B;}
+  .arx-strip .arx-orbs{border-top:1px solid currentColor;border-color:rgba(60,45,15,.22);}
   .arx-foot{margin-top:22px;text-align:center;font-size:14.5px;font-weight:800;color:#5A554C;}
   .arx-fallback{display:none;}
 
@@ -560,6 +565,35 @@
   @media(prefers-reduced-motion:reduce){
     .hero-vid video{display:none;}
     .hero-vid{background:url('hero-build-poster.jpg') center/cover no-repeat;}
+  }
+
+  /* TEAM GRID */
+  .team{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:28px;}
+  .tmb{position:relative;aspect-ratio:720/756;overflow:hidden;background:var(--navy);
+    border-radius:4px;}
+  .tmb-img{position:absolute;inset:0;background-size:cover;background-position:50% 12%;
+    filter:grayscale(1) contrast(1.04);}
+  .tmb-wash{position:absolute;inset:0;background:var(--tmb-wash);opacity:var(--tmb-op);}
+  .tmb-mono{position:absolute;inset:0;background:var(--tmb-mono);display:flex;
+    align-items:center;justify-content:center;font-size:58px;font-weight:300;
+    letter-spacing:.04em;color:rgba(255,255,255,.62);}
+  .tmb-scrim{position:absolute;inset:auto 0 0;height:62%;
+    background:linear-gradient(to top,rgba(10,8,5,.72),rgba(10,8,5,0));}
+  .tmb-dl{position:absolute;inset:auto 0 0;padding:22px 22px 20px;z-index:2;}
+  .tmb-nm{font-size:22px;font-weight:300;line-height:1.2;color:#fff;}
+  .tmb-rl{margin-top:7px;font-size:11.5px;font-weight:700;letter-spacing:2.3px;
+    text-transform:uppercase;color:rgba(255,255,255,.88);}
+  .tmb-bio{position:absolute;inset:0;z-index:3;padding:26px 24px;display:flex;
+    align-items:center;background:rgba(14,11,7,.9);color:rgba(255,255,255,.9);
+    font-size:14px;line-height:1.65;opacity:0;transition:opacity .28s ease;}
+  .tmb:hover .tmb-bio,.tmb:focus-within .tmb-bio{opacity:1;}
+  .tmb-lead .tmb-nm{font-size:25px;}
+
+  @media(max-width:900px){
+    .team{grid-template-columns:repeat(2,1fr);}
+    .tmb-nm{font-size:19px;}
+    .tmb-bio{opacity:1;position:static;background:none;padding:14px 0 0;color:var(--text-muted);}
+    .tmb{aspect-ratio:auto;}
   }
 
   /* SCROLL REVEALS (only active once the head script adds .rv) */
@@ -635,7 +669,7 @@
     <div class="section-tag">Architecture</div>
     <h2 class="section-heading">Enterprise context becomes coordinated action</h2>
     <p class="section-sub">Commercial intelligence and operational execution, connected through one governed enterprise context.</p>
-    <div class="arx"><svg viewBox="0 195 2000 990" role="img" aria-label="Horizon and Pulse as two operating domains, Core as the governed context between them, Ray spanning beneath."><defs>
+    <div class="arx arx-explain"><svg viewBox="0 195 2000 990" role="img" aria-label="Horizon and Pulse as two operating domains, Core as the governed context between them, Ray spanning beneath."><defs>
       <radialGradient id="axh" cx="36%" cy="30%">
         <stop offset="0" stop-color="#FBEBB4"/><stop offset=".55" stop-color="#EFCE6B"/>
         <stop offset="1" stop-color="#E0B33A"/></radialGradient>
@@ -648,7 +682,7 @@
         <path d="M0 0 L10 5 L0 10 z" fill="#E0B33A"/></marker>
       <marker id="axao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
         <path d="M0 0 L10 5 L0 10 z" fill="#F97316"/></marker>
-    </defs><ellipse cx="1020" cy="575" rx="840" ry="336" fill="none" stroke="rgba(140,101,0,.30)" stroke-dasharray="3 11"/><ellipse cx="1020" cy="575" rx="792" ry="300" fill="none" stroke="rgba(224,100,30,.10)" stroke-width="26"/><circle cx="660" cy="575" r="278" fill="url(#axh)"/><circle cx="1400" cy="575" r="278" fill="url(#axp)"/><path d="M470 352 C640 236 860 250 946 292" fill="none" stroke="#E0B33A" stroke-width="7" stroke-linecap="round" opacity=".85" marker-end="url(#axag)"/><path d="M1584 300 C1420 238 1180 250 1074 292" fill="none" stroke="#F97316" stroke-width="7" stroke-linecap="round" opacity=".85" marker-end="url(#axao)"/><path d="M660 848 C790 906 930 878 1012 846" fill="none" stroke="#E0B33A" stroke-width="7" stroke-linecap="round" opacity=".8" marker-end="url(#axag)"/><path d="M1382 848 C1268 906 1140 878 1074 846" fill="none" stroke="#F97316" stroke-width="7" stroke-linecap="round" opacity=".8" marker-end="url(#axao)"/><line x1="1005" y1="820" x2="1005" y2="884" stroke="rgba(60,50,30,.30)" stroke-width="3"/><rect x="804" y="335" width="402" height="486" rx="30" fill="#fff"/><rect x="813" y="344" width="384" height="468" rx="24" fill="url(#axc)"/><rect x="821" y="352" width="368" height="452" rx="20" fill="none" stroke="rgba(224,178,80,.35)"/><line x1="872" y1="430" x2="1005" y2="396" stroke="rgba(224,178,80,.16)"/><line x1="872" y1="430" x2="866" y2="566" stroke="rgba(224,178,80,.16)"/><line x1="1005" y1="396" x2="1140" y2="432" stroke="rgba(224,178,80,.16)"/><line x1="1005" y1="396" x2="1006" y2="604" stroke="rgba(224,178,80,.16)"/><line x1="1140" y1="432" x2="1150" y2="560" stroke="rgba(224,178,80,.16)"/><line x1="1150" y1="560" x2="1006" y2="604" stroke="rgba(224,178,80,.16)"/><line x1="1150" y1="560" x2="1132" y2="700" stroke="rgba(224,178,80,.16)"/><line x1="1006" y1="604" x2="866" y2="566" stroke="rgba(224,178,80,.16)"/><line x1="1006" y1="604" x2="1010" y2="742" stroke="rgba(224,178,80,.16)"/><line x1="866" y1="566" x2="884" y2="700" stroke="rgba(224,178,80,.16)"/><line x1="884" y1="700" x2="1010" y2="742" stroke="rgba(224,178,80,.16)"/><line x1="1010" y1="742" x2="1132" y2="700" stroke="rgba(224,178,80,.16)"/><circle cx="872" cy="430" r="4" fill="rgba(224,178,80,.45)"/><circle cx="1005" cy="396" r="4" fill="rgba(224,178,80,.45)"/><circle cx="1140" cy="432" r="4" fill="rgba(224,178,80,.45)"/><circle cx="1150" cy="560" r="4" fill="rgba(224,178,80,.45)"/><circle cx="1006" cy="604" r="4" fill="rgba(224,178,80,.45)"/><circle cx="866" cy="566" r="4" fill="rgba(224,178,80,.45)"/><circle cx="884" cy="700" r="4" fill="rgba(224,178,80,.45)"/><circle cx="1010" cy="742" r="4" fill="rgba(224,178,80,.45)"/><circle cx="1132" cy="700" r="4" fill="rgba(224,178,80,.45)"/><line x1="948" y1="756" x2="1062" y2="756" stroke="rgba(246,238,222,.35)" stroke-width="2"/><circle cx="948" cy="756" r="7" fill="#E0B33A"/><circle cx="1005" cy="756" r="7" fill="#fff"/><circle cx="1062" cy="756" r="7" fill="#F97316"/></svg><div class="arx-lab arx-domain" style="left:30.70%;top:37.78%;">
+    </defs><ellipse cx="1020" cy="575" rx="840" ry="336" fill="none" stroke="rgba(140,101,0,.30)" stroke-dasharray="3 11"/><ellipse cx="1020" cy="575" rx="792" ry="300" fill="none" stroke="rgba(224,100,30,.10)" stroke-width="26"/><circle cx="660" cy="575" r="278" fill="url(#axh)"/><circle cx="1400" cy="575" r="278" fill="url(#axp)"/><path d="M470 352 C640 236 860 250 946 292" fill="none" stroke="#E0B33A" stroke-width="7" stroke-linecap="round" opacity=".85" marker-end="url(#axag)"/><path d="M1584 300 C1420 238 1180 250 1074 292" fill="none" stroke="#F97316" stroke-width="7" stroke-linecap="round" opacity=".85" marker-end="url(#axao)"/><path d="M1012 846 C930 900 780 908 640 880" fill="none" stroke="#E0B33A" stroke-width="7" stroke-linecap="round" opacity=".8" marker-end="url(#axag)"/><path d="M1074 846 C1160 900 1300 908 1420 880" fill="none" stroke="#F97316" stroke-width="7" stroke-linecap="round" opacity=".8" marker-end="url(#axao)"/><line x1="1005" y1="820" x2="1005" y2="884" stroke="rgba(60,50,30,.30)" stroke-width="3"/><text x="1005" y="252" text-anchor="middle" font-size="31" font-weight="800" fill="#8C6500" letter-spacing="1.5">Context in</text><text x="1005" y="926" text-anchor="middle" font-size="31" font-weight="800" fill="#8C6500" letter-spacing="1.5">Coordinated action out</text><line x1="404" y1="330" x2="520" y2="330" stroke="rgba(140,101,0,.30)" stroke-width="2" stroke-dasharray="5 7"/><line x1="404" y1="812" x2="508" y2="812" stroke="rgba(140,101,0,.30)" stroke-width="2" stroke-dasharray="5 7"/><line x1="1596" y1="330" x2="1642" y2="330" stroke="rgba(140,101,0,.30)" stroke-width="2" stroke-dasharray="5 7"/><line x1="1563" y1="806" x2="1664" y2="806" stroke="rgba(140,101,0,.30)" stroke-width="2" stroke-dasharray="5 7"/><line x1="640" y1="898" x2="640" y2="946" stroke="rgba(140,101,0,.30)" stroke-width="2" stroke-dasharray="5 7"/><line x1="1420" y1="898" x2="1420" y2="946" stroke="rgba(140,101,0,.30)" stroke-width="2" stroke-dasharray="5 7"/><rect x="804" y="335" width="402" height="486" rx="30" fill="#fff"/><rect x="813" y="344" width="384" height="468" rx="24" fill="url(#axc)"/><rect x="821" y="352" width="368" height="452" rx="20" fill="none" stroke="rgba(224,178,80,.35)"/><line x1="872" y1="430" x2="1005" y2="396" stroke="rgba(224,178,80,.16)"/><line x1="1005" y1="396" x2="1140" y2="432" stroke="rgba(224,178,80,.16)"/><line x1="884" y1="700" x2="1010" y2="742" stroke="rgba(224,178,80,.16)"/><line x1="1010" y1="742" x2="1132" y2="700" stroke="rgba(224,178,80,.16)"/><circle cx="872" cy="430" r="4" fill="rgba(224,178,80,.45)"/><circle cx="1005" cy="396" r="4" fill="rgba(224,178,80,.45)"/><circle cx="1140" cy="432" r="4" fill="rgba(224,178,80,.45)"/><circle cx="884" cy="700" r="4" fill="rgba(224,178,80,.45)"/><circle cx="1010" cy="742" r="4" fill="rgba(224,178,80,.45)"/><circle cx="1132" cy="700" r="4" fill="rgba(224,178,80,.45)"/><line x1="948" y1="756" x2="1062" y2="756" stroke="rgba(246,238,222,.35)" stroke-width="2"/><circle cx="948" cy="756" r="7" fill="#E0B33A"/><circle cx="1005" cy="756" r="7" fill="#fff"/><circle cx="1062" cy="756" r="7" fill="#F97316"/></svg><div class="arx-lab arx-domain" style="left:30.70%;top:37.78%;">
       <div class="arx-k" style="color:#8A6A12;">Commercial intelligence</div>
       <div class="arx-n">HORIZON</div>
       <div class="arx-rule" style="background:rgba(90,70,15,.35);"></div>
@@ -667,7 +701,7 @@
       <div class="arx-n">PULSE</div>
       <div class="arx-rule" style="background:rgba(120,55,10,.35);"></div>
       <ul class="arx-list"><li>Operational workflows</li><li>Supply and resource coordination</li><li>Performance management</li></ul>
-    </div><div class="arx-orbit" style="left:15.00%;top:15.86%;transform:translateY(-50%);"><i style="background:#E0B33A;"></i>Markets</div><div class="arx-orbit" style="left:16.50%;top:60.10%;transform:translateY(-50%);"><i style="background:#E0B33A;"></i>Customers</div><div class="arx-orbit" style="left:79.80%;top:13.64%;transform:translateY(-50%);"><i style="background:#F97316;"></i>Operations</div><div class="arx-orbit" style="left:83.60%;top:61.72%;transform:translateY(-50%);"><i style="background:#F97316;"></i>People and systems</div><div class="arx-ray" style="left:50%;top:76.46%;width:54.50%;padding:1.9cqw 2.4cqw;">
+    </div><div class="arx-orbit" style="left:12.50%;top:13.64%;transform:translateY(-50%);"><i style="background:#E0B33A;"></i>Markets</div><div class="arx-orbit" style="left:12.50%;top:62.32%;transform:translateY(-50%);"><i style="background:#E0B33A;"></i>Customers</div><div class="arx-orbit" style="left:82.50%;top:13.64%;transform:translateY(-50%);"><i style="background:#F97316;"></i>Operations</div><div class="arx-orbit" style="left:83.60%;top:61.72%;transform:translateY(-50%);"><i style="background:#F97316;"></i>People and systems</div><div class="arx-ray" style="left:50%;top:76.46%;width:54.50%;padding:1.9cqw 2.4cqw;">
       <div class="arx-ray-top">
         <span class="arx-ray-name">RAY</span>
         <span class="arx-ray-sub">Persistent enterprise companion</span>

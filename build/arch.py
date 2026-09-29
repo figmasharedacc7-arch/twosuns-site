@@ -47,6 +47,11 @@ CSS = r"""
   .arx-ray-items{display:flex;gap:2.2cqw;font-size:15px;font-size:1.02cqw;color:#5A554C;}
   .arx-ray-items span{display:flex;align-items:center;gap:.5cqw;}
   .arx-ray-items i{width:.45cqw;height:.45cqw;border-radius:50%;}
+  .arx-orbs{margin-top:1.15cqw;padding-top:.85cqw;font-size:11px;font-size:.7cqw;font-weight:800;
+    letter-spacing:.18em;text-transform:uppercase;opacity:.75;}
+  .arx-strip .arx-domain,.arx-strip .arx-core{width:24%;}
+  .arx-strip .arx-domain{color:#2A231B;}
+  .arx-strip .arx-orbs{border-top:1px solid currentColor;border-color:rgba(60,45,15,.22);}
   .arx-foot{margin-top:22px;text-align:center;font-size:14.5px;font-weight:800;color:#5A554C;}
   .arx-fallback{display:none;}
 
@@ -74,10 +79,16 @@ def _pct(x, y):
     return "left:%.2f%%;top:%.2f%%" % (x / VB_W * 100, (y - VB_Y0) / VB_VIS * 100)
 
 
-def section(heading, sub, explore_btn="", tag="Architecture", band="band-alt",
+def section(heading, sub, explore_btn="", tag="Architecture", band="band-alt", variant="explain",
             foot="One governed context. Two operating domains. Continuous enterprise awareness."):
-    """The diagram, wrapped in its own band. Home introduces it as the architecture,
-    Platform reuses it to show the same context circulating."""
+    """The diagram, wrapped in its own band.
+
+    variant="live"    the overlapping-domain figure as shipped
+    variant="explain" same figure, with the flow named, the orbit labels tied to
+                      the disc they belong to, and Ray connected to what sits above it
+    variant="strip"   no rings, no arrows, no orbit floats: four clean blocks
+    """
+    strip = variant == "strip"
     s = ['<svg viewBox="0 %d %d %d" role="img" aria-label="Horizon and Pulse as two operating '
          'domains, Core as the governed context between them, Ray spanning beneath.">' % (VB_Y0, VB_W, VB_VIS)]
     s.append("""<defs>
@@ -95,65 +106,123 @@ def section(heading, sub, explore_btn="", tag="Architecture", band="band-alt",
         <path d="M0 0 L10 5 L0 10 z" fill="%s"/></marker>
     </defs>""" % (GOLD, ORANGE, GOLD, ORANGE))
 
-    # the wide field the domains sit in
-    s.append('<ellipse cx="1020" cy="575" rx="840" ry="336" fill="none" stroke="rgba(140,101,0,.30)" '
-             'stroke-dasharray="3 11"/>')
-    s.append('<ellipse cx="1020" cy="575" rx="792" ry="300" fill="none" stroke="rgba(224,100,30,.10)" '
-             'stroke-width="26"/>')
+    if strip:
+        # ---- four blocks in a row, nothing else -------------------------------
+        BY, BH, BW = 270, 530, 560
+        for bx, fill in ((90, "url(#axh)"), (720, "url(#axc)"), (1350, "url(#axp)")):
+            s.append('<rect x="%d" y="%d" width="%d" height="%d" rx="34" fill="%s"/>'
+                     % (bx, BY, BW, BH, fill))
+        s.append('<rect x="%d" y="%d" width="%d" height="%d" rx="26" fill="none" '
+                 'stroke="rgba(224,178,80,.35)"/>' % (734, BY + 14, BW - 28, BH - 28))
+        s.append("</svg>")
+    else:
+        # the wide field the domains sit in
+        s.append('<ellipse cx="1020" cy="575" rx="840" ry="336" fill="none" '
+                 'stroke="rgba(140,101,0,.30)" stroke-dasharray="3 11"/>')
+        s.append('<ellipse cx="1020" cy="575" rx="792" ry="300" fill="none" '
+                 'stroke="rgba(224,100,30,.10)" stroke-width="26"/>')
 
-    # the two domains
-    s.append('<circle cx="%d" cy="%d" r="%d" fill="url(#axh)"/>' % (HX, HY, HR))
-    s.append('<circle cx="%d" cy="%d" r="%d" fill="url(#axp)"/>' % (PX, PY, PR))
+        # the two domains
+        s.append('<circle cx="%d" cy="%d" r="%d" fill="url(#axh)"/>' % (HX, HY, HR))
+        s.append('<circle cx="%d" cy="%d" r="%d" fill="url(#axp)"/>' % (PX, PY, PR))
 
-    # context in, coordinated action back out
-    s.append('<path d="M470 352 C640 236 860 250 946 292" fill="none" stroke="%s" stroke-width="7" '
-             'stroke-linecap="round" opacity=".85" marker-end="url(#axag)"/>' % GOLD)
-    s.append('<path d="M1584 300 C1420 238 1180 250 1074 292" fill="none" stroke="%s" stroke-width="7" '
-             'stroke-linecap="round" opacity=".85" marker-end="url(#axao)"/>' % ORANGE)
-    s.append('<path d="M660 848 C790 906 930 878 1012 846" fill="none" stroke="%s" stroke-width="7" '
-             'stroke-linecap="round" opacity=".8" marker-end="url(#axag)"/>' % GOLD)
-    s.append('<path d="M1382 848 C1268 906 1140 878 1074 846" fill="none" stroke="%s" stroke-width="7" '
-             'stroke-linecap="round" opacity=".8" marker-end="url(#axao)"/>' % ORANGE)
-    s.append('<line x1="1005" y1="820" x2="1005" y2="884" stroke="rgba(60,50,30,.30)" stroke-width="3"/>')
+        # context in at the top
+        s.append('<path d="M470 352 C640 236 860 250 946 292" fill="none" stroke="%s" stroke-width="7" '
+                 'stroke-linecap="round" opacity=".85" marker-end="url(#axag)"/>' % GOLD)
+        s.append('<path d="M1584 300 C1420 238 1180 250 1074 292" fill="none" stroke="%s" stroke-width="7" '
+                 'stroke-linecap="round" opacity=".85" marker-end="url(#axao)"/>' % ORANGE)
+        if variant == "explain":
+            # every arrow used to point inward, so the figure claimed a circulation it
+            # never showed. The bottom pair now runs the other way: action back out.
+            s.append('<path d="M1012 846 C930 900 780 908 640 880" fill="none" stroke="%s" '
+                     'stroke-width="7" stroke-linecap="round" opacity=".8" '
+                     'marker-end="url(#axag)"/>' % GOLD)
+            s.append('<path d="M1074 846 C1160 900 1300 908 1420 880" fill="none" stroke="%s" '
+                     'stroke-width="7" stroke-linecap="round" opacity=".8" '
+                     'marker-end="url(#axao)"/>' % ORANGE)
+        else:
+            s.append('<path d="M660 848 C790 906 930 878 1012 846" fill="none" stroke="%s" '
+                     'stroke-width="7" stroke-linecap="round" opacity=".8" '
+                     'marker-end="url(#axag)"/>' % GOLD)
+            s.append('<path d="M1382 848 C1268 906 1140 878 1074 846" fill="none" stroke="%s" '
+                     'stroke-width="7" stroke-linecap="round" opacity=".8" '
+                     'marker-end="url(#axao)"/>' % ORANGE)
+        s.append('<line x1="1005" y1="820" x2="1005" y2="884" stroke="rgba(60,50,30,.30)" '
+                 'stroke-width="3"/>')
 
-    # the governed context, sitting across the overlap
-    s.append('<rect x="%d" y="%d" width="%d" height="%d" rx="30" fill="#fff"/>'
-             % (CX - CW / 2 - 9, CY - CH / 2 - 9, CW + 18, CH + 18))
-    s.append('<rect x="%d" y="%d" width="%d" height="%d" rx="24" fill="url(#axc)"/>'
-             % (CX - CW / 2, CY - CH / 2, CW, CH))
-    s.append('<rect x="%d" y="%d" width="%d" height="%d" rx="20" fill="none" stroke="rgba(224,178,80,.35)"/>'
-             % (CX - CW / 2 + 8, CY - CH / 2 + 8, CW - 16, CH - 16))
-    # a faint mesh, so the panel reads as a system not a slab
-    mesh = [(872, 430), (1005, 396), (1140, 432), (1150, 560), (1006, 604), (866, 566),
-            (884, 700), (1010, 742), (1132, 700)]
-    for i, (mx, my) in enumerate(mesh):
-        for jx, jy in mesh[i + 1:]:
-            if abs(mx - jx) + abs(my - jy) < 210:
-                s.append('<line x1="%d" y1="%d" x2="%d" y2="%d" stroke="rgba(224,178,80,.16)"/>'
-                         % (mx, my, jx, jy))
-    for mx, my in mesh:
-        s.append('<circle cx="%d" cy="%d" r="4" fill="rgba(224,178,80,.45)"/>' % (mx, my))
-    # the three tone dots under the Core copy
-    s.append('<line x1="948" y1="756" x2="1062" y2="756" stroke="rgba(246,238,222,.35)" stroke-width="2"/>')
-    for dx, col in ((948, GOLD), (1005, "#fff"), (1062, ORANGE)):
-        s.append('<circle cx="%d" cy="756" r="7" fill="%s"/>' % (dx, col))
-    s.append("</svg>")
+        if variant == "explain":
+            # name what the arrows carry
+            for yy, txt in ((252, "Context in"), (926, "Coordinated action out")):
+                s.append('<text x="1005" y="%d" text-anchor="middle" font-size="31" font-weight="800" '
+                         'fill="#8C6500" letter-spacing="1.5">%s</text>' % (yy, txt))
+            # tie each orbit label to the domain it belongs to
+            for x1, x2, yy in ((404, 520, 330), (404, 508, 812), (1596, 1642, 330), (1563, 1664, 806)):
+                s.append('<line x1="%d" y1="%d" x2="%d" y2="%d" stroke="rgba(140,101,0,.30)" '
+                         'stroke-width="2" stroke-dasharray="5 7"/>' % (x1, yy, x2, yy))
+            # and tie Ray to what sits above it
+            for xx in (640, 1420):
+                s.append('<line x1="%d" y1="898" x2="%d" y2="946" stroke="rgba(140,101,0,.30)" '
+                         'stroke-width="2" stroke-dasharray="5 7"/>' % (xx, xx))
 
-    def domain(x, y, kicker, name, items, tone, rule):
+        # the governed context, sitting across the overlap
+        s.append('<rect x="%d" y="%d" width="%d" height="%d" rx="30" fill="#fff"/>'
+                 % (CX - CW / 2 - 9, CY - CH / 2 - 9, CW + 18, CH + 18))
+        s.append('<rect x="%d" y="%d" width="%d" height="%d" rx="24" fill="url(#axc)"/>'
+                 % (CX - CW / 2, CY - CH / 2, CW, CH))
+        s.append('<rect x="%d" y="%d" width="%d" height="%d" rx="20" fill="none" '
+                 'stroke="rgba(224,178,80,.35)"/>'
+                 % (CX - CW / 2 + 8, CY - CH / 2 + 8, CW - 16, CH - 16))
+        # a faint mesh, so the panel reads as a system not a slab. The Core copy runs
+        # across the middle of the panel, so the constellation is clipped out of that
+        # band: three dots were landing on the words.
+        mesh = [(872, 430), (1005, 396), (1140, 432), (1150, 560), (1006, 604), (866, 566),
+                (884, 700), (1010, 742), (1132, 700)]
+        TXT_TOP, TXT_BOT = 470, 640
+
+        def clear(y):
+            return not (TXT_TOP < y < TXT_BOT)
+
+        for i, (mx, my) in enumerate(mesh):
+            for jx, jy in mesh[i + 1:]:
+                if abs(mx - jx) + abs(my - jy) < 210 and clear(my) and clear(jy):
+                    s.append('<line x1="%d" y1="%d" x2="%d" y2="%d" stroke="rgba(224,178,80,.16)"/>'
+                             % (mx, my, jx, jy))
+        for mx, my in mesh:
+            if clear(my):
+                s.append('<circle cx="%d" cy="%d" r="4" fill="rgba(224,178,80,.45)"/>' % (mx, my))
+        # the three tone dots under the Core copy
+        s.append('<line x1="948" y1="756" x2="1062" y2="756" stroke="rgba(246,238,222,.35)" '
+                 'stroke-width="2"/>')
+        for dx, col in ((948, GOLD), (1005, "#fff"), (1062, ORANGE)):
+            s.append('<circle cx="%d" cy="756" r="7" fill="%s"/>' % (dx, col))
+        s.append("</svg>")
+
+    def domain(x, y, kicker, name, items, tone, rule, orbs=""):
+        cap = ('<div class="arx-orbs" style="color:%s;">%s</div>' % (tone, orbs)) if orbs else ""
         return """<div class="arx-lab arx-domain" style="%s;">
       <div class="arx-k" style="color:%s;">%s</div>
       <div class="arx-n">%s</div>
       <div class="arx-rule" style="background:%s;"></div>
-      <ul class="arx-list">%s</ul>
+      <ul class="arx-list">%s</ul>%s
     </div>""" % (_pct(x, y), tone, kicker, name, rule,
-                 "".join("<li>%s</li>" % i for i in items))
+                 "".join("<li>%s</li>" % i for i in items), cap)
 
-    horizon = domain(HX - LAB_OUT, HY - 6, "Commercial intelligence", "HORIZON",
-                     ["Market and account intelligence", "Revenue coordination", "GTM execution"],
-                     "#8A6A12", "rgba(90,70,15,.35)")
-    pulse = domain(PX + LAB_OUT, PY - 6, "Operational execution", "PULSE",
-                   ["Operational workflows", "Supply and resource coordination", "Performance management"],
-                   "#8C3D0B", "rgba(120,55,10,.35)")
+    H_ITEMS = ["Market and account intelligence", "Revenue coordination", "GTM execution"]
+    P_ITEMS = ["Operational workflows", "Supply and resource coordination", "Performance management"]
+
+    if strip:
+        horizon = domain(370, 535, "Commercial intelligence", "HORIZON", H_ITEMS,
+                         "#8A6A12", "rgba(90,70,15,.35)", "Markets &nbsp;&middot;&nbsp; Customers")
+        pulse = domain(1630, 535, "Operational execution", "PULSE", P_ITEMS,
+                       "#8C3D0B", "rgba(120,55,10,.35)",
+                       "Operations &nbsp;&middot;&nbsp; People and systems")
+        core_y, ray_y, ray_w = 506, 900, 1820
+    else:
+        horizon = domain(HX - LAB_OUT, HY - 6, "Commercial intelligence", "HORIZON", H_ITEMS,
+                         "#8A6A12", "rgba(90,70,15,.35)")
+        pulse = domain(PX + LAB_OUT, PY - 6, "Operational execution", "PULSE", P_ITEMS,
+                       "#8C3D0B", "rgba(120,55,10,.35)")
+        core_y, ray_y, ray_w = CY - 34, 952, 1090
 
     core = """<div class="arx-lab arx-core" style="%s;">
       <div class="arx-k" style="color:#E0B33A;">Governed context</div>
@@ -164,16 +233,18 @@ def section(heading, sub, explore_btn="", tag="Architecture", band="band-alt",
         <div>Organizational memory and logs</div>
         <div>Decision continuity</div>
       </div>
-    </div>""" % _pct(CX, CY - 34)
+    </div>""" % _pct(1000 if strip else CX, core_y)
 
     orbits = ""
-    for x, y, label, col, align in [
-            (300, 352, "Markets", GOLD, "left"),
-            (330, 790, "Customers", GOLD, "left"),
-            (1596, 330, "Operations", ORANGE, "left"),
-            (1672, 806, "People and systems", ORANGE, "left")]:
-        orbits += ('<div class="arx-orbit" style="%s;transform:translateY(-50%%);">'
-                   '<i style="background:%s;"></i>%s</div>') % (_pct(x, y).replace("top:", "top:"), col, label)
+    if not strip:
+        rows = [(250, 330, "Markets", GOLD), (250, 812, "Customers", GOLD),
+                (1650, 330, "Operations", ORANGE), (1672, 806, "People and systems", ORANGE)] \
+            if variant == "explain" else \
+            [(300, 352, "Markets", GOLD), (330, 790, "Customers", GOLD),
+             (1596, 330, "Operations", ORANGE), (1672, 806, "People and systems", ORANGE)]
+        for x, y, label, col in rows:
+            orbits += ('<div class="arx-orbit" style="%s;transform:translateY(-50%%);">'
+                       '<i style="background:%s;"></i>%s</div>') % (_pct(x, y), col, label)
 
     ray = """<div class="arx-ray" style="left:50%%;top:%.2f%%;width:%.2f%%;padding:1.9cqw 2.4cqw;">
       <div class="arx-ray-top">
@@ -185,7 +256,7 @@ def section(heading, sub, explore_btn="", tag="Architecture", band="band-alt",
         <span><i style="background:%s;"></i>Enterprise awareness</span>
         <span><i style="background:%s;"></i>Coordinated action</span>
       </div>
-    </div>""" % ((952 - VB_Y0) / VB_VIS * 100, 1090 / VB_W * 100, GOLD, ORANGE, "#B8860B")
+    </div>""" % ((ray_y - VB_Y0) / VB_VIS * 100, ray_w / VB_W * 100, GOLD, ORANGE, "#B8860B")
 
     fb = """<div class="arx-fallback">
       <div class="arxf arxf-h"><div class="k">Commercial intelligence</div><div class="n">HORIZON</div>
@@ -206,10 +277,10 @@ def section(heading, sub, explore_btn="", tag="Architecture", band="band-alt",
     <div class="section-tag">%s</div>
     <h2 class="section-heading">%s</h2>
     <p class="section-sub">%s</p>
-    <div class="arx">%s%s%s%s%s%s</div>
+    <div class="arx arx-%s">%s%s%s%s%s%s</div>
     %s
     <div class="arx-foot">%s</div>
     %s
   </div>
 </section>
-""" % (band, tag, heading, sub, "".join(s), horizon, core, pulse, orbits, ray, fb, foot, tail)
+""" % (band, tag, heading, sub, variant, "".join(s), horizon, core, pulse, orbits, ray, fb, foot, tail)
