@@ -365,6 +365,9 @@ CSS = r"""
   .bg-site::before{background-image:url('img-construction.jpg');}
   .bg-controlroom::before{background-image:url('cap-hero.jpg');}
   .bg-yard::before{background-image:url('area-distribution.jpg');}
+  .dom-group{margin-top:30px;}
+  .dom-group + .dom-group{margin-top:34px;}
+  .dom-group .grid2{margin-top:14px;}
   .dom-k{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
   .more-link{display:inline-block;margin-top:24px;font-size:14px;font-weight:700;}
   .stages{list-style:none;display:flex;flex-wrap:wrap;gap:8px 10px;margin-top:22px;max-width:1000px;}

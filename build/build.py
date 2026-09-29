@@ -313,6 +313,24 @@ def build_platform():
     return s + TAIL
 
 
+
+# The industry entries get an industry-prefixed anchor, as the brief specifies,
+# the cross-industry ones keep the plain one so the Capabilities links that
+# already point at them do not move. Everything that links to a use case goes
+# through here, so the two can never drift apart.
+UC_SLUGKEY = {"Construction and Infrastructure": "construction",
+              "Manufacturing": "manufacturing",
+              "Building Materials": "building-materials"}
+
+
+def uc_anchor(title):
+    for u in UC_ALL:
+        if u["title"] == title:
+            key = UC_SLUGKEY.get(u["industry"])
+            return "uc-%s-%s" % (key, slug(title)[3:]) if key else slug(title)
+    return slug(title)
+
+
 # ================================================================ CAPABILITIES
 def acc_group(groups, base_accent):
     out = ""
@@ -321,7 +339,7 @@ def acc_group(groups, base_accent):
         rel = ""
         if name in CAP_LINKS:
             items = "".join(
-                '<li><a href="use-cases.html#%s">%s</a></li>' % (slug(t), e(t))
+                '<li><a href="use-cases.html#%s">%s</a></li>' % (uc_anchor(t), e(t))
                 for t in CAP_LINKS[name])
             rel = ('<div class="acc-rel"><div class="k">Related use cases</div>'
                    '<ul>%s</ul></div>') % items
@@ -531,7 +549,7 @@ def build_usecases():
     <span class="uc-lens">%s</span>
     <div class="uc-tags">%s</div>
   </article>
-""" % (slug(u["title"]), " ".join(tags), e(u["title"]), e(u["users"]), e(u["inputs"]),
+""" % (uc_anchor(u["title"]), " ".join(tags), e(u["title"]), e(u["users"]), e(u["inputs"]),
        e(u["workflow"]), e(u["outputs"]), e(u["platform"]), chips)
 
     s += """<section id="workflows">
