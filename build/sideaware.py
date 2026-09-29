@@ -41,10 +41,10 @@ PLAN = [
     ("cons-hero",         "r", 0.30, True,  None, 0.75),   # trio sits left in the original
     ("cons-owners",       "l", 0.74, True,  None, 0.55),   # trio sits right in the original
     ("cons-contractors",  "r", 0.72, False, None, 0.50),   # hands and tablet already right
-    ("cons-trades",       "l", 0.26, False, None, 0.35),   # frame high, the worker reaches up
-    ("cons-design",       "r", 0.28, True,  None, 0.50),   # mirror puts the pair right, model left
+    ("cons-trades",       "l", 0.26, False, None, 0.05),   # frame high, he reaches into the ceiling
+    ("cons-design",       "r", 0.28, True,  None, 0.00),   # mirror puts the pair right, model left
     ("cons-logistics",    "l", 0.26, False, None, 0.50),   # golden hour, already on the palette
-    ("cons-assurance",    "r", 0.62, False, None, 0.50),   # surveyors already weighted right
+    ("cons-assurance",    "r", 0.62, False, None, 0.00),   # anchor top, the hard hats were clipping
 ]
 WARM.add("plat-integration")
 WARM.add("plat-hero")
@@ -55,6 +55,9 @@ MILD = {"area-operations", "fam-pulse", "area-owners", "company-hero",
         "cons-design", "cons-assurance"}     # cons-contractors is already warm wood     # a gentle nudge, not the night-shot regrade
 
 TARGET = {"l": 0.34, "r": 0.66}   # pulled in from the edges so less width is thrown away
+# a section shows the whole width of the file, so horizontal framing is decided here
+# and nowhere else. These want the subject further out than the default.
+TARGET_FOR = {"cons-owners": 0.18, "cons-trades": 0.18}
 MIN_KEEP = 0.90                    # never crop away more than this much width
 KEEP_ALL = {"cap-hero", "company-hero"}   # the group is the subject, keep the full width
 # a subject sitting dead centre cannot reach the target on a 10% crop, so these
@@ -68,7 +71,7 @@ def build(name, side, subj, mirror, lift, anchor):
         im = ImageOps.mirror(im)
         subj = 1.0 - subj
 
-    t = TARGET[side]
+    t = TARGET_FOR.get(name, TARGET[side])
     W, H = im.size
 
     # narrowest crop that still reaches the target, so we throw away as little as possible
@@ -124,7 +127,8 @@ if __name__ == "__main__":
     for name, side, subj, mirror, lift, anchor in PLAN:
         mir, landed, fov, kb = build(name, side, subj, mirror, lift, anchor)
         tot += kb
-        ok = "ok" if abs(landed - TARGET[side]) < 0.10 else "OFF TARGET"
+        tgt = TARGET_FOR.get(name, TARGET[side])
+        ok = "ok" if abs(landed - tgt) < 0.10 else "OFF TARGET"
         print("%-16s %-5s %-9s %-10.2f %-11s %5.0f KB  %s" % (
             name.replace("area-", ""), side, "yes" if mir else "no", landed,
             "%.0f%%" % (fov * 100), kb, ok))
