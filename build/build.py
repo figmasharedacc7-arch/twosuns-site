@@ -9,7 +9,8 @@ import herorot
 from content import HOME, PLATFORM, CAPABILITIES, HORIZON_GROUPS, PULSE_GROUPS
 from content2 import (BUILT, USECASES, UC_THEMES, UC_ITEMS, COMPANY, DISCUSS, EVENTS, INDUSTRIES,
                       INDUSTRIES_HUB,
-                      UC_AREA_LABELS, UC_GROUP_LABELS, UC_TAGS, CAP_LINKS)
+                      UC_AREA_LABELS, UC_GROUP_LABELS, UC_TAGS, CAP_LINKS,
+                      UC_ALL, UC_INDUSTRIES, UC_GROUPS, UC_PLATFORMS)
 import industry_pages
 import eclipse
 import arch
@@ -506,33 +507,32 @@ def build_usecases():
         return ('<div class="uc-frow"><div class="lab">%s</div>'
                 '<div class="uc-filters" style="margin-top:0;">%s</div></div>') % (e(label), btns)
 
-    filters = (frow("Objective", "theme", UC_THEMES, "t")
-               + frow("Industry area", "area", UC_AREA_LABELS, "a")
-               + frow("User group", "group", UC_GROUP_LABELS, "g")
-               + frow("Platform", "lens", ["Horizon", "Pulse", "Core", "Ray"], "l"))
+    filters = (frow("Industry", "ind", UC_INDUSTRIES, "i")
+               + frow("Platform", "lens", UC_PLATFORMS, "l")
+               + frow("User group", "group", UC_GROUPS, "g"))
 
-    LENSES = ["Horizon", "Pulse", "Core", "Ray"]
     cards = ""
-    for (ti, title, users, inputs, wf, out, lens) in UC_ITEMS:
-        areas, groups = UC_TAGS[title]
-        tags = ["t%d" % ti]
-        tags += ["a%d" % a for a in areas]
-        tags += ["g%d" % g for g in groups]
-        tags += ["l%s" % L for L in LENSES if L in lens]
-        chips = "".join('<span class="uc-tag">%s</span>' % e(UC_AREA_LABELS[a]) for a in areas[:2])
-        chips += "".join('<span class="uc-tag">%s</span>' % e(UC_GROUP_LABELS[g]) for g in groups[:1])
+    for u in UC_ALL:
+        # platform is a display string on the cross-industry entries, e.g.
+        # "Core, Ray, Horizon and Pulse", so the tag is every name it contains
+        tags = ["i%d" % UC_INDUSTRIES.index(u["industry"])]
+        tags += ["l%d" % i for i, p in enumerate(UC_PLATFORMS) if p in u["platform"]]
+        tags += ["g%d" % UC_GROUPS.index(g) for g in u["groups"]]
+        chips = '<span class="uc-tag">%s</span>' % e(u["industry"])
+        chips += "".join('<span class="uc-tag">%s</span>' % e(g) for g in u["groups"][:2])
         cards += """<article class="uc" id="%s" data-tags="%s">
-  <h3>%s</h3>
-  <dl>
-    <dt>Typical users</dt><dd>%s</dd>
-    <dt>Inputs</dt><dd>%s</dd>
-    <dt>Configured workflow</dt><dd>%s</dd>
-    <dt>Outputs and value</dt><dd>%s</dd>
-  </dl>
-  <span class="uc-lens">%s</span>
-  <div class="uc-tags">%s</div>
-</article>
-""" % (slug(title), " ".join(tags), e(title), e(users), e(inputs), e(wf), e(out), e(lens), chips)
+    <h3>%s</h3>
+    <dl>
+      <dt>Typical users</dt><dd>%s</dd>
+      <dt>Inputs</dt><dd>%s</dd>
+      <dt>Configured workflow</dt><dd>%s</dd>
+      <dt>Outputs and value</dt><dd>%s</dd>
+    </dl>
+    <span class="uc-lens">%s</span>
+    <div class="uc-tags">%s</div>
+  </article>
+""" % (slug(u["title"]), " ".join(tags), e(u["title"]), e(u["users"]), e(u["inputs"]),
+       e(u["workflow"]), e(u["outputs"]), e(u["platform"]), chips)
 
     s += """<section id="workflows">
   <div class="container">

@@ -364,12 +364,12 @@
 
   /* INDUSTRY SUBPAGES, classes from Noureldin's content brief */
   .hero p.hero-body{font-size:16.5px;line-height:1.8;color:var(--text-muted);max-width:620px;margin:-14px 0 32px;}
-  .bg-materials::before{background-image:url('area-materials.jpg');}
-  .bg-distribution::before{background-image:url('area-distribution.jpg');}
-  .bg-owners::before{background-image:url('area-owners.jpg');}
-  .bg-construction::before{background-image:url('area-construction.jpg');}
-  .bg-operations::before{background-image:url('area-operations.jpg');}
-  .bg-institutions::before{background-image:url('area-institutions.jpg');}
+  /* building materials: photos matched to what each section is actually about */
+  .bg-plant-wide::before{background-image:url('img-industrial.jpg');}
+  .bg-plant-dusk::before{background-image:url('area-materials.jpg');}
+  .bg-site::before{background-image:url('img-construction.jpg');}
+  .bg-controlroom::before{background-image:url('cap-hero.jpg');}
+  .bg-yard::before{background-image:url('area-distribution.jpg');}
   .dom-k{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
   .more-link{display:inline-block;margin-top:24px;font-size:14px;font-weight:700;}
   .stages{list-style:none;display:flex;flex-wrap:wrap;gap:8px 10px;margin-top:22px;max-width:1000px;}
@@ -406,6 +406,11 @@
   /* PEOPLE */
   .people{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:28px;}
   .person{background:#fff;border:1px solid var(--border-soft);border-radius:16px;padding:24px;box-shadow:var(--shadow);}
+  .face{width:72px;height:72px;border-radius:50%;object-fit:cover;display:block;margin-bottom:16px;
+    border:2px solid #fff;box-shadow:0 3px 12px rgba(60,50,30,.18);background:var(--bg2);}
+  .face-mono{display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;
+    letter-spacing:.5px;color:#8C6500;background:linear-gradient(145deg,var(--gold-soft),#FFF3D6);
+    border:2px solid #fff;}
   .person .nm{font-size:17px;font-weight:800;color:var(--navy);}
   .person .rl{font-size:12.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--sun-deep);margin:5px 0 12px;}
   .person p{font-size:14.5px;color:var(--text-muted);line-height:1.7;}
@@ -616,173 +621,382 @@
     <h2 class="section-heading">Representative workflows</h2>
     <p class="section-sub">Filter by objective, by where you sit in the built industry, by who does
       the work, or by the part of the platform involved. Filters combine.</p>
-    <div class="uc-filterset"><div class="uc-frow"><div class="lab">Objective</div><div class="uc-filters" style="margin-top:0;"><button class="uc-filter on" data-dim="theme" data-f="all">All</button><button class="uc-filter" data-dim="theme" data-f="t0">Strategy, planning and enterprise performance</button><button class="uc-filter" data-dim="theme" data-f="t1">Markets, revenue and ecosystem intelligence</button><button class="uc-filter" data-dim="theme" data-f="t2">Campaigns, events and stakeholder engagement</button><button class="uc-filter" data-dim="theme" data-f="t3">Products, programs and projects</button><button class="uc-filter" data-dim="theme" data-f="t4">Operations, supply chain and assets</button><button class="uc-filter" data-dim="theme" data-f="t5">Governance, compliance and organizational coordination</button></div></div><div class="uc-frow"><div class="lab">Industry area</div><div class="uc-filters" style="margin-top:0;"><button class="uc-filter on" data-dim="area" data-f="all">All</button><button class="uc-filter" data-dim="area" data-f="a0">Materials and Manufacturing</button><button class="uc-filter" data-dim="area" data-f="a1">Distribution and Logistics</button><button class="uc-filter" data-dim="area" data-f="a2">Asset Owners and Investors</button><button class="uc-filter" data-dim="area" data-f="a3">Construction and Professional Services</button><button class="uc-filter" data-dim="area" data-f="a4">Asset Transactions and Operations</button><button class="uc-filter" data-dim="area" data-f="a5">Industry Institutions and Enablement</button></div></div><div class="uc-frow"><div class="lab">User group</div><div class="uc-filters" style="margin-top:0;"><button class="uc-filter on" data-dim="group" data-f="all">All</button><button class="uc-filter" data-dim="group" data-f="g0">Executive and finance</button><button class="uc-filter" data-dim="group" data-f="g1">Growth and commercial</button><button class="uc-filter" data-dim="group" data-f="g2">Marketing and communications</button><button class="uc-filter" data-dim="group" data-f="g3">Product and engineering</button><button class="uc-filter" data-dim="group" data-f="g4">Project and delivery</button><button class="uc-filter" data-dim="group" data-f="g5">Operations and supply chain</button><button class="uc-filter" data-dim="group" data-f="g6">Asset and facility</button><button class="uc-filter" data-dim="group" data-f="g7">Compliance and quality</button></div></div><div class="uc-frow"><div class="lab">Platform</div><div class="uc-filters" style="margin-top:0;"><button class="uc-filter on" data-dim="lens" data-f="all">All</button><button class="uc-filter" data-dim="lens" data-f="l0">Horizon</button><button class="uc-filter" data-dim="lens" data-f="l1">Pulse</button><button class="uc-filter" data-dim="lens" data-f="l2">Core</button><button class="uc-filter" data-dim="lens" data-f="l3">Ray</button></div></div></div>
+    <div class="uc-filterset"><div class="uc-frow"><div class="lab">Industry</div><div class="uc-filters" style="margin-top:0;"><button class="uc-filter on" data-dim="ind" data-f="all">All</button><button class="uc-filter" data-dim="ind" data-f="i0">Across industries</button><button class="uc-filter" data-dim="ind" data-f="i1">Construction and Infrastructure</button><button class="uc-filter" data-dim="ind" data-f="i2">Manufacturing</button><button class="uc-filter" data-dim="ind" data-f="i3">Building Materials</button></div></div><div class="uc-frow"><div class="lab">Platform</div><div class="uc-filters" style="margin-top:0;"><button class="uc-filter on" data-dim="lens" data-f="all">All</button><button class="uc-filter" data-dim="lens" data-f="l0">Horizon</button><button class="uc-filter" data-dim="lens" data-f="l1">Pulse</button><button class="uc-filter" data-dim="lens" data-f="l2">Core</button><button class="uc-filter" data-dim="lens" data-f="l3">Ray</button></div></div><div class="uc-frow"><div class="lab">User group</div><div class="uc-filters" style="margin-top:0;"><button class="uc-filter on" data-dim="group" data-f="all">All</button><button class="uc-filter" data-dim="group" data-f="g0">Asset</button><button class="uc-filter" data-dim="group" data-f="g1">Compliance and quality</button><button class="uc-filter" data-dim="group" data-f="g2">Executive</button><button class="uc-filter" data-dim="group" data-f="g3">Growth and commercial</button><button class="uc-filter" data-dim="group" data-f="g4">Marketing and communications</button><button class="uc-filter" data-dim="group" data-f="g5">Operations</button><button class="uc-filter" data-dim="group" data-f="g6">Product and engineering</button><button class="uc-filter" data-dim="group" data-f="g7">Project and delivery</button></div></div></div>
     <button class="uc-clear" id="ucclear" hidden type="button">Clear all filters</button>
-    <div class="uc-grid" id="ucgrid"><article class="uc" id="uc-executive-planning-and-performance-visibility" data-tags="t0 a0 a1 a2 a3 a4 a5 g0 lHorizon lPulse lCore lRay">
-  <h3>Executive planning and performance visibility</h3>
-  <dl>
-    <dt>Typical users</dt><dd>Executives, finance leaders, business-unit leaders and operators</dd>
-    <dt>Inputs</dt><dd>Financial, operational, commercial, market and organizational inputs</dd>
-    <dt>Configured workflow</dt><dd>Define the executive view, connect supporting inputs, establish measures and organize recurring review activity.</dd>
-    <dt>Outputs and value</dt><dd>A coherent enterprise view with visible supporting context, priorities, performance and follow-through.</dd>
-  </dl>
-  <span class="uc-lens">Core, Ray, Horizon and Pulse</span>
-  <div class="uc-tags"><span class="uc-tag">Materials and Manufacturing</span><span class="uc-tag">Distribution and Logistics</span><span class="uc-tag">Executive and finance</span></div>
-</article>
-<article class="uc" id="uc-investment-resource-and-initiative-prioritization" data-tags="t0 a2 a0 a3 g0 lHorizon lPulse">
-  <h3>Investment, resource and initiative prioritization</h3>
-  <dl>
-    <dt>Typical users</dt><dd>Executives, finance, portfolio leaders and functional leadership</dd>
-    <dt>Inputs</dt><dd>Strategic objectives, initiatives, budgets, resources, market context, dependencies and expected value</dd>
-    <dt>Configured workflow</dt><dd>Compare initiatives, test assumptions, assess constraints and maintain the approved priority framework as conditions change.</dd>
-    <dt>Outputs and value</dt><dd>A transparent allocation framework, prioritized roadmap and continuing visibility into implementation.</dd>
-  </dl>
-  <span class="uc-lens">Horizon with Pulse execution</span>
-  <div class="uc-tags"><span class="uc-tag">Asset Owners and Investors</span><span class="uc-tag">Materials and Manufacturing</span><span class="uc-tag">Executive and finance</span></div>
-</article>
-<article class="uc" id="uc-regional-market-expansion" data-tags="t1 a0 a1 g1 lHorizon">
-  <h3>Regional market expansion</h3>
-  <dl>
-    <dt>Typical users</dt><dd>Executives, strategy, growth and business-development teams</dd>
-    <dt>Inputs</dt><dd>Market activity, geography, segments, competitors, customer types, projects and organizational capacity</dd>
-    <dt>Configured workflow</dt><dd>Model addressable markets, compare regions and segments, identify priority opportunities and connect them to growth activity.</dd>
-    <dt>Outputs and value</dt><dd>Focused market priorities, opportunity maps, growth plans and executive visibility.</dd>
-  </dl>
-  <span class="uc-lens">Horizon</span>
-  <div class="uc-tags"><span class="uc-tag">Materials and Manufacturing</span><span class="uc-tag">Distribution and Logistics</span><span class="uc-tag">Growth and commercial</span></div>
-</article>
-<article class="uc" id="uc-commercial-ecosystem-and-relationship-analysis" data-tags="t1 a2 a5 g1 lHorizon">
-  <h3>Commercial ecosystem and relationship analysis</h3>
-  <dl>
-    <dt>Typical users</dt><dd>Growth, partnership, investor-relations and stakeholder teams</dd>
-    <dt>Inputs</dt><dd>Organizations, investors, partners, owners, consultants, contractors, relationships, activity and external research</dd>
-    <dt>Configured workflow</dt><dd>Build the ecosystem, classify participants, map relationships and influence, monitor developments and coordinate engagement.</dd>
-    <dt>Outputs and value</dt><dd>A living ecosystem view that supports partner, investor, account and stakeholder development.</dd>
-  </dl>
-  <span class="uc-lens">Horizon</span>
-  <div class="uc-tags"><span class="uc-tag">Asset Owners and Investors</span><span class="uc-tag">Industry Institutions and Enablement</span><span class="uc-tag">Growth and commercial</span></div>
-</article>
-<article class="uc" id="uc-accounts-opportunities-tenders-and-proposals" data-tags="t1 a3 a0 g1 g4 lHorizon lPulse">
-  <h3>Accounts, opportunities, tenders and proposals</h3>
-  <dl>
-    <dt>Typical users</dt><dd>Sales, business development, estimating, commercial and leadership teams</dd>
-    <dt>Inputs</dt><dd>Accounts, relationships, opportunity information, tender documents, requirements, pricing and prior submissions</dd>
-    <dt>Configured workflow</dt><dd>Qualify the opportunity, coordinate contributors, compare requirements, develop the response and maintain follow-through.</dd>
-    <dt>Outputs and value</dt><dd>Stronger pursuit coordination, reusable knowledge, visible status and commercial continuity.</dd>
-  </dl>
-  <span class="uc-lens">Horizon with Pulse delivery inputs</span>
-  <div class="uc-tags"><span class="uc-tag">Construction and Professional Services</span><span class="uc-tag">Materials and Manufacturing</span><span class="uc-tag">Growth and commercial</span></div>
-</article>
-<article class="uc" id="uc-integrated-campaign-planning-and-execution" data-tags="t2 a0 a1 g2 lHorizon">
-  <h3>Integrated campaign planning and execution</h3>
-  <dl>
-    <dt>Typical users</dt><dd>Marketing, growth, sales, communications and subject experts</dd>
-    <dt>Inputs</dt><dd>Objectives, audiences, market context, content, channels, calendar, activity and response</dd>
-    <dt>Configured workflow</dt><dd>Develop the campaign plan, coordinate content and approvals, manage execution and connect engagement with commercial follow-up.</dd>
-    <dt>Outputs and value</dt><dd>Aligned campaigns, faster content coordination and clearer connection between activity and growth.</dd>
-  </dl>
-  <span class="uc-lens">Horizon</span>
-  <div class="uc-tags"><span class="uc-tag">Materials and Manufacturing</span><span class="uc-tag">Distribution and Logistics</span><span class="uc-tag">Marketing and communications</span></div>
-</article>
-<article class="uc" id="uc-events-members-and-stakeholder-programs" data-tags="t2 a5 g2 lHorizon">
-  <h3>Events, members and stakeholder programs</h3>
-  <dl>
-    <dt>Typical users</dt><dd>Associations, member organizations, public affairs, partnerships and event teams</dd>
-    <dt>Inputs</dt><dd>Stakeholder records, member context, event plans, speakers, content, communications, participation and follow-up</dd>
-    <dt>Configured workflow</dt><dd>Plan the program, coordinate contributors, manage engagement and preserve the relationship history for continuing activity.</dd>
-    <dt>Outputs and value</dt><dd>More coherent programs, stronger follow-up and lasting stakeholder context.</dd>
-  </dl>
-  <span class="uc-lens">Horizon</span>
-  <div class="uc-tags"><span class="uc-tag">Industry Institutions and Enablement</span><span class="uc-tag">Marketing and communications</span></div>
-</article>
-<article class="uc" id="uc-product-and-research-portfolio-coordination" data-tags="t3 a0 g3 lHorizon lPulse">
-  <h3>Product and research portfolio coordination</h3>
-  <dl>
-    <dt>Typical users</dt><dd>Product, research, engineering, commercialization and executive teams</dd>
-    <dt>Inputs</dt><dd>Programs, products, experiments, applications, resources, milestones, market context and partnerships</dd>
-    <dt>Configured workflow</dt><dd>Structure the portfolio, connect related work, coordinate milestones and resources, and maintain visibility across scientific, technical and commercial activity.</dd>
-    <dt>Outputs and value</dt><dd>Clearer portfolio priorities, stronger cross-functional coordination and preserved knowledge.</dd>
-  </dl>
-  <span class="uc-lens">Pulse with Horizon commercialization context</span>
-  <div class="uc-tags"><span class="uc-tag">Materials and Manufacturing</span><span class="uc-tag">Product and engineering</span></div>
-</article>
-<article class="uc" id="uc-estimating-quantity-take-offs-and-materials" data-tags="t3 a3 a0 g4 lPulse">
-  <h3>Estimating, quantity take-offs and materials</h3>
-  <dl>
-    <dt>Typical users</dt><dd>Estimators, commercial teams, project leaders, procurement and technical specialists</dd>
-    <dt>Inputs</dt><dd>Drawings, specifications, historical estimates, quantities, rates, materials, supplier inputs and scope revisions</dd>
-    <dt>Configured workflow</dt><dd>Extract and validate quantities, develop the estimate, compare revisions, prepare materials requirements and coordinate commercial review.</dd>
-    <dt>Outputs and value</dt><dd>Faster estimate development, visible assumptions, reusable benchmarks and stronger handover into delivery.</dd>
-  </dl>
-  <span class="uc-lens">Pulse</span>
-  <div class="uc-tags"><span class="uc-tag">Construction and Professional Services</span><span class="uc-tag">Materials and Manufacturing</span><span class="uc-tag">Project and delivery</span></div>
-</article>
-<article class="uc" id="uc-project-planning-resources-and-progress" data-tags="t3 a3 a2 g4 lPulse">
-  <h3>Project planning, resources and progress</h3>
-  <dl>
-    <dt>Typical users</dt><dd>Project executives, project managers, superintendents, planners, trades and owners</dd>
-    <dt>Inputs</dt><dd>Scope, schedule, milestones, resources, equipment, procurement, dependencies, constraints, progress and documents</dd>
-    <dt>Configured workflow</dt><dd>Connect the plan, coordinate resources and dependencies, monitor progress and maintain shared project visibility.</dd>
-    <dt>Outputs and value</dt><dd>Earlier constraint awareness, stronger coordination and a continuing record of project activity.</dd>
-  </dl>
-  <span class="uc-lens">Pulse</span>
-  <div class="uc-tags"><span class="uc-tag">Construction and Professional Services</span><span class="uc-tag">Asset Owners and Investors</span><span class="uc-tag">Project and delivery</span></div>
-</article>
-<article class="uc" id="uc-procurement-inventory-and-supplier-coordination" data-tags="t4 a1 a0 g5 lPulse">
-  <h3>Procurement, inventory and supplier coordination</h3>
-  <dl>
-    <dt>Typical users</dt><dd>Procurement, supply chain, finance, project and operations teams</dd>
-    <dt>Inputs</dt><dd>Suppliers, purchase commitments, materials, inventory movements, delivery dates, costs and operating requirements</dd>
-    <dt>Configured workflow</dt><dd>Coordinate requirements, compare suppliers, track commitments and inventory, and connect supply activity with projects and operations.</dd>
-    <dt>Outputs and value</dt><dd>Improved material visibility, supplier coordination, working-capital context and delivery readiness.</dd>
-  </dl>
-  <span class="uc-lens">Pulse</span>
-  <div class="uc-tags"><span class="uc-tag">Distribution and Logistics</span><span class="uc-tag">Materials and Manufacturing</span><span class="uc-tag">Operations and supply chain</span></div>
-</article>
-<article class="uc" id="uc-manufacturing-economics-and-production-performance" data-tags="t4 a0 g5 g0 lHorizon lPulse">
-  <h3>Manufacturing economics and production performance</h3>
-  <dl>
-    <dt>Typical users</dt><dd>Executives, finance, production, procurement, inventory and commercial teams</dd>
-    <dt>Inputs</dt><dd>Orders, production, recipes, materials, inventory, procurement, expenses, capacity and operating inputs</dd>
-    <dt>Configured workflow</dt><dd>Connect agreed source domains, define calculation and allocation structures, monitor performance and support recurring executive review.</dd>
-    <dt>Outputs and value</dt><dd>Traceable production economics, clearer cost and margin context, and stronger operational coordination.</dd>
-  </dl>
-  <span class="uc-lens">Pulse with Horizon commercial context</span>
-  <div class="uc-tags"><span class="uc-tag">Materials and Manufacturing</span><span class="uc-tag">Operations and supply chain</span></div>
-</article>
-<article class="uc" id="uc-asset-operations-maintenance-and-reliability" data-tags="t4 a4 a2 g6 lPulse">
-  <h3>Asset operations, maintenance and reliability</h3>
-  <dl>
-    <dt>Typical users</dt><dd>Asset owners, facility teams, maintenance, operations, finance and service providers</dd>
-    <dt>Inputs</dt><dd>Asset records, work history, inspections, operating readings, machine inputs, service requirements, costs and documents</dd>
-    <dt>Configured workflow</dt><dd>Organize asset context, prioritize work, coordinate maintenance and service activity, and maintain performance history.</dd>
-    <dt>Outputs and value</dt><dd>Improved reliability, coordinated work, stronger lifecycle knowledge and clearer asset-performance visibility.</dd>
-  </dl>
-  <span class="uc-lens">Pulse</span>
-  <div class="uc-tags"><span class="uc-tag">Asset Transactions and Operations</span><span class="uc-tag">Asset Owners and Investors</span><span class="uc-tag">Asset and facility</span></div>
-</article>
-<article class="uc" id="uc-regulatory-quality-and-compliance-workflows" data-tags="t5 a5 a3 g7 lPulse lCore">
-  <h3>Regulatory, quality and compliance workflows</h3>
-  <dl>
-    <dt>Typical users</dt><dd>Compliance, quality, legal, technical, operations and leadership teams</dd>
-    <dt>Inputs</dt><dd>Requirements, standards, policies, evidence, inspections, findings, responsibilities and actions</dd>
-    <dt>Configured workflow</dt><dd>Connect obligations to workflows, coordinate evidence and reviews, track follow-through and preserve the supporting record.</dd>
-    <dt>Outputs and value</dt><dd>More consistent compliance activity, visible accountability and accessible evidence.</dd>
-  </dl>
-  <span class="uc-lens">Pulse with Core governance</span>
-  <div class="uc-tags"><span class="uc-tag">Industry Institutions and Enablement</span><span class="uc-tag">Construction and Professional Services</span><span class="uc-tag">Compliance and quality</span></div>
-</article>
-<article class="uc" id="uc-document-intelligence-and-organizational-knowledge" data-tags="t5 a0 a1 a2 a3 a4 a5 g7 g3 lHorizon lPulse lCore lRay">
-  <h3>Document intelligence and organizational knowledge</h3>
-  <dl>
-    <dt>Typical users</dt><dd>Technical, project, commercial, operational and knowledge-management teams</dd>
-    <dt>Inputs</dt><dd>Documents, specifications, contracts, procedures, reports, correspondence, revisions and human expertise</dd>
-    <dt>Configured workflow</dt><dd>Ingest and classify material, extract relevant content, compare versions, connect information to active work and capture lessons learned.</dd>
-    <dt>Outputs and value</dt><dd>Faster access to relevant knowledge, stronger continuity and reduced recreation of prior work.</dd>
-  </dl>
-  <span class="uc-lens">Core, Ray, Horizon and Pulse</span>
-  <div class="uc-tags"><span class="uc-tag">Materials and Manufacturing</span><span class="uc-tag">Distribution and Logistics</span><span class="uc-tag">Compliance and quality</span></div>
-</article>
+    <div class="uc-grid" id="ucgrid"><article class="uc" id="uc-executive-planning-and-performance-visibility" data-tags="i0 l0 l1 l2 l3 g2">
+    <h3>Executive planning and performance visibility</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Executives, finance leaders, business-unit leaders and operators</dd>
+      <dt>Inputs</dt><dd>Financial, operational, commercial, market and organizational inputs</dd>
+      <dt>Configured workflow</dt><dd>Define the executive view, connect supporting inputs, establish measures and organize recurring review activity.</dd>
+      <dt>Outputs and value</dt><dd>A coherent enterprise view with visible supporting context, priorities, performance and follow-through.</dd>
+    </dl>
+    <span class="uc-lens">Core, Ray, Horizon and Pulse</span>
+    <div class="uc-tags"><span class="uc-tag">Across industries</span><span class="uc-tag">Executive</span></div>
+  </article>
+<article class="uc" id="uc-investment-resource-and-initiative-prioritization" data-tags="i0 l0 l1 g2">
+    <h3>Investment, resource and initiative prioritization</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Executives, finance, portfolio leaders and functional leadership</dd>
+      <dt>Inputs</dt><dd>Strategic objectives, initiatives, budgets, resources, market context, dependencies and expected value</dd>
+      <dt>Configured workflow</dt><dd>Compare initiatives, test assumptions, assess constraints and maintain the approved priority framework as conditions change.</dd>
+      <dt>Outputs and value</dt><dd>A transparent allocation framework, prioritized roadmap and continuing visibility into implementation.</dd>
+    </dl>
+    <span class="uc-lens">Horizon with Pulse execution</span>
+    <div class="uc-tags"><span class="uc-tag">Across industries</span><span class="uc-tag">Executive</span></div>
+  </article>
+<article class="uc" id="uc-regional-market-expansion" data-tags="i0 l0 g3">
+    <h3>Regional market expansion</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Executives, strategy, growth and business-development teams</dd>
+      <dt>Inputs</dt><dd>Market activity, geography, segments, competitors, customer types, projects and organizational capacity</dd>
+      <dt>Configured workflow</dt><dd>Model addressable markets, compare regions and segments, identify priority opportunities and connect them to growth activity.</dd>
+      <dt>Outputs and value</dt><dd>Focused market priorities, opportunity maps, growth plans and executive visibility.</dd>
+    </dl>
+    <span class="uc-lens">Horizon</span>
+    <div class="uc-tags"><span class="uc-tag">Across industries</span><span class="uc-tag">Growth and commercial</span></div>
+  </article>
+<article class="uc" id="uc-commercial-ecosystem-and-relationship-analysis" data-tags="i0 l0 g3">
+    <h3>Commercial ecosystem and relationship analysis</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Growth, partnership, investor-relations and stakeholder teams</dd>
+      <dt>Inputs</dt><dd>Organizations, investors, partners, owners, consultants, contractors, relationships, activity and external research</dd>
+      <dt>Configured workflow</dt><dd>Build the ecosystem, classify participants, map relationships and influence, monitor developments and coordinate engagement.</dd>
+      <dt>Outputs and value</dt><dd>A living ecosystem view that supports partner, investor, account and stakeholder development.</dd>
+    </dl>
+    <span class="uc-lens">Horizon</span>
+    <div class="uc-tags"><span class="uc-tag">Across industries</span><span class="uc-tag">Growth and commercial</span></div>
+  </article>
+<article class="uc" id="uc-accounts-opportunities-tenders-and-proposals" data-tags="i0 l0 l1 g3 g7">
+    <h3>Accounts, opportunities, tenders and proposals</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Sales, business development, estimating, commercial and leadership teams</dd>
+      <dt>Inputs</dt><dd>Accounts, relationships, opportunity information, tender documents, requirements, pricing and prior submissions</dd>
+      <dt>Configured workflow</dt><dd>Qualify the opportunity, coordinate contributors, compare requirements, develop the response and maintain follow-through.</dd>
+      <dt>Outputs and value</dt><dd>Stronger pursuit coordination, reusable knowledge, visible status and commercial continuity.</dd>
+    </dl>
+    <span class="uc-lens">Horizon with Pulse delivery inputs</span>
+    <div class="uc-tags"><span class="uc-tag">Across industries</span><span class="uc-tag">Growth and commercial</span><span class="uc-tag">Project and delivery</span></div>
+  </article>
+<article class="uc" id="uc-integrated-campaign-planning-and-execution" data-tags="i0 l0 g4">
+    <h3>Integrated campaign planning and execution</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Marketing, growth, sales, communications and subject experts</dd>
+      <dt>Inputs</dt><dd>Objectives, audiences, market context, content, channels, calendar, activity and response</dd>
+      <dt>Configured workflow</dt><dd>Develop the campaign plan, coordinate content and approvals, manage execution and connect engagement with commercial follow-up.</dd>
+      <dt>Outputs and value</dt><dd>Aligned campaigns, faster content coordination and clearer connection between activity and growth.</dd>
+    </dl>
+    <span class="uc-lens">Horizon</span>
+    <div class="uc-tags"><span class="uc-tag">Across industries</span><span class="uc-tag">Marketing and communications</span></div>
+  </article>
+<article class="uc" id="uc-events-members-and-stakeholder-programs" data-tags="i0 l0 g4">
+    <h3>Events, members and stakeholder programs</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Associations, member organizations, public affairs, partnerships and event teams</dd>
+      <dt>Inputs</dt><dd>Stakeholder records, member context, event plans, speakers, content, communications, participation and follow-up</dd>
+      <dt>Configured workflow</dt><dd>Plan the program, coordinate contributors, manage engagement and preserve the relationship history for continuing activity.</dd>
+      <dt>Outputs and value</dt><dd>More coherent programs, stronger follow-up and lasting stakeholder context.</dd>
+    </dl>
+    <span class="uc-lens">Horizon</span>
+    <div class="uc-tags"><span class="uc-tag">Across industries</span><span class="uc-tag">Marketing and communications</span></div>
+  </article>
+<article class="uc" id="uc-product-and-research-portfolio-coordination" data-tags="i0 l0 l1 g6">
+    <h3>Product and research portfolio coordination</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Product, research, engineering, commercialization and executive teams</dd>
+      <dt>Inputs</dt><dd>Programs, products, experiments, applications, resources, milestones, market context and partnerships</dd>
+      <dt>Configured workflow</dt><dd>Structure the portfolio, connect related work, coordinate milestones and resources, and maintain visibility across scientific, technical and commercial activity.</dd>
+      <dt>Outputs and value</dt><dd>Clearer portfolio priorities, stronger cross-functional coordination and preserved knowledge.</dd>
+    </dl>
+    <span class="uc-lens">Pulse with Horizon commercialization context</span>
+    <div class="uc-tags"><span class="uc-tag">Across industries</span><span class="uc-tag">Product and engineering</span></div>
+  </article>
+<article class="uc" id="uc-regulatory-quality-and-compliance-workflows" data-tags="i0 l1 l2 g1">
+    <h3>Regulatory, quality and compliance workflows</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Compliance, quality, legal, technical, operations and leadership teams</dd>
+      <dt>Inputs</dt><dd>Requirements, standards, policies, evidence, inspections, findings, responsibilities and actions</dd>
+      <dt>Configured workflow</dt><dd>Connect obligations to workflows, coordinate evidence and reviews, track follow-through and preserve the supporting record.</dd>
+      <dt>Outputs and value</dt><dd>More consistent compliance activity, visible accountability and accessible evidence.</dd>
+    </dl>
+    <span class="uc-lens">Pulse with Core governance</span>
+    <div class="uc-tags"><span class="uc-tag">Across industries</span><span class="uc-tag">Compliance and quality</span></div>
+  </article>
+<article class="uc" id="uc-document-intelligence-and-organizational-knowledge" data-tags="i0 l0 l1 l2 l3 g1 g6">
+    <h3>Document intelligence and organizational knowledge</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Technical, project, commercial, operational and knowledge-management teams</dd>
+      <dt>Inputs</dt><dd>Documents, specifications, contracts, procedures, reports, correspondence, revisions and human expertise</dd>
+      <dt>Configured workflow</dt><dd>Ingest and classify material, extract relevant content, compare versions, connect information to active work and capture lessons learned.</dd>
+      <dt>Outputs and value</dt><dd>Faster access to relevant knowledge, stronger continuity and reduced recreation of prior work.</dd>
+    </dl>
+    <span class="uc-lens">Core, Ray, Horizon and Pulse</span>
+    <div class="uc-tags"><span class="uc-tag">Across industries</span><span class="uc-tag">Compliance and quality</span><span class="uc-tag">Product and engineering</span></div>
+  </article>
+<article class="uc" id="uc-project-and-market-intelligence" data-tags="i1 l0 g3">
+    <h3>Project and market intelligence</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Executives, business development and regional managers</dd>
+      <dt>Inputs</dt><dd>Project announcements, tender notices, owner capital plans and competitor awards</dd>
+      <dt>Configured workflow</dt><dd>Compare regions, sectors and owners, and prioritize the projects to pursue</dd>
+      <dt>Outputs and value</dt><dd>A prioritized pipeline of upcoming projects, ranked by fit</dd>
+    </dl>
+    <span class="uc-lens">Horizon</span>
+    <div class="uc-tags"><span class="uc-tag">Construction and Infrastructure</span><span class="uc-tag">Growth and commercial</span></div>
+  </article>
+<article class="uc" id="uc-bid-qualification-and-pursuit-decisions" data-tags="i1 l0 g3">
+    <h3>Bid qualification and pursuit decisions</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Executives, business development, estimating and commercial leads</dd>
+      <dt>Inputs</dt><dd>Tender requirements, current workload, past performance, margin history and risk registers</dd>
+      <dt>Configured workflow</dt><dd>Assess fit, capacity and risk for each tender, and record the bid or no-bid decision</dd>
+      <dt>Outputs and value</dt><dd>Consistent bid decisions, visible reasoning and a pursuit list matched to capacity</dd>
+    </dl>
+    <span class="uc-lens">Horizon</span>
+    <div class="uc-tags"><span class="uc-tag">Construction and Infrastructure</span><span class="uc-tag">Growth and commercial</span></div>
+  </article>
+<article class="uc" id="uc-tenders-proposals-and-submissions" data-tags="i1 l0 g3">
+    <h3>Tenders, proposals and submissions</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Bid managers, business development, estimating and technical teams</dd>
+      <dt>Inputs</dt><dd>Tender documents, past proposals, project references, team CVs and the estimate</dd>
+      <dt>Configured workflow</dt><dd>Map requirements, assign contributors, draft responses and track clarifications through to submission</dd>
+      <dt>Outputs and value</dt><dd>Compliant submissions, reusable content and visible status across the bid team</dd>
+    </dl>
+    <span class="uc-lens">Horizon</span>
+    <div class="uc-tags"><span class="uc-tag">Construction and Infrastructure</span><span class="uc-tag">Growth and commercial</span></div>
+  </article>
+<article class="uc" id="uc-client-partner-and-joint-venture-relationships" data-tags="i1 l0 g3">
+    <h3>Client, partner and joint venture relationships</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Executives, business development and account leads</dd>
+      <dt>Inputs</dt><dd>Account history, contacts, joint venture records, subcontractor networks and past project outcomes</dd>
+      <dt>Configured workflow</dt><dd>Map relationships across clients and partners, compare partner fit and plan engagement for upcoming pursuits</dd>
+      <dt>Outputs and value</dt><dd>Account plans, partner shortlists and relationship continuity when people change roles</dd>
+    </dl>
+    <span class="uc-lens">Horizon</span>
+    <div class="uc-tags"><span class="uc-tag">Construction and Infrastructure</span><span class="uc-tag">Growth and commercial</span></div>
+  </article>
+<article class="uc" id="uc-estimating-quantity-take-offs-and-materials" data-tags="i1 l1 g7">
+    <h3>Estimating, quantity take-offs and materials</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Estimators, commercial teams, project leaders and procurement</dd>
+      <dt>Inputs</dt><dd>Drawings, specifications, historical estimates, quantities, rates and supplier prices</dd>
+      <dt>Configured workflow</dt><dd>Extract and validate quantities, build the estimate, compare revisions and prepare material requirements</dd>
+      <dt>Outputs and value</dt><dd>Visible assumptions, reusable benchmarks and a clear handover into delivery</dd>
+    </dl>
+    <span class="uc-lens">Pulse</span>
+    <div class="uc-tags"><span class="uc-tag">Construction and Infrastructure</span><span class="uc-tag">Project and delivery</span></div>
+  </article>
+<article class="uc" id="uc-project-planning-resources-and-progress" data-tags="i1 l1 g7">
+    <h3>Project planning, resources and progress</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Project managers, planners, site leads and operations executives</dd>
+      <dt>Inputs</dt><dd>Schedules, resource plans, crew and equipment availability, site reports and progress updates</dd>
+      <dt>Configured workflow</dt><dd>Connect the schedule to resources, track progress against plan and flag conflicts across projects</dd>
+      <dt>Outputs and value</dt><dd>Visible progress, earlier sight of resource conflicts and a shared view across projects</dd>
+    </dl>
+    <span class="uc-lens">Pulse</span>
+    <div class="uc-tags"><span class="uc-tag">Construction and Infrastructure</span><span class="uc-tag">Project and delivery</span></div>
+  </article>
+<article class="uc" id="uc-procurement-subcontracts-and-site-supply" data-tags="i1 l1 g5">
+    <h3>Procurement, subcontracts and site supply</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Procurement, project managers, commercial and site teams</dd>
+      <dt>Inputs</dt><dd>Procurement schedules, subcontract packages, supplier quotes, lead times and delivery records</dd>
+      <dt>Configured workflow</dt><dd>Plan packages against the schedule, compare quotes, track commitments and coordinate deliveries to site</dd>
+      <dt>Outputs and value</dt><dd>Packages tracked against the schedule, visible commitments and coordinated site supply</dd>
+    </dl>
+    <span class="uc-lens">Pulse</span>
+    <div class="uc-tags"><span class="uc-tag">Construction and Infrastructure</span><span class="uc-tag">Operations</span></div>
+  </article>
+<article class="uc" id="uc-variations-documents-and-handover-records" data-tags="i1 l1 g7">
+    <h3>Variations, documents and handover records</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Project managers, commercial managers, document controllers and owner representatives</dd>
+      <dt>Inputs</dt><dd>Contracts, drawings, RFIs, variations, approvals, test records and as-built documents</dd>
+      <dt>Configured workflow</dt><dd>Connect variations and approvals to scope and cost, and assemble handover records as work completes</dd>
+      <dt>Outputs and value</dt><dd>A traceable project record, clearer variation positions and complete handover documentation</dd>
+    </dl>
+    <span class="uc-lens">Pulse</span>
+    <div class="uc-tags"><span class="uc-tag">Construction and Infrastructure</span><span class="uc-tag">Project and delivery</span></div>
+  </article>
+<article class="uc" id="uc-demand-and-specification-intelligence" data-tags="i2 l0 g3">
+    <h3>Demand and specification intelligence</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Executives, sales, product and business development teams</dd>
+      <dt>Inputs</dt><dd>Project pipelines, specifications, contractor and specifier activity, distributor sales and competitor products</dd>
+      <dt>Configured workflow</dt><dd>Track the projects and specifiers driving demand, and connect them to accounts and product lines</dd>
+      <dt>Outputs and value</dt><dd>Earlier sight of specified demand and a pipeline linked to products and regions</dd>
+    </dl>
+    <span class="uc-lens">Horizon</span>
+    <div class="uc-tags"><span class="uc-tag">Manufacturing</span><span class="uc-tag">Growth and commercial</span></div>
+  </article>
+<article class="uc" id="uc-pricing-and-quote-management" data-tags="i2 l0 g3">
+    <h3>Pricing and quote management</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Sales, commercial, finance and production planning teams</dd>
+      <dt>Inputs</dt><dd>Customer requests, product costs, input prices, capacity, lead times and past quotes</dd>
+      <dt>Configured workflow</dt><dd>Build quotes against current cost and capacity, compare margin and record the price and delivery committed</dd>
+      <dt>Outputs and value</dt><dd>Quotes grounded in cost and capacity, visible margin and consistent pricing decisions</dd>
+    </dl>
+    <span class="uc-lens">Horizon</span>
+    <div class="uc-tags"><span class="uc-tag">Manufacturing</span><span class="uc-tag">Growth and commercial</span></div>
+  </article>
+<article class="uc" id="uc-distributor-dealer-and-key-account-coordination" data-tags="i2 l0 g3">
+    <h3>Distributor, dealer and key account coordination</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Channel managers, key account managers and regional sales teams</dd>
+      <dt>Inputs</dt><dd>Account records, distributor and dealer sales, stock positions, agreements and promotions</dd>
+      <dt>Configured workflow</dt><dd>Map channel partners and key accounts, track sell-through and plan account activity by region</dd>
+      <dt>Outputs and value</dt><dd>A shared view of each channel, account plans and continuity across the sales team</dd>
+    </dl>
+    <span class="uc-lens">Horizon</span>
+    <div class="uc-tags"><span class="uc-tag">Manufacturing</span><span class="uc-tag">Growth and commercial</span></div>
+  </article>
+<article class="uc" id="uc-product-and-market-portfolio-decisions" data-tags="i2 l0 g2">
+    <h3>Product and market portfolio decisions</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Executives, product, strategy and commercial teams</dd>
+      <dt>Inputs</dt><dd>Product margins, volumes, market demand, competitor ranges, codes and certification requirements</dd>
+      <dt>Configured workflow</dt><dd>Compare products and markets on demand, margin and fit, and prioritize where to develop, maintain or exit</dd>
+      <dt>Outputs and value</dt><dd>Clear portfolio priorities and product decisions connected to market evidence</dd>
+    </dl>
+    <span class="uc-lens">Horizon</span>
+    <div class="uc-tags"><span class="uc-tag">Manufacturing</span><span class="uc-tag">Executive</span></div>
+  </article>
+<article class="uc" id="uc-production-planning-and-capacity" data-tags="i2 l1 g5">
+    <h3>Production planning and capacity</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Production planners, plant managers and operations leads</dd>
+      <dt>Inputs</dt><dd>Order book, line capacity, shift patterns, material availability and maintenance plans</dd>
+      <dt>Configured workflow</dt><dd>Match orders to lines, shifts and materials, and flag capacity conflicts across plants</dd>
+      <dt>Outputs and value</dt><dd>A realistic production plan and visible capacity against commitments</dd>
+    </dl>
+    <span class="uc-lens">Pulse</span>
+    <div class="uc-tags"><span class="uc-tag">Manufacturing</span><span class="uc-tag">Operations</span></div>
+  </article>
+<article class="uc" id="uc-manufacturing-economics-and-production-performance" data-tags="i2 l1 g5">
+    <h3>Manufacturing economics and production performance</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Plant managers, operations, finance and executive teams</dd>
+      <dt>Inputs</dt><dd>Output, downtime, yield, scrap, energy use, labor and input costs</dd>
+      <dt>Configured workflow</dt><dd>Connect production data to unit cost, compare performance across lines and plants, and track against targets</dd>
+      <dt>Outputs and value</dt><dd>Visible unit cost, performance by line and plant, and cost read against commitments</dd>
+    </dl>
+    <span class="uc-lens">Pulse</span>
+    <div class="uc-tags"><span class="uc-tag">Manufacturing</span><span class="uc-tag">Operations</span></div>
+  </article>
+<article class="uc" id="uc-procurement-inventory-and-supplier-coordination" data-tags="i2 l1 g5">
+    <h3>Procurement, inventory and supplier coordination</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Procurement, supply chain, planning and warehouse teams</dd>
+      <dt>Inputs</dt><dd>Bills of materials, supplier records, lead times, purchase orders and stock levels</dd>
+      <dt>Configured workflow</dt><dd>Plan purchases against the order book, track supplier commitments and balance stock across sites</dd>
+      <dt>Outputs and value</dt><dd>Inputs aligned to production, visible supplier status and balanced inventory</dd>
+    </dl>
+    <span class="uc-lens">Pulse</span>
+    <div class="uc-tags"><span class="uc-tag">Manufacturing</span><span class="uc-tag">Operations</span></div>
+  </article>
+<article class="uc" id="uc-order-fulfillment-and-delivery-commitments" data-tags="i2 l1 g5">
+    <h3>Order fulfillment and delivery commitments</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Customer service, logistics, production and sales teams</dd>
+      <dt>Inputs</dt><dd>Confirmed orders, production status, dispatch schedules, carrier information and site delivery windows</dd>
+      <dt>Configured workflow</dt><dd>Track each order from confirmation through production and dispatch to delivery and installation</dd>
+      <dt>Outputs and value</dt><dd>Visible order status, delivery dates tied to production and fewer surprises for customers</dd>
+    </dl>
+    <span class="uc-lens">Pulse</span>
+    <div class="uc-tags"><span class="uc-tag">Manufacturing</span><span class="uc-tag">Operations</span></div>
+  </article>
+<article class="uc" id="uc-regional-demand-and-market-intelligence" data-tags="i3 l0 g3">
+    <h3>Regional demand and market intelligence</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Executives, sales, strategy and business development teams</dd>
+      <dt>Inputs</dt><dd>Construction and infrastructure activity, project pipelines, permits, public spending plans and customer orders</dd>
+      <dt>Configured workflow</dt><dd>Track demand drivers by market, compare regions and segments, and connect them to sales and production plans</dd>
+      <dt>Outputs and value</dt><dd>A view of demand by market and priorities connected to plant capacity</dd>
+    </dl>
+    <span class="uc-lens">Horizon</span>
+    <div class="uc-tags"><span class="uc-tag">Building Materials</span><span class="uc-tag">Growth and commercial</span></div>
+  </article>
+<article class="uc" id="uc-pricing-contracts-and-customer-commitments" data-tags="i3 l0 g3">
+    <h3>Pricing, contracts and customer commitments</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Sales, commercial, finance and plant leadership</dd>
+      <dt>Inputs</dt><dd>Customer contracts, price lists, volume commitments, plant costs, freight costs and capacity</dd>
+      <dt>Configured workflow</dt><dd>Assess price, volume and terms against cost and capacity, and record each commitment made</dd>
+      <dt>Outputs and value</dt><dd>Commitments grounded in cost and capacity, visible margin by customer and consistent pricing decisions</dd>
+    </dl>
+    <span class="uc-lens">Horizon</span>
+    <div class="uc-tags"><span class="uc-tag">Building Materials</span><span class="uc-tag">Growth and commercial</span></div>
+  </article>
+<article class="uc" id="uc-key-accounts-and-distribution-networks" data-tags="i3 l0 g3">
+    <h3>Key accounts and distribution networks</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Key account managers, regional sales and distribution teams</dd>
+      <dt>Inputs</dt><dd>Account records, contractor and distributor orders, delivery history, agreements and contacts</dd>
+      <dt>Configured workflow</dt><dd>Map key accounts and distribution partners, track orders and activity, and plan account coverage by region</dd>
+      <dt>Outputs and value</dt><dd>Account plans, a shared view of each network and continuity across the sales team</dd>
+    </dl>
+    <span class="uc-lens">Horizon</span>
+    <div class="uc-tags"><span class="uc-tag">Building Materials</span><span class="uc-tag">Growth and commercial</span></div>
+  </article>
+<article class="uc" id="uc-market-position-and-competitor-activity" data-tags="i3 l0 g2">
+    <h3>Market position and competitor activity</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Executives, strategy and commercial teams</dd>
+      <dt>Inputs</dt><dd>Competitor capacity, plant announcements, imports, market pricing and published market data</dd>
+      <dt>Configured workflow</dt><dd>Compare capacity, pricing and share across competing producers, and track changes by market</dd>
+      <dt>Outputs and value</dt><dd>A structured view of market position and competitor moves, connected to commercial plans</dd>
+    </dl>
+    <span class="uc-lens">Horizon</span>
+    <div class="uc-tags"><span class="uc-tag">Building Materials</span><span class="uc-tag">Executive</span></div>
+  </article>
+<article class="uc" id="uc-plant-performance-and-production-economics" data-tags="i3 l1 g5">
+    <h3>Plant performance and production economics</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Plant managers, operations, finance and executive teams</dd>
+      <dt>Inputs</dt><dd>Production output, downtime, energy and fuel use, raw material consumption and cost data</dd>
+      <dt>Configured workflow</dt><dd>Connect production data to unit cost, compare performance across lines and plants, and track against commitments</dd>
+      <dt>Outputs and value</dt><dd>Visible unit cost, performance by plant and production read against commercial commitments</dd>
+    </dl>
+    <span class="uc-lens">Pulse</span>
+    <div class="uc-tags"><span class="uc-tag">Building Materials</span><span class="uc-tag">Operations</span></div>
+  </article>
+<article class="uc" id="uc-asset-operations-maintenance-and-reliability" data-tags="i3 l1 g0">
+    <h3>Asset operations, maintenance and reliability</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Maintenance, reliability, plant and operations teams</dd>
+      <dt>Inputs</dt><dd>Equipment records, condition data, work orders, spare parts and maintenance history</dd>
+      <dt>Configured workflow</dt><dd>Plan maintenance around equipment condition and production needs, and track work through to completion</dd>
+      <dt>Outputs and value</dt><dd>Maintenance aligned to production, visible equipment status and a traceable maintenance record</dd>
+    </dl>
+    <span class="uc-lens">Pulse</span>
+    <div class="uc-tags"><span class="uc-tag">Building Materials</span><span class="uc-tag">Asset</span></div>
+  </article>
+<article class="uc" id="uc-raw-materials-fuel-and-inventory-coordination" data-tags="i3 l1 g5">
+    <h3>Raw materials, fuel and inventory coordination</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Procurement, quarry, plant planning and stores teams</dd>
+      <dt>Inputs</dt><dd>Quarry output, raw material and fuel stocks, supplier contracts, deliveries and consumption rates</dd>
+      <dt>Configured workflow</dt><dd>Balance raw material, fuel and stock levels against the production plan, and track supplier commitments</dd>
+      <dt>Outputs and value</dt><dd>Inputs aligned to production, visible stock positions and coordinated supply</dd>
+    </dl>
+    <span class="uc-lens">Pulse</span>
+    <div class="uc-tags"><span class="uc-tag">Building Materials</span><span class="uc-tag">Operations</span></div>
+  </article>
+<article class="uc" id="uc-dispatch-logistics-and-delivery" data-tags="i3 l1 g5">
+    <h3>Dispatch, logistics and delivery</h3>
+    <dl>
+      <dt>Typical users</dt><dd>Dispatch, logistics, sales and customer service teams</dd>
+      <dt>Inputs</dt><dd>Customer orders, product stock, loading schedules, fleet and carrier availability, and delivery records</dd>
+      <dt>Configured workflow</dt><dd>Connect orders to loading, transport and delivery, and track each order through to the customer</dd>
+      <dt>Outputs and value</dt><dd>Visible order and delivery status, and dispatch tied to stock and production</dd>
+    </dl>
+    <span class="uc-lens">Pulse</span>
+    <div class="uc-tags"><span class="uc-tag">Building Materials</span><span class="uc-tag">Operations</span></div>
+  </article>
 <div class="uc-ask" id="ucask">
       <div class="lab">Not listed here</div>
       <h3>Your workflow probably looks a little different</h3>
