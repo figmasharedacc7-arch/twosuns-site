@@ -148,6 +148,10 @@ CSS = r"""
   .bg-owners::before{background-image:url('area-owners.jpg');}
   .bg-cons-owners::before{background-image:url('cons-owners.jpg');}
   .bg-cons-logistics::before{background-image:url('cons-logistics.jpg');}
+  .bg-cons-contractors::before{background-image:url('cons-contractors.jpg');}
+  .bg-cons-trades::before{background-image:url('cons-trades.jpg');}
+  .bg-cons-design::before{background-image:url('cons-design.jpg');}
+  .bg-cons-assurance::before{background-image:url('cons-assurance.jpg');}
   .bg-construction::before{background-image:url('area-construction.jpg');}
   .bg-operations::before{background-image:url('area-operations.jpg');}
   .bg-institutions::before{background-image:url('area-institutions.jpg');}

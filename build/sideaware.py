@@ -36,16 +36,23 @@ PLAN = [
     ("cap-hero",          "r", 0.72, False, 1.30, 0.50),   # dark control room, needs a real lift
     ("uc-hero",           "r", 0.45, True,  1.02, 0.62),   # mirror so the pair sits right, frame low for the crane
     ("company-hero",      "r", 0.72, False, 1.02, 0.42),   # group already sits right, only a light touch
-    ("cons-hero",         "r", 0.32, True,  None, 0.75),   # mirror: the trio sits left in the original
-    ("cons-owners",       "l", 0.75, True,  None, 0.55),   # mirror: the trio sits right in the original
-    ("cons-logistics",    "l", 0.25, False, None, 0.50),   # golden hour, already on the palette
+    # Construction and Infrastructure, the hero plus its six sections. Side is set by
+    # the section layout, not by taste, so several of these have to be mirrored.
+    ("cons-hero",         "r", 0.30, True,  None, 0.75),   # trio sits left in the original
+    ("cons-owners",       "l", 0.74, True,  None, 0.55),   # trio sits right in the original
+    ("cons-contractors",  "r", 0.72, False, None, 0.50),   # hands and tablet already right
+    ("cons-trades",       "l", 0.26, False, None, 0.35),   # frame high, the worker reaches up
+    ("cons-design",       "r", 0.28, True,  None, 0.50),   # mirror puts the pair right, model left
+    ("cons-logistics",    "l", 0.26, False, None, 0.50),   # golden hour, already on the palette
+    ("cons-assurance",    "r", 0.62, False, None, 0.50),   # surveyors already weighted right
 ]
 WARM.add("plat-integration")
 WARM.add("plat-hero")
 WARM.add("cap-hero")
 WARM.add("uc-hero")
-MILD = {"area-operations", "fam-pulse", "area-owners", "company-hero", "cons-hero", "cons-owners",
-        "cons-logistics"}     # a gentle nudge, not the night-shot regrade
+MILD = {"area-operations", "fam-pulse", "area-owners", "company-hero",
+        "cons-hero", "cons-owners", "cons-logistics", "cons-trades",
+        "cons-design", "cons-assurance"}     # cons-contractors is already warm wood     # a gentle nudge, not the night-shot regrade
 
 TARGET = {"l": 0.34, "r": 0.66}   # pulled in from the edges so less width is thrown away
 MIN_KEEP = 0.90                    # never crop away more than this much width
