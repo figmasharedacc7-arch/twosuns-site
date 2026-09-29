@@ -37,12 +37,13 @@ PLAN = [
     ("uc-hero",           "r", 0.45, True,  1.02, 0.62),   # mirror so the pair sits right, frame low for the crane
     ("company-hero",      "r", 0.72, False, 1.02, 0.42),   # group already sits right, only a light touch
     ("cons-hero",         "r", 0.32, True,  None, 0.75),   # mirror: the trio sits left in the original
+    ("cons-owners",       "l", 0.75, True,  None, 0.55),   # mirror: the trio sits right in the original
 ]
 WARM.add("plat-integration")
 WARM.add("plat-hero")
 WARM.add("cap-hero")
 WARM.add("uc-hero")
-MILD = {"area-operations", "fam-pulse", "area-owners", "company-hero", "cons-hero"}     # a gentle nudge, not the night-shot regrade
+MILD = {"area-operations", "fam-pulse", "area-owners", "company-hero", "cons-hero", "cons-owners"}     # a gentle nudge, not the night-shot regrade
 
 TARGET = {"l": 0.34, "r": 0.66}   # pulled in from the edges so less width is thrown away
 MIN_KEEP = 0.90                    # never crop away more than this much width
