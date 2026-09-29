@@ -567,9 +567,9 @@ INDUSTRIES_HUB = dict(
          "construction and infrastructure, and manufacturing.",
     eyebrow="Industries",
     h1="The sectors we work in.",
-    sub="TwoSuns is built for the built industry, the organizations, institutions, materials, "
+    sub="TwoSuns serves the built industry, the organizations, institutions, materials, "
         "services and operating activities that create, supply, finance, construct, own, transact, "
-        "maintain and renew built assets. These are the sectors within it we work in today.",
+        "maintain and renew built assets.",
     primary="Discuss Your Needs",
     secondary="Explore the Platform",
     close_h="Your sector is not listed",
