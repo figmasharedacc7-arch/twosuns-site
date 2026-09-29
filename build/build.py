@@ -18,6 +18,7 @@ import teamgrid
 import film
 
 TEAM_TONE = "warm"   # the Company page portrait wash, see teamgrid.TONES
+FILM = False         # the home film band. Off on the live site, on in the local preview.
 
 OUT = "/Users/mohammaddidarulalam/Documents/Claude/twosuns-live"
 ACCENTS = ["var(--a1)", "var(--a2)", "var(--a3)", "var(--a4)", "var(--a5)", "var(--a6)"]
@@ -98,7 +99,6 @@ REQUIRED_CSS = [
     ".hero-vid", ".hero-vid video.on", ".uc-frow", ".acc-rel",   # hero, filters, cross links
     ".split2", ".steps", ".uc-grid",
     ".team{", ".tmb-img", ".tmb-mono", ".tmb-bio",   # Company portrait tiles
-    ".film-in{", ".film-stage", ".film-play",        # home film band
 ]
 
 
@@ -144,12 +144,13 @@ def build_home():
 """ % (e(d["eyebrow"]), e(d["h1"]), e(d["sub"]),
        btn(d["primary"][0]) + btn(d["secondary"][0], d["secondary"][1], ghost=True))
 
-    s += film.section(
-        "Watch", "See it in ninety seconds.", "Shared context. Coordinated action.",
-        "How enterprise context becomes coordinated action across Horizon, Core, "
-        "Pulse and Ray.",
-        "1:27 &nbsp;&middot;&nbsp; sound on",
-        "home-film.mp4", "home-film-poster.jpg")
+    if FILM:
+        s += film.section(
+            "Watch", "See it in ninety seconds.", "Shared context. Coordinated action.",
+            "How enterprise context becomes coordinated action across Horizon, Core, "
+            "Pulse and Ray.",
+            "1:27 &nbsp;&middot;&nbsp; sound on",
+            "home-film.mp4", "home-film-poster.jpg")
 
     s += """<section style="padding:88px 0 78px;">
   <div class="container">
@@ -209,7 +210,7 @@ def build_home():
 """ % (e(d["work_h"]), work, btn("Explore Use Cases", "use-cases.html", ghost=True))
 
     s += vid_band("vid-aerial", d["close_h"], d["close_p"], d["close_primary"], d["close_secondary"])
-    return s + herorot.SCRIPT + film.SCRIPT + TAIL
+    return s + herorot.SCRIPT + (film.SCRIPT if FILM else "") + TAIL
 
 
 # ================================================================ PLATFORM

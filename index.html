@@ -696,24 +696,6 @@
   </div>
 </section>
 <div class="sun-divider"></div>
-<section class="band-warm">
-  <div class="container film-in">
-    <div class="film-copy">
-      <div class="section-tag">Watch</div>
-      <h2 class="section-heading">See it in ninety seconds. <span class="film-accent">Shared context. Coordinated action.</span></h2>
-      <p class="section-sub">How enterprise context becomes coordinated action across Horizon, Core, Pulse and Ray.</p>
-      <div class="film-note">1:27 &nbsp;&middot;&nbsp; sound on</div>
-    </div>
-    <div class="film-stage">
-      <video src="home-film.mp4" poster="home-film-poster.jpg" preload="none" playsinline
-             aria-label="See it in ninety seconds. Shared context. Coordinated action."></video>
-      <img src="home-film-poster.jpg" alt="" width="1600" height="900" loading="lazy">
-      <button class="film-play" type="button" aria-label="Play the film">
-        <i aria-hidden="true"></i>
-      </button>
-    </div>
-  </div>
-</section>
 <section style="padding:88px 0 78px;">
   <div class="container">
     <div class="section-tag">The shift</div>
@@ -936,15 +918,7 @@
   else setTimeout(start, 1200);
 })();
 </script>
-<script>
-(function(){
-  var st=document.querySelector('.film-stage'); if(!st) return;
-  var b=st.querySelector('.film-play'), v=st.querySelector('video');
-  b.addEventListener('click',function(){
-    st.classList.add('on'); v.controls=true; v.play();
-  });
-})();
-</script><footer>
+<footer>
   <div class="container">
     <div class="foot-top">
       <div class="foot-brand">
