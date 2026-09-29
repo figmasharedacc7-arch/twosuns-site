@@ -52,6 +52,12 @@ PLAN = [
     ("mfg-offsite",       "r", 0.70, False, None, 0.40),
     ("mfg-supply",        "l", 0.52, True,  None, 0.45),   # mirror: the truck sits centre right
     ("mfg-support",       "r", 0.58, False, None, 0.25),   # anchor high, white hard hat
+    # Building Materials, its five sections. The hero stays as it is.
+    ("bm-extraction",     "l", 0.42, False, None, 0.45),
+    ("bm-process",        "r", 0.35, True,  None, 0.40),   # mirror: the glow sits at .35 and the file has no horizontal slack
+    ("bm-concrete",       "l", 0.45, False, None, 0.45),
+    ("bm-operations",     "r", 0.62, False, None, 0.15),   # anchor high, he is looking up
+    ("bm-distribution",   "l", 0.30, False, None, 0.45),
 ]
 WARM.add("plat-integration")
 WARM.add("plat-hero")
@@ -61,7 +67,8 @@ MILD = {"area-operations", "fam-pulse", "area-owners", "company-hero",
         "cons-hero", "cons-owners", "cons-logistics", "cons-trades",
         "cons-design", "cons-assurance",
         "mfg-products", "mfg-equipment", "mfg-systems", "mfg-offsite",
-        "mfg-supply", "mfg-support"}     # cons-contractors is already warm wood     # a gentle nudge, not the night-shot regrade
+        "mfg-supply", "mfg-support",
+        "bm-extraction", "bm-concrete", "bm-operations", "bm-distribution"}     # cons-contractors is already warm wood     # a gentle nudge, not the night-shot regrade
 
 TARGET = {"l": 0.34, "r": 0.66}   # pulled in from the edges so less width is thrown away
 # a section shows the whole width of the file, so horizontal framing is decided here
