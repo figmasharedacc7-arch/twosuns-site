@@ -28,7 +28,9 @@ SRC = "~/Downloads/Individual Headshots/"
 PLAN = [
     ("team-aiman",    "1. Aiman.jpg",     0.48, 0.25, 0.78),
     ("team-ryan",     "2. Ryan.jpg",      0.49, 0.28, 0.80),
-    ("team-michelle", "4. Michelle.jpg",  0.48, 0.31, 0.78),
+    # replaced 2026-10-01, the original is kept in preview/incoming
+    ("team-michelle", "~/Documents/Claude/twosuns-live/preview/incoming/michelle-new.jpg",
+                                         0.50, 0.24, 0.70),
     ("team-raihaan",  "5. Raihaan.jpg",   0.49, 0.29, 0.80),
     ("team-nour",     "6. Nour.jpg",      0.49, 0.31, 0.78),
     ("team-alexa",    "7. Alexa.jpg",     0.50, 0.28, 0.80),
@@ -37,7 +39,8 @@ PLAN = [
 
 
 def build(name, src, fx, fy, scale):
-    im = ImageOps.exif_transpose(Image.open(os.path.expanduser(SRC + src))).convert("RGB")
+    path = src if src.startswith(("~", "/")) else SRC + src
+    im = ImageOps.exif_transpose(Image.open(os.path.expanduser(path))).convert("RGB")
     sw, sh = im.size
     bh = int(sh * scale)
     bw = int(bh * W / float(H))
