@@ -97,7 +97,7 @@ REQUIRED_CSS = [
     ".imgsec{", ".imgsec-r::after", ".vidband",     # photo and video sections
     ".arx{", ".arx-fallback", ".arx-ray",            # architecture diagram
     ".hero-vid", ".hero-vid video.on", ".uc-frow", ".acc-rel",   # hero, filters, cross links
-    ".split2", ".steps", ".uc-grid",
+    ".split2", ".steps", ".uc-grid", ".uc-search", ".uc-qclear",
     ".team{", ".tmb-img", ".tmb-mono", ".tmb-bio",   # Company portrait tiles
 ]
 
@@ -552,7 +552,9 @@ def build_usecases():
         tags += ["g%d" % UC_GROUPS.index(g) for g in u["groups"]]
         chips = '<span class="uc-tag">%s</span>' % e(u["industry"])
         chips += "".join('<span class="uc-tag">%s</span>' % e(g) for g in u["groups"][:2])
-        cards += """<article class="uc" id="%s" data-tags="%s">
+        hay = " ".join([u["title"], u["users"], u["inputs"], u["workflow"], u["outputs"],
+                        u["platform"], u["industry"]] + list(u["groups"])).lower()
+        cards += """<article class="uc" id="%s" data-tags="%s" data-q="%s">
     <h3>%s</h3>
     <dl>
       <dt>Typical users</dt><dd>%s</dd>
@@ -563,7 +565,7 @@ def build_usecases():
     <span class="uc-lens">%s</span>
     <div class="uc-tags">%s</div>
   </article>
-""" % (uc_anchor(u["title"]), " ".join(tags), e(u["title"]), e(u["users"]), e(u["inputs"]),
+""" % (uc_anchor(u["title"]), " ".join(tags), e(hay), e(u["title"]), e(u["users"]), e(u["inputs"]),
        e(u["workflow"]), e(u["outputs"]), e(u["platform"]), chips)
 
     s += """<section id="workflows">
@@ -572,6 +574,13 @@ def build_usecases():
     <h2 class="section-heading">Representative workflows</h2>
     <p class="section-sub">Filter by objective, by where you sit in the built industry, by who does
       the work, or by the part of the platform involved. Filters combine.</p>
+    <div class="uc-search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.3-4.3"/></svg>
+      <input type="search" id="ucq" autocomplete="off" spellcheck="false"
+             aria-label="Search use cases"
+             placeholder="Search use cases, for example quality, dispatch or tendering">
+      <button class="uc-qclear" id="ucqclear" type="button" hidden aria-label="Clear search">&times;</button>
+    </div>
     <div class="uc-filterset">%s</div>
     <button class="uc-clear" id="ucclear" hidden type="button">Clear all filters</button>
     <div class="uc-grid" id="ucgrid">%s<div class="uc-ask" id="ucask">
@@ -581,6 +590,7 @@ def build_usecases():
         advance and we will show you how it would be configured.</p>
       %s
     </div></div>
+    <p class="uc-none" id="ucnone">Nothing matches that. Try a broader word, or clear the search.</p>
     <p class="form-note" id="uccount"></p>
   </div>
 </section>
@@ -606,25 +616,52 @@ def build_usecases():
       cnt=document.getElementById('uccount'),
       clear=document.getElementById('ucclear'),
       btns=[].slice.call(document.querySelectorAll('.uc-filter')),
+      q=document.getElementById('ucq'),
+      qclear=document.getElementById('ucqclear'),
+      none=document.getElementById('ucnone'),
       picked={theme:'all',area:'all',group:'all',lens:'all'};
+
+  // every word has to appear somewhere in the card, so two words narrow rather than widen
+  function terms(){
+    return (q && q.value ? q.value : '').toLowerCase().split(/\s+/).filter(Boolean);
+  }
 
   function apply(){
     var wanted=[];
     for(var k in picked){ if(picked[k]!=='all') wanted.push(picked[k]); }
-    var shown=0;
+    var words=terms(), shown=0;
     cards.forEach(function(c){
       var tags=' '+c.getAttribute('data-tags')+' ', ok=true;
       wanted.forEach(function(w){ if(tags.indexOf(' '+w+' ')<0) ok=false; });
+      if(ok && words.length){
+        var hay=c.getAttribute('data-q')||'';
+        words.forEach(function(w){ if(hay.indexOf(w)<0) ok=false; });
+      }
       c.style.display = ok ? '' : 'none';
       if(ok) shown++;
     });
     cnt.textContent = shown===cards.length
       ? 'Showing all ' + cards.length + ' use cases.'
       : 'Showing ' + shown + ' of ' + cards.length + ' use cases.';
-    clear.hidden = !wanted.length;
+    var active = wanted.length || words.length;
+    clear.hidden = !active;
+    if(qclear) qclear.hidden = !words.length;
+    if(none) none.classList.toggle('on', shown===0);
     var askc = document.getElementById('ucask');
-    if(askc) askc.classList.toggle('wide', shown % 2 === 0);
+    if(askc){
+      askc.style.display = shown===0 ? 'none' : '';
+      askc.classList.toggle('wide', shown % 2 === 0);
+    }
   }
+
+  if(q){
+    q.addEventListener('input', apply);
+    // Escape clears without having to reach for the button
+    q.addEventListener('keydown', function(ev){
+      if(ev.key==='Escape'){ q.value=''; apply(); }
+    });
+  }
+  if(qclear) qclear.addEventListener('click', function(){ q.value=''; q.focus(); apply(); });
 
   btns.forEach(function(b){
     b.addEventListener('click',function(){
@@ -639,6 +676,7 @@ def build_usecases():
 
   clear.addEventListener('click',function(){
     for(var k in picked) picked[k]='all';
+    if(q) q.value='';
     btns.forEach(function(o){ o.classList.toggle('on', o.getAttribute('data-f')==='all'); });
     apply();
   });
@@ -653,6 +691,7 @@ def build_usecases():
     // taller, such as the section wrapper, lands you in the middle of the grid.
     if(!el.classList.contains('uc')) return;
     for(var k in picked) picked[k]='all';
+    if(q) q.value='';
     btns.forEach(function(o){ o.classList.toggle('on', o.getAttribute('data-f')==='all'); });
     apply();
     el.classList.add('flash');

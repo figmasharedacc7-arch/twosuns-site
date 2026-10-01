@@ -331,6 +331,23 @@
 
   /* FILTER ROWS + CROSS LINKS */
   .uc-filterset{margin-top:26px;display:grid;gap:14px;}
+  /* USE CASE SEARCH */
+  .uc-search{position:relative;display:flex;align-items:center;margin:0 0 20px;max-width:560px;}
+  .uc-search svg{position:absolute;left:16px;width:17px;height:17px;flex:none;
+    stroke:var(--sun-deep);fill:none;stroke-width:2;opacity:.7;pointer-events:none;}
+  .uc-search input{width:100%;padding:13px 44px 13px 44px;font:inherit;font-size:15px;
+    color:var(--navy);background:#fff;border:1.5px solid rgba(224,100,30,.35);border-radius:26px;
+    outline:none;transition:border-color .15s ease,box-shadow .15s ease;}
+  .uc-search input::placeholder{color:#9A8E7C;}
+  .uc-search input:focus{border-color:var(--sun);box-shadow:0 0 0 4px rgba(224,100,30,.12);}
+  .uc-search input::-webkit-search-cancel-button{display:none;}
+  .uc-qclear{position:absolute;right:8px;width:28px;height:28px;border:0;border-radius:50%;
+    background:rgba(224,100,30,.12);color:var(--sun-deep);font-size:16px;line-height:1;
+    cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  .uc-qclear:hover{background:rgba(224,100,30,.22);}
+  .uc-none{display:none;margin-top:4px;font-size:15px;color:var(--text-muted);}
+  .uc-none.on{display:block;}
+
   .uc-frow{display:grid;grid-template-columns:132px 1fr;gap:14px;align-items:start;}
   .uc-frow > .lab{font-size:10.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;
     color:#8C6500;padding-top:9px;}
@@ -710,9 +727,16 @@
     <h2 class="section-heading">Representative workflows</h2>
     <p class="section-sub">Filter by objective, by where you sit in the built industry, by who does
       the work, or by the part of the platform involved. Filters combine.</p>
+    <div class="uc-search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.3-4.3"/></svg>
+      <input type="search" id="ucq" autocomplete="off" spellcheck="false"
+             aria-label="Search use cases"
+             placeholder="Search use cases, for example quality, dispatch or tendering">
+      <button class="uc-qclear" id="ucqclear" type="button" hidden aria-label="Clear search">&times;</button>
+    </div>
     <div class="uc-filterset"><div class="uc-frow"><div class="lab">Industry</div><div class="uc-filters" style="margin-top:0;"><button class="uc-filter on" data-dim="ind" data-f="all">All</button><button class="uc-filter" data-dim="ind" data-f="i0">Across industries</button><button class="uc-filter" data-dim="ind" data-f="i1">Construction and Infrastructure</button><button class="uc-filter" data-dim="ind" data-f="i2">Manufacturing</button><button class="uc-filter" data-dim="ind" data-f="i3">Building Materials</button></div></div><div class="uc-frow"><div class="lab">Platform</div><div class="uc-filters" style="margin-top:0;"><button class="uc-filter on" data-dim="lens" data-f="all">All</button><button class="uc-filter" data-dim="lens" data-f="l0">Horizon</button><button class="uc-filter" data-dim="lens" data-f="l1">Pulse</button><button class="uc-filter" data-dim="lens" data-f="l2">Core</button><button class="uc-filter" data-dim="lens" data-f="l3">Ray</button></div></div><div class="uc-frow"><div class="lab">User group</div><div class="uc-filters" style="margin-top:0;"><button class="uc-filter on" data-dim="group" data-f="all">All</button><button class="uc-filter" data-dim="group" data-f="g0">Asset</button><button class="uc-filter" data-dim="group" data-f="g1">Compliance and quality</button><button class="uc-filter" data-dim="group" data-f="g2">Executive</button><button class="uc-filter" data-dim="group" data-f="g3">Growth and commercial</button><button class="uc-filter" data-dim="group" data-f="g4">Marketing and communications</button><button class="uc-filter" data-dim="group" data-f="g5">Operations</button><button class="uc-filter" data-dim="group" data-f="g6">Product and engineering</button><button class="uc-filter" data-dim="group" data-f="g7">Project and delivery</button></div></div></div>
     <button class="uc-clear" id="ucclear" hidden type="button">Clear all filters</button>
-    <div class="uc-grid" id="ucgrid"><article class="uc" id="uc-executive-planning-and-performance-visibility" data-tags="i0 l0 l1 l2 l3 g2">
+    <div class="uc-grid" id="ucgrid"><article class="uc" id="uc-executive-planning-and-performance-visibility" data-tags="i0 l0 l1 l2 l3 g2" data-q="executive planning and performance visibility executives, finance leaders, business-unit leaders and operators financial, operational, commercial, market and organizational inputs define the executive view, connect supporting inputs, establish measures and organize recurring review activity. a coherent enterprise view with visible supporting context, priorities, performance and follow-through. core, ray, horizon and pulse across industries executive">
     <h3>Executive planning and performance visibility</h3>
     <dl>
       <dt>Typical users</dt><dd>Executives, finance leaders, business-unit leaders and operators</dd>
@@ -723,7 +747,7 @@
     <span class="uc-lens">Core, Ray, Horizon and Pulse</span>
     <div class="uc-tags"><span class="uc-tag">Across industries</span><span class="uc-tag">Executive</span></div>
   </article>
-<article class="uc" id="uc-investment-resource-and-initiative-prioritization" data-tags="i0 l0 l1 g2">
+<article class="uc" id="uc-investment-resource-and-initiative-prioritization" data-tags="i0 l0 l1 g2" data-q="investment, resource and initiative prioritization executives, finance, portfolio leaders and functional leadership strategic objectives, initiatives, budgets, resources, market context, dependencies and expected value compare initiatives, test assumptions, assess constraints and maintain the approved priority framework as conditions change. a transparent allocation framework, prioritized roadmap and continuing visibility into implementation. horizon with pulse execution across industries executive">
     <h3>Investment, resource and initiative prioritization</h3>
     <dl>
       <dt>Typical users</dt><dd>Executives, finance, portfolio leaders and functional leadership</dd>
@@ -734,7 +758,7 @@
     <span class="uc-lens">Horizon with Pulse execution</span>
     <div class="uc-tags"><span class="uc-tag">Across industries</span><span class="uc-tag">Executive</span></div>
   </article>
-<article class="uc" id="uc-regional-market-expansion" data-tags="i0 l0 g3">
+<article class="uc" id="uc-regional-market-expansion" data-tags="i0 l0 g3" data-q="regional market expansion executives, strategy, growth and business-development teams market activity, geography, segments, competitors, customer types, projects and organizational capacity model addressable markets, compare regions and segments, identify priority opportunities and connect them to growth activity. focused market priorities, opportunity maps, growth plans and executive visibility. horizon across industries growth and commercial">
     <h3>Regional market expansion</h3>
     <dl>
       <dt>Typical users</dt><dd>Executives, strategy, growth and business-development teams</dd>
@@ -745,7 +769,7 @@
     <span class="uc-lens">Horizon</span>
     <div class="uc-tags"><span class="uc-tag">Across industries</span><span class="uc-tag">Growth and commercial</span></div>
   </article>
-<article class="uc" id="uc-commercial-ecosystem-and-relationship-analysis" data-tags="i0 l0 g3">
+<article class="uc" id="uc-commercial-ecosystem-and-relationship-analysis" data-tags="i0 l0 g3" data-q="commercial ecosystem and relationship analysis growth, partnership, investor-relations and stakeholder teams organizations, investors, partners, owners, consultants, contractors, relationships, activity and external research build the ecosystem, classify participants, map relationships and influence, monitor developments and coordinate engagement. a living ecosystem view that supports partner, investor, account and stakeholder development. horizon across industries growth and commercial">
     <h3>Commercial ecosystem and relationship analysis</h3>
     <dl>
       <dt>Typical users</dt><dd>Growth, partnership, investor-relations and stakeholder teams</dd>
@@ -756,7 +780,7 @@
     <span class="uc-lens">Horizon</span>
     <div class="uc-tags"><span class="uc-tag">Across industries</span><span class="uc-tag">Growth and commercial</span></div>
   </article>
-<article class="uc" id="uc-accounts-opportunities-tenders-and-proposals" data-tags="i0 l0 l1 g3 g7">
+<article class="uc" id="uc-accounts-opportunities-tenders-and-proposals" data-tags="i0 l0 l1 g3 g7" data-q="accounts, opportunities, tenders and proposals sales, business development, estimating, commercial and leadership teams accounts, relationships, opportunity information, tender documents, requirements, pricing and prior submissions qualify the opportunity, coordinate contributors, compare requirements, develop the response and maintain follow-through. stronger pursuit coordination, reusable knowledge, visible status and commercial continuity. horizon with pulse delivery inputs across industries growth and commercial project and delivery">
     <h3>Accounts, opportunities, tenders and proposals</h3>
     <dl>
       <dt>Typical users</dt><dd>Sales, business development, estimating, commercial and leadership teams</dd>
@@ -767,7 +791,7 @@
     <span class="uc-lens">Horizon with Pulse delivery inputs</span>
     <div class="uc-tags"><span class="uc-tag">Across industries</span><span class="uc-tag">Growth and commercial</span><span class="uc-tag">Project and delivery</span></div>
   </article>
-<article class="uc" id="uc-integrated-campaign-planning-and-execution" data-tags="i0 l0 g4">
+<article class="uc" id="uc-integrated-campaign-planning-and-execution" data-tags="i0 l0 g4" data-q="integrated campaign planning and execution marketing, growth, sales, communications and subject experts objectives, audiences, market context, content, channels, calendar, activity and response develop the campaign plan, coordinate content and approvals, manage execution and connect engagement with commercial follow-up. aligned campaigns, faster content coordination and clearer connection between activity and growth. horizon across industries marketing and communications">
     <h3>Integrated campaign planning and execution</h3>
     <dl>
       <dt>Typical users</dt><dd>Marketing, growth, sales, communications and subject experts</dd>
@@ -778,7 +802,7 @@
     <span class="uc-lens">Horizon</span>
     <div class="uc-tags"><span class="uc-tag">Across industries</span><span class="uc-tag">Marketing and communications</span></div>
   </article>
-<article class="uc" id="uc-events-members-and-stakeholder-programs" data-tags="i0 l0 g4">
+<article class="uc" id="uc-events-members-and-stakeholder-programs" data-tags="i0 l0 g4" data-q="events, members and stakeholder programs associations, member organizations, public affairs, partnerships and event teams stakeholder records, member context, event plans, speakers, content, communications, participation and follow-up plan the program, coordinate contributors, manage engagement and preserve the relationship history for continuing activity. more coherent programs, stronger follow-up and lasting stakeholder context. horizon across industries marketing and communications">
     <h3>Events, members and stakeholder programs</h3>
     <dl>
       <dt>Typical users</dt><dd>Associations, member organizations, public affairs, partnerships and event teams</dd>
@@ -789,7 +813,7 @@
     <span class="uc-lens">Horizon</span>
     <div class="uc-tags"><span class="uc-tag">Across industries</span><span class="uc-tag">Marketing and communications</span></div>
   </article>
-<article class="uc" id="uc-product-and-research-portfolio-coordination" data-tags="i0 l0 l1 g6">
+<article class="uc" id="uc-product-and-research-portfolio-coordination" data-tags="i0 l0 l1 g6" data-q="product and research portfolio coordination product, research, engineering, commercialization and executive teams programs, products, experiments, applications, resources, milestones, market context and partnerships structure the portfolio, connect related work, coordinate milestones and resources, and maintain visibility across scientific, technical and commercial activity. clearer portfolio priorities, stronger cross-functional coordination and preserved knowledge. pulse with horizon commercialization context across industries product and engineering">
     <h3>Product and research portfolio coordination</h3>
     <dl>
       <dt>Typical users</dt><dd>Product, research, engineering, commercialization and executive teams</dd>
@@ -800,7 +824,7 @@
     <span class="uc-lens">Pulse with Horizon commercialization context</span>
     <div class="uc-tags"><span class="uc-tag">Across industries</span><span class="uc-tag">Product and engineering</span></div>
   </article>
-<article class="uc" id="uc-regulatory-quality-and-compliance-workflows" data-tags="i0 l1 l2 g1">
+<article class="uc" id="uc-regulatory-quality-and-compliance-workflows" data-tags="i0 l1 l2 g1" data-q="regulatory, quality and compliance workflows compliance, quality, legal, technical, operations and leadership teams requirements, standards, policies, evidence, inspections, findings, responsibilities and actions connect obligations to workflows, coordinate evidence and reviews, track follow-through and preserve the supporting record. more consistent compliance activity, visible accountability and accessible evidence. pulse with core governance across industries compliance and quality">
     <h3>Regulatory, quality and compliance workflows</h3>
     <dl>
       <dt>Typical users</dt><dd>Compliance, quality, legal, technical, operations and leadership teams</dd>
@@ -811,7 +835,7 @@
     <span class="uc-lens">Pulse with Core governance</span>
     <div class="uc-tags"><span class="uc-tag">Across industries</span><span class="uc-tag">Compliance and quality</span></div>
   </article>
-<article class="uc" id="uc-document-intelligence-and-organizational-knowledge" data-tags="i0 l0 l1 l2 l3 g1 g6">
+<article class="uc" id="uc-document-intelligence-and-organizational-knowledge" data-tags="i0 l0 l1 l2 l3 g1 g6" data-q="document intelligence and organizational knowledge technical, project, commercial, operational and knowledge-management teams documents, specifications, contracts, procedures, reports, correspondence, revisions and human expertise ingest and classify material, extract relevant content, compare versions, connect information to active work and capture lessons learned. faster access to relevant knowledge, stronger continuity and reduced recreation of prior work. core, ray, horizon and pulse across industries compliance and quality product and engineering">
     <h3>Document intelligence and organizational knowledge</h3>
     <dl>
       <dt>Typical users</dt><dd>Technical, project, commercial, operational and knowledge-management teams</dd>
@@ -822,7 +846,7 @@
     <span class="uc-lens">Core, Ray, Horizon and Pulse</span>
     <div class="uc-tags"><span class="uc-tag">Across industries</span><span class="uc-tag">Compliance and quality</span><span class="uc-tag">Product and engineering</span></div>
   </article>
-<article class="uc" id="uc-construction-project-and-market-intelligence" data-tags="i1 l0 g3">
+<article class="uc" id="uc-construction-project-and-market-intelligence" data-tags="i1 l0 g3" data-q="project and market intelligence executives, business development and regional managers project announcements, tender notices, owner capital plans and competitor awards compare regions, sectors and owners, and prioritize the projects to pursue a prioritized pipeline of upcoming projects, ranked by fit horizon construction and infrastructure growth and commercial">
     <h3>Project and market intelligence</h3>
     <dl>
       <dt>Typical users</dt><dd>Executives, business development and regional managers</dd>
@@ -833,7 +857,7 @@
     <span class="uc-lens">Horizon</span>
     <div class="uc-tags"><span class="uc-tag">Construction and Infrastructure</span><span class="uc-tag">Growth and commercial</span></div>
   </article>
-<article class="uc" id="uc-construction-bid-qualification-and-pursuit-decisions" data-tags="i1 l0 g3">
+<article class="uc" id="uc-construction-bid-qualification-and-pursuit-decisions" data-tags="i1 l0 g3" data-q="bid qualification and pursuit decisions executives, business development, estimating and commercial leads tender requirements, current workload, past performance, margin history and risk registers assess fit, capacity and risk for each tender, and record the bid or no-bid decision consistent bid decisions, visible reasoning and a pursuit list matched to capacity horizon construction and infrastructure growth and commercial">
     <h3>Bid qualification and pursuit decisions</h3>
     <dl>
       <dt>Typical users</dt><dd>Executives, business development, estimating and commercial leads</dd>
@@ -844,7 +868,7 @@
     <span class="uc-lens">Horizon</span>
     <div class="uc-tags"><span class="uc-tag">Construction and Infrastructure</span><span class="uc-tag">Growth and commercial</span></div>
   </article>
-<article class="uc" id="uc-construction-tenders-proposals-and-submissions" data-tags="i1 l0 g3">
+<article class="uc" id="uc-construction-tenders-proposals-and-submissions" data-tags="i1 l0 g3" data-q="tenders, proposals and submissions bid managers, business development, estimating and technical teams tender documents, past proposals, project references, team cvs and the estimate map requirements, assign contributors, draft responses and track clarifications through to submission compliant submissions, reusable content and visible status across the bid team horizon construction and infrastructure growth and commercial">
     <h3>Tenders, proposals and submissions</h3>
     <dl>
       <dt>Typical users</dt><dd>Bid managers, business development, estimating and technical teams</dd>
@@ -855,7 +879,7 @@
     <span class="uc-lens">Horizon</span>
     <div class="uc-tags"><span class="uc-tag">Construction and Infrastructure</span><span class="uc-tag">Growth and commercial</span></div>
   </article>
-<article class="uc" id="uc-construction-client-partner-and-joint-venture-relationships" data-tags="i1 l0 g3">
+<article class="uc" id="uc-construction-client-partner-and-joint-venture-relationships" data-tags="i1 l0 g3" data-q="client, partner and joint venture relationships executives, business development and account leads account history, contacts, joint venture records, subcontractor networks and past project outcomes map relationships across clients and partners, compare partner fit and plan engagement for upcoming pursuits account plans, partner shortlists and relationship continuity when people change roles horizon construction and infrastructure growth and commercial">
     <h3>Client, partner and joint venture relationships</h3>
     <dl>
       <dt>Typical users</dt><dd>Executives, business development and account leads</dd>
@@ -866,7 +890,7 @@
     <span class="uc-lens">Horizon</span>
     <div class="uc-tags"><span class="uc-tag">Construction and Infrastructure</span><span class="uc-tag">Growth and commercial</span></div>
   </article>
-<article class="uc" id="uc-construction-estimating-quantity-take-offs-and-materials" data-tags="i1 l1 g7">
+<article class="uc" id="uc-construction-estimating-quantity-take-offs-and-materials" data-tags="i1 l1 g7" data-q="estimating, quantity take-offs and materials estimators, commercial teams, project leaders and procurement drawings, specifications, historical estimates, quantities, rates and supplier prices extract and validate quantities, build the estimate, compare revisions and prepare material requirements visible assumptions, reusable benchmarks and a clear handover into delivery pulse construction and infrastructure project and delivery">
     <h3>Estimating, quantity take-offs and materials</h3>
     <dl>
       <dt>Typical users</dt><dd>Estimators, commercial teams, project leaders and procurement</dd>
@@ -877,7 +901,7 @@
     <span class="uc-lens">Pulse</span>
     <div class="uc-tags"><span class="uc-tag">Construction and Infrastructure</span><span class="uc-tag">Project and delivery</span></div>
   </article>
-<article class="uc" id="uc-construction-project-planning-resources-and-progress" data-tags="i1 l1 g7">
+<article class="uc" id="uc-construction-project-planning-resources-and-progress" data-tags="i1 l1 g7" data-q="project planning, resources and progress project managers, planners, site leads and operations executives schedules, resource plans, crew and equipment availability, site reports and progress updates connect the schedule to resources, track progress against plan and flag conflicts across projects visible progress, earlier sight of resource conflicts and a shared view across projects pulse construction and infrastructure project and delivery">
     <h3>Project planning, resources and progress</h3>
     <dl>
       <dt>Typical users</dt><dd>Project managers, planners, site leads and operations executives</dd>
@@ -888,7 +912,7 @@
     <span class="uc-lens">Pulse</span>
     <div class="uc-tags"><span class="uc-tag">Construction and Infrastructure</span><span class="uc-tag">Project and delivery</span></div>
   </article>
-<article class="uc" id="uc-construction-procurement-subcontracts-and-site-supply" data-tags="i1 l1 g5">
+<article class="uc" id="uc-construction-procurement-subcontracts-and-site-supply" data-tags="i1 l1 g5" data-q="procurement, subcontracts and site supply procurement, project managers, commercial and site teams procurement schedules, subcontract packages, supplier quotes, lead times and delivery records plan packages against the schedule, compare quotes, track commitments and coordinate deliveries to site packages tracked against the schedule, visible commitments and coordinated site supply pulse construction and infrastructure operations">
     <h3>Procurement, subcontracts and site supply</h3>
     <dl>
       <dt>Typical users</dt><dd>Procurement, project managers, commercial and site teams</dd>
@@ -899,7 +923,7 @@
     <span class="uc-lens">Pulse</span>
     <div class="uc-tags"><span class="uc-tag">Construction and Infrastructure</span><span class="uc-tag">Operations</span></div>
   </article>
-<article class="uc" id="uc-construction-variations-documents-and-handover-records" data-tags="i1 l1 g7">
+<article class="uc" id="uc-construction-variations-documents-and-handover-records" data-tags="i1 l1 g7" data-q="variations, documents and handover records project managers, commercial managers, document controllers and owner representatives contracts, drawings, rfis, variations, approvals, test records and as-built documents connect variations and approvals to scope and cost, and assemble handover records as work completes a traceable project record, clearer variation positions and complete handover documentation pulse construction and infrastructure project and delivery">
     <h3>Variations, documents and handover records</h3>
     <dl>
       <dt>Typical users</dt><dd>Project managers, commercial managers, document controllers and owner representatives</dd>
@@ -910,7 +934,7 @@
     <span class="uc-lens">Pulse</span>
     <div class="uc-tags"><span class="uc-tag">Construction and Infrastructure</span><span class="uc-tag">Project and delivery</span></div>
   </article>
-<article class="uc" id="uc-manufacturing-demand-and-specification-intelligence" data-tags="i2 l0 g3">
+<article class="uc" id="uc-manufacturing-demand-and-specification-intelligence" data-tags="i2 l0 g3" data-q="demand and specification intelligence executives, sales, product and business development teams project pipelines, specifications, contractor and specifier activity, distributor sales and competitor products track the projects and specifiers driving demand, and connect them to accounts and product lines earlier sight of specified demand and a pipeline linked to products and regions horizon manufacturing growth and commercial">
     <h3>Demand and specification intelligence</h3>
     <dl>
       <dt>Typical users</dt><dd>Executives, sales, product and business development teams</dd>
@@ -921,7 +945,7 @@
     <span class="uc-lens">Horizon</span>
     <div class="uc-tags"><span class="uc-tag">Manufacturing</span><span class="uc-tag">Growth and commercial</span></div>
   </article>
-<article class="uc" id="uc-manufacturing-pricing-and-quote-management" data-tags="i2 l0 g3">
+<article class="uc" id="uc-manufacturing-pricing-and-quote-management" data-tags="i2 l0 g3" data-q="pricing and quote management sales, commercial, finance and production planning teams customer requests, product costs, input prices, capacity, lead times and past quotes build quotes against current cost and capacity, compare margin and record the price and delivery committed quotes grounded in cost and capacity, visible margin and consistent pricing decisions horizon manufacturing growth and commercial">
     <h3>Pricing and quote management</h3>
     <dl>
       <dt>Typical users</dt><dd>Sales, commercial, finance and production planning teams</dd>
@@ -932,7 +956,7 @@
     <span class="uc-lens">Horizon</span>
     <div class="uc-tags"><span class="uc-tag">Manufacturing</span><span class="uc-tag">Growth and commercial</span></div>
   </article>
-<article class="uc" id="uc-manufacturing-distributor-dealer-and-key-account-coordination" data-tags="i2 l0 g3">
+<article class="uc" id="uc-manufacturing-distributor-dealer-and-key-account-coordination" data-tags="i2 l0 g3" data-q="distributor, dealer and key account coordination channel managers, key account managers and regional sales teams account records, distributor and dealer sales, stock positions, agreements and promotions map channel partners and key accounts, track sell-through and plan account activity by region a shared view of each channel, account plans and continuity across the sales team horizon manufacturing growth and commercial">
     <h3>Distributor, dealer and key account coordination</h3>
     <dl>
       <dt>Typical users</dt><dd>Channel managers, key account managers and regional sales teams</dd>
@@ -943,7 +967,7 @@
     <span class="uc-lens">Horizon</span>
     <div class="uc-tags"><span class="uc-tag">Manufacturing</span><span class="uc-tag">Growth and commercial</span></div>
   </article>
-<article class="uc" id="uc-manufacturing-product-and-market-portfolio-decisions" data-tags="i2 l0 g2">
+<article class="uc" id="uc-manufacturing-product-and-market-portfolio-decisions" data-tags="i2 l0 g2" data-q="product and market portfolio decisions executives, product, strategy and commercial teams product margins, volumes, market demand, competitor ranges, codes and certification requirements compare products and markets on demand, margin and fit, and prioritize where to develop, maintain or exit clear portfolio priorities and product decisions connected to market evidence horizon manufacturing executive">
     <h3>Product and market portfolio decisions</h3>
     <dl>
       <dt>Typical users</dt><dd>Executives, product, strategy and commercial teams</dd>
@@ -954,7 +978,7 @@
     <span class="uc-lens">Horizon</span>
     <div class="uc-tags"><span class="uc-tag">Manufacturing</span><span class="uc-tag">Executive</span></div>
   </article>
-<article class="uc" id="uc-manufacturing-production-planning-and-capacity" data-tags="i2 l1 g5">
+<article class="uc" id="uc-manufacturing-production-planning-and-capacity" data-tags="i2 l1 g5" data-q="production planning and capacity production planners, plant managers and operations leads order book, line capacity, shift patterns, material availability and maintenance plans match orders to lines, shifts and materials, and flag capacity conflicts across plants a realistic production plan and visible capacity against commitments pulse manufacturing operations">
     <h3>Production planning and capacity</h3>
     <dl>
       <dt>Typical users</dt><dd>Production planners, plant managers and operations leads</dd>
@@ -965,7 +989,7 @@
     <span class="uc-lens">Pulse</span>
     <div class="uc-tags"><span class="uc-tag">Manufacturing</span><span class="uc-tag">Operations</span></div>
   </article>
-<article class="uc" id="uc-manufacturing-manufacturing-economics-and-production-performance" data-tags="i2 l1 g5">
+<article class="uc" id="uc-manufacturing-manufacturing-economics-and-production-performance" data-tags="i2 l1 g5" data-q="manufacturing economics and production performance plant managers, operations, finance and executive teams output, downtime, yield, scrap, energy use, labor and input costs connect production data to unit cost, compare performance across lines and plants, and track against targets visible unit cost, performance by line and plant, and cost read against commitments pulse manufacturing operations">
     <h3>Manufacturing economics and production performance</h3>
     <dl>
       <dt>Typical users</dt><dd>Plant managers, operations, finance and executive teams</dd>
@@ -976,7 +1000,7 @@
     <span class="uc-lens">Pulse</span>
     <div class="uc-tags"><span class="uc-tag">Manufacturing</span><span class="uc-tag">Operations</span></div>
   </article>
-<article class="uc" id="uc-manufacturing-procurement-inventory-and-supplier-coordination" data-tags="i2 l1 g5">
+<article class="uc" id="uc-manufacturing-procurement-inventory-and-supplier-coordination" data-tags="i2 l1 g5" data-q="procurement, inventory and supplier coordination procurement, supply chain, planning and warehouse teams bills of materials, supplier records, lead times, purchase orders and stock levels plan purchases against the order book, track supplier commitments and balance stock across sites inputs aligned to production, visible supplier status and balanced inventory pulse manufacturing operations">
     <h3>Procurement, inventory and supplier coordination</h3>
     <dl>
       <dt>Typical users</dt><dd>Procurement, supply chain, planning and warehouse teams</dd>
@@ -987,7 +1011,7 @@
     <span class="uc-lens">Pulse</span>
     <div class="uc-tags"><span class="uc-tag">Manufacturing</span><span class="uc-tag">Operations</span></div>
   </article>
-<article class="uc" id="uc-manufacturing-order-fulfillment-and-delivery-commitments" data-tags="i2 l1 g5">
+<article class="uc" id="uc-manufacturing-order-fulfillment-and-delivery-commitments" data-tags="i2 l1 g5" data-q="order fulfillment and delivery commitments customer service, logistics, production and sales teams confirmed orders, production status, dispatch schedules, carrier information and site delivery windows track each order from confirmation through production and dispatch to delivery and installation visible order status, delivery dates tied to production and fewer surprises for customers pulse manufacturing operations">
     <h3>Order fulfillment and delivery commitments</h3>
     <dl>
       <dt>Typical users</dt><dd>Customer service, logistics, production and sales teams</dd>
@@ -998,7 +1022,7 @@
     <span class="uc-lens">Pulse</span>
     <div class="uc-tags"><span class="uc-tag">Manufacturing</span><span class="uc-tag">Operations</span></div>
   </article>
-<article class="uc" id="uc-building-materials-regional-demand-and-market-intelligence" data-tags="i3 l0 g3">
+<article class="uc" id="uc-building-materials-regional-demand-and-market-intelligence" data-tags="i3 l0 g3" data-q="regional demand and market intelligence executives, sales, strategy and business development teams construction and infrastructure activity, project pipelines, permits, public spending plans and customer orders track demand drivers by market, compare regions and segments, and connect them to sales and production plans a view of demand by market and priorities connected to plant capacity horizon building materials growth and commercial">
     <h3>Regional demand and market intelligence</h3>
     <dl>
       <dt>Typical users</dt><dd>Executives, sales, strategy and business development teams</dd>
@@ -1009,7 +1033,7 @@
     <span class="uc-lens">Horizon</span>
     <div class="uc-tags"><span class="uc-tag">Building Materials</span><span class="uc-tag">Growth and commercial</span></div>
   </article>
-<article class="uc" id="uc-building-materials-pricing-contracts-and-customer-commitments" data-tags="i3 l0 g3">
+<article class="uc" id="uc-building-materials-pricing-contracts-and-customer-commitments" data-tags="i3 l0 g3" data-q="pricing, contracts and customer commitments sales, commercial, finance and plant leadership customer contracts, price lists, volume commitments, plant costs, freight costs and capacity assess price, volume and terms against cost and capacity, and record each commitment made commitments grounded in cost and capacity, visible margin by customer and consistent pricing decisions horizon building materials growth and commercial">
     <h3>Pricing, contracts and customer commitments</h3>
     <dl>
       <dt>Typical users</dt><dd>Sales, commercial, finance and plant leadership</dd>
@@ -1020,7 +1044,7 @@
     <span class="uc-lens">Horizon</span>
     <div class="uc-tags"><span class="uc-tag">Building Materials</span><span class="uc-tag">Growth and commercial</span></div>
   </article>
-<article class="uc" id="uc-building-materials-key-accounts-and-distribution-networks" data-tags="i3 l0 g3">
+<article class="uc" id="uc-building-materials-key-accounts-and-distribution-networks" data-tags="i3 l0 g3" data-q="key accounts and distribution networks key account managers, regional sales and distribution teams account records, contractor and distributor orders, delivery history, agreements and contacts map key accounts and distribution partners, track orders and activity, and plan account coverage by region account plans, a shared view of each network and continuity across the sales team horizon building materials growth and commercial">
     <h3>Key accounts and distribution networks</h3>
     <dl>
       <dt>Typical users</dt><dd>Key account managers, regional sales and distribution teams</dd>
@@ -1031,7 +1055,7 @@
     <span class="uc-lens">Horizon</span>
     <div class="uc-tags"><span class="uc-tag">Building Materials</span><span class="uc-tag">Growth and commercial</span></div>
   </article>
-<article class="uc" id="uc-building-materials-market-position-and-competitor-activity" data-tags="i3 l0 g2">
+<article class="uc" id="uc-building-materials-market-position-and-competitor-activity" data-tags="i3 l0 g2" data-q="market position and competitor activity executives, strategy and commercial teams competitor capacity, plant announcements, imports, market pricing and published market data compare capacity, pricing and share across competing producers, and track changes by market a structured view of market position and competitor moves, connected to commercial plans horizon building materials executive">
     <h3>Market position and competitor activity</h3>
     <dl>
       <dt>Typical users</dt><dd>Executives, strategy and commercial teams</dd>
@@ -1042,7 +1066,7 @@
     <span class="uc-lens">Horizon</span>
     <div class="uc-tags"><span class="uc-tag">Building Materials</span><span class="uc-tag">Executive</span></div>
   </article>
-<article class="uc" id="uc-building-materials-plant-performance-and-production-economics" data-tags="i3 l1 g5">
+<article class="uc" id="uc-building-materials-plant-performance-and-production-economics" data-tags="i3 l1 g5" data-q="plant performance and production economics plant managers, operations, finance and executive teams production output, downtime, resource use, raw material consumption and cost data connect production data to unit cost, compare performance across lines and plants, and track against commitments visible unit cost, performance by plant and production read against commercial commitments pulse building materials operations">
     <h3>Plant performance and production economics</h3>
     <dl>
       <dt>Typical users</dt><dd>Plant managers, operations, finance and executive teams</dd>
@@ -1053,7 +1077,7 @@
     <span class="uc-lens">Pulse</span>
     <div class="uc-tags"><span class="uc-tag">Building Materials</span><span class="uc-tag">Operations</span></div>
   </article>
-<article class="uc" id="uc-building-materials-asset-operations-maintenance-and-reliability" data-tags="i3 l1 g0">
+<article class="uc" id="uc-building-materials-asset-operations-maintenance-and-reliability" data-tags="i3 l1 g0" data-q="asset operations, maintenance and reliability maintenance, reliability, plant and operations teams equipment records, condition data, work orders, spare parts and maintenance history plan maintenance around equipment condition and production needs, and track work through to completion maintenance aligned to production, visible equipment status and a traceable maintenance record pulse building materials asset">
     <h3>Asset operations, maintenance and reliability</h3>
     <dl>
       <dt>Typical users</dt><dd>Maintenance, reliability, plant and operations teams</dd>
@@ -1064,7 +1088,7 @@
     <span class="uc-lens">Pulse</span>
     <div class="uc-tags"><span class="uc-tag">Building Materials</span><span class="uc-tag">Asset</span></div>
   </article>
-<article class="uc" id="uc-building-materials-raw-materials-and-inventory-coordination" data-tags="i3 l1 g5">
+<article class="uc" id="uc-building-materials-raw-materials-and-inventory-coordination" data-tags="i3 l1 g5" data-q="raw materials and inventory coordination procurement, quarry, plant planning and stores teams quarry output, raw material stocks, supplier contracts, deliveries and consumption rates balance raw material and stock levels against the production plan, and track supplier commitments inputs aligned to production, visible stock positions and coordinated supply pulse building materials operations">
     <h3>Raw materials and inventory coordination</h3>
     <dl>
       <dt>Typical users</dt><dd>Procurement, quarry, plant planning and stores teams</dd>
@@ -1075,7 +1099,7 @@
     <span class="uc-lens">Pulse</span>
     <div class="uc-tags"><span class="uc-tag">Building Materials</span><span class="uc-tag">Operations</span></div>
   </article>
-<article class="uc" id="uc-building-materials-dispatch-logistics-and-delivery" data-tags="i3 l1 g5">
+<article class="uc" id="uc-building-materials-dispatch-logistics-and-delivery" data-tags="i3 l1 g5" data-q="dispatch, logistics and delivery dispatch, logistics, sales and customer service teams customer orders, product stock, loading schedules, fleet and carrier availability, and delivery records connect orders to loading, transport and delivery, and track each order through to the customer visible order and delivery status, and dispatch tied to stock and production pulse building materials operations">
     <h3>Dispatch, logistics and delivery</h3>
     <dl>
       <dt>Typical users</dt><dd>Dispatch, logistics, sales and customer service teams</dd>
@@ -1093,6 +1117,7 @@
         advance and we will show you how it would be configured.</p>
       <a class="btn-ghost" href="discuss.html?ask=Describe+Your+Workflow">Describe Your Workflow</a>
     </div></div>
+    <p class="uc-none" id="ucnone">Nothing matches that. Try a broader word, or clear the search.</p>
     <p class="form-note" id="uccount"></p>
   </div>
 </section>
@@ -1117,25 +1142,52 @@
       cnt=document.getElementById('uccount'),
       clear=document.getElementById('ucclear'),
       btns=[].slice.call(document.querySelectorAll('.uc-filter')),
+      q=document.getElementById('ucq'),
+      qclear=document.getElementById('ucqclear'),
+      none=document.getElementById('ucnone'),
       picked={theme:'all',area:'all',group:'all',lens:'all'};
+
+  // every word has to appear somewhere in the card, so two words narrow rather than widen
+  function terms(){
+    return (q && q.value ? q.value : '').toLowerCase().split(/\s+/).filter(Boolean);
+  }
 
   function apply(){
     var wanted=[];
     for(var k in picked){ if(picked[k]!=='all') wanted.push(picked[k]); }
-    var shown=0;
+    var words=terms(), shown=0;
     cards.forEach(function(c){
       var tags=' '+c.getAttribute('data-tags')+' ', ok=true;
       wanted.forEach(function(w){ if(tags.indexOf(' '+w+' ')<0) ok=false; });
+      if(ok && words.length){
+        var hay=c.getAttribute('data-q')||'';
+        words.forEach(function(w){ if(hay.indexOf(w)<0) ok=false; });
+      }
       c.style.display = ok ? '' : 'none';
       if(ok) shown++;
     });
     cnt.textContent = shown===cards.length
       ? 'Showing all ' + cards.length + ' use cases.'
       : 'Showing ' + shown + ' of ' + cards.length + ' use cases.';
-    clear.hidden = !wanted.length;
+    var active = wanted.length || words.length;
+    clear.hidden = !active;
+    if(qclear) qclear.hidden = !words.length;
+    if(none) none.classList.toggle('on', shown===0);
     var askc = document.getElementById('ucask');
-    if(askc) askc.classList.toggle('wide', shown % 2 === 0);
+    if(askc){
+      askc.style.display = shown===0 ? 'none' : '';
+      askc.classList.toggle('wide', shown % 2 === 0);
+    }
   }
+
+  if(q){
+    q.addEventListener('input', apply);
+    // Escape clears without having to reach for the button
+    q.addEventListener('keydown', function(ev){
+      if(ev.key==='Escape'){ q.value=''; apply(); }
+    });
+  }
+  if(qclear) qclear.addEventListener('click', function(){ q.value=''; q.focus(); apply(); });
 
   btns.forEach(function(b){
     b.addEventListener('click',function(){
@@ -1150,6 +1202,7 @@
 
   clear.addEventListener('click',function(){
     for(var k in picked) picked[k]='all';
+    if(q) q.value='';
     btns.forEach(function(o){ o.classList.toggle('on', o.getAttribute('data-f')==='all'); });
     apply();
   });
@@ -1164,6 +1217,7 @@
     // taller, such as the section wrapper, lands you in the middle of the grid.
     if(!el.classList.contains('uc')) return;
     for(var k in picked) picked[k]='all';
+    if(q) q.value='';
     btns.forEach(function(o){ o.classList.toggle('on', o.getAttribute('data-f')==='all'); });
     apply();
     el.classList.add('flash');
