@@ -248,7 +248,7 @@ COMPANY = dict(
             ("Sara ElElimy", "Director, Analytics", "team-sara.jpg",
              "Sara leads analytics and business discovery, translating enterprise priorities, workflows and inputs "
              "into structured platform requirements and outputs."),
-            ("Bhupat Patel", "Senior Full-Stack Engineer",
+            ("Bhupat Patel", "Senior Full-Stack Engineer", "team-bhupat.jpg",
              "Bhupat develops enterprise application capabilities, interfaces and integrations across the TwoSuns platform."),
             ("Omar Ezzar", "Product Engineer",
              "Omar supports product engineering, configuration and the implementation of platform experiences "

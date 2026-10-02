@@ -35,6 +35,8 @@ PLAN = [
     ("team-nour",     "6. Nour.jpg",      0.49, 0.31, 0.78),
     ("team-alexa",    "7. Alexa.jpg",     0.50, 0.28, 0.80),
     ("team-sara",     "8. Sara.jpg",      0.49, 0.32, 0.78),
+    ("team-bhupat",   "~/Documents/Claude/twosuns-live/preview/incoming/bhupat.jpg",
+                                          0.52, 0.31, 0.92),
 ]
 
 
