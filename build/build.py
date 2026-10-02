@@ -909,7 +909,9 @@ def build_discuss():
 def build_events():
     d = EVENTS
     s = head(d["title"], d["desc"], "events.html") + chrome_nav("events.html")
-    s += (hero(d, wide=True) % (btn(d["primary"]) + btn(d["secondary"], ghost=True)))
+    s += (hero(d, wide=True).replace('<section class="hero wide"',
+                                     '<section class="hero wide hero-photo wall-events"')
+          % (btn(d["primary"]) + btn(d["secondary"], ghost=True)))
 
     cards = ""
     # soonest first, so the page opens on what is actually next

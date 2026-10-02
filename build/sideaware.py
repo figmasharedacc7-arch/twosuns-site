@@ -59,6 +59,7 @@ PLAN = [
     ("bm-concrete",       "l", 0.45, False, None, 0.45),
     ("bm-operations",     "r", 0.60, False, None, 0.30),   # sunlit plant, the tower needs its top
     ("bm-distribution",   "l", 0.30, False, None, 0.45),
+    ("events-hero",       "r", 0.62, False, None, 0.45),   # the Events page hero
 ]
 WARM.add("plat-integration")
 WARM.add("plat-hero")
@@ -70,7 +71,7 @@ MILD = {"area-operations", "fam-pulse", "area-owners", "company-hero",
         "cons-design", "cons-assurance",
         "mfg-products", "mfg-equipment", "mfg-systems", "mfg-offsite",
         "mfg-supply", "mfg-support",
-        "bm-extraction", "bm-concrete", "bm-operations", "bm-distribution"}     # cons-contractors is already warm wood     # a gentle nudge, not the night-shot regrade
+        "bm-extraction", "bm-concrete", "bm-operations", "bm-distribution", "events-hero"}     # cons-contractors is already warm wood     # a gentle nudge, not the night-shot regrade
 
 TARGET = {"l": 0.34, "r": 0.66}   # pulled in from the edges so less width is thrown away
 # a section shows the whole width of the file, so horizontal framing is decided here
