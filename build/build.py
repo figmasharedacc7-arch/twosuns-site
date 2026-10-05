@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Render the TwoSuns 7 page site from the master copy."""
 import os, sys, html, urllib.parse
+import datetime as _dt
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import theme
@@ -97,7 +98,7 @@ REQUIRED_CSS = [
     ".imgsec{", ".imgsec-r::after", ".vidband",     # photo and video sections
     ".arx{", ".arx-fallback", ".arx-ray",            # architecture diagram
     ".hero-vid", ".hero-vid video.on", ".uc-frow", ".acc-rel",   # hero, filters, cross links
-    ".split2", ".steps", ".uc-grid", ".uc-search", ".uc-qclear",
+    ".split2", ".steps", ".uc-grid", ".uc-search", ".uc-qclear", ".evplist", ".evp{",
     ".team{", ".tmb-img", ".tmb-mono", ".tmb-bio",   # Company portrait tiles
 ]
 
@@ -913,14 +914,21 @@ def build_events():
                                      '<section class="hero wide hero-photo wall-events"')
           % (btn(d["primary"]) + btn(d["secondary"], ghost=True)))
 
+    # an event is past once its end date has gone. Split at build time so the page
+    # cannot sit there in future tense about something that already happened, the
+    # way it did for five events through September 2026.
+    today = _dt.date.today().isoformat()
+    upcoming = sorted([i for i in d["items"] if i["ends"] >= today], key=lambda x: x["ends"])
+    past = sorted([i for i in d["items"] if i["ends"] < today], key=lambda x: x["ends"], reverse=True)
+
     cards = ""
     # soonest first, so the page opens on what is actually next
-    for it in sorted(d["items"], key=lambda x: x["ends"]):
+    for it in upcoming:
         more = ('<a class="ev-more" href="%s" target="_blank" rel="noopener">%s</a>'
                 % (e(it["url"]), e(it["link"]))) if it["url"] else ""
         cards += """<article class="ev" data-ends="%s">
   <div class="ev-when">
-    <div class="d">%s</div>
+    <div class="d"><time datetime="%s">%s</time></div>
     <div class="w">%s</div>
   </div>
   <div class="ev-body">
@@ -931,10 +939,11 @@ def build_events():
     </div>
   </div>
 </article>
-""" % (e(it["ends"]), e(it["dates"]), e(it["venue"]), e(it["heading"]), e(it["body"]),
-       ask("Meet at " + it["name"]), more)
+""" % (e(it["ends"]), e(it["ends"]), e(it["dates"]), e(it["venue"]), e(it["heading"]),
+       e(it["body"]), ask("Meet at " + it["name"]), more)
 
-    s += """<section>
+    if upcoming:
+        s += """<section>
   <div class="container">
     <div class="section-tag">Where to find us</div>
     <h2 class="section-heading">Upcoming events</h2>
@@ -944,6 +953,42 @@ def build_events():
   </div>
 </section>
 """ % cards
+    else:
+        s += """<section>
+  <div class="container">
+    <div class="section-tag">Where to find us</div>
+    <h2 class="section-heading">Nothing on the calendar right now</h2>
+    <p class="section-sub">We are between events. Email
+      <a href="mailto:info@twosuns.ai" style="color:var(--sun-deep);font-weight:700;">info@twosuns.ai</a>
+      and we will let you know where we are next, or arrange a conversation in the meantime.</p>
+  </div>
+</section>
+"""
+
+    # past events keep their name, dates and venue but drop the body, which is
+    # written in the future tense and would read wrong once the date has gone
+    if past:
+        rows = ""
+        for it in past:
+            more = ('<a class="ev-more" href="%s" target="_blank" rel="noopener">%s</a>'
+                    % (e(it["url"]), e(it["link"]))) if it["url"] else ""
+            rows += """<li class="evp">
+      <div class="evp-n">%s</div>
+      <div class="evp-d"><time datetime="%s">%s</time></div>
+      <div class="evp-v">%s</div>
+      <div class="evp-l">%s</div>
+    </li>
+""" % (e(it["name"]), e(it["ends"]), e(it["dates"]), e(it["venue"]), more)
+        s += """<section class="band-alt">
+  <div class="container">
+    <div class="section-tag">Already happened</div>
+    <h2 class="section-heading">Where we have been</h2>
+    <p class="section-sub">If we met at one of these and the conversation is still open,
+      pick it back up.</p>
+    <ul class="evplist">%s</ul>
+  </div>
+</section>
+""" % rows
 
     s += cta_band(d["close_h"], d["close_p"], d["close_primary"], d["close_secondary"])
 

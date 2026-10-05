@@ -328,6 +328,20 @@ CSS = r"""
   /* FILTER ROWS + CROSS LINKS */
   .uc-filterset{margin-top:26px;display:grid;gap:14px;}
   /* USE CASE SEARCH */
+  /* PAST EVENTS */
+  .evplist{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:10px;}
+  .evp{display:grid;grid-template-columns:1.5fr 1fr 1.6fr auto;gap:18px;align-items:baseline;
+    background:#fff;border:1px solid var(--border-soft);border-radius:12px;padding:16px 20px;}
+  .evp-n{font-size:15.5px;font-weight:800;color:var(--navy);}
+  .evp-d{font-size:14px;font-weight:700;color:var(--sun-deep);white-space:nowrap;}
+  .evp-v{font-size:14px;color:var(--text-muted);}
+  .evp-l{font-size:13.5px;white-space:nowrap;}
+
+  @media(max-width:900px){
+    .evp{grid-template-columns:1fr;gap:5px;}
+    .evp-d{white-space:normal;}
+  }
+
   .uc-search{position:relative;display:flex;align-items:center;margin:0 0 20px;max-width:560px;}
   .uc-search svg{position:absolute;left:16px;width:17px;height:17px;flex:none;
     stroke:var(--sun-deep);fill:none;stroke-width:2;opacity:.7;pointer-events:none;}
