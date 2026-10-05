@@ -80,8 +80,153 @@ def strip(x):
     return ' '.join(re.sub(r'<[^>]+>', '', x).split())
 
 
+# ---------------------------------------------------------------------------
+# The legal copy is lifted verbatim out of the old Nexsun site, which sold a
+# commodity and energy market intelligence product. Nobody wrote legal pages
+# for TwoSuns at the rebrand, so these two pages still described that product
+# on a live site selling enterprise software to the built industry.
+#
+# Everything below removes a statement that is not true of TwoSuns, or adds a
+# disclosure that was missing. Nothing here rewrites an actual legal provision:
+# liability, warranties, indemnification, confidentiality and governing law are
+# untouched and still need a lawyer's read. Each entry is (page, old, new),
+# and new = "" means delete. Every one must match exactly once or the build
+# fails, so a change upstream cannot silently skip a fix.
+# ---------------------------------------------------------------------------
+FIXES = [
+    # 1. The old site's chat widget and cookie banner leaked into the extracted
+    #    copy as ordinary paragraphs. They are chrome, not legal text, and the
+    #    chat line describes the wrong product.
+    ("both", "<p>Typically replies within 1 business day</p>", ""),
+    ("both", '<p>\U0001F44B Welcome to <strong>TwoSuns</strong>, the decision layer for '
+             'traded markets.How can we help you today?</p>', ""),
+    ("both", '<p>\U0001F36A We use cookies to improve your experience, analyze site traffic, '
+             'and personalize content. By clicking <strong>Accept All</strong>, you agree to '
+             'our use of cookies. Privacy Policy \u00b7 Cookie Policy</p>', ""),
+
+    # 2. Privacy 2.3 described commodity, energy and financial market searches,
+    #    watchlists and market intelligence exports. None of that is TwoSuns.
+    ("privacy",
+     "<h3>2.3 Market Data Queries</h3>\n<ul><li>Queries submitted to TwoSuns's AI intelligence "
+     "capabilities, including commodity, energy, and financial market search inputs</li>"
+     "<li>Saved reports, watchlists, and dashboard configurations associated with your account</li>"
+     "<li>Export and download activity of market intelligence outputs</li></ul>",
+     "<h3>2.3 Platform Content and Queries</h3>\n<ul><li>Information you and your organization "
+     "submit to or connect with the platform, including documents, records and operational data "
+     "from your own systems</li><li>Queries and instructions submitted to the platform's "
+     "intelligence and workflow capabilities</li><li>Saved views, configurations and reports "
+     "associated with your account</li><li>Export and download activity of platform outputs</li></ul>"),
+
+    # 3. LeadLander runs on every page of this website and was disclosed nowhere.
+    ("privacy",
+     "<p>We use cookies and similar tracking technologies to operate and improve our Services. "
+     "For a full description of the cookies we use and how to manage your preferences, please "
+     "see our Cookie Policy.</p>",
+     "<p>We use cookies and similar tracking technologies to operate and improve our Services.</p>\n"
+     "<p>On this website we also use LeadLander, a visitor identification service. It records "
+     "information such as IP address, the organization associated with that address, the pages "
+     "visited and session activity, and we use it to understand which organizations are "
+     "interested in TwoSuns. It runs in a cookieless mode and does not place cookies on your "
+     "device. If you would prefer we did not record your visits, write to "
+     '<a href="mailto:privacy@twosuns.ai">privacy@twosuns.ai</a>.</p>'),
+
+    # 4. Securities language. TwoSuns does not produce financial research, so
+    #    these describe obligations and risks that do not arise.
+    ("terms",
+     "<li>Using Platform outputs to facilitate market manipulation or insider trading</li>", ""),
+    ("terms",
+     "<li>Representing Platform-generated intelligence as independently verified financial "
+     "research or advice to third parties</li>",
+     "<li>Representing Platform outputs as independently verified professional advice to "
+     "third parties</li>"),
+    ("terms",
+     "<li>Reselling, sublicensing, or redistributing Platform outputs or market intelligence data "
+     "as a standalone data product or service to third parties without a separate data "
+     "distribution agreement with TwoSuns</li>",
+     "<li>Reselling, sublicensing, or redistributing Platform outputs as a standalone data "
+     "product or service to third parties without a separate agreement with TwoSuns</li>"),
+
+    # 5. The whole disclaimer was written for a market intelligence product. The
+    #    substance worth keeping is that outputs are decision support, may be
+    #    wrong, and do not replace professional advice.
+    ("terms",
+     "<h2>5. Market Intelligence Disclaimer</h2>", "<h2>5. Platform Output Disclaimer</h2>"),
+    ("terms",
+     "<p><strong>Important:</strong> All market intelligence, analysis, forecasts, and insights "
+     "generated by the TwoSuns platform are provided for <strong>informational and "
+     "decision-support purposes only</strong>. They do not constitute financial advice, "
+     "investment recommendations, trading instructions, or legal advice. TwoSuns is not a "
+     "registered investment adviser, broker-dealer, commercial orchestration adviser, or "
+     "financial planner in any jurisdiction.</p>",
+     "<p><strong>Important:</strong> Analysis, recommendations and other outputs generated by "
+     "the TwoSuns platform are provided for <strong>informational and decision-support purposes "
+     "only</strong>. They do not constitute professional, engineering, legal or financial "
+     "advice, and they do not replace the judgement of the people accountable for a decision.</p>"),
+    ("terms",
+     "<li>All investment, trading, and commercial decisions are made solely at your own risk "
+     "and discretion</li>",
+     "<li>All operational and commercial decisions are made solely at your own risk and "
+     "discretion</li>"),
+    ("terms",
+     "<li>Platform outputs are based on publicly available data, AI-assisted analysis, and "
+     "algorithmic processing, and may contain errors, omissions, or outdated information</li>",
+     "<li>Platform outputs are based on the data connected to it, AI-assisted analysis and "
+     "automated processing, and may contain errors, omissions or outdated information</li>"),
+    ("terms",
+     "<li>Past performance data presented on the Platform does not guarantee or predict future "
+     "results</li>", ""),
+    ("terms",
+     "<li>You should seek independent professional financial, legal, or regulatory advice before "
+     "making material commercial or investment decisions</li>",
+     "<li>You should seek independent professional advice before making material commercial, "
+     "engineering or regulatory decisions</li>"),
+    ("terms",
+     "<li>TwoSuns's Persistent Orchestration provides explainability of AI reasoning but does not "
+     "guarantee the accuracy of underlying data sources or market forecasts</li>",
+     "<li>The platform records the context behind a result so that reasoning can be reviewed, "
+     "but this does not guarantee the accuracy of the underlying data sources</li>"),
+
+    # 6. Two of the four claimed marks are unverified, so they come out until
+    #    someone confirms them. Name and logo stay.
+    ("terms",
+     '<p>The TwoSuns name, logo, "Persistent Orchestration", "TwoSuns Core\u2122", and related '
+     "marks are trademarks of AEPG Inc. You may not use these marks without our prior written "
+     "consent.</p>",
+     "<p>The TwoSuns name, logo and related marks are trademarks of AEPG Inc. You may not use "
+     "these marks without our prior written consent.</p>"),
+
+    # 7. A newsletter about market intelligence is not a thing TwoSuns sends.
+    ("privacy",
+     "<li><strong>Communications:</strong> Sending service notifications, security alerts, "
+     "product updates, and where you have subscribed our market intelligence newsletter</li>",
+     "<li><strong>Communications:</strong> Sending service notifications, security alerts, "
+     "product updates, and where you have subscribed our newsletter</li>"),
+
+    # 8. Both pages refer to a Cookie Policy that does not exist on this site.
+    ("terms",
+     "<p>These Terms, together with any applicable ELA, Privacy Policy, and Cookie Policy, "
+     "constitute the entire agreement",
+     "<p>These Terms, together with any applicable ELA and Privacy Policy, constitute the "
+     "entire agreement"),
+]
+
+
+def apply_fixes(which, content):
+    for page, old, new in FIXES:
+        if page not in ("both", which):
+            continue
+        n = content.count(old)
+        if n != 1:
+            raise SystemExit(
+                "legal.py: fix for %s matched %d times, expected 1.\n  %s"
+                % (which, n, old[:110]))
+        content = content.replace(old, new)
+    return re.sub(r"\n{3,}", "\n\n", content)
+
+
 def build(src, dest, active):
     title, intro, content = extract(os.path.join(SRC, src))
+    content = apply_fixes(dest.replace('.html', ''), content)
     page = head(title + " | TwoSuns", intro[:180], dest, extra_css=LEGAL_CSS) + chrome_nav(active)
     page += """<section class="hero">
   <div class="hero-glow"></div>

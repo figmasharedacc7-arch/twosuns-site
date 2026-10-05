@@ -151,6 +151,23 @@
   .bg-materials::before{background-image:url('area-materials.jpg');}
   .bg-distribution::before{background-image:url('area-distribution.jpg');}
   .bg-owners::before{background-image:url('area-owners.jpg');}
+  .bg-cons-owners::before{background-image:url('cons-owners.jpg');}
+  .bg-cons-logistics::before{background-image:url('cons-logistics.jpg');}
+  .bg-cons-contractors::before{background-image:url('cons-contractors.jpg');}
+  .bg-cons-trades::before{background-image:url('cons-trades.jpg');}
+  .bg-cons-design::before{background-image:url('cons-design.jpg');}
+  .bg-cons-assurance::before{background-image:url('cons-assurance.jpg');}
+  .bg-mfg-products::before{background-image:url('mfg-products.jpg');}
+  .bg-mfg-equipment::before{background-image:url('mfg-equipment.jpg');}
+  .bg-mfg-systems::before{background-image:url('mfg-systems.jpg');}
+  .bg-mfg-offsite::before{background-image:url('mfg-offsite.jpg');}
+  .bg-mfg-supply::before{background-image:url('mfg-supply.jpg');}
+  .bg-mfg-support::before{background-image:url('mfg-support.jpg');}
+  .bg-bm-extraction::before{background-image:url('bm-extraction.jpg');}
+  .bg-bm-process::before{background-image:url('bm-process.jpg');}
+  .bg-bm-concrete::before{background-image:url('bm-concrete.jpg');}
+  .bg-bm-operations::before{background-image:url('bm-operations.jpg');}
+  .bg-bm-distribution::before{background-image:url('bm-distribution.jpg');}
   .bg-construction::before{background-image:url('area-construction.jpg');}
   .bg-operations::before{background-image:url('area-operations.jpg');}
   .bg-institutions::before{background-image:url('area-institutions.jpg');}
@@ -209,6 +226,9 @@
   .hero-photo{animation:none;background-size:cover,cover;background-repeat:no-repeat;
     background-position:center,center 30%;}
   .hero-photo.wall-construction{background-image:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 40%,rgba(255,246,226,.94) 48%,rgba(255,246,226,.74) 56%,rgba(255,245,222,.44) 64%,rgba(255,244,218,.16) 72%,rgba(255,243,216,0) 80%),url('img-construction.jpg');}
+  .hero-photo.wall-cons{background-image:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 40%,rgba(255,246,226,.94) 48%,rgba(255,246,226,.74) 56%,rgba(255,245,222,.44) 64%,rgba(255,244,218,.16) 72%,rgba(255,243,216,0) 80%),url('cons-hero.jpg');}
+  .hero-photo.wall-events{background-image:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 40%,rgba(255,246,226,.94) 48%,rgba(255,246,226,.74) 56%,rgba(255,245,222,.44) 64%,rgba(255,244,218,.16) 72%,rgba(255,243,216,0) 80%),url('events-hero.jpg');}
+  .hero-photo.wall-mfg{background-image:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 40%,rgba(255,246,226,.94) 48%,rgba(255,246,226,.74) 56%,rgba(255,245,222,.44) 64%,rgba(255,244,218,.16) 72%,rgba(255,243,216,0) 80%),url('mfg-hero.jpg');}
   .hero-photo.wall-platform{background-image:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 40%,rgba(255,246,226,.94) 48%,rgba(255,246,226,.74) 56%,rgba(255,245,222,.44) 64%,rgba(255,244,218,.16) 72%,rgba(255,243,216,0) 80%),url('plat-hero.jpg');}
   .hero-photo.wall-capabilities{background-image:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 40%,rgba(255,246,226,.94) 48%,rgba(255,246,226,.74) 56%,rgba(255,245,222,.44) 64%,rgba(255,244,218,.16) 72%,rgba(255,243,216,0) 80%),url('cap-hero.jpg');}
   .hero-photo.wall-usecases{background-image:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 40%,rgba(255,246,226,.94) 48%,rgba(255,246,226,.74) 56%,rgba(255,245,222,.44) 64%,rgba(255,244,218,.16) 72%,rgba(255,243,216,0) 80%),url('uc-hero.jpg');}
@@ -312,6 +332,39 @@
 
   /* FILTER ROWS + CROSS LINKS */
   .uc-filterset{margin-top:26px;display:grid;gap:14px;}
+  /* USE CASE SEARCH */
+  /* PAST EVENTS */
+  .evplist{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:10px;}
+  .evp{display:grid;grid-template-columns:1.5fr 1fr 1.6fr auto;gap:18px;align-items:baseline;
+    background:#fff;border:1px solid var(--border-soft);border-radius:12px;padding:16px 20px;}
+  .evp-n{font-size:15.5px;font-weight:800;color:var(--navy);}
+  .evp-d{font-size:14px;font-weight:700;color:var(--sun-deep);white-space:nowrap;}
+  .evp-v{font-size:14px;color:var(--text-muted);}
+  .evp-l{font-size:13.5px;white-space:nowrap;}
+
+  @media(max-width:900px){
+    .evp{grid-template-columns:1fr;gap:5px;}
+    .evp-d{white-space:normal;}
+  }
+
+  .uc-search{position:relative;display:flex;align-items:center;margin:0 0 20px;max-width:560px;}
+  .uc-search svg{position:absolute;left:16px;width:17px;height:17px;flex:none;
+    stroke:var(--sun-deep);fill:none;stroke-width:2;opacity:.7;pointer-events:none;}
+  .uc-search input{width:100%;padding:13px 44px 13px 44px;font:inherit;font-size:15px;
+    color:var(--navy);background:#fff;border:1.5px solid rgba(224,100,30,.35);border-radius:26px;
+    outline:none;transition:border-color .15s ease,box-shadow .15s ease;}
+  .uc-search input::placeholder{color:#9A8E7C;}
+  .uc-search input:focus{border-color:var(--sun);box-shadow:0 0 0 4px rgba(224,100,30,.12);}
+  .uc-search input::-webkit-search-cancel-button{display:none;}
+  .uc-qclear{position:absolute;right:8px;width:28px;height:28px;border:0;border-radius:50%;
+    background:rgba(224,100,30,.12);color:var(--sun-deep);font-size:16px;line-height:1;
+    cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  .uc-qclear:hover{background:rgba(224,100,30,.22);}
+  /* a class rule with display outranks the hidden attribute, so say it explicitly */
+  .uc-qclear[hidden]{display:none;}
+  .uc-none{display:none;margin-top:4px;font-size:15px;color:var(--text-muted);}
+  .uc-none.on{display:block;}
+
   .uc-frow{display:grid;grid-template-columns:132px 1fr;gap:14px;align-items:start;}
   .uc-frow > .lab{font-size:10.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;
     color:#8C6500;padding-top:9px;}
@@ -361,6 +414,25 @@
   .uc-ask .btn-ghost{align-self:flex-start;margin-top:5px;background:#fff;}
   .uc-ask.wide{grid-column:1 / -1;}
 
+
+  /* INDUSTRY SUBPAGES, classes from Noureldin's content brief */
+  .hero p.hero-body{font-size:16.5px;line-height:1.8;color:var(--text-muted);max-width:620px;margin:-14px 0 32px;}
+  /* building materials: photos matched to what each section is actually about */
+  .bg-plant-wide::before{background-image:url('img-industrial.jpg');}
+  .bg-plant-dusk::before{background-image:url('area-materials.jpg');}
+  .bg-site::before{background-image:url('img-construction.jpg');}
+  .bg-controlroom::before{background-image:url('cap-hero.jpg');}
+  .bg-yard::before{background-image:url('area-distribution.jpg');}
+  .dom-group{margin-top:30px;}
+  .dom-group + .dom-group{margin-top:34px;}
+  .dom-group .grid2{margin-top:14px;}
+  .dom-k{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+  .more-link{display:inline-block;margin-top:24px;font-size:14px;font-weight:700;}
+  .stages{list-style:none;display:flex;flex-wrap:wrap;gap:8px 10px;margin-top:22px;max-width:1000px;}
+  .stages li{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--border-soft);
+    border-radius:20px;padding:6px 14px;font-size:13.5px;font-weight:700;color:var(--navy);}
+  .stages li span{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:#8C6500;}
+
   /* EVENTS */
   .ev{display:grid;grid-template-columns:210px 1fr;gap:0;background:#fff;border:1px solid var(--border-soft);
     border-radius:18px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:20px;transition:all .3s;}
@@ -390,6 +462,11 @@
   /* PEOPLE */
   .people{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:28px;}
   .person{background:#fff;border:1px solid var(--border-soft);border-radius:16px;padding:24px;box-shadow:var(--shadow);}
+  .face{width:72px;height:72px;border-radius:50%;object-fit:cover;display:block;margin-bottom:16px;
+    border:2px solid #fff;box-shadow:0 3px 12px rgba(60,50,30,.18);background:var(--bg2);}
+  .face-mono{display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;
+    letter-spacing:.5px;color:#8C6500;background:linear-gradient(145deg,var(--gold-soft),#FFF3D6);
+    border:2px solid #fff;}
   .person .nm{font-size:17px;font-weight:800;color:var(--navy);}
   .person .rl{font-size:12.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--sun-deep);margin:5px 0 12px;}
   .person p{font-size:14.5px;color:var(--text-muted);line-height:1.7;}
@@ -440,6 +517,9 @@
     .imgsec-r .sec-split,.imgsec-l .sec-split{max-width:100%;margin:0;}
     .imgsec-r::after,.imgsec-l::after{background:linear-gradient(175deg,rgba(255,246,226,.96) 0%,rgba(255,246,226,.90) 55%,rgba(255,244,220,.60) 100%);}
     .hero-photo.wall-construction{background-image:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,rgba(255,244,220,.58) 80%,rgba(255,242,214,.24) 100%),url('img-construction.jpg');background-position:center,center;}
+    .hero-photo.wall-cons{background-image:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,rgba(255,244,220,.58) 80%,rgba(255,242,214,.24) 100%),url('cons-hero.jpg');background-position:center,center;}
+    .hero-photo.wall-events{background-image:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,rgba(255,244,220,.58) 80%,rgba(255,242,214,.24) 100%),url('events-hero.jpg');background-position:center,center;}
+    .hero-photo.wall-mfg{background-image:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,rgba(255,244,220,.58) 80%,rgba(255,242,214,.24) 100%),url('mfg-hero.jpg');background-position:center,center;}
     .hero-photo.wall-platform{background-image:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,rgba(255,244,220,.58) 80%,rgba(255,242,214,.24) 100%),url('plat-hero.jpg');background-position:center,center;}
     .hero-photo.wall-capabilities{background-image:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,rgba(255,244,220,.58) 80%,rgba(255,242,214,.24) 100%),url('cap-hero.jpg');background-position:center,center;}
     .hero-photo.wall-usecases{background-image:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,rgba(255,244,220,.58) 80%,rgba(255,242,214,.24) 100%),url('uc-hero.jpg');background-position:center,center;}
@@ -506,6 +586,11 @@
   .arx-ray-items{display:flex;gap:2.2cqw;font-size:15px;font-size:1.02cqw;color:#5A554C;}
   .arx-ray-items span{display:flex;align-items:center;gap:.5cqw;}
   .arx-ray-items i{width:.45cqw;height:.45cqw;border-radius:50%;}
+  .arx-orbs{margin-top:1.15cqw;padding-top:.85cqw;font-size:11px;font-size:.7cqw;font-weight:800;
+    letter-spacing:.18em;text-transform:uppercase;opacity:.75;}
+  .arx-strip .arx-domain,.arx-strip .arx-core{width:24%;}
+  .arx-strip .arx-domain{color:#2A231B;}
+  .arx-strip .arx-orbs{border-top:1px solid currentColor;border-color:rgba(60,45,15,.22);}
   .arx-foot{margin-top:22px;text-align:center;font-size:14.5px;font-weight:800;color:#5A554C;}
   .arx-fallback{display:none;}
 
@@ -536,6 +621,66 @@
   @media(prefers-reduced-motion:reduce){
     .hero-vid video{display:none;}
     .hero-vid{background:url('hero-build-poster.jpg') center/cover no-repeat;}
+  }
+
+  /* TEAM GRID */
+  .team{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:28px;}
+  .tmb{position:relative;aspect-ratio:720/756;overflow:hidden;background:var(--navy);
+    border-radius:4px;}
+  .tmb-img{position:absolute;inset:0;background-size:cover;background-position:50% 12%;
+    filter:grayscale(1) contrast(1.04);}
+  .tmb-wash{position:absolute;inset:0;background:var(--tmb-wash);opacity:var(--tmb-op);}
+  .tmb-mono{position:absolute;inset:0;background:var(--tmb-mono);display:flex;
+    align-items:center;justify-content:center;font-size:58px;font-weight:300;
+    letter-spacing:.04em;color:rgba(255,255,255,.62);}
+  .tmb-scrim{position:absolute;inset:auto 0 0;height:62%;
+    background:linear-gradient(to top,rgba(10,8,5,.72),rgba(10,8,5,0));}
+  .tmb-dl{position:absolute;inset:auto 0 0;padding:22px 22px 20px;z-index:2;}
+  .tmb-nm{font-size:22px;font-weight:300;line-height:1.2;color:#fff;}
+  .tmb-rl{margin-top:7px;font-size:11.5px;font-weight:700;letter-spacing:2.3px;
+    text-transform:uppercase;color:rgba(255,255,255,.88);}
+  .tmb-bio{position:absolute;inset:0;z-index:3;padding:26px 24px;display:flex;
+    align-items:center;background:rgba(14,11,7,.9);color:rgba(255,255,255,.9);
+    font-size:14px;line-height:1.65;opacity:0;transition:opacity .28s ease;}
+  .tmb:hover .tmb-bio,.tmb:focus-within .tmb-bio{opacity:1;}
+  .tmb-lead .tmb-nm{font-size:25px;}
+
+  @media(max-width:900px){
+    .team{grid-template-columns:repeat(2,1fr);}
+    .tmb-nm{font-size:19px;}
+    .tmb-bio{opacity:1;position:static;background:none;padding:14px 0 0;color:var(--text-muted);}
+    .tmb{aspect-ratio:auto;}
+  }
+
+  /* HOME FILM BAND */
+  .film-in{display:grid;grid-template-columns:1fr 1.15fr;gap:60px;align-items:center;}
+  .film-copy .section-heading{margin-top:14px;}
+  .film-accent{display:block;color:var(--sun-deep);}
+  .film-stage{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;
+    background:#F3E3C4;box-shadow:0 26px 60px rgba(60,45,20,.20);}
+  .film-stage video,.film-stage img{position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;display:block;}
+  .film-stage video{opacity:0;transition:opacity .3s ease;}
+  .film-stage.on video{opacity:1;}
+  .film-stage.on img,.film-stage.on .film-play{opacity:0;pointer-events:none;}
+  .film-play{position:absolute;inset:0;width:100%;height:100%;border:0;background:none;
+    cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;
+    transition:opacity .3s ease;}
+  .film-play i{width:82px;height:82px;border-radius:50%;background:rgba(255,255,255,.92);
+    box-shadow:0 10px 30px rgba(60,45,20,.28);display:flex;align-items:center;
+    justify-content:center;transition:transform .2s ease,background .2s ease;}
+  .film-play i::after{content:"";width:0;height:0;margin-left:6px;
+    border-left:24px solid var(--sun-deep);border-top:15px solid transparent;
+    border-bottom:15px solid transparent;}
+  .film-play:hover i{transform:scale(1.07);background:#fff;}
+  .film-play:focus-visible i{outline:3px solid var(--sun-deep);outline-offset:4px;}
+  .film-note{margin-top:16px;font-size:13px;font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:#8C6500;}
+
+  @media(max-width:900px){
+    .film-in{grid-template-columns:1fr;gap:30px;}
+    .film-play i{width:64px;height:64px;}
+    .film-play i::after{border-left-width:19px;border-top-width:12px;border-bottom-width:12px;}
   }
 
   /* SCROLL REVEALS (only active once the head script adds .rv) */
@@ -591,7 +736,7 @@
   <div class="nav-in">
     <a class="brand" href="index.html"><img src="logo-color.svg" alt="TwoSuns"></a>
     <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('navlinks').classList.toggle('open')">&#9776;</button>
-    <div class="nav-links" id="navlinks"><a href="platform.html">Platform</a><a href="capabilities.html">Capabilities</a><div class="ndrop"><a href="industries.html">Industries<i class="ncar"></i></a><div class="ndrop-menu"><a href="building-materials.html">Cement and Building Materials</a><a href="construction.html">Construction and Infrastructure</a><a href="manufacturing.html">Manufacturing</a></div></div><a href="use-cases.html">Use Cases</a><a href="company.html">Company</a><a href="events.html">Events</a>
+    <div class="nav-links" id="navlinks"><a href="platform.html">Platform</a><a href="capabilities.html">Capabilities</a><div class="ndrop"><a href="industries.html">Industries<i class="ncar"></i></a><div class="ndrop-menu"><a href="building-materials.html">Building Materials</a><a href="construction.html">Construction and Infrastructure</a><a href="manufacturing.html">Manufacturing</a></div></div><a href="use-cases.html">Use Cases</a><a href="company.html">Company</a><a href="events.html">Events</a>
       <a class="btn-cta" href="discuss.html?ask=Discuss+Your+Needs">Discuss Your Needs</a>
     </div>
   </div>
@@ -625,9 +770,9 @@
 <h3>3.1 Prohibited Technical Activities</h3>
 <ul><li>Reverse engineering, decompiling, disassembling, or otherwise attempting to derive the source code, algorithms, or underlying architecture of the Platform or any AI models</li><li>Scraping, crawling, or systematically extracting data from the Platform by automated means beyond those expressly permitted by the Platform's documented API</li><li>Attempting to probe, scan, or test the vulnerability of the Platform's systems, networks, or security measures</li><li>Circumventing or disabling authentication, access controls, encryption, or other security features</li><li>Introducing malicious code, viruses, or any disruptive software into the Platform or its underlying infrastructure</li></ul>
 <h3>3.2 Prohibited Commercial Activities</h3>
-<ul><li>Reselling, sublicensing, or redistributing Platform outputs or market intelligence data as a standalone data product or service to third parties without a separate data distribution agreement with TwoSuns</li><li>Using Platform outputs to develop or train competing AI or analytics products without TwoSuns's prior written consent</li><li>Representing Platform-generated intelligence as independently verified financial research or advice to third parties</li></ul>
+<ul><li>Reselling, sublicensing, or redistributing Platform outputs as a standalone data product or service to third parties without a separate agreement with TwoSuns</li><li>Using Platform outputs to develop or train competing AI or analytics products without TwoSuns's prior written consent</li><li>Representing Platform outputs as independently verified professional advice to third parties</li></ul>
 <h3>3.3 Prohibited Content and Conduct</h3>
-<ul><li>Using the Platform in any manner that violates applicable laws, including securities regulations, sanctions, export controls, or data protection laws</li><li>Using Platform outputs to facilitate market manipulation or insider trading</li><li>Submitting false, misleading, or fraudulent information to the Platform</li></ul>
+<ul><li>Using the Platform in any manner that violates applicable laws, including securities regulations, sanctions, export controls, or data protection laws</li><li>Submitting false, misleading, or fraudulent information to the Platform</li></ul>
 <h2>4. Intellectual Property</h2>
 <h3>4.1 TwoSuns Platform and Technology</h3>
 <p>TwoSuns and its licensors own all right, title, and interest in and to the Platform, including all underlying software, AI models, algorithms, databases, interfaces, brand assets, and documentation ("TwoSuns IP"). These Terms do not transfer to you any ownership interest in TwoSuns IP. All rights not expressly granted herein are reserved by TwoSuns.</p>
@@ -636,11 +781,11 @@
 <h3>4.3 Feedback</h3>
 <p>If you provide TwoSuns with feedback, suggestions, or ideas regarding the Platform ("Feedback"), you grant TwoSuns a perpetual, irrevocable, royalty-free licence to use and incorporate such Feedback into the Platform without restriction or compensation to you.</p>
 <h3>4.4 Trademarks</h3>
-<p>The TwoSuns name, logo, "Persistent Orchestration", "TwoSuns Core™", and related marks are trademarks of AEPG Inc. You may not use these marks without our prior written consent.</p>
-<h2>5. Market Intelligence Disclaimer</h2>
-<p><strong>Important:</strong> All market intelligence, analysis, forecasts, and insights generated by the TwoSuns platform are provided for <strong>informational and decision-support purposes only</strong>. They do not constitute financial advice, investment recommendations, trading instructions, or legal advice. TwoSuns is not a registered investment adviser, broker-dealer, commercial orchestration adviser, or financial planner in any jurisdiction.</p>
+<p>The TwoSuns name, logo and related marks are trademarks of AEPG Inc. You may not use these marks without our prior written consent.</p>
+<h2>5. Platform Output Disclaimer</h2>
+<p><strong>Important:</strong> Analysis, recommendations and other outputs generated by the TwoSuns platform are provided for <strong>informational and decision-support purposes only</strong>. They do not constitute professional, engineering, legal or financial advice, and they do not replace the judgement of the people accountable for a decision.</p>
 <p>You acknowledge and agree that:</p>
-<ul><li>All investment, trading, and commercial decisions are made solely at your own risk and discretion</li><li>Platform outputs are based on publicly available data, AI-assisted analysis, and algorithmic processing, and may contain errors, omissions, or outdated information</li><li>Past performance data presented on the Platform does not guarantee or predict future results</li><li>You should seek independent professional financial, legal, or regulatory advice before making material commercial or investment decisions</li><li>TwoSuns's Persistent Orchestration provides explainability of AI reasoning but does not guarantee the accuracy of underlying data sources or market forecasts</li></ul>
+<ul><li>All operational and commercial decisions are made solely at your own risk and discretion</li><li>Platform outputs are based on the data connected to it, AI-assisted analysis and automated processing, and may contain errors, omissions or outdated information</li><li>You should seek independent professional advice before making material commercial, engineering or regulatory decisions</li><li>The platform records the context behind a result so that reasoning can be reviewed, but this does not guarantee the accuracy of the underlying data sources</li></ul>
 <h2>6. Confidentiality</h2>
 <p>Each party agrees to maintain the confidentiality of the other party's non-public proprietary information disclosed in connection with these Terms or the ELA ("Confidential Information"), using at least the same degree of care it uses to protect its own confidential information (and no less than reasonable care). Neither party shall disclose Confidential Information to third parties or use it for purposes other than performing or receiving the Services, without the prior written consent of the disclosing party.</p>
 <p>This obligation does not apply to information that: (i) was already publicly known; (ii) becomes publicly known through no fault of the receiving party; (iii) was independently developed by the receiving party; or (iv) is required to be disclosed by law or regulatory authority, provided the receiving party gives prompt notice where legally permitted.</p>
@@ -662,7 +807,7 @@
 <p>Nothing in this Section prevents either party from seeking emergency injunctive or other interim relief from a court of competent jurisdiction to prevent irreparable harm pending the outcome of arbitration.</p>
 <h2>12. General Provisions</h2>
 <h3>12.1 Entire Agreement</h3>
-<p>These Terms, together with any applicable ELA, Privacy Policy, and Cookie Policy, constitute the entire agreement between the parties with respect to the Platform and supersede all prior agreements, representations, and understandings relating to the subject matter hereof.</p>
+<p>These Terms, together with any applicable ELA and Privacy Policy, constitute the entire agreement between the parties with respect to the Platform and supersede all prior agreements, representations, and understandings relating to the subject matter hereof.</p>
 <h3>12.2 Amendments</h3>
 <p>TwoSuns reserves the right to modify these Terms at any time. Material changes will be communicated by email to the Administrator on file and by updating this page with a revised "Last Updated" date. Continued use of the Platform after the effective date of any amendment constitutes acceptance of the revised Terms.</p>
 <h3>12.3 Severability</h3>
@@ -674,9 +819,8 @@
 <h3>Legal Enquiries</h3>
 <p>For questions about these Terms, to report a violation, or for any other legal matters, please contact our legal team:</p>
 <p><strong>Email:</strong> legal@twosuns.ai</p>
-<p>Typically replies within 1 business day</p>
-<p>👋 Welcome to <strong>TwoSuns</strong>, the decision layer for traded markets.How can we help you today?</p>
-<p>🍪 We use cookies to improve your experience, analyze site traffic, and personalize content. By clicking <strong>Accept All</strong>, you agree to our use of cookies. Privacy Policy · Cookie Policy</p>
+
+
     </div>
   </div>
 </section>
@@ -691,7 +835,7 @@
         <a href="platform.html">Platform</a>
         <a href="capabilities.html">Capabilities</a>
         <a href="industries.html">Industries</a>
-        <a href="building-materials.html">Cement and Building Materials</a>
+        <a href="building-materials.html">Building Materials</a>
         <a href="construction.html">Construction and Infrastructure</a>
         <a href="manufacturing.html">Manufacturing</a>
         <a href="use-cases.html">Use Cases</a>

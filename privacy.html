@@ -151,6 +151,23 @@
   .bg-materials::before{background-image:url('area-materials.jpg');}
   .bg-distribution::before{background-image:url('area-distribution.jpg');}
   .bg-owners::before{background-image:url('area-owners.jpg');}
+  .bg-cons-owners::before{background-image:url('cons-owners.jpg');}
+  .bg-cons-logistics::before{background-image:url('cons-logistics.jpg');}
+  .bg-cons-contractors::before{background-image:url('cons-contractors.jpg');}
+  .bg-cons-trades::before{background-image:url('cons-trades.jpg');}
+  .bg-cons-design::before{background-image:url('cons-design.jpg');}
+  .bg-cons-assurance::before{background-image:url('cons-assurance.jpg');}
+  .bg-mfg-products::before{background-image:url('mfg-products.jpg');}
+  .bg-mfg-equipment::before{background-image:url('mfg-equipment.jpg');}
+  .bg-mfg-systems::before{background-image:url('mfg-systems.jpg');}
+  .bg-mfg-offsite::before{background-image:url('mfg-offsite.jpg');}
+  .bg-mfg-supply::before{background-image:url('mfg-supply.jpg');}
+  .bg-mfg-support::before{background-image:url('mfg-support.jpg');}
+  .bg-bm-extraction::before{background-image:url('bm-extraction.jpg');}
+  .bg-bm-process::before{background-image:url('bm-process.jpg');}
+  .bg-bm-concrete::before{background-image:url('bm-concrete.jpg');}
+  .bg-bm-operations::before{background-image:url('bm-operations.jpg');}
+  .bg-bm-distribution::before{background-image:url('bm-distribution.jpg');}
   .bg-construction::before{background-image:url('area-construction.jpg');}
   .bg-operations::before{background-image:url('area-operations.jpg');}
   .bg-institutions::before{background-image:url('area-institutions.jpg');}
@@ -209,6 +226,9 @@
   .hero-photo{animation:none;background-size:cover,cover;background-repeat:no-repeat;
     background-position:center,center 30%;}
   .hero-photo.wall-construction{background-image:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 40%,rgba(255,246,226,.94) 48%,rgba(255,246,226,.74) 56%,rgba(255,245,222,.44) 64%,rgba(255,244,218,.16) 72%,rgba(255,243,216,0) 80%),url('img-construction.jpg');}
+  .hero-photo.wall-cons{background-image:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 40%,rgba(255,246,226,.94) 48%,rgba(255,246,226,.74) 56%,rgba(255,245,222,.44) 64%,rgba(255,244,218,.16) 72%,rgba(255,243,216,0) 80%),url('cons-hero.jpg');}
+  .hero-photo.wall-events{background-image:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 40%,rgba(255,246,226,.94) 48%,rgba(255,246,226,.74) 56%,rgba(255,245,222,.44) 64%,rgba(255,244,218,.16) 72%,rgba(255,243,216,0) 80%),url('events-hero.jpg');}
+  .hero-photo.wall-mfg{background-image:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 40%,rgba(255,246,226,.94) 48%,rgba(255,246,226,.74) 56%,rgba(255,245,222,.44) 64%,rgba(255,244,218,.16) 72%,rgba(255,243,216,0) 80%),url('mfg-hero.jpg');}
   .hero-photo.wall-platform{background-image:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 40%,rgba(255,246,226,.94) 48%,rgba(255,246,226,.74) 56%,rgba(255,245,222,.44) 64%,rgba(255,244,218,.16) 72%,rgba(255,243,216,0) 80%),url('plat-hero.jpg');}
   .hero-photo.wall-capabilities{background-image:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 40%,rgba(255,246,226,.94) 48%,rgba(255,246,226,.74) 56%,rgba(255,245,222,.44) 64%,rgba(255,244,218,.16) 72%,rgba(255,243,216,0) 80%),url('cap-hero.jpg');}
   .hero-photo.wall-usecases{background-image:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 40%,rgba(255,246,226,.94) 48%,rgba(255,246,226,.74) 56%,rgba(255,245,222,.44) 64%,rgba(255,244,218,.16) 72%,rgba(255,243,216,0) 80%),url('uc-hero.jpg');}
@@ -312,6 +332,39 @@
 
   /* FILTER ROWS + CROSS LINKS */
   .uc-filterset{margin-top:26px;display:grid;gap:14px;}
+  /* USE CASE SEARCH */
+  /* PAST EVENTS */
+  .evplist{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:10px;}
+  .evp{display:grid;grid-template-columns:1.5fr 1fr 1.6fr auto;gap:18px;align-items:baseline;
+    background:#fff;border:1px solid var(--border-soft);border-radius:12px;padding:16px 20px;}
+  .evp-n{font-size:15.5px;font-weight:800;color:var(--navy);}
+  .evp-d{font-size:14px;font-weight:700;color:var(--sun-deep);white-space:nowrap;}
+  .evp-v{font-size:14px;color:var(--text-muted);}
+  .evp-l{font-size:13.5px;white-space:nowrap;}
+
+  @media(max-width:900px){
+    .evp{grid-template-columns:1fr;gap:5px;}
+    .evp-d{white-space:normal;}
+  }
+
+  .uc-search{position:relative;display:flex;align-items:center;margin:0 0 20px;max-width:560px;}
+  .uc-search svg{position:absolute;left:16px;width:17px;height:17px;flex:none;
+    stroke:var(--sun-deep);fill:none;stroke-width:2;opacity:.7;pointer-events:none;}
+  .uc-search input{width:100%;padding:13px 44px 13px 44px;font:inherit;font-size:15px;
+    color:var(--navy);background:#fff;border:1.5px solid rgba(224,100,30,.35);border-radius:26px;
+    outline:none;transition:border-color .15s ease,box-shadow .15s ease;}
+  .uc-search input::placeholder{color:#9A8E7C;}
+  .uc-search input:focus{border-color:var(--sun);box-shadow:0 0 0 4px rgba(224,100,30,.12);}
+  .uc-search input::-webkit-search-cancel-button{display:none;}
+  .uc-qclear{position:absolute;right:8px;width:28px;height:28px;border:0;border-radius:50%;
+    background:rgba(224,100,30,.12);color:var(--sun-deep);font-size:16px;line-height:1;
+    cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  .uc-qclear:hover{background:rgba(224,100,30,.22);}
+  /* a class rule with display outranks the hidden attribute, so say it explicitly */
+  .uc-qclear[hidden]{display:none;}
+  .uc-none{display:none;margin-top:4px;font-size:15px;color:var(--text-muted);}
+  .uc-none.on{display:block;}
+
   .uc-frow{display:grid;grid-template-columns:132px 1fr;gap:14px;align-items:start;}
   .uc-frow > .lab{font-size:10.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;
     color:#8C6500;padding-top:9px;}
@@ -361,6 +414,25 @@
   .uc-ask .btn-ghost{align-self:flex-start;margin-top:5px;background:#fff;}
   .uc-ask.wide{grid-column:1 / -1;}
 
+
+  /* INDUSTRY SUBPAGES, classes from Noureldin's content brief */
+  .hero p.hero-body{font-size:16.5px;line-height:1.8;color:var(--text-muted);max-width:620px;margin:-14px 0 32px;}
+  /* building materials: photos matched to what each section is actually about */
+  .bg-plant-wide::before{background-image:url('img-industrial.jpg');}
+  .bg-plant-dusk::before{background-image:url('area-materials.jpg');}
+  .bg-site::before{background-image:url('img-construction.jpg');}
+  .bg-controlroom::before{background-image:url('cap-hero.jpg');}
+  .bg-yard::before{background-image:url('area-distribution.jpg');}
+  .dom-group{margin-top:30px;}
+  .dom-group + .dom-group{margin-top:34px;}
+  .dom-group .grid2{margin-top:14px;}
+  .dom-k{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+  .more-link{display:inline-block;margin-top:24px;font-size:14px;font-weight:700;}
+  .stages{list-style:none;display:flex;flex-wrap:wrap;gap:8px 10px;margin-top:22px;max-width:1000px;}
+  .stages li{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--border-soft);
+    border-radius:20px;padding:6px 14px;font-size:13.5px;font-weight:700;color:var(--navy);}
+  .stages li span{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:#8C6500;}
+
   /* EVENTS */
   .ev{display:grid;grid-template-columns:210px 1fr;gap:0;background:#fff;border:1px solid var(--border-soft);
     border-radius:18px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:20px;transition:all .3s;}
@@ -390,6 +462,11 @@
   /* PEOPLE */
   .people{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:28px;}
   .person{background:#fff;border:1px solid var(--border-soft);border-radius:16px;padding:24px;box-shadow:var(--shadow);}
+  .face{width:72px;height:72px;border-radius:50%;object-fit:cover;display:block;margin-bottom:16px;
+    border:2px solid #fff;box-shadow:0 3px 12px rgba(60,50,30,.18);background:var(--bg2);}
+  .face-mono{display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;
+    letter-spacing:.5px;color:#8C6500;background:linear-gradient(145deg,var(--gold-soft),#FFF3D6);
+    border:2px solid #fff;}
   .person .nm{font-size:17px;font-weight:800;color:var(--navy);}
   .person .rl{font-size:12.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--sun-deep);margin:5px 0 12px;}
   .person p{font-size:14.5px;color:var(--text-muted);line-height:1.7;}
@@ -440,6 +517,9 @@
     .imgsec-r .sec-split,.imgsec-l .sec-split{max-width:100%;margin:0;}
     .imgsec-r::after,.imgsec-l::after{background:linear-gradient(175deg,rgba(255,246,226,.96) 0%,rgba(255,246,226,.90) 55%,rgba(255,244,220,.60) 100%);}
     .hero-photo.wall-construction{background-image:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,rgba(255,244,220,.58) 80%,rgba(255,242,214,.24) 100%),url('img-construction.jpg');background-position:center,center;}
+    .hero-photo.wall-cons{background-image:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,rgba(255,244,220,.58) 80%,rgba(255,242,214,.24) 100%),url('cons-hero.jpg');background-position:center,center;}
+    .hero-photo.wall-events{background-image:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,rgba(255,244,220,.58) 80%,rgba(255,242,214,.24) 100%),url('events-hero.jpg');background-position:center,center;}
+    .hero-photo.wall-mfg{background-image:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,rgba(255,244,220,.58) 80%,rgba(255,242,214,.24) 100%),url('mfg-hero.jpg');background-position:center,center;}
     .hero-photo.wall-platform{background-image:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,rgba(255,244,220,.58) 80%,rgba(255,242,214,.24) 100%),url('plat-hero.jpg');background-position:center,center;}
     .hero-photo.wall-capabilities{background-image:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,rgba(255,244,220,.58) 80%,rgba(255,242,214,.24) 100%),url('cap-hero.jpg');background-position:center,center;}
     .hero-photo.wall-usecases{background-image:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,rgba(255,244,220,.58) 80%,rgba(255,242,214,.24) 100%),url('uc-hero.jpg');background-position:center,center;}
@@ -506,6 +586,11 @@
   .arx-ray-items{display:flex;gap:2.2cqw;font-size:15px;font-size:1.02cqw;color:#5A554C;}
   .arx-ray-items span{display:flex;align-items:center;gap:.5cqw;}
   .arx-ray-items i{width:.45cqw;height:.45cqw;border-radius:50%;}
+  .arx-orbs{margin-top:1.15cqw;padding-top:.85cqw;font-size:11px;font-size:.7cqw;font-weight:800;
+    letter-spacing:.18em;text-transform:uppercase;opacity:.75;}
+  .arx-strip .arx-domain,.arx-strip .arx-core{width:24%;}
+  .arx-strip .arx-domain{color:#2A231B;}
+  .arx-strip .arx-orbs{border-top:1px solid currentColor;border-color:rgba(60,45,15,.22);}
   .arx-foot{margin-top:22px;text-align:center;font-size:14.5px;font-weight:800;color:#5A554C;}
   .arx-fallback{display:none;}
 
@@ -536,6 +621,66 @@
   @media(prefers-reduced-motion:reduce){
     .hero-vid video{display:none;}
     .hero-vid{background:url('hero-build-poster.jpg') center/cover no-repeat;}
+  }
+
+  /* TEAM GRID */
+  .team{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:28px;}
+  .tmb{position:relative;aspect-ratio:720/756;overflow:hidden;background:var(--navy);
+    border-radius:4px;}
+  .tmb-img{position:absolute;inset:0;background-size:cover;background-position:50% 12%;
+    filter:grayscale(1) contrast(1.04);}
+  .tmb-wash{position:absolute;inset:0;background:var(--tmb-wash);opacity:var(--tmb-op);}
+  .tmb-mono{position:absolute;inset:0;background:var(--tmb-mono);display:flex;
+    align-items:center;justify-content:center;font-size:58px;font-weight:300;
+    letter-spacing:.04em;color:rgba(255,255,255,.62);}
+  .tmb-scrim{position:absolute;inset:auto 0 0;height:62%;
+    background:linear-gradient(to top,rgba(10,8,5,.72),rgba(10,8,5,0));}
+  .tmb-dl{position:absolute;inset:auto 0 0;padding:22px 22px 20px;z-index:2;}
+  .tmb-nm{font-size:22px;font-weight:300;line-height:1.2;color:#fff;}
+  .tmb-rl{margin-top:7px;font-size:11.5px;font-weight:700;letter-spacing:2.3px;
+    text-transform:uppercase;color:rgba(255,255,255,.88);}
+  .tmb-bio{position:absolute;inset:0;z-index:3;padding:26px 24px;display:flex;
+    align-items:center;background:rgba(14,11,7,.9);color:rgba(255,255,255,.9);
+    font-size:14px;line-height:1.65;opacity:0;transition:opacity .28s ease;}
+  .tmb:hover .tmb-bio,.tmb:focus-within .tmb-bio{opacity:1;}
+  .tmb-lead .tmb-nm{font-size:25px;}
+
+  @media(max-width:900px){
+    .team{grid-template-columns:repeat(2,1fr);}
+    .tmb-nm{font-size:19px;}
+    .tmb-bio{opacity:1;position:static;background:none;padding:14px 0 0;color:var(--text-muted);}
+    .tmb{aspect-ratio:auto;}
+  }
+
+  /* HOME FILM BAND */
+  .film-in{display:grid;grid-template-columns:1fr 1.15fr;gap:60px;align-items:center;}
+  .film-copy .section-heading{margin-top:14px;}
+  .film-accent{display:block;color:var(--sun-deep);}
+  .film-stage{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;
+    background:#F3E3C4;box-shadow:0 26px 60px rgba(60,45,20,.20);}
+  .film-stage video,.film-stage img{position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;display:block;}
+  .film-stage video{opacity:0;transition:opacity .3s ease;}
+  .film-stage.on video{opacity:1;}
+  .film-stage.on img,.film-stage.on .film-play{opacity:0;pointer-events:none;}
+  .film-play{position:absolute;inset:0;width:100%;height:100%;border:0;background:none;
+    cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;
+    transition:opacity .3s ease;}
+  .film-play i{width:82px;height:82px;border-radius:50%;background:rgba(255,255,255,.92);
+    box-shadow:0 10px 30px rgba(60,45,20,.28);display:flex;align-items:center;
+    justify-content:center;transition:transform .2s ease,background .2s ease;}
+  .film-play i::after{content:"";width:0;height:0;margin-left:6px;
+    border-left:24px solid var(--sun-deep);border-top:15px solid transparent;
+    border-bottom:15px solid transparent;}
+  .film-play:hover i{transform:scale(1.07);background:#fff;}
+  .film-play:focus-visible i{outline:3px solid var(--sun-deep);outline-offset:4px;}
+  .film-note{margin-top:16px;font-size:13px;font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:#8C6500;}
+
+  @media(max-width:900px){
+    .film-in{grid-template-columns:1fr;gap:30px;}
+    .film-play i{width:64px;height:64px;}
+    .film-play i::after{border-left-width:19px;border-top-width:12px;border-bottom-width:12px;}
   }
 
   /* SCROLL REVEALS (only active once the head script adds .rv) */
@@ -591,7 +736,7 @@
   <div class="nav-in">
     <a class="brand" href="index.html"><img src="logo-color.svg" alt="TwoSuns"></a>
     <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('navlinks').classList.toggle('open')">&#9776;</button>
-    <div class="nav-links" id="navlinks"><a href="platform.html">Platform</a><a href="capabilities.html">Capabilities</a><div class="ndrop"><a href="industries.html">Industries<i class="ncar"></i></a><div class="ndrop-menu"><a href="building-materials.html">Cement and Building Materials</a><a href="construction.html">Construction and Infrastructure</a><a href="manufacturing.html">Manufacturing</a></div></div><a href="use-cases.html">Use Cases</a><a href="company.html">Company</a><a href="events.html">Events</a>
+    <div class="nav-links" id="navlinks"><a href="platform.html">Platform</a><a href="capabilities.html">Capabilities</a><div class="ndrop"><a href="industries.html">Industries<i class="ncar"></i></a><div class="ndrop-menu"><a href="building-materials.html">Building Materials</a><a href="construction.html">Construction and Infrastructure</a><a href="manufacturing.html">Manufacturing</a></div></div><a href="use-cases.html">Use Cases</a><a href="company.html">Company</a><a href="events.html">Events</a>
       <a class="btn-cta" href="discuss.html?ask=Discuss+Your+Needs">Discuss Your Needs</a>
     </div>
   </div>
@@ -617,13 +762,13 @@
 <ul><li>Full name, work email address, job title, and organisation name provided during registration or discovery calls</li><li>Enterprise licence credentials including authorised user accounts managed by your organisation's administrator</li><li>Billing and invoice contact details for enterprise subscription management</li></ul>
 <h3>2.2 Platform Usage Data</h3>
 <ul><li>Log data including IP address, browser type, operating system, referring URLs, and pages visited</li><li>Session duration, feature interaction patterns, and navigation flows used to improve the platform experience</li><li>Error logs and diagnostic data used to identify and resolve technical issues</li></ul>
-<h3>2.3 Market Data Queries</h3>
-<ul><li>Queries submitted to TwoSuns's AI intelligence capabilities, including commodity, energy, and financial market search inputs</li><li>Saved reports, watchlists, and dashboard configurations associated with your account</li><li>Export and download activity of market intelligence outputs</li></ul>
+<h3>2.3 Platform Content and Queries</h3>
+<ul><li>Information you and your organization submit to or connect with the platform, including documents, records and operational data from your own systems</li><li>Queries and instructions submitted to the platform's intelligence and workflow capabilities</li><li>Saved views, configurations and reports associated with your account</li><li>Export and download activity of platform outputs</li></ul>
 <h3>2.4 Communications</h3>
 <ul><li>Email correspondence, support requests, demo booking information, and newsletter subscriptions</li><li>Feedback and survey responses submitted voluntarily through the platform or our website</li></ul>
 <h2>3. How We Use Your Data</h2>
 <p>We process personal data only for legitimate, disclosed purposes:</p>
-<ul><li><strong>Service delivery:</strong> Provisioning and maintaining your platform access, processing queries, and delivering AI-generated intelligence outputs</li><li><strong>Account management:</strong> Managing enterprise licences, authorised user roles, billing, and subscription renewals</li><li><strong>Platform improvement:</strong> Aggregated, anonymised analytics are used to improve platform performance, refine AI models, and develop new features</li><li><strong>AI training opt-out:</strong> We do not use your individual query data or proprietary organisational inputs to train our AI models without explicit written consent. You may request confirmation of this at any time by contacting privacy@twosuns.ai</li><li><strong>Communications:</strong> Sending service notifications, security alerts, product updates, and where you have subscribed our market intelligence newsletter</li><li><strong>Legal and compliance:</strong> Maintaining audit records, responding to lawful requests, and meeting our obligations under applicable law</li><li><strong>Security:</strong> Detecting and preventing fraud, unauthorised access, and abuse of the platform</li></ul>
+<ul><li><strong>Service delivery:</strong> Provisioning and maintaining your platform access, processing queries, and delivering AI-generated intelligence outputs</li><li><strong>Account management:</strong> Managing enterprise licences, authorised user roles, billing, and subscription renewals</li><li><strong>Platform improvement:</strong> Aggregated, anonymised analytics are used to improve platform performance, refine AI models, and develop new features</li><li><strong>AI training opt-out:</strong> We do not use your individual query data or proprietary organisational inputs to train our AI models without explicit written consent. You may request confirmation of this at any time by contacting privacy@twosuns.ai</li><li><strong>Communications:</strong> Sending service notifications, security alerts, product updates, and where you have subscribed our newsletter</li><li><strong>Legal and compliance:</strong> Maintaining audit records, responding to lawful requests, and meeting our obligations under applicable law</li><li><strong>Security:</strong> Detecting and preventing fraud, unauthorised access, and abuse of the platform</li></ul>
 <h2>4. Data Sharing and Disclosure</h2>
 <p><strong>We do not sell your personal data.</strong> We do not share your data with third parties for advertising purposes. Data may be disclosed only in the following circumstances:</p>
 <h3>4.1 Trusted Processors</h3>
@@ -652,7 +797,8 @@
 <p>TwoSuns is headquartered in British Columbia, Canada. If you access our Services from the European Economic Area or other jurisdictions with data transfer restrictions, your personal data may be transferred to and processed in Canada, which the European Commission has recognised as providing adequate data protection.</p>
 <p>Where transfers occur to jurisdictions without an adequacy decision, we implement appropriate safeguards including Standard Contractual Clauses (SCCs) or binding corporate rules as applicable.</p>
 <h2>9. Cookies and Tracking Technologies</h2>
-<p>We use cookies and similar tracking technologies to operate and improve our Services. For a full description of the cookies we use and how to manage your preferences, please see our Cookie Policy.</p>
+<p>We use cookies and similar tracking technologies to operate and improve our Services.</p>
+<p>On this website we also use LeadLander, a visitor identification service. It records information such as IP address, the organization associated with that address, the pages visited and session activity, and we use it to understand which organizations are interested in TwoSuns. It runs in a cookieless mode and does not place cookies on your device. If you would prefer we did not record your visits, write to <a href="mailto:privacy@twosuns.ai">privacy@twosuns.ai</a>.</p>
 <h2>10. Children's Privacy</h2>
 <p>The TwoSuns platform is an enterprise B2B service intended exclusively for use by professionals. We do not knowingly collect personal data from individuals under the age of 18. If you believe a minor has provided us with personal data, please contact us immediately at privacy@twosuns.ai.</p>
 <h2>11. Changes to This Policy</h2>
@@ -661,9 +807,8 @@
 <p>For any questions, concerns, or requests relating to this Privacy Policy or the handling of your personal data, please contact our Privacy Officer:</p>
 <p><strong>Email:</strong> privacy@twosuns.ai</p>
 <p>You also have the right to lodge a complaint with the Office of the Privacy Commissioner of Canada (OPC) at priv.gc.ca or with your relevant EU supervisory authority.</p>
-<p>Typically replies within 1 business day</p>
-<p>👋 Welcome to <strong>TwoSuns</strong>, the decision layer for traded markets.How can we help you today?</p>
-<p>🍪 We use cookies to improve your experience, analyze site traffic, and personalize content. By clicking <strong>Accept All</strong>, you agree to our use of cookies. Privacy Policy · Cookie Policy</p>
+
+
     </div>
   </div>
 </section>
@@ -678,7 +823,7 @@
         <a href="platform.html">Platform</a>
         <a href="capabilities.html">Capabilities</a>
         <a href="industries.html">Industries</a>
-        <a href="building-materials.html">Cement and Building Materials</a>
+        <a href="building-materials.html">Building Materials</a>
         <a href="construction.html">Construction and Infrastructure</a>
         <a href="manufacturing.html">Manufacturing</a>
         <a href="use-cases.html">Use Cases</a>
