@@ -240,9 +240,6 @@ COMPANY = dict(
             ("Ryan Arian", "Chief Digital Product Officer", "team-ryan.jpg",
              "Ryan leads product strategy, platform architecture and the continuing development of TwoSuns, "
              "connecting enterprise requirements with scalable product, integration and implementation capability."),
-            ("Ahmed Ghazey", "Director, Engineering and Delivery",
-             "Ahmed leads engineering delivery and coordinates the technical work required to configure, extend "
-             "and implement TwoSuns for enterprise use."),
         ]),
         ("Product, analytics and engineering", False, [
             ("Sara ElElimy", "Director, Analytics", "team-sara.jpg",
