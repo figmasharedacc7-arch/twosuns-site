@@ -247,7 +247,7 @@ COMPANY = dict(
              "into structured platform requirements and outputs."),
             ("Bhupat Patel", "Senior Full-Stack Engineer", "team-bhupat.jpg",
              "Bhupat develops enterprise application capabilities, interfaces and integrations across the TwoSuns platform."),
-            ("Omar Ezzar", "Product Engineer",
+            ("Omar Ezzat", "Product Engineer",
              "Omar supports product engineering, configuration and the implementation of platform experiences "
              "around client requirements."),
             ("Yuva Raja", "Senior AI Engineer",
