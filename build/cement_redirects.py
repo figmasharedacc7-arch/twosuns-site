@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Redirect stubs for the cement microsite pages the rebuild retires.
 
-The old microsite had 42 pages. Ten replace them, four of which take the same
+The old microsite had 42 pages. Eleven replace them, four of which take the same
 URLs (index, platform, use-cases and events), so 38 old URLs need somewhere to
 go. Those URLs are in inboxes, decks and search indexes, and GitHub Pages has no
 server redirects, so each one gets a small page that sends the visitor on and
@@ -78,9 +78,9 @@ KEPT = ["index.html", "platform.html", "events.html", "use-cases.html"]
 # Everything cement.py generates. A stub written over one of these would destroy
 # a real page, and the two lists are edited in different files, so assert rather
 # than trust. KEPT is the subset of these that the old site also had.
-PAGES = ["index.html", "platform.html", "capabilities.html", "sectors.html",
-         "construction.html", "concrete.html", "distribution.html",
-         "use-cases.html", "company.html", "events.html"]
+PAGES = ["index.html", "context.html", "platform.html", "capabilities.html",
+         "sectors.html", "construction.html", "concrete.html",
+         "distribution.html", "use-cases.html", "company.html", "events.html"]
 
 # Old URLs under cement/ar/. The Arabic microsite mirrors the English one, so a
 # page that moves leaves two URLs behind, not one, and the table above only

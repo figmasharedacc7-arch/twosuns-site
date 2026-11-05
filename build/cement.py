@@ -90,6 +90,7 @@ CEM_CSS = r"""
   html[dir="rtl"] .cmhero{--cmwash:linear-gradient(260deg,#FFF6E2 0%,#FFF6E2 40%,rgba(255,246,226,.94) 48%,
       rgba(255,246,226,.74) 56%,rgba(255,245,222,.44) 64%,rgba(255,244,218,.16) 72%,
       rgba(255,243,216,0) 80%);}
+  .cmhero.sh-plain{--cmshot:linear-gradient(#FFF6E2,#FFF6E2);}
   .cmhero.sh-platform{--cmshot:url('/plat-hero.jpg');}
   .cmhero.sh-capabilities{--cmshot:url('/cap-hero.jpg');}
   /* the Sectors hub takes the supplied plant aerial, flipped, so its tower
@@ -104,6 +105,68 @@ CEM_CSS = r"""
   .cmhero h1{font-size:clamp(32px,4.4vw,54px);font-weight:900;line-height:1.1;color:var(--navy);
     margin-bottom:20px;max-width:19ch;}
   .cmhero p.hero-sub{max-width:620px;}
+
+  /* ---- Cement Context: the regional pressure card ---- */
+  /* Three stacked blocks in one card: what the pressure is, how it reaches the
+     plant, and the scenario it becomes. The scenario block is tinted and pushed
+     to the bottom with margin-top:auto, so the three cards line their scenarios
+     up however unevenly the middle block fills. */
+  .cmpr{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px;
+    align-items:stretch;}
+  .cmpr>*{min-width:0;}
+  .cmpr .p{background:#fff;border:1px solid var(--border);border-radius:16px;
+    box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;}
+  .cmpr .p-top{padding:24px 24px 18px;}
+  .cmpr .n{width:40px;height:40px;border-radius:50%;background:var(--sun);color:#fff;
+    font-weight:900;font-size:14px;display:inline-flex;align-items:center;
+    justify-content:center;margin-bottom:14px;}
+  .cmpr .p-top h3{font-size:19px;font-weight:900;color:var(--navy);line-height:1.3;}
+  .cmpr .p-top p{font-size:14.5px;color:var(--text-muted);line-height:1.6;margin-top:9px;}
+  .cmpr .p-mid{padding:18px 24px;border-top:1px solid var(--border-soft);}
+  .cmpr .k{display:block;font-size:11.5px;font-weight:800;letter-spacing:1.3px;
+    text-transform:uppercase;color:#8C6500;}
+  /* The pairs are spaced with margins rather than a grid gap. A gap applies
+     between dt and dd as well as between pairs, which puts more air inside a
+     pair than around it and reads as though each description belongs to the
+     label below it. */
+  .cmpr dl{margin-top:11px;}
+  .cmpr dt{font-size:14px;font-weight:800;color:var(--navy);margin-top:13px;}
+  .cmpr dt:first-child{margin-top:0;}
+  .cmpr dd{font-size:14px;color:var(--text-muted);line-height:1.6;margin-top:2px;}
+  .cmpr .p-end{padding:18px 24px 20px;margin-top:auto;background:var(--bg2);
+    border-top:1px solid var(--border);}
+  .cmpr .p-end .k{color:var(--sun-deep);}
+  .cmpr .p-end p{font-size:14.5px;line-height:1.6;color:var(--navy);font-weight:600;
+    margin-top:8px;}
+  .cmpr .mods{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:12px;}
+  .cmpr .mods span{font-size:13px;font-weight:700;color:var(--sun-deep);}
+  html[dir="rtl"] .cmpr .k{letter-spacing:0;}
+
+  /* ---- Cement Context: the workflow group ---- */
+  /* A labelled group of numbered workflows, two to a row. The label sits on a
+     rule that runs to the end of the row, which is why the heading is a flex
+     with a growing pseudo element rather than a border on the group. */
+  .cmfl{margin-top:30px;}
+  .cmfl+.cmfl{margin-top:34px;}
+  /* the label is a pill on a rule that runs to the end of the row, so the two
+     groups read as two bands rather than as one long list */
+  .cmfl>h3{display:flex;align-items:center;gap:14px;font-size:11.5px;font-weight:800;
+    letter-spacing:1.6px;text-transform:uppercase;color:var(--sun-deep);margin-bottom:6px;}
+  .cmfl>h3 b{font-weight:800;border:1px solid var(--border);border-radius:999px;
+    padding:6px 14px;background:var(--bg2);}
+  .cmfl>h3::after{content:"";flex:1;height:1px;background:var(--border);}
+  html[dir="rtl"] .cmfl>h3{letter-spacing:0;}
+  .cmfl .g{display:grid;grid-template-columns:repeat(2,1fr);gap:0 34px;}
+  .cmfl .g>*{min-width:0;}
+  .cmfl .w{display:grid;grid-template-columns:auto 1fr;gap:0 14px;align-items:start;
+    padding:18px 0;border-bottom:1px solid var(--border-soft);}
+  .cmfl .n{width:26px;height:26px;border-radius:50%;border:1px solid var(--sun);
+    color:var(--sun-deep);font-size:12px;font-weight:800;display:inline-flex;
+    align-items:center;justify-content:center;margin-top:1px;}
+  .cmfl .w h4{font-size:16px;font-weight:900;color:var(--navy);line-height:1.35;}
+  .cmfl .w p{font-size:14px;color:var(--text-muted);line-height:1.6;margin-top:7px;}
+  .cmfl .mods{display:flex;flex-wrap:wrap;gap:3px 12px;margin-top:9px;}
+  .cmfl .mods span{font-size:13px;font-weight:700;color:var(--sun-deep);}
 
   /* ---- platform family cards ---- */
   .cmfam{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:30px;}
@@ -297,7 +360,7 @@ CEM_CSS = r"""
     .cmhero,html[dir="rtl"] .cmhero{background-position:center,center;
       --cmwash:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,
         rgba(255,244,220,.58) 80%,rgba(255,242,214,.24) 100%);}
-    .cmfam,.cmrows,.cmrows.two,.cmmods{grid-template-columns:repeat(2,1fr);}
+    .cmfam,.cmrows,.cmrows.two,.cmmods,.cmpr{grid-template-columns:repeat(2,1fr);}
     .cmpd{grid-template-columns:repeat(2,1fr);}
     .cmsx{grid-template-columns:1fr;}
   }
@@ -313,7 +376,7 @@ CEM_CSS = r"""
   }
   @media(max-width:620px){
     .cmfam,.cmrows,.cmrows.two,.cmmods,.cmpd{grid-template-columns:1fr;}
-    .cmcg,.cmwf{grid-template-columns:1fr;}
+    .cmcg,.cmwf,.cmpr,.cmfl .g{grid-template-columns:1fr;}
     .cmwf .w dl{grid-template-columns:1fr;gap:2px;}
     .cmwf .w dd{margin-bottom:8px;}
     .cmag-r,.cmses{grid-template-columns:1fr;}
@@ -891,6 +954,67 @@ def cards(groups):
     return '<div class="cmcg">%s</div>' % "".join(out)
 
 
+def mods(names):
+    """The modules a pressure or a workflow reaches. The microsite has no module
+    reference page, so these name the module rather than linking to it. Every name
+    comes from arch_hz and arch_pl, so one module reads one way across the site."""
+    return '<div class="mods">%s</div>' % "".join("<span>%s</span>" % e(n) for n in names)
+
+
+def pressures(d):
+    out = []
+    for i, ((title, intro, scen), rows_, tags) in enumerate(
+            zip(d["cx_rp_cards"], d["cx_rp_rows"], d["cx_rp_tags"]), 1):
+        pairs = "".join("<dt>%s</dt><dd>%s</dd>" % (e(k), e(v)) for k, v in rows_)
+        out.append(
+            '<div class="p">'
+            '<div class="p-top"><div class="n">%02d</div><h3>%s</h3><p>%s</p></div>'
+            '<div class="p-mid"><span class="k">%s</span><dl>%s</dl></div>'
+            '<div class="p-end"><span class="k">%s</span><p>%s</p>%s</div>'
+            '</div>'
+            % (i, e(title), e(intro), e(d["cx_rp_effect"]), pairs,
+               e(d["cx_rp_scen"]), e(scen), mods(tags)))
+    return '<div class="cmpr">%s</div>' % "".join(out)
+
+
+def flows(d):
+    """The eight workflows in two labelled groups, the plant four then the
+    commercial four. The split is positional because the copy lists them in that
+    order in both languages, and asserting it here means a reordered list fails the
+    build rather than quietly filing a Horizon workflow under Pulse."""
+    items, tags = d["cx_wf_items"], d["cx_wf_tags"]
+    assert len(items) == 8 and len(tags) == 8, "the context page expects eight workflows"
+    out = []
+    for label, lo in ((d["cx_wf_pulse"], 0), (d["cx_wf_horizon"], 4)):
+        ws = []
+        for n in range(lo, lo + 4):
+            title, desc = items[n]
+            ws.append('<div class="w"><div class="n">%d</div><div><h4>%s</h4>'
+                      '<p>%s</p>%s</div></div>'
+                      % (n + 1, e(title), e(desc), mods(tags[n])))
+        out.append('<div class="cmfl"><h3><b>%s</b></h3><div class="g">%s</div></div>'
+                   % (e(label), "".join(ws)))
+    return "".join(out)
+
+
+# ======================================================= CEMENT CONTEXT
+def build_context(d):
+    """The cement context the microsite opens on: the pressures an Egyptian producer
+    is working through, and the workflows configured against them. It was a section
+    of the home page until it became its own page, which is why the home section it
+    left behind is now called the decision problem instead."""
+    s = head(d, d["cx_title"], d["cx_desc"], "context.html") + nav(d, "context.html")
+    s += hero(d, d["cx_eyebrow"], d["cx_h1"], d["cx_sub"],
+              btn(d["cx_cta1"]) + " " + btn(d["cx_cta2"], "platform.html", ghost=True),
+              shot="plain")
+    s += sec(pressures(d), "band-alt", d["cx_rp_tag"], d["cx_rp_h"], d["cx_rp_p"])
+    s += sec(flows(d), "", d["cx_wf_tag"], d["cx_wf_h"], d["cx_wf_p"])
+    s += cta_band(d["cx_close_h"], d["cx_close_p"],
+                  btn(d["cx_close_cta1"]) + " "
+                  + btn(d["cx_close_cta2"], "platform.html", ghost=True))
+    return s + footer(d) + TAIL_JS
+
+
 # ========================================================== CAPABILITIES
 def build_capabilities(d):
     s = head(d, d["cap_title"], d["cap_desc"], "capabilities.html") + nav(d, "capabilities.html")
@@ -1173,6 +1297,7 @@ if __name__ == "__main__":
         out = OUT if code == "en" else os.path.join(OUT, "ar")
         os.makedirs(out, exist_ok=True)
         pages = {"index.html": build_home(d),
+                 "context.html": build_context(d),
                  "platform.html": build_platform(d),
                  "capabilities.html": build_capabilities(d),
                  "sectors.html": build_sectors(d),

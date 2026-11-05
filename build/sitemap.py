@@ -42,6 +42,7 @@ PAGES = [
 # is published in English and in Arabic, so each produces two sitemap entries.
 CEMENT = [
     ("",                  "monthly", "0.8"),
+    ("context.html",      "monthly", "0.8"),
     ("platform.html",     "monthly", "0.8"),
     ("capabilities.html", "monthly", "0.8"),
     ("sectors.html",      "monthly", "0.7"),
