@@ -42,8 +42,7 @@ EN = {
  'home_desc': "An adaptive enterprise platform configured around cement. TwoSuns coordinates "
                "quarry, kiln, mill, dispatch and sales through shared enterprise context.",
  'home_eyebrow': 'Adaptive enterprise capability for cement producers',
- 'home_h1': "Coordinate quarry, kiln, mill, dispatch and sales through shared enterprise "
-             "context.",
+ 'home_h1': "Grow, operate and coordinate complex work through shared enterprise context.",
  'home_sub': "TwoSuns is an adaptive enterprise platform for the built industry, configured "
               "here around cement. It combines the inputs a plant already records, "
               "context-aware intelligence, agentic support and configurable workflows, so "
@@ -88,6 +87,37 @@ EN = {
               "dispatch, sustainability.",
            ),
          ],
+ # the platform architecture figure on the home page, drawn by arch.py
+ 'arx_tag': 'Architecture',
+ 'arx_h': 'Enterprise context becomes coordinated action',
+ 'arx_p': 'Commercial intelligence and operational execution, connected through one governed enterprise context.',
+ 'arx_foot': 'One governed context. Two operating domains. Continuous enterprise awareness.',
+ 'arx_cta': 'Explore the Platform',
+ 'arx_labels': {
+                 'core_1': 'Governance and permissions',
+                 'core_2': 'Organizational memory and logs',
+                 'core_3': 'Decision continuity',
+                 'core_k': 'Governed context',
+                 'flow_in': 'Context in',
+                 'flow_out': 'Coordinated action out',
+                 'hz_1': 'Market and account intelligence',
+                 'hz_2': 'Revenue coordination',
+                 'hz_3': 'GTM execution',
+                 'hz_k': 'Commercial intelligence',
+                 'orb_customers': 'Customers',
+                 'orb_markets': 'Markets',
+                 'orb_operations': 'Operations',
+                 'orb_people': 'People and systems',
+                 'pl_1': 'Operational workflows',
+                 'pl_2': 'Supply and resource coordination',
+                 'pl_3': 'Performance management',
+                 'pl_k': 'Operational execution',
+                 'ray_1': 'Contextual continuity',
+                 'ray_2': 'Enterprise awareness',
+                 'ray_3': 'Coordinated action',
+                 'ray_sub': 'Persistent enterprise companion',
+                 'svg_aria': 'Horizon and Pulse as two operating domains, Core as the governed context between them, Ray spanning beneath.',
+               },
  'ctx_tag': 'Cement Context',
  'ctx_h': 'Cost per tonne is set by decisions taken in separate functions',
  'ctx_p1': "A cement plant takes many decisions each day that move cost per tonne: which "
@@ -603,7 +633,7 @@ AR = {
                "والفرن والطاحونة والشحن والمبيعات عبر سياق مؤسسي مشترك، داخل الحدود التي "
                "يملكها مهندسو المصنع.",
  'home_eyebrow': 'قدرة مؤسسية متكيفة لمنتجي الأسمنت',
- 'home_h1': 'تنسيق قرارات المحجر والفرن والطاحونة والشحن والمبيعات عبر سياق مؤسسي مشترك.',
+ 'home_h1': 'تنمية الأعمال المركبة وتشغيلها وتنسيقها عبر سياق مؤسسي مشترك.',
  'home_sub': "TwoSuns منصة مؤسسية متكيفة لقطاع البناء والأصول المبنية، مُهيّأة هنا وفق صناعة "
               "الأسمنت. تجمع المنصة المدخلات التي يسجلها المصنع بالفعل، والذكاء المدرك للسياق، "
               "ودعمًا من وكلاء أذكياء، ومسارات عمل قابلة للتهيئة، بحيث تنسّق فرق العمليات "
@@ -645,6 +675,37 @@ AR = {
               "والشحن، والاستدامة.",
            ),
          ],
+ # the platform architecture figure on the home page, drawn by arch.py
+ 'arx_tag': 'البنية',
+ 'arx_h': 'يتحول السياق المؤسسي إلى إجراء منسّق',
+ 'arx_p': 'الذكاء التجاري والتنفيذ التشغيلي مترابطان عبر سياق مؤسسي واحد خاضع للضوابط.',
+ 'arx_foot': 'سياق واحد خاضع للضوابط. مجالا تشغيل. إدراك مؤسسي مستمر.',
+ 'arx_cta': 'استعرض المنصة',
+ 'arx_labels': {
+                 'core_1': 'الضوابط والصلاحيات',
+                 'core_2': 'الذاكرة التنظيمية والسجلات',
+                 'core_3': 'استمرارية القرارات',
+                 'core_k': 'السياق الخاضع للضوابط',
+                 'flow_in': 'سياق وارد',
+                 'flow_out': 'إجراء منسّق صادر',
+                 'hz_1': 'ذكاء السوق والعملاء',
+                 'hz_2': 'تنسيق الإيرادات',
+                 'hz_3': 'التنفيذ الموجّه للسوق',
+                 'hz_k': 'الذكاء التجاري',
+                 'orb_customers': 'العملاء',
+                 'orb_markets': 'الأسواق',
+                 'orb_operations': 'العمليات',
+                 'orb_people': 'الأشخاص والأنظمة',
+                 'pl_1': 'مسارات العمل التشغيلية',
+                 'pl_2': 'تنسيق التوريد والموارد',
+                 'pl_3': 'إدارة الأداء',
+                 'pl_k': 'التنفيذ التشغيلي',
+                 'ray_1': 'استمرارية السياق',
+                 'ray_2': 'الإدراك المؤسسي',
+                 'ray_3': 'الإجراء المنسّق',
+                 'ray_sub': 'مساعد مؤسسي دائم الحضور',
+                 'svg_aria': 'Horizon وPulse مجالا تشغيل، وCore هو السياق الخاضع للضوابط بينهما، وRay يمتد تحتهما.',
+               },
  'ctx_tag': 'سياق صناعة الأسمنت',
  'ctx_h': 'تكلفة الطن تتحدد بقرارات تُتخذ في وظائف منفصلة',
  'ctx_p1': "يتخذ مصنع الأسمنت كل يوم قرارات كثيرة تحرك تكلفة الطن: أي واجهات المحجر تغذي "

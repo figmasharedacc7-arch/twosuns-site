@@ -333,6 +333,20 @@
   /* FILTER ROWS + CROSS LINKS */
   .uc-filterset{margin-top:26px;display:grid;gap:14px;}
   /* USE CASE SEARCH */
+  /* PAST EVENTS */
+  .evplist{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:10px;}
+  .evp{display:grid;grid-template-columns:1.5fr 1fr 1.6fr auto;gap:18px;align-items:baseline;
+    background:#fff;border:1px solid var(--border-soft);border-radius:12px;padding:16px 20px;}
+  .evp-n{font-size:15.5px;font-weight:800;color:var(--navy);}
+  .evp-d{font-size:14px;font-weight:700;color:var(--sun-deep);white-space:nowrap;}
+  .evp-v{font-size:14px;color:var(--text-muted);}
+  .evp-l{font-size:13.5px;white-space:nowrap;}
+
+  @media(max-width:900px){
+    .evp{grid-template-columns:1fr;gap:5px;}
+    .evp-d{white-space:normal;}
+  }
+
   .uc-search{position:relative;display:flex;align-items:center;margin:0 0 20px;max-width:560px;}
   .uc-search svg{position:absolute;left:16px;width:17px;height:17px;flex:none;
     stroke:var(--sun-deep);fill:none;stroke-width:2;opacity:.7;pointer-events:none;}
@@ -552,9 +566,9 @@
   .arx-k{font-size:11px;font-size:.72cqw;font-weight:800;letter-spacing:.22em;text-transform:uppercase;}
   .arx-n{font-size:34px;font-size:2.5cqw;font-weight:900;letter-spacing:-.01em;line-height:1;margin-top:.5cqw;}
   .arx-rule{height:1px;margin:1.1cqw auto .9cqw;}
-  .arx-list{list-style:none;margin:0;padding:0;text-align:left;display:grid;gap:.55cqw;}
-  .arx-list li{position:relative;padding-left:1.35cqw;font-size:15px;font-size:1.02cqw;line-height:1.35;}
-  .arx-list li::before{content:'';position:absolute;left:0;top:.42em;width:.42cqw;height:.42cqw;
+  .arx-list{list-style:none;margin:0;padding:0;text-align:start;display:grid;gap:.55cqw;}
+  .arx-list li{position:relative;padding-inline-start:1.35cqw;font-size:15px;font-size:1.02cqw;line-height:1.35;}
+  .arx-list li::before{content:'';position:absolute;inset-inline-start:0;top:.42em;width:.42cqw;height:.42cqw;
     border-radius:50%;background:currentColor;opacity:.65;}
   .arx-domain{width:18.25%;color:#2A231B;}
   .arx-core{width:19.2%;color:#F6EEDE;}
@@ -578,6 +592,11 @@
   .arx-strip .arx-domain{color:#2A231B;}
   .arx-strip .arx-orbs{border-top:1px solid currentColor;border-color:rgba(60,45,15,.22);}
   .arx-foot{margin-top:22px;text-align:center;font-size:14.5px;font-weight:800;color:#5A554C;}
+  html[dir="rtl"] .arx-k,html[dir="rtl"] .arx-orbit,html[dir="rtl"] .arx-orbs,
+  html[dir="rtl"] .arxf .k{letter-spacing:0;}
+  /* the two flow labels carry letter-spacing as an SVG presentation attribute,
+     which only a CSS rule can override */
+  html[dir="rtl"] .arx svg text{letter-spacing:normal;direction:rtl;unicode-bidi:isolate;}
   .arx-fallback{display:none;}
 
   @media(max-width:900px){
@@ -587,8 +606,8 @@
     .arxf .k{font-size:10.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;}
     .arxf .n{font-size:26px;font-weight:900;line-height:1;margin-top:4px;}
     .arxf ul{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:8px;}
-    .arxf li{position:relative;padding-left:18px;font-size:14.5px;line-height:1.5;}
-    .arxf li::before{content:'';position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:50%;
+    .arxf li{position:relative;padding-inline-start:18px;font-size:14.5px;line-height:1.5;}
+    .arxf li::before{content:'';position:absolute;inset-inline-start:0;top:.55em;width:6px;height:6px;border-radius:50%;
       background:currentColor;opacity:.6;}
     .arxf-h{background:linear-gradient(140deg,#F6DE93,#E0B33A);color:#2A231B;}
     .arxf-c{background:linear-gradient(140deg,#2A2520,#171310);color:#F6EEDE;}
@@ -785,18 +804,7 @@
         <span><i style="background:#B8860B;"></i>Coordinated action</span>
       </div>
     </div></div>
-    <div class="arx-fallback">
-      <div class="arxf arxf-h"><div class="k">Commercial intelligence</div><div class="n">HORIZON</div>
-        <ul><li>Market and account intelligence</li><li>Revenue coordination</li><li>GTM execution</li></ul></div>
-      <div class="arxf arxf-c"><div class="k">Governed context</div><div class="n">CORE</div>
-        <ul><li>Governance and permissions</li><li>Organizational memory and logs</li>
-        <li>Decision continuity</li></ul></div>
-      <div class="arxf arxf-p"><div class="k">Operational execution</div><div class="n">PULSE</div>
-        <ul><li>Operational workflows</li><li>Supply and resource coordination</li>
-        <li>Performance management</li></ul></div>
-      <div class="arxf arxf-r"><div class="k">Persistent enterprise companion</div><div class="n">RAY</div>
-        <ul><li>Contextual continuity</li><li>Enterprise awareness</li><li>Coordinated action</li></ul></div>
-    </div>
+    <div class="arx-fallback"><div class="arxf arxf-h"><div class="k">Commercial intelligence</div><div class="n">HORIZON</div><ul><li>Market and account intelligence</li><li>Revenue coordination</li><li>GTM execution</li></ul></div><div class="arxf arxf-c"><div class="k">Governed context</div><div class="n">CORE</div><ul><li>Governance and permissions</li><li>Organizational memory and logs</li><li>Decision continuity</li></ul></div><div class="arxf arxf-p"><div class="k">Operational execution</div><div class="n">PULSE</div><ul><li>Operational workflows</li><li>Supply and resource coordination</li><li>Performance management</li></ul></div><div class="arxf arxf-r"><div class="k">Persistent enterprise companion</div><div class="n">RAY</div><ul><li>Contextual continuity</li><li>Enterprise awareness</li><li>Coordinated action</li></ul></div></div>
     <div class="arx-foot">One governed context. Two operating domains. Continuous enterprise awareness.</div>
     <div style="margin-top:30px;"><a class="btn-ghost" href="platform.html">Explore the Platform</a></div>
   </div>

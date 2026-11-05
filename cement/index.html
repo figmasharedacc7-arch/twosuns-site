@@ -572,6 +572,65 @@
   .rv .hero .in.in{opacity:1;transform:none;}
 
 
+  /* PLATFORM ARCHITECTURE */
+  .arx{position:relative;width:100%;max-width:1180px;margin:22px auto 0;aspect-ratio:2000/990;
+    container-type:inline-size;}
+  .arx svg{position:absolute;inset:0;width:100%;height:100%;}
+  .arx-lab{position:absolute;transform:translate(-50%,-50%);text-align:center;}
+  .arx-k{font-size:11px;font-size:.72cqw;font-weight:800;letter-spacing:.22em;text-transform:uppercase;}
+  .arx-n{font-size:34px;font-size:2.5cqw;font-weight:900;letter-spacing:-.01em;line-height:1;margin-top:.5cqw;}
+  .arx-rule{height:1px;margin:1.1cqw auto .9cqw;}
+  .arx-list{list-style:none;margin:0;padding:0;text-align:start;display:grid;gap:.55cqw;}
+  .arx-list li{position:relative;padding-inline-start:1.35cqw;font-size:15px;font-size:1.02cqw;line-height:1.35;}
+  .arx-list li::before{content:'';position:absolute;inset-inline-start:0;top:.42em;width:.42cqw;height:.42cqw;
+    border-radius:50%;background:currentColor;opacity:.65;}
+  .arx-domain{width:18.25%;color:#2A231B;}
+  .arx-core{width:19.2%;color:#F6EEDE;}
+  .arx-core .arx-lines{display:grid;gap:.6cqw;font-size:15px;font-size:1.02cqw;line-height:1.35;}
+  .arx-orbit{position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;gap:.5cqw;
+    font-size:11px;font-size:.7cqw;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
+    color:#6E6152;white-space:nowrap;}
+  .arx-orbit i{width:.5cqw;height:.5cqw;border-radius:50%;flex-shrink:0;}
+  .arx-ray{position:absolute;left:50%;transform:translateX(-50%);background:#fff;border-radius:999px;
+    box-shadow:0 14px 40px rgba(60,50,30,.14);display:flex;align-items:center;justify-content:center;
+    flex-direction:column;gap:.7cqw;}
+  .arx-ray-top{display:flex;align-items:baseline;gap:.85cqw;}
+  .arx-ray-name{font-size:30px;font-size:2.1cqw;font-weight:900;color:#B8860B;letter-spacing:.01em;}
+  .arx-ray-sub{font-size:18px;font-size:1.25cqw;font-weight:800;color:#2A231B;}
+  .arx-ray-items{display:flex;gap:2.2cqw;font-size:15px;font-size:1.02cqw;color:#5A554C;}
+  .arx-ray-items span{display:flex;align-items:center;gap:.5cqw;}
+  .arx-ray-items i{width:.45cqw;height:.45cqw;border-radius:50%;}
+  .arx-orbs{margin-top:1.15cqw;padding-top:.85cqw;font-size:11px;font-size:.7cqw;font-weight:800;
+    letter-spacing:.18em;text-transform:uppercase;opacity:.75;}
+  .arx-strip .arx-domain,.arx-strip .arx-core{width:24%;}
+  .arx-strip .arx-domain{color:#2A231B;}
+  .arx-strip .arx-orbs{border-top:1px solid currentColor;border-color:rgba(60,45,15,.22);}
+  .arx-foot{margin-top:22px;text-align:center;font-size:14.5px;font-weight:800;color:#5A554C;}
+  html[dir="rtl"] .arx-k,html[dir="rtl"] .arx-orbit,html[dir="rtl"] .arx-orbs,
+  html[dir="rtl"] .arxf .k{letter-spacing:0;}
+  /* the two flow labels carry letter-spacing as an SVG presentation attribute,
+     which only a CSS rule can override */
+  html[dir="rtl"] .arx svg text{letter-spacing:normal;direction:rtl;unicode-bidi:isolate;}
+  .arx-fallback{display:none;}
+
+  @media(max-width:900px){
+    .arx{display:none;}
+    .arx-fallback{display:grid;gap:14px;margin-top:28px;}
+    .arxf{border-radius:18px;padding:22px 22px 24px;}
+    .arxf .k{font-size:10.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;}
+    .arxf .n{font-size:26px;font-weight:900;line-height:1;margin-top:4px;}
+    .arxf ul{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:8px;}
+    .arxf li{position:relative;padding-inline-start:18px;font-size:14.5px;line-height:1.5;}
+    .arxf li::before{content:'';position:absolute;inset-inline-start:0;top:.55em;width:6px;height:6px;border-radius:50%;
+      background:currentColor;opacity:.6;}
+    .arxf-h{background:linear-gradient(140deg,#F6DE93,#E0B33A);color:#2A231B;}
+    .arxf-c{background:linear-gradient(140deg,#2A2520,#171310);color:#F6EEDE;}
+    .arxf-c .n{color:#fff;}
+    .arxf-p{background:linear-gradient(140deg,#FDBA74,#F97316);color:#2A231B;}
+    .arxf-r{background:#fff;border:1px solid var(--border);color:#5A554C;}
+    .arxf-r .n{color:#B8860B;}
+  }
+
   /* ---- microsite chrome ---- */
   .cmnav{position:sticky;top:0;z-index:100;background:rgba(255,248,236,.95);
     backdrop-filter:blur(16px);border-bottom:1px solid rgba(224,100,30,.15);
@@ -837,7 +896,7 @@
   <div class="hero-glow"></div>
   <div class="container">
     <div class="hero-eyebrow"><span class="dot"></span>Adaptive enterprise capability for cement producers</div>
-    <h1>Coordinate quarry, kiln, mill, dispatch and sales through shared enterprise context.</h1>
+    <h1>Grow, operate and coordinate complex work through shared enterprise context.</h1>
     <p class="hero-sub">TwoSuns is an adaptive enterprise platform for the built industry, configured here around cement. It combines the inputs a plant already records, context-aware intelligence, agentic support and configurable workflows, so process, quality, commercial and finance teams coordinate from the same context.</p>
     <div class="hero-actions"><a class="btn-cta" href="https://twosuns.ai/discuss.html?ask=Discuss+Your+Needs">Discuss Your Needs</a> <a class="btn-ghost" href="platform.html">Explore the Platform</a></div>
   </div>
@@ -851,6 +910,59 @@
     <p class="lede">We build practical enterprise capability that helps organizations grow, operate and coordinate complex work through connected context, intelligence and configurable workflows. In cement that work runs from the quarry face to cash collected, and it is carried out by functions that each hold their own authority.</p>
     <h3 class="sub-heading" style="margin-top:34px;font-size:22px;">One platform across the plant and the market</h3>
     <div class="cmfam"><div class="f"><h3>Core</h3><div class="d">The shared enterprise context, configuration and continuity layer.</div><div class="x">Plant basis, operating limits, roles, approval chains and decision history.</div></div><div class="f"><h3>Ray</h3><div class="d">Context-aware assistance available throughout the platform.</div><div class="x">Explanation, synthesis and workflow support, within each user's permissions.</div></div><div class="f"><h3>Horizon</h3><div class="d">Market, growth, relationship and commercial capabilities.</div><div class="x">Strategy and product market fit, signals, plays, contracts and offers, orders and invoicing, finance.</div></div><div class="f"><h3>Pulse</h3><div class="d">Product, project, operational and asset capabilities.</div><div class="x">Quarry, materials and supply, raw mix, pyro process, grinding, packing and dispatch, sustainability.</div></div></div>
+  </div>
+</section>
+<section class="band-warm">
+  <div class="container">
+    <div class="section-tag">Architecture</div>
+    <h2 class="section-heading">Enterprise context becomes coordinated action</h2>
+    <p class="section-sub">Commercial intelligence and operational execution, connected through one governed enterprise context.</p>
+    <div class="arx arx-explain"><svg viewBox="0 195 2000 990" role="img" aria-label="Horizon and Pulse as two operating domains, Core as the governed context between them, Ray spanning beneath."><defs>
+      <radialGradient id="axh" cx="36%" cy="30%">
+        <stop offset="0" stop-color="#FBEBB4"/><stop offset=".55" stop-color="#EFCE6B"/>
+        <stop offset="1" stop-color="#E0B33A"/></radialGradient>
+      <radialGradient id="axp" cx="36%" cy="30%">
+        <stop offset="0" stop-color="#FFD3A8"/><stop offset=".5" stop-color="#FBA05A"/>
+        <stop offset="1" stop-color="#F97316"/></radialGradient>
+      <linearGradient id="axc" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#2E2822"/><stop offset="1" stop-color="#141110"/></linearGradient>
+      <marker id="axag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M0 0 L10 5 L0 10 z" fill="#E0B33A"/></marker>
+      <marker id="axao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M0 0 L10 5 L0 10 z" fill="#F97316"/></marker>
+    </defs><ellipse cx="1020" cy="575" rx="792" ry="300" fill="none" stroke="rgba(224,100,30,.10)" stroke-width="26"/><circle cx="660" cy="575" r="278" fill="url(#axh)"/><circle cx="1400" cy="575" r="278" fill="url(#axp)"/><path d="M470 352 C640 236 860 250 946 292" fill="none" stroke="#E0B33A" stroke-width="7" stroke-linecap="round" opacity=".85" marker-end="url(#axag)"/><path d="M1584 300 C1420 238 1180 250 1074 292" fill="none" stroke="#F97316" stroke-width="7" stroke-linecap="round" opacity=".85" marker-end="url(#axao)"/><path d="M1012 846 C930 900 780 908 640 880" fill="none" stroke="#E0B33A" stroke-width="7" stroke-linecap="round" opacity=".8" marker-end="url(#axag)"/><path d="M1074 846 C1160 900 1300 908 1420 880" fill="none" stroke="#F97316" stroke-width="7" stroke-linecap="round" opacity=".8" marker-end="url(#axao)"/><line x1="1005" y1="820" x2="1005" y2="884" stroke="rgba(60,50,30,.30)" stroke-width="3"/><text x="1005" y="252" text-anchor="middle" font-size="31" font-weight="800" fill="#8C6500" letter-spacing="1.5">Context in</text><text x="1005" y="926" text-anchor="middle" font-size="31" font-weight="800" fill="#8C6500" letter-spacing="1.5">Coordinated action out</text><line x1="404" y1="330" x2="520" y2="330" stroke="rgba(140,101,0,.30)" stroke-width="2" stroke-dasharray="5 7"/><line x1="404" y1="812" x2="508" y2="812" stroke="rgba(140,101,0,.30)" stroke-width="2" stroke-dasharray="5 7"/><line x1="1596" y1="330" x2="1642" y2="330" stroke="rgba(140,101,0,.30)" stroke-width="2" stroke-dasharray="5 7"/><line x1="1563" y1="806" x2="1664" y2="806" stroke="rgba(140,101,0,.30)" stroke-width="2" stroke-dasharray="5 7"/><line x1="640" y1="898" x2="640" y2="946" stroke="rgba(140,101,0,.30)" stroke-width="2" stroke-dasharray="5 7"/><line x1="1420" y1="898" x2="1420" y2="946" stroke="rgba(140,101,0,.30)" stroke-width="2" stroke-dasharray="5 7"/><rect x="804" y="335" width="402" height="486" rx="30" fill="#fff"/><rect x="813" y="344" width="384" height="468" rx="24" fill="url(#axc)"/><rect x="821" y="352" width="368" height="452" rx="20" fill="none" stroke="rgba(224,178,80,.35)"/><line x1="872" y1="430" x2="1005" y2="396" stroke="rgba(224,178,80,.16)"/><line x1="1005" y1="396" x2="1140" y2="432" stroke="rgba(224,178,80,.16)"/><line x1="884" y1="700" x2="1010" y2="742" stroke="rgba(224,178,80,.16)"/><line x1="1010" y1="742" x2="1132" y2="700" stroke="rgba(224,178,80,.16)"/><circle cx="872" cy="430" r="4" fill="rgba(224,178,80,.45)"/><circle cx="1005" cy="396" r="4" fill="rgba(224,178,80,.45)"/><circle cx="1140" cy="432" r="4" fill="rgba(224,178,80,.45)"/><circle cx="884" cy="700" r="4" fill="rgba(224,178,80,.45)"/><circle cx="1010" cy="742" r="4" fill="rgba(224,178,80,.45)"/><circle cx="1132" cy="700" r="4" fill="rgba(224,178,80,.45)"/><line x1="948" y1="756" x2="1062" y2="756" stroke="rgba(246,238,222,.35)" stroke-width="2"/><circle cx="948" cy="756" r="7" fill="#E0B33A"/><circle cx="1005" cy="756" r="7" fill="#fff"/><circle cx="1062" cy="756" r="7" fill="#F97316"/></svg><div class="arx-lab arx-domain" style="left:30.70%;top:37.78%;">
+      <div class="arx-k" style="color:#8A6A12;">Commercial intelligence</div>
+      <div class="arx-n">HORIZON</div>
+      <div class="arx-rule" style="background:rgba(90,70,15,.35);"></div>
+      <ul class="arx-list"><li>Market and account intelligence</li><li>Revenue coordination</li><li>GTM execution</li></ul>
+    </div><div class="arx-lab arx-core" style="left:50.25%;top:35.25%;">
+      <div class="arx-k" style="color:#E0B33A;">Governed context</div>
+      <div class="arx-n" style="color:#fff;">CORE</div>
+      <div class="arx-rule" style="background:rgba(224,178,80,.4);"></div>
+      <div class="arx-lines">
+        <div>Governance and permissions</div>
+        <div>Organizational memory and logs</div>
+        <div>Decision continuity</div>
+      </div>
+    </div><div class="arx-lab arx-domain" style="left:72.30%;top:37.78%;">
+      <div class="arx-k" style="color:#8C3D0B;">Operational execution</div>
+      <div class="arx-n">PULSE</div>
+      <div class="arx-rule" style="background:rgba(120,55,10,.35);"></div>
+      <ul class="arx-list"><li>Operational workflows</li><li>Supply and resource coordination</li><li>Performance management</li></ul>
+    </div><div class="arx-orbit" style="left:12.50%;top:13.64%;transform:translateY(-50%);"><i style="background:#E0B33A;"></i>Markets</div><div class="arx-orbit" style="left:12.50%;top:62.32%;transform:translateY(-50%);"><i style="background:#E0B33A;"></i>Customers</div><div class="arx-orbit" style="left:82.50%;top:13.64%;transform:translateY(-50%);"><i style="background:#F97316;"></i>Operations</div><div class="arx-orbit" style="left:83.60%;top:61.72%;transform:translateY(-50%);"><i style="background:#F97316;"></i>People and systems</div><div class="arx-ray" style="left:50%;top:76.46%;width:54.50%;padding:1.9cqw 2.4cqw;">
+      <div class="arx-ray-top">
+        <span class="arx-ray-name">RAY</span>
+        <span class="arx-ray-sub">Persistent enterprise companion</span>
+      </div>
+      <div class="arx-ray-items">
+        <span><i style="background:#E0B33A;"></i>Contextual continuity</span>
+        <span><i style="background:#F97316;"></i>Enterprise awareness</span>
+        <span><i style="background:#B8860B;"></i>Coordinated action</span>
+      </div>
+    </div></div>
+    <div class="arx-fallback"><div class="arxf arxf-h"><div class="k">Commercial intelligence</div><div class="n">HORIZON</div><ul><li>Market and account intelligence</li><li>Revenue coordination</li><li>GTM execution</li></ul></div><div class="arxf arxf-c"><div class="k">Governed context</div><div class="n">CORE</div><ul><li>Governance and permissions</li><li>Organizational memory and logs</li><li>Decision continuity</li></ul></div><div class="arxf arxf-p"><div class="k">Operational execution</div><div class="n">PULSE</div><ul><li>Operational workflows</li><li>Supply and resource coordination</li><li>Performance management</li></ul></div><div class="arxf arxf-r"><div class="k">Persistent enterprise companion</div><div class="n">RAY</div><ul><li>Contextual continuity</li><li>Enterprise awareness</li><li>Coordinated action</li></ul></div></div>
+    <div class="arx-foot">One governed context. Two operating domains. Continuous enterprise awareness.</div>
+    <div style="margin-top:30px;"><a class="btn-ghost" href="platform.html">Explore the Platform</a></div>
   </div>
 </section>
 <section id="context" class="band-alt">

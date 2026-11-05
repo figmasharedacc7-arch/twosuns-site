@@ -18,6 +18,36 @@ CX, CY, CW, CH = 1005, 578, 384, 468   # Core panel
 LAB_OUT = 46                           # how far each domain label sits out from its disc centre
 GOLD, ORANGE, DEEP = "#E0B33A", "#F97316", "#C45213"
 
+# Every word in the figure, so a translated site can pass its own set. The
+# product names (HORIZON, CORE, PULSE, RAY) stay out of this on purpose: they
+# are names, not copy, and they stay in Latin script in every language.
+LABELS = {
+    "svg_aria": "Horizon and Pulse as two operating domains, Core as the governed "
+                "context between them, Ray spanning beneath.",
+    "flow_in": "Context in",
+    "flow_out": "Coordinated action out",
+    "hz_k": "Commercial intelligence",
+    "hz_1": "Market and account intelligence",
+    "hz_2": "Revenue coordination",
+    "hz_3": "GTM execution",
+    "pl_k": "Operational execution",
+    "pl_1": "Operational workflows",
+    "pl_2": "Supply and resource coordination",
+    "pl_3": "Performance management",
+    "core_k": "Governed context",
+    "core_1": "Governance and permissions",
+    "core_2": "Organizational memory and logs",
+    "core_3": "Decision continuity",
+    "ray_sub": "Persistent enterprise companion",
+    "ray_1": "Contextual continuity",
+    "ray_2": "Enterprise awareness",
+    "ray_3": "Coordinated action",
+    "orb_markets": "Markets",
+    "orb_customers": "Customers",
+    "orb_operations": "Operations",
+    "orb_people": "People and systems",
+}
+
 CSS = r"""
   /* PLATFORM ARCHITECTURE */
   .arx{position:relative;width:100%;max-width:1180px;margin:22px auto 0;aspect-ratio:2000/990;
@@ -27,9 +57,9 @@ CSS = r"""
   .arx-k{font-size:11px;font-size:.72cqw;font-weight:800;letter-spacing:.22em;text-transform:uppercase;}
   .arx-n{font-size:34px;font-size:2.5cqw;font-weight:900;letter-spacing:-.01em;line-height:1;margin-top:.5cqw;}
   .arx-rule{height:1px;margin:1.1cqw auto .9cqw;}
-  .arx-list{list-style:none;margin:0;padding:0;text-align:left;display:grid;gap:.55cqw;}
-  .arx-list li{position:relative;padding-left:1.35cqw;font-size:15px;font-size:1.02cqw;line-height:1.35;}
-  .arx-list li::before{content:'';position:absolute;left:0;top:.42em;width:.42cqw;height:.42cqw;
+  .arx-list{list-style:none;margin:0;padding:0;text-align:start;display:grid;gap:.55cqw;}
+  .arx-list li{position:relative;padding-inline-start:1.35cqw;font-size:15px;font-size:1.02cqw;line-height:1.35;}
+  .arx-list li::before{content:'';position:absolute;inset-inline-start:0;top:.42em;width:.42cqw;height:.42cqw;
     border-radius:50%;background:currentColor;opacity:.65;}
   .arx-domain{width:18.25%;color:#2A231B;}
   .arx-core{width:19.2%;color:#F6EEDE;}
@@ -53,6 +83,11 @@ CSS = r"""
   .arx-strip .arx-domain{color:#2A231B;}
   .arx-strip .arx-orbs{border-top:1px solid currentColor;border-color:rgba(60,45,15,.22);}
   .arx-foot{margin-top:22px;text-align:center;font-size:14.5px;font-weight:800;color:#5A554C;}
+  html[dir="rtl"] .arx-k,html[dir="rtl"] .arx-orbit,html[dir="rtl"] .arx-orbs,
+  html[dir="rtl"] .arxf .k{letter-spacing:0;}
+  /* the two flow labels carry letter-spacing as an SVG presentation attribute,
+     which only a CSS rule can override */
+  html[dir="rtl"] .arx svg text{letter-spacing:normal;direction:rtl;unicode-bidi:isolate;}
   .arx-fallback{display:none;}
 
   @media(max-width:900px){
@@ -62,8 +97,8 @@ CSS = r"""
     .arxf .k{font-size:10.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;}
     .arxf .n{font-size:26px;font-weight:900;line-height:1;margin-top:4px;}
     .arxf ul{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:8px;}
-    .arxf li{position:relative;padding-left:18px;font-size:14.5px;line-height:1.5;}
-    .arxf li::before{content:'';position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:50%;
+    .arxf li{position:relative;padding-inline-start:18px;font-size:14.5px;line-height:1.5;}
+    .arxf li::before{content:'';position:absolute;inset-inline-start:0;top:.55em;width:6px;height:6px;border-radius:50%;
       background:currentColor;opacity:.6;}
     .arxf-h{background:linear-gradient(140deg,#F6DE93,#E0B33A);color:#2A231B;}
     .arxf-c{background:linear-gradient(140deg,#2A2520,#171310);color:#F6EEDE;}
@@ -80,8 +115,12 @@ def _pct(x, y):
 
 
 def section(heading, sub, explore_btn="", tag="Architecture", band="band-alt", variant="explain",
-            foot="One governed context. Two operating domains. Continuous enterprise awareness."):
+            foot="One governed context. Two operating domains. Continuous enterprise awareness.",
+            labels=None):
     """The diagram, wrapped in its own band.
+
+    labels overrides any of LABELS, which is how the Arabic cement pages get the
+    figure in their own language without a second copy of the drawing.
 
     variant="live"    the overlapping-domain figure as shipped
     variant="explain" same figure, with the flow named, the orbit labels tied to
@@ -89,8 +128,9 @@ def section(heading, sub, explore_btn="", tag="Architecture", band="band-alt", v
     variant="strip"   no rings, no arrows, no orbit floats: four clean blocks
     """
     strip = variant == "strip"
-    s = ['<svg viewBox="0 %d %d %d" role="img" aria-label="Horizon and Pulse as two operating '
-         'domains, Core as the governed context between them, Ray spanning beneath.">' % (VB_Y0, VB_W, VB_VIS)]
+    L = dict(LABELS, **(labels or {}))
+    s = ['<svg viewBox="0 %d %d %d" role="img" aria-label="%s">'
+         % (VB_Y0, VB_W, VB_VIS, L["svg_aria"])]
     s.append("""<defs>
       <radialGradient id="axh" cx="36%%" cy="30%%">
         <stop offset="0" stop-color="#FBEBB4"/><stop offset=".55" stop-color="#EFCE6B"/>
@@ -155,7 +195,7 @@ def section(heading, sub, explore_btn="", tag="Architecture", band="band-alt", v
 
         if variant == "explain":
             # name what the arrows carry
-            for yy, txt in ((252, "Context in"), (926, "Coordinated action out")):
+            for yy, txt in ((252, L["flow_in"]), (926, L["flow_out"])):
                 s.append('<text x="1005" y="%d" text-anchor="middle" font-size="31" font-weight="800" '
                          'fill="#8C6500" letter-spacing="1.5">%s</text>' % (yy, txt))
             # tie each orbit label to the domain it belongs to
@@ -210,41 +250,46 @@ def section(heading, sub, explore_btn="", tag="Architecture", band="band-alt", v
     </div>""" % (_pct(x, y), tone, kicker, name, rule,
                  "".join("<li>%s</li>" % i for i in items), cap)
 
-    H_ITEMS = ["Market and account intelligence", "Revenue coordination", "GTM execution"]
-    P_ITEMS = ["Operational workflows", "Supply and resource coordination", "Performance management"]
+    H_ITEMS = [L["hz_1"], L["hz_2"], L["hz_3"]]
+    P_ITEMS = [L["pl_1"], L["pl_2"], L["pl_3"]]
 
     if strip:
-        horizon = domain(370, 535, "Commercial intelligence", "HORIZON", H_ITEMS,
-                         "#8A6A12", "rgba(90,70,15,.35)", "Markets &nbsp;&middot;&nbsp; Customers")
-        pulse = domain(1630, 535, "Operational execution", "PULSE", P_ITEMS,
+        dot = " &nbsp;&middot;&nbsp; "
+        horizon = domain(370, 535, L["hz_k"], "HORIZON", H_ITEMS,
+                         "#8A6A12", "rgba(90,70,15,.35)",
+                         L["orb_markets"] + dot + L["orb_customers"])
+        pulse = domain(1630, 535, L["pl_k"], "PULSE", P_ITEMS,
                        "#8C3D0B", "rgba(120,55,10,.35)",
-                       "Operations &nbsp;&middot;&nbsp; People and systems")
+                       L["orb_operations"] + dot + L["orb_people"])
         core_y, ray_y, ray_w = 506, 900, 1820
     else:
-        horizon = domain(HX - LAB_OUT, HY - 6, "Commercial intelligence", "HORIZON", H_ITEMS,
+        horizon = domain(HX - LAB_OUT, HY - 6, L["hz_k"], "HORIZON", H_ITEMS,
                          "#8A6A12", "rgba(90,70,15,.35)")
-        pulse = domain(PX + LAB_OUT, PY - 6, "Operational execution", "PULSE", P_ITEMS,
+        pulse = domain(PX + LAB_OUT, PY - 6, L["pl_k"], "PULSE", P_ITEMS,
                        "#8C3D0B", "rgba(120,55,10,.35)")
         core_y, ray_y, ray_w = CY - 34, 952, 1090
 
     core = """<div class="arx-lab arx-core" style="%s;">
-      <div class="arx-k" style="color:#E0B33A;">Governed context</div>
+      <div class="arx-k" style="color:#E0B33A;">%s</div>
       <div class="arx-n" style="color:#fff;">CORE</div>
       <div class="arx-rule" style="background:rgba(224,178,80,.4);"></div>
       <div class="arx-lines">
-        <div>Governance and permissions</div>
-        <div>Organizational memory and logs</div>
-        <div>Decision continuity</div>
+        <div>%s</div>
+        <div>%s</div>
+        <div>%s</div>
       </div>
-    </div>""" % _pct(1000 if strip else CX, core_y)
+    </div>""" % (_pct(1000 if strip else CX, core_y), L["core_k"],
+                 L["core_1"], L["core_2"], L["core_3"])
 
     orbits = ""
     if not strip:
-        rows = [(250, 330, "Markets", GOLD), (250, 812, "Customers", GOLD),
-                (1650, 330, "Operations", ORANGE), (1672, 806, "People and systems", ORANGE)] \
+        mk, cu = L["orb_markets"], L["orb_customers"]
+        op, pe = L["orb_operations"], L["orb_people"]
+        rows = [(250, 330, mk, GOLD), (250, 812, cu, GOLD),
+                (1650, 330, op, ORANGE), (1672, 806, pe, ORANGE)] \
             if variant == "explain" else \
-            [(300, 352, "Markets", GOLD), (330, 790, "Customers", GOLD),
-             (1596, 330, "Operations", ORANGE), (1672, 806, "People and systems", ORANGE)]
+            [(300, 352, mk, GOLD), (330, 790, cu, GOLD),
+             (1596, 330, op, ORANGE), (1672, 806, pe, ORANGE)]
         for x, y, label, col in rows:
             orbits += ('<div class="arx-orbit" style="%s;transform:translateY(-50%%);">'
                        '<i style="background:%s;"></i>%s</div>') % (_pct(x, y), col, label)
@@ -252,27 +297,27 @@ def section(heading, sub, explore_btn="", tag="Architecture", band="band-alt", v
     ray = """<div class="arx-ray" style="left:50%%;top:%.2f%%;width:%.2f%%;padding:1.9cqw 2.4cqw;">
       <div class="arx-ray-top">
         <span class="arx-ray-name">RAY</span>
-        <span class="arx-ray-sub">Persistent enterprise companion</span>
+        <span class="arx-ray-sub">%s</span>
       </div>
       <div class="arx-ray-items">
-        <span><i style="background:%s;"></i>Contextual continuity</span>
-        <span><i style="background:%s;"></i>Enterprise awareness</span>
-        <span><i style="background:%s;"></i>Coordinated action</span>
+        <span><i style="background:%s;"></i>%s</span>
+        <span><i style="background:%s;"></i>%s</span>
+        <span><i style="background:%s;"></i>%s</span>
       </div>
-    </div>""" % ((ray_y - VB_Y0) / VB_VIS * 100, ray_w / VB_W * 100, GOLD, ORANGE, "#B8860B")
+    </div>""" % ((ray_y - VB_Y0) / VB_VIS * 100, ray_w / VB_W * 100, L["ray_sub"],
+                 GOLD, L["ray_1"], ORANGE, L["ray_2"], "#B8860B", L["ray_3"])
 
-    fb = """<div class="arx-fallback">
-      <div class="arxf arxf-h"><div class="k">Commercial intelligence</div><div class="n">HORIZON</div>
-        <ul><li>Market and account intelligence</li><li>Revenue coordination</li><li>GTM execution</li></ul></div>
-      <div class="arxf arxf-c"><div class="k">Governed context</div><div class="n">CORE</div>
-        <ul><li>Governance and permissions</li><li>Organizational memory and logs</li>
-        <li>Decision continuity</li></ul></div>
-      <div class="arxf arxf-p"><div class="k">Operational execution</div><div class="n">PULSE</div>
-        <ul><li>Operational workflows</li><li>Supply and resource coordination</li>
-        <li>Performance management</li></ul></div>
-      <div class="arxf arxf-r"><div class="k">Persistent enterprise companion</div><div class="n">RAY</div>
-        <ul><li>Contextual continuity</li><li>Enterprise awareness</li><li>Coordinated action</li></ul></div>
-    </div>"""
+    def card(cls, kicker, name, items):
+        return ('<div class="arxf arxf-%s"><div class="k">%s</div><div class="n">%s</div>'
+                "<ul>%s</ul></div>"
+                % (cls, kicker, name, "".join("<li>%s</li>" % i for i in items)))
+
+    fb = ('<div class="arx-fallback">'
+          + card("h", L["hz_k"], "HORIZON", H_ITEMS)
+          + card("c", L["core_k"], "CORE", [L["core_1"], L["core_2"], L["core_3"]])
+          + card("p", L["pl_k"], "PULSE", P_ITEMS)
+          + card("r", L["ray_sub"], "RAY", [L["ray_1"], L["ray_2"], L["ray_3"]])
+          + "</div>")
 
     tail = ('<div style="margin-top:30px;">%s</div>' % explore_btn) if explore_btn else ""
     return """<section class="%s">

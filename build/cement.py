@@ -8,6 +8,7 @@ from the site root so both depths resolve.
 import os, sys, html, json, urllib.parse
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+import arch
 import theme
 import reveal
 from cement_copy import LANGS
@@ -310,7 +311,7 @@ def head(d, title, desc, page):
 <meta name="twitter:description" content="{esc_d}">
 <meta name="twitter:image" content="{SITE}/og-twosuns.jpg">
 <link rel="icon" type="image/svg+xml" href="/logo-mini.svg">
-<style>{theme.CSS}{theme.REVEAL_CSS}{CEM_CSS}{RTL_CSS}</style>
+<style>{theme.CSS}{theme.REVEAL_CSS}{arch.CSS}{CEM_CSS}{RTL_CSS}</style>
 {theme.REVEAL_HEAD}
 {theme.LEADLANDER}
 </head>
@@ -436,6 +437,14 @@ def build_home(d):
 </section>
 """ % (e(d["about_tag"]), e(d["about_h"]), e(d["about_p1"]), e(d["about_p2"]),
        e(d["about_fam_h"]), fams)
+
+    # the platform architecture figure, the same one the main site home carries,
+    # in this page's own language
+    s += arch.section(e(d["arx_h"]), e(d["arx_p"]),
+                      btn(d["arx_cta"], "platform.html", ghost=True),
+                      tag=e(d["arx_tag"]), band="band-warm", variant="explain",
+                      foot=e(d["arx_foot"]),
+                      labels=dict((k, e(v)) for k, v in d["arx_labels"].items()))
 
     s += """<section id="context" class="band-alt">
   <div class="container">
@@ -754,7 +763,31 @@ def check(body, name):
                          "body script, so revealed sections would stay invisible" % name)
 
 
+def check_copy():
+    """The two languages must describe the same page, so they must carry the same
+    keys holding the same shapes. A key added to one and forgotten in the other is
+    the easiest mistake to make here, and it would only surface as a KeyError on
+    whichever page happened to use it."""
+    en, ar = LANGS["en"], LANGS["ar"]
+    missing = sorted(set(en) - set(ar))
+    extra = sorted(set(ar) - set(en))
+    if missing or extra:
+        raise SystemExit("cement.py: copy keys differ. Missing from ar: %s. "
+                         "Not in en: %s" % (missing or "none", extra or "none"))
+    for k in sorted(en):
+        if type(en[k]) is not type(ar[k]):
+            raise SystemExit("cement.py: %s is %s in en but %s in ar"
+                             % (k, type(en[k]).__name__, type(ar[k]).__name__))
+        if isinstance(en[k], (list, dict)) and len(en[k]) != len(ar[k]):
+            raise SystemExit("cement.py: %s has %d entries in en but %d in ar"
+                             % (k, len(en[k]), len(ar[k])))
+        if isinstance(en[k], dict) and set(en[k]) != set(ar[k]):
+            raise SystemExit("cement.py: %s has different sub-keys in en and ar" % k)
+    print("copy       %d keys, en and ar in step" % len(en))
+
+
 if __name__ == "__main__":
+    check_copy()
     total = 0
     for code, d in LANGS.items():
         out = OUT if code == "en" else os.path.join(OUT, "ar")
