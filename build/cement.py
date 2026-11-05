@@ -92,13 +92,9 @@ CEM_CSS = r"""
       rgba(255,243,216,0) 80%);}
   .cmhero.sh-platform{--cmshot:url('/plat-hero.jpg');}
   .cmhero.sh-capabilities{--cmshot:url('/cap-hero.jpg');}
-  /* the Industries hub carries no photograph, the same as the main site's own
-     industries page. It keeps the plain cement gradient instead, mirrored for
-     right to left so the light still falls from the reading side. */
-  .cmhero.sh-plain{background-image:none;
-    background:linear-gradient(200deg,#FFF5DD 0%,#FFF3CD 30%,#FCE2BC 60%,#FEF9C3 100%);}
-  html[dir="rtl"] .cmhero.sh-plain{
-    background:linear-gradient(160deg,#FFF5DD 0%,#FFF3CD 30%,#FCE2BC 60%,#FEF9C3 100%);}
+  /* the Industries hub takes the supplied plant aerial, flipped, so its tower
+     stands in the half the wash leaves clear */
+  .cmhero.sh-aerial{--cmshot:url('/cement/plant-aerial.jpg');}
   .cmhero.sh-construction{--cmshot:url('/cons-hero.jpg');}
   .cmhero.sh-concrete{--cmshot:url('/bm-concrete.jpg');}
   .cmhero.sh-distribution{--cmshot:url('/bm-distribution.jpg');}
@@ -901,13 +897,12 @@ SECTORS = ["construction.html", "concrete.html", "distribution.html"]
 # costs nothing at build time and shows as an empty wash on the live page.
 # Do not reach for mfg-supply.jpg: the photograph is flipped, so its aisle
 # numerals read backwards. The main site uses it on manufacturing.html.
-# plant-aerial.jpg was supplied for this page and flipped horizontally on
-# request, which puts the preheater tower on the clear side. The flip also
-# reverses the lettering on one silo, at 28 percent across, where the wash is
-# still opaque, so it has to stay on a right clearing band.
+# plant-aerial.jpg is not in this table: it was supplied for the Industries
+# hero and is set as sh-aerial above. It was flipped horizontally on request,
+# which stands the preheater tower in the half the hero wash leaves clear.
 BANDS = {
     "ind_sectors": ("/bm-operations.jpg",    "l"),
-    "ind_areas":   ("/cement/plant-aerial.jpg", "r"),
+    "ind_areas":   ("/bm-extraction.jpg",    "r"),
     "con_who":     ("/cons-owners.jpg",      "l"),
     "con_ts":      ("/plat-deploy.jpg",      "r"),
     "cnc_who":     ("/area-materials.jpg",   "l"),
@@ -930,7 +925,7 @@ def build_industries(d):
     s = head(d, d["ind_title"], d["ind_desc"], "industries.html") + nav(d, "industries.html")
     s += hero(d, d["ind_eyebrow"], d["ind_h1"], d["ind_sub"],
               btn(d["ind_cta1"]) + " " + btn(d["ind_cta2"], "platform.html", ghost=True),
-              shot="plain")
+              shot="aerial")
 
     cells = []
     for (name, desc, bullets), href in zip(d["ind_sectors"], SECTORS):

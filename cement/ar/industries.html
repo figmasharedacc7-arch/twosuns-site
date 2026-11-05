@@ -672,13 +672,9 @@
       rgba(255,243,216,0) 80%);}
   .cmhero.sh-platform{--cmshot:url('/plat-hero.jpg');}
   .cmhero.sh-capabilities{--cmshot:url('/cap-hero.jpg');}
-  /* the Industries hub carries no photograph, the same as the main site's own
-     industries page. It keeps the plain cement gradient instead, mirrored for
-     right to left so the light still falls from the reading side. */
-  .cmhero.sh-plain{background-image:none;
-    background:linear-gradient(200deg,#FFF5DD 0%,#FFF3CD 30%,#FCE2BC 60%,#FEF9C3 100%);}
-  html[dir="rtl"] .cmhero.sh-plain{
-    background:linear-gradient(160deg,#FFF5DD 0%,#FFF3CD 30%,#FCE2BC 60%,#FEF9C3 100%);}
+  /* the Industries hub takes the supplied plant aerial, flipped, so its tower
+     stands in the half the wash leaves clear */
+  .cmhero.sh-aerial{--cmshot:url('/cement/plant-aerial.jpg');}
   .cmhero.sh-construction{--cmshot:url('/cons-hero.jpg');}
   .cmhero.sh-concrete{--cmshot:url('/bm-concrete.jpg');}
   .cmhero.sh-distribution{--cmshot:url('/bm-distribution.jpg');}
@@ -979,7 +975,7 @@
   </div>
 </nav>
 <main id="main" tabindex="-1">
-<section class="cmhero sh-plain">
+<section class="cmhero sh-aerial">
   <div class="hero-glow"></div>
   <div class="container">
     <div class="hero-eyebrow"><span class="dot"></span>الصناعات</div>
@@ -999,7 +995,7 @@
    </div>
   </div>
 </section>
-<section class="imgsec imgsec-r area-sec" style="--cmband:url('/cement/plant-aerial.jpg');">
+<section class="imgsec imgsec-r area-sec" style="--cmband:url('/bm-extraction.jpg');">
   <div class="container">
    <div class="sec-split">
     <div class="section-tag">مواضع التشغيل</div>
