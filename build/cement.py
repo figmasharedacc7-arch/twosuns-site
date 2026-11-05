@@ -407,16 +407,33 @@ def head(d, title, desc, page, extra_css=""):
 """
 
 
+# Pages the nav and the footer do not show, while the pages themselves stay
+# built and reachable by their own URL. Hiding here rather than cutting the
+# entries out of cement_copy means the Arabic labels survive the hiatus and
+# putting an item back is one line, and it keeps the two copy dicts at the same
+# 364 keys. The three sector pages come with sectors.html: they are only ever
+# reached from that hub, so hiding it alone would leave them orphaned.
+# Requested 2026-11-05 as a temporary measure while capabilities is reworked.
+HIDDEN = {"sectors.html", "use-cases.html"}
+
+
+def shown(pairs):
+    """The nav or footer pairs that are not currently hidden."""
+    return [(n, u) for n, u in pairs if u.split("#")[0] not in HIDDEN]
+
+
 def nav(d, active, page=None):
     """Microsite nav. active is the nav item to light up, page is the file this
     really is. They differ on the three sector pages, which light up Sectors,
     and the language toggle has to follow page or it drops the visitor on the
-    hub instead of the same page in the other language."""
+    hub instead of the same page in the other language. An active page that is
+    in HIDDEN simply marks nothing, which is what the sector pages now do."""
     pre = "../" if d["lang"] == "ar" else "ar/"
     def mark(u):
         here = u.split("#")[0] == active and (active != "index.html" or "#" not in u)
         return ' class="active" aria-current="page"' if here else ""
-    links = "".join('<a href="%s"%s>%s</a>' % (u, mark(u), e(n)) for n, u in d["nav"])
+    links = "".join('<a href="%s"%s>%s</a>' % (u, mark(u), e(n))
+                    for n, u in shown(d["nav"]))
     page = page or active
     other = pre + ("" if page == "index.html" else page)
     lang = ('<span class="cmlang"><span class="on">%s</span>'
@@ -438,7 +455,7 @@ def nav(d, active, page=None):
 
 
 def footer(d):
-    links = "".join('<a href="%s">%s</a>' % (u, e(n)) for n, u in d["foot_links"])
+    links = "".join('<a href="%s">%s</a>' % (u, e(n)) for n, u in shown(d["foot_links"]))
     return """</main>
 <footer class="cmfoot">
   <div class="container">
