@@ -407,14 +407,18 @@ def head(d, title, desc, page, extra_css=""):
 """
 
 
-def nav(d, active):
-    """Microsite nav. The language toggle keeps the visitor on the same page."""
+def nav(d, active, page=None):
+    """Microsite nav. active is the nav item to light up, page is the file this
+    really is. They differ on the three sector pages, which light up Industries,
+    and the language toggle has to follow page or it drops the visitor on the
+    hub instead of the same page in the other language."""
     pre = "../" if d["lang"] == "ar" else "ar/"
     def mark(u):
         here = u.split("#")[0] == active and (active != "index.html" or "#" not in u)
         return ' class="active" aria-current="page"' if here else ""
     links = "".join('<a href="%s"%s>%s</a>' % (u, mark(u), e(n)) for n, u in d["nav"])
-    other = pre + ("" if active == "index.html" else active)
+    page = page or active
+    other = pre + ("" if page == "index.html" else page)
     lang = ('<span class="cmlang"><span class="on">%s</span>'
             '<a href="%s" lang="%s" hreflang="%s">%s</a></span>'
             % (e(d["self_label"]), other, d["other"], d["other"], e(d["other_label"])))
@@ -950,7 +954,7 @@ def build_industries(d):
 
 # ========================================================== SECTOR: CONSTRUCTION
 def build_construction(d):
-    s = head(d, d["con_title"], d["con_desc"], "construction.html") + nav(d, "industries.html")
+    s = head(d, d["con_title"], d["con_desc"], "construction.html") + nav(d, "industries.html", "construction.html")
     s += hero(d, d["con_eyebrow"], d["con_h1"], d["con_sub"],
               btn(d["con_cta1"]) + " " + btn(d["con_cta2"], "industries.html", ghost=True),
               shot="construction")
@@ -969,7 +973,7 @@ def build_construction(d):
 
 # ========================================================== SECTOR: CONCRETE
 def build_concrete(d):
-    s = head(d, d["cnc_title"], d["cnc_desc"], "concrete.html") + nav(d, "industries.html")
+    s = head(d, d["cnc_title"], d["cnc_desc"], "concrete.html") + nav(d, "industries.html", "concrete.html")
     s += hero(d, d["cnc_eyebrow"], d["cnc_h1"], d["cnc_sub"],
               btn(d["cnc_cta1"]) + " " + btn(d["cnc_cta2"], "industries.html", ghost=True),
               shot="concrete")
@@ -994,7 +998,7 @@ def build_concrete(d):
 
 # ========================================================== SECTOR: DISTRIBUTION
 def build_distribution(d):
-    s = head(d, d["dst_title"], d["dst_desc"], "distribution.html") + nav(d, "industries.html")
+    s = head(d, d["dst_title"], d["dst_desc"], "distribution.html") + nav(d, "industries.html", "distribution.html")
     s += hero(d, d["dst_eyebrow"], d["dst_h1"], d["dst_sub"],
               btn(d["dst_cta1"]) + " " + btn(d["dst_cta2"], "industries.html", ghost=True),
               shot="distribution")
