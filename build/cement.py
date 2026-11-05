@@ -901,9 +901,13 @@ SECTORS = ["construction.html", "concrete.html", "distribution.html"]
 # costs nothing at build time and shows as an empty wash on the live page.
 # Do not reach for mfg-supply.jpg: the photograph is flipped, so its aisle
 # numerals read backwards. The main site uses it on manufacturing.html.
+# plant-aerial.jpg was supplied for this page and flipped horizontally on
+# request, which puts the preheater tower on the clear side. The flip also
+# reverses the lettering on one silo, at 28 percent across, where the wash is
+# still opaque, so it has to stay on a right clearing band.
 BANDS = {
     "ind_sectors": ("/bm-operations.jpg",    "l"),
-    "ind_areas":   ("/bm-extraction.jpg",    "r"),
+    "ind_areas":   ("/cement/plant-aerial.jpg", "r"),
     "con_who":     ("/cons-owners.jpg",      "l"),
     "con_ts":      ("/plat-deploy.jpg",      "r"),
     "cnc_who":     ("/area-materials.jpg",   "l"),
