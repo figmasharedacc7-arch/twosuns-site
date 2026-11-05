@@ -57,11 +57,10 @@ EN = {
               "intelligence, data engineering and implementation capability. The platform is "
               "developed by AEPG in Canada and configured with the producer's own process, "
               "quality and commercial leads.",
- 'about_p2': "We build practical enterprise capability that helps organizations grow, operate "
-              "and coordinate complex work through connected context, intelligence and "
-              "configurable workflows. In cement that work runs from the quarry face to cash "
-              "collected, and it is carried out by functions that each hold their own "
-              "authority.",
+ 'about_p2': "We build practical enterprise capability out of connected context, intelligence "
+              "and configurable workflows. In cement that capability runs from the quarry face "
+              "to cash collected, and the work is carried out by functions that each hold their "
+              "own authority.",
  'about_fam_h': 'One platform across the plant and the market',
  'fams': [
            (
