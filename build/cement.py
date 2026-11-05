@@ -92,7 +92,7 @@ CEM_CSS = r"""
       rgba(255,243,216,0) 80%);}
   .cmhero.sh-platform{--cmshot:url('/plat-hero.jpg');}
   .cmhero.sh-capabilities{--cmshot:url('/cap-hero.jpg');}
-  /* the Industries hub takes the supplied plant aerial, flipped, so its tower
+  /* the Sectors hub takes the supplied plant aerial, flipped, so its tower
      stands in the half the wash leaves clear */
   .cmhero.sh-aerial{--cmshot:url('/cement/plant-aerial.jpg');}
   .cmhero.sh-construction{--cmshot:url('/cons-hero.jpg');}
@@ -409,7 +409,7 @@ def head(d, title, desc, page, extra_css=""):
 
 def nav(d, active, page=None):
     """Microsite nav. active is the nav item to light up, page is the file this
-    really is. They differ on the three sector pages, which light up Industries,
+    really is. They differ on the three sector pages, which light up Sectors,
     and the language toggle has to follow page or it drops the visitor on the
     hub instead of the same page in the other language."""
     pre = "../" if d["lang"] == "ar" else "ar/"
@@ -894,14 +894,14 @@ def build_capabilities(d):
 # English one entry for entry.
 SECTORS = ["construction.html", "concrete.html", "distribution.html"]
 
-# The photograph each Industries section is laid over, and the half of the frame
+# The photograph each Sectors section is laid over, and the half of the frame
 # it keeps. The bands on a page alternate sides, the way the main site's industry
 # pages do. Paths are rooted because the microsite sits one level down and the
 # Arabic two, and band() checks each file is really there, because a wrong name
 # costs nothing at build time and shows as an empty wash on the live page.
 # Do not reach for mfg-supply.jpg: the photograph is flipped, so its aisle
 # numerals read backwards. The main site uses it on manufacturing.html.
-# plant-aerial.jpg is not in this table: it was supplied for the Industries
+# plant-aerial.jpg is not in this table: it was supplied for the Sectors
 # hero and is set as sh-aerial above. It was flipped horizontally on request,
 # which stands the preheater tower in the half the hero wash leaves clear.
 BANDS = {
@@ -925,8 +925,8 @@ def band(key):
     return {"shot": shot, "side": side}
 
 
-def build_industries(d):
-    s = head(d, d["ind_title"], d["ind_desc"], "industries.html") + nav(d, "industries.html")
+def build_sectors(d):
+    s = head(d, d["ind_title"], d["ind_desc"], "sectors.html") + nav(d, "sectors.html")
     s += hero(d, d["ind_eyebrow"], d["ind_h1"], d["ind_sub"],
               btn(d["ind_cta1"]) + " " + btn(d["ind_cta2"], "platform.html", ghost=True),
               shot="aerial")
@@ -954,9 +954,9 @@ def build_industries(d):
 
 # ========================================================== SECTOR: CONSTRUCTION
 def build_construction(d):
-    s = head(d, d["con_title"], d["con_desc"], "construction.html") + nav(d, "industries.html", "construction.html")
+    s = head(d, d["con_title"], d["con_desc"], "construction.html") + nav(d, "sectors.html", "construction.html")
     s += hero(d, d["con_eyebrow"], d["con_h1"], d["con_sub"],
-              btn(d["con_cta1"]) + " " + btn(d["con_cta2"], "industries.html", ghost=True),
+              btn(d["con_cta1"]) + " " + btn(d["con_cta2"], "sectors.html", ghost=True),
               shot="construction")
     s += sec(rows(d["con_who_rows"], two=True), "", d["con_who_tag"], d["con_who_h"],
              d["con_who_p"], lede=True, **band("con_who"))
@@ -967,15 +967,15 @@ def build_construction(d):
              "", d["con_ts_tag"], d["con_ts_h"], d["con_ts_p"], lede=True,
              **band("con_ts"))
     s += cta_band(d["con_close_h"], d["con_close_p"],
-                  btn(d["con_cta1"]) + " " + btn(d["con_cta2"], "industries.html", ghost=True))
+                  btn(d["con_cta1"]) + " " + btn(d["con_cta2"], "sectors.html", ghost=True))
     return s + footer(d) + TAIL_JS
 
 
 # ========================================================== SECTOR: CONCRETE
 def build_concrete(d):
-    s = head(d, d["cnc_title"], d["cnc_desc"], "concrete.html") + nav(d, "industries.html", "concrete.html")
+    s = head(d, d["cnc_title"], d["cnc_desc"], "concrete.html") + nav(d, "sectors.html", "concrete.html")
     s += hero(d, d["cnc_eyebrow"], d["cnc_h1"], d["cnc_sub"],
-              btn(d["cnc_cta1"]) + " " + btn(d["cnc_cta2"], "industries.html", ghost=True),
+              btn(d["cnc_cta1"]) + " " + btn(d["cnc_cta2"], "sectors.html", ghost=True),
               shot="concrete")
     s += sec(rows(d["cnc_who_rows"], two=True), "", d["cnc_who_tag"], d["cnc_who_h"],
              d["cnc_who_p"], lede=True, **band("cnc_who"))
@@ -992,15 +992,15 @@ def build_concrete(d):
              "", d["cnc_qual_tag"], d["cnc_qual_h"], d["cnc_qual_p"],
              **band("cnc_qual"))
     s += cta_band(d["cnc_close_h"], d["cnc_close_p"],
-                  btn(d["cnc_cta1"]) + " " + btn(d["cnc_cta2"], "industries.html", ghost=True))
+                  btn(d["cnc_cta1"]) + " " + btn(d["cnc_cta2"], "sectors.html", ghost=True))
     return s + footer(d) + TAIL_JS
 
 
 # ========================================================== SECTOR: DISTRIBUTION
 def build_distribution(d):
-    s = head(d, d["dst_title"], d["dst_desc"], "distribution.html") + nav(d, "industries.html", "distribution.html")
+    s = head(d, d["dst_title"], d["dst_desc"], "distribution.html") + nav(d, "sectors.html", "distribution.html")
     s += hero(d, d["dst_eyebrow"], d["dst_h1"], d["dst_sub"],
-              btn(d["dst_cta1"]) + " " + btn(d["dst_cta2"], "industries.html", ghost=True),
+              btn(d["dst_cta1"]) + " " + btn(d["dst_cta2"], "sectors.html", ghost=True),
               shot="distribution")
     s += sec(rows(d["dst_who_rows"], two=True), "", d["dst_who_tag"], d["dst_who_h"],
              d["dst_who_p"], lede=True, **band("dst_who"))
@@ -1024,7 +1024,7 @@ def build_distribution(d):
              + rows(d["dst_cred_rows"], two=True),
              "band-alt", d["dst_cred_tag"], d["dst_cred_h"], d["dst_cred_p1"], lede=True)
     s += cta_band(d["dst_close_h"], d["dst_close_p"],
-                  btn(d["dst_cta1"]) + " " + btn(d["dst_cta2"], "industries.html", ghost=True))
+                  btn(d["dst_cta1"]) + " " + btn(d["dst_cta2"], "sectors.html", ghost=True))
     return s + footer(d) + TAIL_JS
 
 
@@ -1158,7 +1158,7 @@ if __name__ == "__main__":
         pages = {"index.html": build_home(d),
                  "platform.html": build_platform(d),
                  "capabilities.html": build_capabilities(d),
-                 "industries.html": build_industries(d),
+                 "sectors.html": build_sectors(d),
                  "construction.html": build_construction(d),
                  "concrete.html": build_concrete(d),
                  "distribution.html": build_distribution(d),

@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 """Redirect stubs for the cement microsite pages the rebuild retires.
 
-The old microsite had 42 pages. Six replace them, three of which take the same
-URLs (index.html, platform.html, events.html), so 39 old URLs need somewhere to
+The old microsite had 42 pages. Ten replace them, four of which take the same
+URLs (index, platform, use-cases and events), so 38 old URLs need somewhere to
 go. Those URLs are in inboxes, decks and search indexes, and GitHub Pages has no
 server redirects, so each one gets a small page that sends the visitor on and
 tells search engines where the content really is.
+
+industries.html is among them: the microsite serves one industry, cement, so the
+page that lists the sectors a producer sells into is called sectors.html now.
 
 Query strings and fragments are carried across, the same as redirects.py does
 for the old /preview/ URLs.
@@ -53,31 +56,38 @@ TARGETS = {
     "privacy.html": "privacy.html",
     "cookies.html": "privacy.html",
     "terms.html": "terms.html",
-    "mining.html": "cement/industries.html",
-    "finance.html": "cement/industries.html",
+    "industries.html": "cement/sectors.html",
+    "mining.html": "cement/sectors.html",
+    "finance.html": "cement/sectors.html",
     # the microsite has no manufacturing sector page, the hub covers it
-    "manufacturing.html": "cement/industries.html",
+    "manufacturing.html": "cement/sectors.html",
     "blog/ai-ip-discipline-gap.html": "cement/company.html",
     "blog/ai-operational-intelligence-cement-decarbonization.html": "cement/platform.html",
     "blog/decision-intelligence-vs-analytics.html": "cement/platform.html",
     "blog/glassbox-ai-explainability.html": "cement/capabilities.html",
     "blog/industrial-ai-orchestrated-intelligence.html": "cement/platform.html",
-    "blog/logistics-intelligence-gap.html": "cement/industries.html",
+    "blog/logistics-intelligence-gap.html": "cement/sectors.html",
     "blog/post-9.html": "cement/capabilities.html",
     "blog/system-decision-record.html": "cement/platform.html",
 }
 
 # Old microsite URLs that survive the rebuild, so a stub would redirect them to
 # themselves. Listed so the count below can be checked against the old site.
-KEPT = ["index.html", "platform.html", "events.html",
-        "use-cases.html", "industries.html"]
+KEPT = ["index.html", "platform.html", "events.html", "use-cases.html"]
 
 # Everything cement.py generates. A stub written over one of these would destroy
 # a real page, and the two lists are edited in different files, so assert rather
 # than trust. KEPT is the subset of these that the old site also had.
-PAGES = ["index.html", "platform.html", "capabilities.html", "industries.html",
+PAGES = ["index.html", "platform.html", "capabilities.html", "sectors.html",
          "construction.html", "concrete.html", "distribution.html",
          "use-cases.html", "company.html", "events.html"]
+
+# Old URLs under cement/ar/. The Arabic microsite mirrors the English one, so a
+# page that moves leaves two URLs behind, not one, and the table above only
+# covers the English half. Destinations here carry the ar/ segment themselves.
+AR_TARGETS = {
+    "industries.html": "cement/ar/sectors.html",
+}
 
 STUB = """<!DOCTYPE html>
 <html lang="en">
@@ -125,7 +135,16 @@ def build():
         path = os.path.join(OUT, old)
         os.makedirs(os.path.dirname(path), exist_ok=True)
         open(path, "w").write(STUB % {"site": SITE, "dest": dest})
-    print("wrote %d redirect stubs into cement/" % len(TARGETS))
+    for old, dest in sorted(AR_TARGETS.items()):
+        assert old not in PAGES, "%s is a page the rebuild generates, not a redirect" % old
+        assert dest.startswith("cement/ar/"), "%s: an Arabic stub must stay in ar/" % old
+        assert dest[len("cement/ar/"):] in PAGES, (
+            "%s points at %s, which the microsite does not build" % (old, dest))
+        path = os.path.join(OUT, "ar", old)
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        open(path, "w").write(STUB % {"site": SITE, "dest": dest})
+    print("wrote %d redirect stubs into cement/ and %d into cement/ar/"
+          % (len(TARGETS), len(AR_TARGETS)))
     print("%d old pages accounted for (%d redirected, %d kept at the same URL)"
           % (len(TARGETS) + len(KEPT), len(TARGETS), len(KEPT)))
 

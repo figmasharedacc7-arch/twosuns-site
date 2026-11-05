@@ -44,7 +44,7 @@ CEMENT = [
     ("",                  "monthly", "0.8"),
     ("platform.html",     "monthly", "0.8"),
     ("capabilities.html", "monthly", "0.8"),
-    ("industries.html",   "monthly", "0.7"),
+    ("sectors.html",      "monthly", "0.7"),
     ("construction.html", "monthly", "0.6"),
     ("concrete.html",     "monthly", "0.6"),
     ("distribution.html", "monthly", "0.6"),
