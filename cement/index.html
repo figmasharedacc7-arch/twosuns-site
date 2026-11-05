@@ -1,759 +1,983 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TwoSuns for Cement &amp; Building Materials | Orchestrated Execution</title>
-  <meta name="description" content="TwoSuns helps cement producers connect operations, supply chains, maintenance, procurement, and market intelligence into one orchestrated decision environment.">
-  <meta name="robots" content="noindex">
-  <link rel="icon" type="image/svg+xml" href="/logo-mini.svg">
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    :root{
-      --sun:#E0641E; --sun-deep:#C45213; --gold:#CC9900; --bg:#FFF5DD; --bg2:#FFEFCE;
-      --navy:#1E1A14; --text:#3A3A3A; --sun-pale:#FFEDD0; --sun-bright:#CC9900; --text-mid:#3A3A3A; --text-muted:#5A554C; --muted:#5A554C; --border:#F0E7D8;
-    }
-    body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.6;}
-    a{text-decoration:none;color:inherit;}
-    .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
-    .pill{display:inline-block;background:linear-gradient(135deg,var(--sun),var(--sun-deep));color:#fff;font-weight:700;padding:12px 26px;border-radius:10px;font-size:15px;box-shadow:0 6px 18px rgba(224,100,30,.35);transition:transform .15s;}
-    .pill:hover{transform:translateY(-2px);}
-    .eyebrow{display:inline-block;background:#F7EDC8;border:1px solid rgba(140,101,0,.3);color:#9A7209;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:20px;}
-    .hero{padding:72px 0 56px;background:linear-gradient(160deg,#FFF5DD 0%,#FFF3CD 40%,#FCE2BC 100%);}
-    .hero h1{font-size:clamp(34px,4.6vw,54px);font-weight:900;line-height:1.1;color:var(--navy);margin:18px 0 10px;}
-    .hero .tag{color:var(--sun-deep);font-weight:800;font-size:clamp(17px,2vw,21px);margin-bottom:16px;}
-    .hero p.sub{max-width:760px;font-size:17px;color:var(--muted);margin-bottom:28px;}
-    .divider{height:2px;border:0;background:linear-gradient(90deg,transparent 0%,rgba(224,100,30,.3) 24%,#E0641E 44%,#CC9900 50%,#E0641E 56%,rgba(224,100,30,.3) 76%,transparent 100%);box-shadow:0 0 22px 2px rgba(224,100,30,.25);}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TwoSuns for Cement | Shared enterprise context from quarry to cash</title>
+<meta name="description" content="An adaptive enterprise platform configured around cement. TwoSuns coordinates quarry, kiln, mill, dispatch and sales through shared enterprise context.">
+<link rel="canonical" href="https://twosuns.ai/cement/">
+<link rel="alternate" hreflang="en" href="https://twosuns.ai/cement/">
+<link rel="alternate" hreflang="ar" href="https://twosuns.ai/cement/ar/">
+<link rel="alternate" hreflang="x-default" href="https://twosuns.ai/cement/">
+<meta name="theme-color" content="#FFF5DD">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TwoSuns">
+<meta property="og:locale" content="en_CA">
+<meta property="og:title" content="TwoSuns for Cement | Shared enterprise context from quarry to cash">
+<meta property="og:description" content="An adaptive enterprise platform configured around cement. TwoSuns coordinates quarry, kiln, mill, dispatch and sales through shared enterprise context.">
+<meta property="og:url" content="https://twosuns.ai/cement/">
+<meta property="og:image" content="https://twosuns.ai/og-twosuns.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TwoSuns for Cement | Shared enterprise context from quarry to cash">
+<meta name="twitter:description" content="An adaptive enterprise platform configured around cement. TwoSuns coordinates quarry, kiln, mill, dispatch and sales through shared enterprise context.">
+<meta name="twitter:image" content="https://twosuns.ai/og-twosuns.jpg">
+<link rel="icon" type="image/svg+xml" href="/logo-mini.svg">
+<style>
+  :root{
+    --sun:#E0641E; --sun-deep:#C45213; --sun-bright:#CC9900; --sun-pale:#FFEDD0;
+    --gold:#CC9900; --gold-deep:#9A7209; --gold-soft:#F7EDC8;
+    --navy:#1E1A14; --ink:#2A231B;
+    --bg:#FFF5DD; --bg2:#FFEFCE; --bg3:#FCE2BC; --white:#fff;
+    --text:#3A3A3A; --text-muted:#5A554C;
+    --border:rgba(224,100,30,0.20); --border-soft:#F0E7D8;
+    --shadow:0 4px 24px rgba(224,100,30,0.08),0 1px 4px rgba(0,0,0,0.06);
+    --shadow-lg:0 18px 48px rgba(60,50,30,0.12);
+    /* categorical accents, all inside the warm brand family */
+    --a1:#E0641E; --a2:#CC9900; --a3:#C45213; --a4:#B07E00; --a5:#D9822B; --a6:#8C6500;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.6;overflow-x:hidden;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;}
+
+  #sun-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.5;}
+  .container{max-width:1240px;margin:0 auto;padding:0 32px;position:relative;z-index:2;}
+  section{padding:92px 0;position:relative;}
+  .band-alt{background:var(--bg2);}
+  .band-warm{background:linear-gradient(150deg,#FFF6E2 0%,#FCE2BC 100%);}
+
+  .section-tag{display:inline-flex;align-items:center;gap:8px;background:var(--gold-soft);
+    border:1px solid rgba(140,101,0,.32);color:#8C6500;font-size:11px;font-weight:800;
+    letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:20px;}
+  .section-tag::before{content:'\2600';font-size:12px;}
+  .section-heading{font-size:clamp(28px,3.7vw,46px);font-weight:800;line-height:1.15;margin-bottom:18px;color:var(--navy);}
+  .section-sub{color:var(--text-muted);font-size:17px;line-height:1.75;max-width:760px;}
+  .lede{color:var(--text-muted);font-size:16.5px;line-height:1.8;max-width:820px;margin-bottom:14px;}
+  h3.sub-heading{font-size:20px;font-weight:800;color:var(--navy);margin-bottom:8px;}
+
+  .sun-divider{height:5px;position:relative;z-index:2;overflow:visible;
+    background:linear-gradient(90deg,transparent 0%,#E0641E 18%,#474237 50%,#E0641E 82%,transparent 100%);}
+  .sun-divider::after{content:'';position:absolute;inset:-5px 0;background:inherit;border-radius:6px;
+    filter:blur(6px);opacity:.5;animation:dividerGlow 2.8s ease-in-out infinite;}
+  @keyframes dividerGlow{0%,100%{opacity:.45;filter:blur(5px);}50%{opacity:.9;filter:blur(9px);}}
+
+  /* NAV */
+  .topbar{background:#F5E7C4;border-bottom:1px solid rgba(140,101,0,.18);position:relative;z-index:101;}
+  .topbar-in{max-width:1240px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:flex-end;height:34px;}
+  .topbar-in a{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#9A7209;padding:0 16px;line-height:34px;border-right:1px solid rgba(140,101,0,.15);}
+  .topbar-in a:last-child{border-right:none;padding-right:0;}
+  .by-aepg{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#9A7209;line-height:34px;}
+  .topbar-in a:hover{color:var(--sun-deep);}
+  nav{position:sticky;top:0;z-index:100;background:rgba(255,248,236,.94);backdrop-filter:blur(16px);
+    border-bottom:1px solid rgba(224,100,30,.15);box-shadow:0 1px 20px rgba(224,100,30,.08);}
+  .nav-in{max-width:1240px;margin:0 auto;padding:0 32px;display:flex;align-items:center;height:70px;gap:28px;}
+  .nav-in>a.brand img{height:52px;width:auto;display:block;}
+  .nav-links{display:flex;align-items:center;gap:26px;margin-left:auto;}
+  /* NAV DROPDOWN */
+  .ndrop{position:relative;display:flex;align-items:center;}
+  .ndrop > a{display:inline-flex;align-items:center;gap:6px;}
+  .ncar{width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;
+    border-top:5px solid currentColor;opacity:.55;transition:transform .2s;}
+  .ndrop:hover .ncar,.ndrop:focus-within .ncar{transform:rotate(180deg);}
+  .ndrop-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(6px);
+    min-width:262px;background:rgba(255,250,240,.99);border:1px solid var(--border);
+    border-radius:12px;box-shadow:0 16px 38px rgba(60,50,30,.16);padding:8px;
+    display:flex;flex-direction:column;gap:2px;opacity:0;visibility:hidden;
+    transition:opacity .18s,transform .18s,visibility .18s;z-index:60;}
+  /* a bridge under the item, so the pointer can cross the gap without it closing */
+  .ndrop::after{content:'';position:absolute;top:100%;left:0;right:0;height:14px;}
+  .ndrop:hover .ndrop-menu,.ndrop:focus-within .ndrop-menu{
+    opacity:1;visibility:visible;transform:translateX(-50%) translateY(2px);}
+  .ndrop-menu a{display:block;padding:9px 13px;border-radius:8px;font-size:13.5px;
+    font-weight:600;white-space:nowrap;color:var(--ink);}
+  .ndrop-menu a:hover{background:var(--gold-soft);color:var(--navy);}
+  .ndrop-menu a.active{color:var(--sun-deep);font-weight:800;}
+  @media(max-width:1150px){ .nav-links{gap:19px;} .nav-links a{font-size:13.5px;} }
+  .nav-links a{font-size:14px;font-weight:600;color:var(--ink);white-space:nowrap;transition:color .2s;}
+  .nav-links a:hover,.nav-links a.active{color:var(--sun-deep);}
+  .btn-cta{background:linear-gradient(135deg,var(--sun),var(--sun-deep));color:#fff;font-weight:700;
+    padding:11px 22px;border-radius:8px;font-size:14px;border:none;cursor:pointer;display:inline-block;
+    box-shadow:0 4px 14px rgba(224,100,30,.4);transition:all .2s;white-space:nowrap;}
+  .btn-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(224,100,30,.5);}
+  .btn-ghost{display:inline-block;padding:11px 22px;border-radius:8px;font-size:14px;font-weight:700;
+    color:var(--sun-deep);background:#fff;border:1.5px solid rgba(224,100,30,.45);transition:all .2s;white-space:nowrap;}
+  .btn-ghost:hover{background:var(--sun-pale);transform:translateY(-2px);}
+  .nav-toggle{display:none;margin-left:auto;background:none;border:0;font-size:24px;color:var(--navy);cursor:pointer;line-height:1;}
+
+  /* HERO */
+  @keyframes heroBgBreath{0%,100%{background-position:0% 50%;}33%{background-position:60% 30%;}66%{background-position:100% 70%;}}
+  .hero{padding:96px 0 84px;position:relative;overflow:hidden;
+    background:linear-gradient(160deg,#FFF5DD 0%,#FFF3CD 30%,#FCE2BC 60%,#FEF9C3 100%);
+    background-size:300% 300%;animation:heroBgBreath 14s ease-in-out infinite;}
+  .hero.tall{padding:120px 0 110px;}
+  .hero.hero-form{padding:56px 0 46px;}
+  .hero.hero-form h1{font-size:clamp(30px,3.4vw,42px);margin-bottom:15px;max-width:22ch;}
+  .hero.hero-form p.hero-sub{font-size:16.5px;margin-bottom:0;}
+  section.form-sec{padding-top:40px;}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--sun-pale);
+    border:1px solid rgba(224,100,30,.4);color:#9A7209;font-size:11px;font-weight:800;
+    letter-spacing:2.5px;text-transform:uppercase;padding:6px 16px;border-radius:20px;margin-bottom:22px;}
+  .hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--sun);animation:blink 1.5s ease-in-out infinite;}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+  .hero h1{font-size:clamp(34px,4.8vw,58px);font-weight:900;line-height:1.08;color:var(--navy);margin-bottom:22px;max-width:15ch;}
+  .hero.wide h1{max-width:22ch;}
+  .hero p.hero-sub{font-size:18px;line-height:1.75;color:var(--text-muted);max-width:780px;margin-bottom:32px;}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;}
+  .hero-glow{position:absolute;top:-140px;right:-90px;width:620px;height:620px;border-radius:50%;pointer-events:none;
+    background:radial-gradient(ellipse,rgba(204,153,0,.32) 0%,rgba(224,100,30,.12) 45%,transparent 70%);
+    animation:heroFloat 11s ease-in-out infinite;}
+  @keyframes heroFloat{0%,100%{transform:translate(0,0) scale(1);opacity:.85;}33%{transform:translate(-40px,30px) scale(1.12);opacity:1;}66%{transform:translate(20px,-25px) scale(.92);opacity:.7;}}
+
+  /* HERO VIDEO */
+  .hero-vid{position:absolute;inset:0;z-index:0;overflow:hidden;}
+  .hero-vid::after{content:'';position:absolute;inset:0;
+    background:linear-gradient(100deg,#FFF6E2 0%,rgba(255,246,226,.97) 30%,rgba(255,246,226,.86) 44%,
+      rgba(255,245,222,.62) 56%,rgba(255,244,218,.34) 68%,rgba(255,243,216,.14) 82%,rgba(255,243,216,.04) 100%);}
+  .hero.has-vid{animation:none;background:#FFF6E2;}
+  @media(max-width:860px){
+    .hero-vid::after{background:linear-gradient(178deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.90) 46%,
+      rgba(255,245,222,.72) 74%,rgba(255,244,218,.46) 100%);}
+  }
+  /* the reduced-motion still lives in herorot.CSS, after the video rules */
+
+  /* PHOTO AND VIDEO SECTIONS (same system as the cement microsite) */
+  .imgsec{position:relative;overflow:hidden;isolation:isolate;}
+  .imgsec::before{content:"";position:absolute;inset:0;z-index:-2;background-size:cover;background-repeat:no-repeat;}
+  .imgsec::after{content:"";position:absolute;inset:0;z-index:-1;}
+  .imgsec-r::before{background-position:right center;}
+  .imgsec-l::before{background-position:left center;}
+  .imgsec-r::after{background:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 44%,rgba(255,246,226,.97) 53%,rgba(255,246,226,.86) 62%,rgba(255,245,222,.58) 72%,rgba(255,244,218,.26) 85%,rgba(255,243,216,.05) 100%);}
+  .imgsec-l::after{background:linear-gradient(260deg,#FFF6E2 0%,#FFF6E2 44%,rgba(255,246,226,.97) 53%,rgba(255,246,226,.86) 62%,rgba(255,245,222,.58) 72%,rgba(255,244,218,.26) 85%,rgba(255,243,216,.05) 100%);}
+  .img-construction::before{background-image:url('img-construction.jpg');}
+  .bg-materials::before{background-image:url('area-materials.jpg');}
+  .bg-distribution::before{background-image:url('area-distribution.jpg');}
+  .bg-owners::before{background-image:url('area-owners.jpg');}
+  .bg-cons-owners::before{background-image:url('cons-owners.jpg');}
+  .bg-cons-logistics::before{background-image:url('cons-logistics.jpg');}
+  .bg-cons-contractors::before{background-image:url('cons-contractors.jpg');}
+  .bg-cons-trades::before{background-image:url('cons-trades.jpg');}
+  .bg-cons-design::before{background-image:url('cons-design.jpg');}
+  .bg-cons-assurance::before{background-image:url('cons-assurance.jpg');}
+  .bg-mfg-products::before{background-image:url('mfg-products.jpg');}
+  .bg-mfg-equipment::before{background-image:url('mfg-equipment.jpg');}
+  .bg-mfg-systems::before{background-image:url('mfg-systems.jpg');}
+  .bg-mfg-offsite::before{background-image:url('mfg-offsite.jpg');}
+  .bg-mfg-supply::before{background-image:url('mfg-supply.jpg');}
+  .bg-mfg-support::before{background-image:url('mfg-support.jpg');}
+  .bg-bm-extraction::before{background-image:url('bm-extraction.jpg');}
+  .bg-bm-process::before{background-image:url('bm-process.jpg');}
+  .bg-bm-concrete::before{background-image:url('bm-concrete.jpg');}
+  .bg-bm-operations::before{background-image:url('bm-operations.jpg');}
+  .bg-bm-distribution::before{background-image:url('bm-distribution.jpg');}
+  .bg-construction::before{background-image:url('area-construction.jpg');}
+  .bg-operations::before{background-image:url('area-operations.jpg');}
+  .bg-institutions::before{background-image:url('area-institutions.jpg');}
+  .bg-horizon::before{background-image:url('fam-horizon.jpg');}
+  .bg-pulse::before{background-image:url('fam-pulse.jpg');}
+  .bg-integration::before{background-image:url('plat-integration.jpg');}
+  .bg-deploy::before{background-image:url('plat-deploy.jpg');}
+  .area-sec{padding:76px 0;min-height:720px;display:flex;align-items:center;}
+  .area-sec > .container{width:100%;}
+  .fam-band{min-height:470px;}
+  /* a photo free area section still has to fill its width, or it reads as a missing image */
+  /* a two paragraph statement, set as a pair so it fills its width */
+  .stmt{display:grid;grid-template-columns:1fr 1fr;gap:46px;margin-top:26px;align-items:start;}
+  .stmt > p{margin:0;font-size:16.5px;line-height:1.8;color:var(--text-muted);max-width:none;}
+  .stmt > p:first-child{position:relative;padding-left:22px;}
+  .stmt > p:first-child::before{content:'';position:absolute;left:0;top:6px;bottom:6px;width:3px;
+    border-radius:2px;background:linear-gradient(180deg,var(--sun),var(--gold));}
+  .stmt > p:last-child{font-weight:600;color:var(--navy);}
+  @media(max-width:760px){.stmt{grid-template-columns:1fr;gap:22px;}}
+  .split2{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center;}
+  .split2 > *{min-width:0;}
+  .split2 .section-sub{max-width:none;}
+  .split2-panel{background:#fff;border:1px solid var(--border);border-radius:20px;padding:30px 32px;
+    box-shadow:var(--shadow);position:relative;overflow:hidden;}
+  .split2-panel::after{content:'';position:absolute;top:-70px;right:-50px;width:230px;height:230px;border-radius:50%;
+    background:radial-gradient(ellipse,rgba(204,153,0,.20) 0%,rgba(224,100,30,.08) 45%,transparent 70%);pointer-events:none;}
+  .split2-panel h4{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#8C6500;margin-bottom:14px;}
+  .split2-panel .tick{margin-top:0;}
+  .split2-panel .tick li{font-size:15px;margin-bottom:11px;}
+  .area-sec .card-num{margin-bottom:16px;}
+  .img-industrial::before{background-image:url('img-industrial.jpg');}
+  .img-operations::before{background-image:url('img-operations.jpg');}
+  /* a photo section that carries a video instead of a still */
+  .imgsec > video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;}
+  /* a photo section that carries a video instead of a still */
+  .imgsec > video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;}
+  @media(prefers-reduced-motion:reduce){
+    .imgsec > video{display:none;}
+    .imgsec-work::before{background-image:url('vid-work-poster.jpg');}
+  }
+
+  .sec-split{display:block;}
+  .imgsec-r .sec-split{max-width:58%;}
+  .imgsec-l .sec-split{max-width:58%;margin-left:auto;}
+
+  .vidband{position:relative;overflow:hidden;isolation:isolate;text-align:center;
+    border-top:1px solid rgba(204,153,0,.25);border-bottom:1px solid rgba(204,153,0,.25);
+    background:linear-gradient(135deg,#FBEFC9 0%,#F6E1B0 100%);}
+  .vidband > video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;}
+  .vidband::after{content:"";position:absolute;inset:0;z-index:-1;
+    background:linear-gradient(180deg,rgba(255,246,226,.90) 0%,rgba(255,246,226,.74) 45%,rgba(255,246,226,.88) 100%);}
+  .vidband h2{font-size:clamp(24px,3.2vw,38px);font-weight:800;color:var(--navy);max-width:840px;margin:0 auto 16px;line-height:1.2;}
+  .vidband p{color:var(--text-muted);font-size:16.5px;max-width:720px;margin:0 auto 28px;line-height:1.75;}
+
+  /* photo wallpaper hero */
+  .hero-photo{animation:none;background-size:cover,cover;background-repeat:no-repeat;
+    background-position:center,center 30%;}
+  .hero-photo.wall-construction{background-image:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 40%,rgba(255,246,226,.94) 48%,rgba(255,246,226,.74) 56%,rgba(255,245,222,.44) 64%,rgba(255,244,218,.16) 72%,rgba(255,243,216,0) 80%),url('img-construction.jpg');}
+  .hero-photo.wall-cons{background-image:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 40%,rgba(255,246,226,.94) 48%,rgba(255,246,226,.74) 56%,rgba(255,245,222,.44) 64%,rgba(255,244,218,.16) 72%,rgba(255,243,216,0) 80%),url('cons-hero.jpg');}
+  .hero-photo.wall-events{background-image:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 40%,rgba(255,246,226,.94) 48%,rgba(255,246,226,.74) 56%,rgba(255,245,222,.44) 64%,rgba(255,244,218,.16) 72%,rgba(255,243,216,0) 80%),url('events-hero.jpg');}
+  .hero-photo.wall-mfg{background-image:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 40%,rgba(255,246,226,.94) 48%,rgba(255,246,226,.74) 56%,rgba(255,245,222,.44) 64%,rgba(255,244,218,.16) 72%,rgba(255,243,216,0) 80%),url('mfg-hero.jpg');}
+  .hero-photo.wall-platform{background-image:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 40%,rgba(255,246,226,.94) 48%,rgba(255,246,226,.74) 56%,rgba(255,245,222,.44) 64%,rgba(255,244,218,.16) 72%,rgba(255,243,216,0) 80%),url('plat-hero.jpg');}
+  .hero-photo.wall-capabilities{background-image:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 40%,rgba(255,246,226,.94) 48%,rgba(255,246,226,.74) 56%,rgba(255,245,222,.44) 64%,rgba(255,244,218,.16) 72%,rgba(255,243,216,0) 80%),url('cap-hero.jpg');}
+  .hero-photo.wall-usecases{background-image:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 40%,rgba(255,246,226,.94) 48%,rgba(255,246,226,.74) 56%,rgba(255,245,222,.44) 64%,rgba(255,244,218,.16) 72%,rgba(255,243,216,0) 80%),url('uc-hero.jpg');}
+  .hero-photo.wall-company{background-image:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 54%,rgba(255,246,226,.95) 62%,rgba(255,246,226,.70) 72%,rgba(255,245,222,.32) 84%,rgba(255,244,218,.06) 95%,rgba(255,243,216,0) 100%),url('company-hero.jpg');background-size:cover,auto 100%;background-position:center,right center;}
+  .hero-photo h1,.hero-photo p.hero-sub{max-width:620px;}
+
+  /* CARDS + GRIDS */
+  .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:30px;}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:30px;}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:30px;}
+  .grid2>*,.grid3>*,.grid4>*{min-width:0;}
+  .card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:26px;box-shadow:var(--shadow);transition:all .3s;}
+  .card:hover{border-color:rgba(224,100,30,.4);transform:translateY(-5px);box-shadow:0 12px 40px rgba(224,100,30,.14);}
+  .card h3{font-size:18px;font-weight:800;color:var(--navy);margin-bottom:10px;}
+  .card p{color:var(--text-muted);font-size:14.5px;line-height:1.72;}
+  .card-num{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;
+    font-size:14px;font-weight:900;color:#fff;margin-bottom:14px;background:var(--sun);}
+  .tick{list-style:none;margin-top:14px;}
+  .tick li{position:relative;padding-left:22px;font-size:14.5px;color:var(--text-muted);margin-bottom:8px;line-height:1.6;}
+  .tick li::before{content:'';position:absolute;left:0;top:9px;width:8px;height:8px;border-radius:2px;
+    background:linear-gradient(135deg,var(--sun),var(--gold));}
+
+  /* PHOTO HEADED CARDS */
+  .cardimg{border-radius:16px;overflow:hidden;background:#fff;border:1px solid var(--border);
+    box-shadow:var(--shadow);transition:all .3s;display:flex;flex-direction:column;}
+  .cardimg:hover{transform:translateY(-5px);box-shadow:0 12px 40px rgba(224,100,30,.14);
+    border-color:rgba(224,100,30,.4);}
+  .cardimg .ph{aspect-ratio:16/9;background-size:cover;background-position:center 45%;
+    background-color:#F3E6C8;position:relative;}
+  .cardimg .ph::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(224,100,30,.06) 0%,rgba(255,246,226,.16) 100%);}
+  .cardimg .num{position:absolute;top:12px;left:12px;z-index:2;width:30px;height:30px;border-radius:9px;
+    display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:900;
+    box-shadow:0 4px 12px rgba(60,50,30,.35);}
+  .cardimg .bd{padding:22px 24px 26px;flex:1;}
+  .cardimg h3{font-size:17.5px;font-weight:800;color:var(--navy);margin-bottom:8px;line-height:1.3;}
+  .cardimg p{font-size:14px;color:var(--text-muted);line-height:1.7;}
+  .cardimg .tick{margin-top:14px;}
+  .cardimg .tick li{font-size:13.5px;margin-bottom:6px;}
+
+  /* LAYER BLOCKS (Core / Ray / Horizon / Pulse) */
+  .layer{background:#fff;border:1px solid var(--border);border-radius:20px;padding:34px;box-shadow:var(--shadow);margin-top:24px;}
+  .layer-head{display:flex;align-items:center;gap:14px;margin-bottom:14px;flex-wrap:wrap;}
+  .layer-name{font-size:26px;font-weight:900;color:var(--navy);letter-spacing:-.3px;}
+  .layer-chip{font-size:11px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:#fff;padding:5px 12px;border-radius:20px;}
+  .layer p{color:var(--text-muted);font-size:15.5px;line-height:1.78;}
+
+  /* ECLIPSE: the two suns are the diagram, the overlap is the lifecycle */
+  .ecl{position:relative;width:100%;max-width:1140px;margin:34px auto 0;aspect-ratio:1280/800;
+    container-type:inline-size;}
+  .ecl svg{position:absolute;inset:0;width:100%;height:100%;}
+  .ecl-lab{position:absolute;transform:translateY(-50%);width:15.5%;}
+  .ecl-lab .i{font-size:10px;font-size:.86cqw;font-weight:800;letter-spacing:2px;}
+  .ecl-lab .r{height:1px;opacity:.45;margin:5px 0 6px;}
+  .ecl-lab .t{font-size:13px;font-size:1.12cqw;font-weight:700;color:var(--navy);line-height:1.36;}
+  .ecl-core{position:absolute;left:50%;transform:translate(-50%,-50%);width:20%;text-align:center;
+    background:#FFFBF0;padding:12px 8px 14px;border-radius:8px;}
+  .ecl-core .k{font-size:9.5px;font-size:.82cqw;font-weight:800;letter-spacing:2.6px;
+    text-transform:uppercase;color:#8C6500;}
+  .ecl-core .v{font-size:19px;font-size:1.62cqw;font-weight:900;color:var(--navy);line-height:1.2;margin-top:5px;}
+  .ecl-core .c{font-size:11.5px;font-size:1.0cqw;color:var(--text-muted);margin-top:5px;}
+  .ecl-fallback{display:none;}
+
+  @media(max-width:860px){
+    .ecl{display:none;}
+    .ecl-fallback{display:block;margin-top:26px;}
+    .ecl-mini{position:relative;height:150px;margin:0 auto 22px;max-width:300px;}
+    .ecl-mini svg{width:100%;height:100%;}
+    .ecl-list{display:grid;gap:10px;}
+    .ecl-list li{list-style:none;display:flex;gap:12px;align-items:flex-start;
+      background:#fff;border:1px solid var(--border-soft);border-radius:12px;padding:12px 14px;}
+    .ecl-list .n{flex-shrink:0;width:24px;height:24px;border-radius:8px;color:#fff;font-size:12px;
+      font-weight:900;display:flex;align-items:center;justify-content:center;}
+    .ecl-list .t{font-size:14px;font-weight:700;color:var(--navy);line-height:1.4;}
+  }
+
+  /* STEPS */
+  .steps{counter-reset:s;margin-top:28px;display:grid;gap:14px;}
+  .step{counter-increment:s;position:relative;padding:20px 22px 20px 68px;background:#fff;
+    border:1px solid var(--border-soft);border-radius:14px;box-shadow:var(--shadow);font-size:15.5px;color:var(--text-muted);}
+  .step::before{content:counter(s);position:absolute;left:22px;top:18px;width:30px;height:30px;border-radius:9px;
+    background:linear-gradient(135deg,var(--sun),var(--sun-deep));color:#fff;font-weight:900;font-size:14px;
+    display:flex;align-items:center;justify-content:center;}
+
+  /* CALLOUT */
+  .callout{margin-top:30px;background:linear-gradient(135deg,#FEFAE8,#FAF0B8);
+    border:1px solid rgba(204,153,0,.35);border-radius:18px;padding:28px 30px;}
+  .callout h3{font-size:19px;font-weight:800;color:var(--navy);margin-bottom:10px;}
+  .callout p{color:var(--text-muted);font-size:15.5px;line-height:1.78;}
+
+  /* ACCORDION (capabilities) */
+  details.acc{background:#fff;border:1px solid var(--border-soft);border-radius:14px;margin-top:12px;box-shadow:var(--shadow);overflow:hidden;}
+  details.acc>summary{list-style:none;cursor:pointer;padding:20px 24px;display:flex;align-items:flex-start;gap:14px;}
+  details.acc>summary::-webkit-details-marker{display:none;}
+  details.acc>summary::after{content:'+';margin-left:auto;font-size:22px;font-weight:400;color:var(--sun-deep);line-height:1;flex-shrink:0;}
+  details.acc[open]>summary::after{content:'\2212';}
+  .acc-title{font-size:17px;font-weight:800;color:var(--navy);}
+  .acc-desc{display:block;font-size:14px;color:var(--text-muted);margin-top:4px;line-height:1.6;}
+  .acc-body{padding:0 24px 22px 24px;}
+  .acc-bar{width:5px;border-radius:3px;align-self:stretch;flex-shrink:0;min-height:42px;}
+
+  /* FILTER ROWS + CROSS LINKS */
+  .uc-filterset{margin-top:26px;display:grid;gap:14px;}
+  /* USE CASE SEARCH */
+  /* PAST EVENTS */
+  .evplist{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:10px;}
+  .evp{display:grid;grid-template-columns:1.5fr 1fr 1.6fr auto;gap:18px;align-items:baseline;
+    background:#fff;border:1px solid var(--border-soft);border-radius:12px;padding:16px 20px;}
+  .evp-n{font-size:15.5px;font-weight:800;color:var(--navy);}
+  .evp-d{font-size:14px;font-weight:700;color:var(--sun-deep);white-space:nowrap;}
+  .evp-v{font-size:14px;color:var(--text-muted);}
+  .evp-l{font-size:13.5px;white-space:nowrap;}
+
+  @media(max-width:900px){
+    .evp{grid-template-columns:1fr;gap:5px;}
+    .evp-d{white-space:normal;}
+  }
+
+  .uc-search{position:relative;display:flex;align-items:center;margin:0 0 20px;max-width:560px;}
+  .uc-search svg{position:absolute;left:16px;width:17px;height:17px;flex:none;
+    stroke:var(--sun-deep);fill:none;stroke-width:2;opacity:.7;pointer-events:none;}
+  .uc-search input{width:100%;padding:13px 44px 13px 44px;font:inherit;font-size:15px;
+    color:var(--navy);background:#fff;border:1.5px solid rgba(224,100,30,.35);border-radius:26px;
+    outline:none;transition:border-color .15s ease,box-shadow .15s ease;}
+  .uc-search input::placeholder{color:#9A8E7C;}
+  .uc-search input:focus{border-color:var(--sun);box-shadow:0 0 0 4px rgba(224,100,30,.12);}
+  .uc-search input::-webkit-search-cancel-button{display:none;}
+  .uc-qclear{position:absolute;right:8px;width:28px;height:28px;border:0;border-radius:50%;
+    background:rgba(224,100,30,.12);color:var(--sun-deep);font-size:16px;line-height:1;
+    cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  .uc-qclear:hover{background:rgba(224,100,30,.22);}
+  /* a class rule with display outranks the hidden attribute, so say it explicitly */
+  .uc-qclear[hidden]{display:none;}
+  .uc-none{display:none;margin-top:4px;font-size:15px;color:var(--text-muted);}
+  .uc-none.on{display:block;}
+
+  .uc-frow{display:grid;grid-template-columns:132px 1fr;gap:14px;align-items:start;}
+  .uc-frow > .lab{font-size:10.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;
+    color:#8C6500;padding-top:9px;}
+  .uc-clear{margin-top:16px;font-size:13px;font-weight:700;color:var(--sun-deep);background:none;
+    border:0;cursor:pointer;font-family:inherit;padding:0;text-decoration:underline;}
+  .uc-clear[hidden]{display:none;}
+  .uc:target,.uc.flash{border-color:var(--sun);box-shadow:0 0 0 4px rgba(224,100,30,.18),0 12px 40px rgba(224,100,30,.18);}
+  .uc-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
+  .uc-tag{font-size:10.5px;font-weight:700;letter-spacing:.4px;color:#7A6A4A;
+    border:1px solid rgba(140,101,0,.28);border-radius:20px;padding:3px 10px;}
+  .acc-rel{margin-top:16px;padding-top:14px;border-top:1px solid var(--border-soft);}
+  .acc-rel .k{font-size:10px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:#8C6500;}
+  .acc-rel ul{list-style:none;margin-top:9px;display:grid;gap:7px;}
+  .acc-rel a{font-size:14px;font-weight:700;color:var(--sun-deep);display:inline-flex;align-items:center;gap:7px;}
+  .acc-rel a:hover{color:var(--sun);}
+  .acc-rel a::after{content:'\2192';font-weight:400;}
+  @media(max-width:760px){
+    .uc-frow{grid-template-columns:1fr;gap:7px;}
+    .uc-frow > .lab{padding-top:0;}
+  }
+
+  /* USE CASE CARDS */
+  .uc-filters{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;}
+  .uc-filter{border:1.5px solid rgba(224,100,30,.35);background:#fff;color:var(--sun-deep);border-radius:20px;
+    padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s;}
+  .uc-filter:hover{background:var(--sun-pale);}
+  .uc-filter.on{background:linear-gradient(135deg,var(--sun),var(--sun-deep));color:#fff;border-color:transparent;}
+  /* the sticky header would otherwise sit on top of the heading we jumped to */
+  #workflows{scroll-margin-top:96px;}
+  .uc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:26px;}
+  .uc{background:#fff;border:1px solid var(--border);border-radius:18px;padding:26px;box-shadow:var(--shadow);transition:all .3s;}
+  .uc:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(224,100,30,.14);}
+  .uc h3{font-size:18px;font-weight:800;color:var(--navy);margin-bottom:14px;line-height:1.3;}
+  .uc dl{margin:0;}
+  .uc dt{font-size:10.5px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#8C6500;margin-top:12px;}
+  .uc dd{font-size:14.5px;color:var(--text-muted);line-height:1.65;margin:3px 0 0 0;}
+  .uc-lens{display:inline-block;margin-top:16px;font-size:11.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;
+    background:var(--gold-soft);border:1px solid rgba(140,101,0,.3);color:#8C6500;padding:5px 12px;border-radius:20px;}
+
+  /* the invitation that closes the grid, and fills the odd slot when there is one */
+  .uc-ask{display:flex;flex-direction:column;justify-content:center;gap:11px;
+    background:linear-gradient(140deg,var(--gold-soft) 0%,rgba(255,246,226,.55) 100%);
+    border:1px dashed rgba(140,101,0,.42);border-radius:18px;padding:30px 28px;}
+  .uc-ask .lab{font-size:10.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:#8C6500;}
+  .uc-ask h3{font-size:18px;font-weight:800;color:var(--navy);line-height:1.3;}
+  .uc-ask p{font-size:14.5px;color:var(--text-muted);line-height:1.65;max-width:52ch;}
+  .uc-ask .btn-ghost{align-self:flex-start;margin-top:5px;background:#fff;}
+  .uc-ask.wide{grid-column:1 / -1;}
+
+
+  /* INDUSTRY SUBPAGES, classes from Noureldin's content brief */
+  .hero p.hero-body{font-size:16.5px;line-height:1.8;color:var(--text-muted);max-width:620px;margin:-14px 0 32px;}
+  /* building materials: photos matched to what each section is actually about */
+  .bg-plant-wide::before{background-image:url('img-industrial.jpg');}
+  .bg-plant-dusk::before{background-image:url('area-materials.jpg');}
+  .bg-site::before{background-image:url('img-construction.jpg');}
+  .bg-controlroom::before{background-image:url('cap-hero.jpg');}
+  .bg-yard::before{background-image:url('area-distribution.jpg');}
+  .dom-group{margin-top:30px;}
+  .dom-group + .dom-group{margin-top:34px;}
+  .dom-group .grid2{margin-top:14px;}
+  .dom-k{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+  .more-link{display:inline-block;margin-top:24px;font-size:14px;font-weight:700;}
+  .stages{list-style:none;display:flex;flex-wrap:wrap;gap:8px 10px;margin-top:22px;max-width:1000px;}
+  .stages li{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--border-soft);
+    border-radius:20px;padding:6px 14px;font-size:13.5px;font-weight:700;color:var(--navy);}
+  .stages li span{font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:#8C6500;}
+
+  /* EVENTS */
+  .ev{display:grid;grid-template-columns:210px 1fr;gap:0;background:#fff;border:1px solid var(--border-soft);
+    border-radius:18px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:20px;transition:all .3s;}
+  .ev:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(224,100,30,.13);}
+  .ev-when{background:linear-gradient(150deg,var(--gold-soft),rgba(255,246,226,.6));
+    border-right:1px solid var(--border-soft);padding:26px 22px;display:flex;flex-direction:column;
+    justify-content:center;gap:7px;}
+  .ev-when .d{font-size:15px;font-weight:800;color:var(--navy);line-height:1.35;}
+  .ev-when .w{font-size:12.5px;font-weight:700;color:#8C6500;line-height:1.5;}
+  .ev-body{padding:26px 28px;}
+  .ev-body h3{font-size:18px;font-weight:800;color:var(--navy);margin-bottom:10px;line-height:1.3;}
+  .ev-body p{font-size:14.5px;color:var(--text-muted);line-height:1.7;margin-bottom:14px;}
+  .ev-acts{display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
+  .ev-acts a{font-size:13.5px;font-weight:700;text-decoration:none;}
+  .ev-meet{background:var(--sun-pale);border:1px solid rgba(224,100,30,.4);color:var(--sun-deep);
+    padding:8px 16px;border-radius:8px;}
+  .ev-meet:hover{background:#fff;}
+  .ev-more{color:#8C6500;border-bottom:1px solid rgba(140,101,0,.4);padding-bottom:1px;}
+  .ev.past{opacity:.55;}
+  .ev.past .ev-when::after{content:'Now finished';font-size:11px;font-weight:800;letter-spacing:1px;
+    text-transform:uppercase;color:var(--text-muted);}
+  @media(max-width:760px){
+    .ev{grid-template-columns:1fr;}
+    .ev-when{border-right:0;border-bottom:1px solid var(--border-soft);padding:20px 22px;}
+  }
+
+  /* PEOPLE */
+  .people{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:28px;}
+  .person{background:#fff;border:1px solid var(--border-soft);border-radius:16px;padding:24px;box-shadow:var(--shadow);}
+  .face{width:72px;height:72px;border-radius:50%;object-fit:cover;display:block;margin-bottom:16px;
+    border:2px solid #fff;box-shadow:0 3px 12px rgba(60,50,30,.18);background:var(--bg2);}
+  .face-mono{display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;
+    letter-spacing:.5px;color:#8C6500;background:linear-gradient(145deg,var(--gold-soft),#FFF3D6);
+    border:2px solid #fff;}
+  .person .nm{font-size:17px;font-weight:800;color:var(--navy);}
+  .person .rl{font-size:12.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--sun-deep);margin:5px 0 12px;}
+  .person p{font-size:14.5px;color:var(--text-muted);line-height:1.7;}
+  .person.lead{border-color:rgba(224,100,30,.35);border-top:4px solid var(--sun);}
+
+  /* FORM */
+  .form-card{background:#fff;border:1px solid var(--border-soft);border-radius:22px;padding:36px;box-shadow:var(--shadow-lg);max-width:720px;margin:0 auto;}
+  .form-card label{display:block;font-size:12.5px;font-weight:800;letter-spacing:.6px;color:var(--navy);margin:18px 0 6px;text-transform:uppercase;}
+  .form-card label .opt{color:var(--text-muted);font-weight:600;text-transform:none;letter-spacing:0;}
+  .form-card input,.form-card select,.form-card textarea{width:100%;background:#FFFBF2;border:1px solid rgba(30,26,20,.15);
+    border-radius:10px;padding:13px 15px;font-size:15px;color:var(--navy);outline:none;font-family:inherit;transition:border-color .2s;}
+  .form-card textarea{min-height:150px;resize:vertical;line-height:1.65;}
+  .form-card input:focus,.form-card select:focus,.form-card textarea:focus{border-color:var(--sun);}
+  .form-card button{width:100%;margin-top:24px;background:linear-gradient(135deg,var(--sun),var(--sun-deep));color:#fff;
+    border:0;border-radius:10px;padding:16px;font-size:15.5px;font-weight:800;cursor:pointer;font-family:inherit;
+    box-shadow:0 8px 22px rgba(224,100,30,.35);transition:opacity .2s;}
+  .form-card button:hover{opacity:.92;}
+  .form-card button:disabled{opacity:.6;cursor:default;}
+  .form-note{font-size:12.5px;color:var(--text-muted);margin-top:14px;line-height:1.6;}
+  .ctx-chip{display:none;align-items:center;gap:8px;background:var(--sun-pale);border:1px solid rgba(224,100,30,.4);
+    color:var(--sun-deep);font-size:12.5px;font-weight:700;padding:8px 14px;border-radius:20px;margin-bottom:6px;}
+  .form-ok{display:none;max-width:720px;margin:0 auto;background:linear-gradient(135deg,#FEFAE8,#FAF0B8);border:1px solid rgba(204,153,0,.4);
+    border-radius:18px;padding:30px;text-align:center;}
+  .form-ok h3{font-size:21px;font-weight:800;color:var(--navy);margin-bottom:10px;}
+  .form-ok p{color:var(--text-muted);font-size:15.5px;}
+
+  /* CLOSING CTA */
+  .cta-band{text-align:center;background:linear-gradient(135deg,#FBEFC9 0%,#F6E1B0 100%);
+    border-top:1px solid rgba(204,153,0,.25);border-bottom:1px solid rgba(204,153,0,.25);}
+  .cta-band h2{font-size:clamp(24px,3.2vw,38px);font-weight:800;color:var(--navy);max-width:820px;margin:0 auto 16px;line-height:1.2;}
+  .cta-band p{color:var(--text-muted);font-size:16.5px;max-width:720px;margin:0 auto 28px;line-height:1.75;}
+  .cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+
+  /* FOOTER */
+  footer{background:var(--bg);border-top:3px solid var(--sun);padding:52px 0 30px;position:relative;z-index:2;}
+  .foot-top{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start;justify-content:space-between;}
+  .foot-brand img{height:46px;margin-bottom:12px;display:block;}
+  .foot-brand .by{font-size:13px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:#8C6500;}
+  .foot-links{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center;}
+  .foot-links a{font-size:14px;font-weight:600;color:var(--text-muted);}
+  .foot-links a:hover{color:var(--sun-deep);}
+  .foot-bot{margin-top:30px;padding-top:20px;border-top:1px solid var(--border-soft);
+    display:flex;flex-wrap:wrap;gap:10px 20px;justify-content:space-between;font-size:13px;color:var(--text-muted);}
+  .foot-bot a:hover{color:var(--sun-deep);}
+
+  /* RESPONSIVE */
+  @media(max-width:1000px){
+    .imgsec-r .sec-split,.imgsec-l .sec-split{max-width:100%;margin:0;}
+    .imgsec-r::after,.imgsec-l::after{background:linear-gradient(175deg,rgba(255,246,226,.96) 0%,rgba(255,246,226,.90) 55%,rgba(255,244,220,.60) 100%);}
+    .hero-photo.wall-construction{background-image:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,rgba(255,244,220,.58) 80%,rgba(255,242,214,.24) 100%),url('img-construction.jpg');background-position:center,center;}
+    .hero-photo.wall-cons{background-image:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,rgba(255,244,220,.58) 80%,rgba(255,242,214,.24) 100%),url('cons-hero.jpg');background-position:center,center;}
+    .hero-photo.wall-events{background-image:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,rgba(255,244,220,.58) 80%,rgba(255,242,214,.24) 100%),url('events-hero.jpg');background-position:center,center;}
+    .hero-photo.wall-mfg{background-image:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,rgba(255,244,220,.58) 80%,rgba(255,242,214,.24) 100%),url('mfg-hero.jpg');background-position:center,center;}
+    .hero-photo.wall-platform{background-image:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,rgba(255,244,220,.58) 80%,rgba(255,242,214,.24) 100%),url('plat-hero.jpg');background-position:center,center;}
+    .hero-photo.wall-capabilities{background-image:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,rgba(255,244,220,.58) 80%,rgba(255,242,214,.24) 100%),url('cap-hero.jpg');background-position:center,center;}
+    .hero-photo.wall-usecases{background-image:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,rgba(255,244,220,.58) 80%,rgba(255,242,214,.24) 100%),url('uc-hero.jpg');background-position:center,center;}
+    .hero-photo.wall-company{background-image:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,rgba(255,244,220,.58) 80%,rgba(255,242,214,.24) 100%),url('company-hero.jpg');background-position:center,center;}
+    .grid3,.grid4{grid-template-columns:repeat(2,1fr);}
+    .people{grid-template-columns:repeat(2,1fr);}
+    .uc-grid{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+    .nav-links.open{display:flex;position:absolute;top:70px;left:0;right:0;flex-direction:column;
+      align-items:flex-start;gap:0;background:rgba(255,248,236,.99);border-bottom:1px solid var(--border);
+      padding:8px 32px 18px;box-shadow:0 12px 24px rgba(60,50,30,.12);}
+    .nav-links.open a{padding:12px 0;width:100%;border-bottom:1px solid var(--border-soft);}
+      .nav-links.open .ndrop{display:block;width:100%;}
+      .nav-links.open .ndrop-menu{position:static;transform:none;opacity:1;visibility:visible;
+        min-width:0;background:none;border:0;box-shadow:none;padding:0 0 0 16px;gap:0;}
+      .nav-links.open .ndrop-menu a{font-size:13.5px;color:var(--text-muted);}
+      .nav-links.open .ncar{display:none;}
+    .nav-toggle{display:block;}
+  }
+  @media(max-width:760px){
+    .container{padding:0 20px;}
+    .area-sec{min-height:0;padding:60px 0;}
+    .split2{grid-template-columns:1fr;gap:28px;}
+    .chip{max-width:150px;font-size:11px;}
     section{padding:64px 0;}
-    .sec-h{font-size:clamp(26px,3.4vw,38px);font-weight:800;color:var(--navy);line-height:1.15;margin:14px 0 10px;}
-    .sec-sub{color:var(--muted);font-size:16px;max-width:700px;}
-    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;}
-    .pchip{color:#fff;font-weight:700;font-size:13.5px;padding:10px 16px;border-radius:11px;box-shadow:0 6px 16px rgba(20,40,70,.14);white-space:nowrap;}
-    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:30px;}
-    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px;text-align:left;}
-    @media(max-width:900px){.grid3{grid-template-columns:1fr;}}
-    .card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:24px;box-shadow:0 8px 24px rgba(60,50,30,.06);}
-    .card h3{font-size:16.5px;color:var(--navy);margin-bottom:8px;display:flex;align-items:center;gap:10px;}
-    .card p{font-size:14px;color:var(--muted);}
-    .dot{width:34px;height:34px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:16px;flex-shrink:0;}
-    .band{position:relative;overflow:hidden;isolation:isolate;border-top:1px solid rgba(204,153,0,.25);border-bottom:1px solid rgba(204,153,0,.25);text-align:center;padding:96px 24px;background:linear-gradient(135deg,#FBEFC9 0%,#F6E1B0 100%);}
-    .band > video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;}
-    .band::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(255,246,226,.90) 0%,rgba(255,246,226,.74) 45%,rgba(255,246,226,.88) 100%);}
-    @media(prefers-reduced-motion:reduce){.band > video{display:none;}.band{background:url('band-plant-poster.jpg') center/cover no-repeat;}}
-    .band h2{font-size:clamp(22px,3vw,32px);font-weight:800;color:var(--navy);max-width:820px;margin:0 auto;}
-    .form-card{background:#fff;border:1px solid var(--border);border-radius:22px;padding:38px;box-shadow:0 18px 48px rgba(60,50,30,.12);max-width:640px;margin:34px auto 0;}
-    .form-card label{display:block;font-size:13px;font-weight:700;color:var(--navy);margin:14px 0 6px;}
-    .form-card input,.form-card textarea{width:100%;background:#FFFBF2;border:1px solid rgba(30,26,20,.15);border-radius:10px;padding:12px 14px;font-size:14.5px;color:var(--navy);outline:none;font-family:inherit;}
-    .form-card input:focus,.form-card textarea:focus{border-color:var(--sun);}
-    .form-card button{width:100%;margin-top:20px;background:linear-gradient(135deg,var(--sun),var(--sun-deep));color:#fff;border:0;border-radius:10px;padding:15px;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 8px 22px rgba(224,100,30,.35);}
-    .form-card button:hover{opacity:.92;}
-    footer{padding:34px 24px;text-align:center;color:var(--muted);font-size:13px;}
-    footer img{height:36px;display:block;margin:0 auto 10px;}
-    @media(max-width:760px){.grid{grid-template-columns:1fr;}}
-  /* ─── HERO ─── */
-  @keyframes heroBgBreath {
-    0%,100% { background-position:0% 50%; }
-    33%      { background-position:60% 30%; }
-    66%      { background-position:100% 70%; }
+    .grid2,.grid3,.grid4,.people,.arch{grid-template-columns:1fr;}
+    .hero{padding:64px 0 56px;}
+    .hero.tall{padding:76px 0 68px;}
+    .topbar-in{justify-content:center;}
+    .topbar-in a{padding:0 10px;font-size:10px;}
+    .nav-in{padding:0 20px;height:62px;gap:14px;}
+    .nav-in>a.brand img{height:40px;}
+    .btn-cta{padding:9px 15px;font-size:13px;}
+    .nav-links.open{top:62px;padding:8px 20px 18px;}
+    .form-card{padding:24px;}
+    .layer{padding:24px;}
   }
-  #hero {
-    min-height:100vh; display:flex; align-items:center; padding-top:104px;
-    background:linear-gradient(160deg, #FFF5DD 0%, #FFF3CD 30%, #FCE2BC 60%, #FEF9C3 100%);
-    background-size:300% 300%;
-    animation:heroBgBreath 14s ease-in-out infinite;
-    position:relative; overflow:hidden;
-  }
-  @keyframes heroFloat1 {
-    0%,100% { transform:translate(0,0) scale(1); opacity:.85; }
-    33%      { transform:translate(-40px,30px) scale(1.12); opacity:1; }
-    66%      { transform:translate(20px,-25px) scale(.92); opacity:.7; }
-  }
-  @keyframes heroFloat2 {
-    0%,100% { transform:translate(0,0) scale(1); opacity:.5; }
-    40%     { transform:translate(30px,40px) scale(1.15); opacity:.75; }
-    70%     { transform:translate(-20px,10px) scale(.88); opacity:.45; }
-  }
-  .hero-sun-glow {
-    position:absolute; top:-120px; right:-80px; width:600px; height:600px;
-    border-radius:50%;
-    background:radial-gradient(ellipse, rgba(204,153,0,0.35) 0%, rgba(224,100,30,0.12) 45%, transparent 70%);
-    pointer-events:none;
-    animation:heroFloat1 10s ease-in-out infinite;
-  }
-  .hero-rays {
-    position:absolute; top:-60px; right:-20px; width:500px; height:500px;
-    pointer-events:none; opacity:.25;
-  }
-  .hero-grid { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; width:100%; }
-  .hero-eyebrow {
-    display:inline-flex; align-items:center; gap:8px;
-    background:var(--sun-pale); border:1px solid rgba(224,100,30,0.4);
-    color:#9A7209; font-size:11px; font-weight:700;
-    letter-spacing:2.5px; text-transform:uppercase; padding:6px 16px;
-    border-radius:20px; margin-bottom:24px;
-  }
-  .hero-eyebrow .dot { width:6px; height:6px; border-radius:50%; background:var(--sun); animation:blink 1.5s ease-in-out infinite; }
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
-  .hero-heading { font-size:clamp(44px,5.5vw,72px); font-weight:900; line-height:1.06; margin-bottom:26px; color:var(--navy); }
-  .hero-heading .chaos { color:var(--sun-bright); position:relative; display:inline-block; }
-  .hero-heading .chaos::after {
-    content:''; position:absolute; bottom:-4px; left:0; right:0; height:3px;
-    background:linear-gradient(90deg,var(--sun),var(--sun-deep)); border-radius:2px;
-  }
-  .hero-sub { color:var(--text-mid); font-size:18px; line-height:1.75; margin-bottom:36px; }
-  .hero-stats { display:flex; gap:36px; margin-bottom:36px; }
-  .hero-stat .value { font-size:28px; font-weight:900; color:var(--navy); }
-  .hero-stat .label { font-size:12px; color:var(--text-muted); margin-top:2px; }
-  .hero-ctas { display:flex; gap:14px; flex-wrap:wrap; margin-bottom:18px; }
-  .btn-primary {
-    background:linear-gradient(135deg,var(--sun),var(--sun-deep));
-    color:#FFFFFF; font-weight:700; padding:16px 30px; border-radius:10px;
-    font-size:15px; border:none; cursor:pointer; transition:all .2s;
-    box-shadow:0 6px 20px rgba(224,100,30,0.4); display:inline-block;
-  }
-  .btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(224,100,30,0.5); }
-  .btn-secondary {
-    background:transparent; color:var(--navy); font-weight:600;
-    padding:16px 30px; border-radius:10px; font-size:15px;
-    border:2px solid rgba(30,26,20,0.25); cursor:pointer; transition:all .2s; display:inline-block;
-  }
-  .btn-secondary:hover { background:rgba(71,66,55,0.05); border-color:var(--navy); }
-  .hero-note { font-size:12px; color:var(--text-muted); }
 
-  /* Sun graphic */
-  .sun-visual { position:relative; display:flex; align-items:center; justify-content:center; }
-  .twin-suns { position:relative; width:384px; height:340px; }
-  .twin-suns .sun { position:absolute; border-radius:50%; will-change:transform; }
-  /* Gold sun: larger, behind, upper-left (matches logo mark) */
-  .sun-gold {
-    width:250px; height:250px; top:6px; left:0; z-index:1;
-    background:radial-gradient(ellipse at 37% 37%, #FFFFFF 0%, #F4D26B 40%, #D9B341 64%, #CC9900 100%);
-    box-shadow:0 0 0 14px rgba(217,179,65,0.10), 0 0 0 38px rgba(217,179,65,0.06), 0 18px 70px rgba(204,153,0,0.28);
-    animation:sunBreath 5s ease-in-out infinite;
+  /* SCROLL REVEALS (only active once the head script adds .rv) */
+  .rv .section-tag, .rv .section-heading, .rv .section-sub, .rv .lede, .rv .card, .rv .cardimg, .rv .person, .rv .step, .rv .callout, .rv .layer, .rv .ecl, .rv .ecl-fallback, .rv .acc, .rv .uc-frow, .rv .split2-panel, .rv .grid2 > *, .rv .grid3 > *{opacity:0;transform:translateY(20px);
+    transition:opacity .68s cubic-bezier(.22,1,.36,1),transform .68s cubic-bezier(.22,1,.36,1);}
+  .rv .in.in{opacity:1;transform:none;}
+  .rv .hero .hero-eyebrow,.rv .hero h1,.rv .hero .hero-sub,.rv .hero .hero-actions{
+    opacity:0;transform:translateY(16px);
+    transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);}
+  .rv .hero .in.in{opacity:1;transform:none;}
+
+
+  /* ---- microsite chrome ---- */
+  .cmnav{position:sticky;top:0;z-index:100;background:rgba(255,248,236,.95);
+    backdrop-filter:blur(16px);border-bottom:1px solid rgba(224,100,30,.15);
+    box-shadow:0 1px 20px rgba(224,100,30,.08);}
+  .cmnav-in{max-width:1240px;margin:0 auto;padding:0 32px;display:flex;align-items:center;
+    height:70px;gap:26px;}
+  .cmnav-in a.brand img{height:46px;width:auto;display:block;}
+  .cmlinks{display:flex;align-items:center;gap:24px;margin-inline-start:auto;}
+  .cmlinks a{font-size:14px;font-weight:600;color:var(--ink);white-space:nowrap;transition:color .2s;}
+  .cmlinks a:hover,.cmlinks a.active{color:var(--sun-deep);}
+  .cmlang{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:700;
+    padding-inline:14px;border-inline:1px solid rgba(140,101,0,.22);}
+  .cmlang .on{color:var(--sun-deep);}
+  .cmlang a{color:var(--text-muted);}
+  .cmtoggle{display:none;margin-inline-start:auto;background:none;border:0;font-size:24px;
+    color:var(--navy);cursor:pointer;line-height:1;}
+  .cmskip{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);
+    white-space:nowrap;inset-inline-start:12px;top:10px;}
+  .cmskip:focus{width:auto;height:auto;overflow:visible;clip-path:none;z-index:200;
+    background:#fff;padding:8px 14px;border-radius:8px;border:2px solid var(--sun);}
+
+  /* ---- hero with the washed plant photo ---- */
+  .cmhero{position:relative;overflow:hidden;padding:104px 0 90px;
+    background-image:linear-gradient(105deg,rgba(255,245,221,.97) 0%,rgba(255,243,205,.93) 38%,
+      rgba(252,226,188,.72) 66%,rgba(255,242,214,.42) 100%),url('/cement/cement-banner.jpg');
+    background-size:cover,cover;background-position:center,center 38%;}
+  html[dir="rtl"] .cmhero{background-image:linear-gradient(255deg,rgba(255,245,221,.97) 0%,
+      rgba(255,243,205,.93) 38%,rgba(252,226,188,.72) 66%,rgba(255,242,214,.42) 100%),
+      url('/cement/cement-banner.jpg');}
+  .cmhero h1{font-size:clamp(32px,4.4vw,54px);font-weight:900;line-height:1.1;color:var(--navy);
+    margin-bottom:20px;max-width:19ch;}
+  .cmhero p.hero-sub{max-width:660px;}
+  .cmhero.plain{background-image:none;background:linear-gradient(160deg,#FFF5DD 0%,#FFF3CD 30%,
+    #FCE2BC 60%,#FEF9C3 100%);}
+
+  /* ---- platform family cards ---- */
+  .cmfam{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:30px;}
+  .cmfam>*{min-width:0;}
+  .cmfam .f{background:#fff;border:1px solid var(--border);border-radius:16px;padding:24px 22px;
+    box-shadow:var(--shadow);border-top:4px solid var(--sun);transition:all .3s;}
+  .cmfam .f:nth-child(2){border-top-color:var(--gold);}
+  .cmfam .f:nth-child(3){border-top-color:var(--sun-deep);}
+  .cmfam .f:nth-child(4){border-top-color:var(--a4);}
+  .cmfam .f:hover{transform:translateY(-5px);box-shadow:0 12px 40px rgba(224,100,30,.14);}
+  .cmfam h3{font-size:19px;font-weight:800;color:var(--navy);margin-bottom:8px;}
+  .cmfam .d{font-size:14.5px;color:var(--text-muted);line-height:1.65;margin-bottom:10px;}
+  .cmfam .x{font-size:13px;color:#8C6500;line-height:1.6;font-weight:600;
+    border-top:1px solid var(--border-soft);padding-top:10px;}
+
+  /* ---- labelled rows: configuration, governance ---- */
+  .cmrows{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px;}
+  .cmrows>*{min-width:0;}
+  .cmrows .r{background:#fff;border:1px solid var(--border-soft);border-radius:14px;
+    padding:20px 22px;box-shadow:var(--shadow);font-size:14.5px;color:var(--text-muted);
+    line-height:1.68;}
+  .cmrows .r b{display:block;color:var(--navy);font-weight:800;margin-bottom:5px;font-size:15px;}
+  .cmrows.two{grid-template-columns:repeat(2,1fr);}
+
+  /* ---- architecture tiers ---- */
+  .cmtier{background:#fff;border:1px solid var(--border);border-radius:20px;padding:26px 28px;
+    box-shadow:var(--shadow);margin-top:18px;}
+  .cmtier-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px;}
+  .cmtier-n{font-size:12px;font-weight:900;color:var(--sun-deep);letter-spacing:2px;}
+  .cmtier-k{font-size:11.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+    color:var(--navy);}
+  .cmtier-a{font-size:11.5px;font-weight:700;color:#8C6500;margin-inline-start:auto;
+    background:var(--gold-soft);border-radius:20px;padding:3px 12px;}
+  .cmtier-who{font-size:13.5px;color:var(--text-muted);margin-bottom:14px;line-height:1.6;}
+  .cmchips{display:flex;flex-wrap:wrap;gap:9px;}
+  .cmchips li{list-style:none;background:var(--bg2);border:1px solid var(--border-soft);
+    border-radius:9px;padding:9px 14px;font-size:13.5px;font-weight:700;color:var(--navy);}
+  .cmnote{font-size:13px;color:var(--text-muted);margin-top:14px;line-height:1.65;font-style:italic;}
+  .cmmods{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:4px;}
+  .cmmods>*{min-width:0;}
+  .cmmod{border:1px solid var(--border-soft);border-radius:14px;padding:18px 18px 20px;
+    background:linear-gradient(170deg,#FFFBF0,#FFF6E4);}
+  .cmmod.core{background:linear-gradient(170deg,#FEF6DA,#FBE9BE);border-color:rgba(204,153,0,.3);}
+  .cmmod h3{font-size:17px;font-weight:900;color:var(--navy);margin-bottom:2px;}
+  .cmmod .d{font-size:12.5px;color:#8C6500;font-weight:700;margin-bottom:12px;}
+  .cmmod ul{list-style:none;}
+  .cmmod li{font-size:13.5px;color:var(--text-muted);line-height:1.5;padding:6px 0;
+    border-top:1px solid rgba(140,101,0,.12);}
+  .cmmod li:first-child{border-top:0;}
+  .cmray{display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,var(--sun),var(--sun-deep));
+    color:#fff;border-radius:12px;padding:13px 20px;font-weight:800;font-size:15px;margin-bottom:14px;}
+  .cmunits{margin-top:22px;background:var(--gold-soft);border:1px solid rgba(140,101,0,.25);
+    border-radius:12px;padding:16px 20px;font-size:13.5px;color:#7A5A08;line-height:1.7;}
+
+  /* ---- inputs table ---- */
+  .cmtblw{margin-top:26px;overflow-x:auto;border:1px solid var(--border);border-radius:16px;
+    box-shadow:var(--shadow);background:#fff;}
+  .cmtblw:focus-visible{outline:3px solid var(--sun);outline-offset:2px;}
+  .cmtbl{width:100%;border-collapse:collapse;min-width:720px;}
+  .cmtbl th{text-align:start;font-size:11px;font-weight:800;letter-spacing:1.6px;
+    text-transform:uppercase;color:#8C6500;background:var(--gold-soft);padding:13px 18px;
+    border-bottom:1px solid rgba(140,101,0,.22);}
+  .cmtbl td{text-align:start;font-size:14px;color:var(--text-muted);padding:14px 18px;
+    border-bottom:1px solid var(--border-soft);line-height:1.6;vertical-align:top;}
+  .cmtbl tr:last-child td{border-bottom:0;}
+  .cmtbl td:first-child{font-weight:700;color:var(--navy);}
+  .cmtbl tr:hover td{background:rgba(255,246,226,.7);}
+
+  /* ---- events ---- */
+  .cmev{background:#fff;border:1px solid var(--border);border-radius:20px;padding:28px 30px;
+    box-shadow:var(--shadow);margin-top:20px;}
+  .cmev-when{font-size:13px;font-weight:800;color:#8C6500;letter-spacing:.4px;margin-bottom:8px;}
+  .cmev h3{font-size:clamp(19px,2.2vw,25px);font-weight:800;color:var(--navy);line-height:1.25;
+    margin-bottom:10px;}
+  .cmev p{font-size:15px;color:var(--text-muted);line-height:1.72;}
+  .cmev .acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px;}
+  .cmev.feat{border:1px solid rgba(224,100,30,.4);
+    background:linear-gradient(165deg,#FFFBF0 0%,#FEF3DA 100%);}
+  .cmbadge{display:inline-block;background:var(--navy);color:#FFD9A8;font-size:10.5px;
+    font-weight:800;letter-spacing:1.6px;text-transform:uppercase;padding:5px 14px;
+    border-radius:20px;margin-bottom:14px;}
+  .cmses{display:grid;grid-template-columns:96px 1fr;gap:0;background:#fff;
+    border:1px solid var(--border-soft);border-radius:18px;overflow:hidden;
+    box-shadow:var(--shadow);margin-top:18px;}
+  .cmses-d{background:linear-gradient(150deg,var(--sun),var(--sun-deep));color:#fff;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 8px;}
+  .cmses-d .dd{font-size:32px;font-weight:900;line-height:1;}
+  .cmses-d .mm{font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-top:4px;}
+  .cmses-b{padding:22px 26px;}
+  .cmmeta{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:14px;font-size:13.5px;
+    color:var(--text-muted);font-weight:600;}
+  .cmmeta span{display:inline-flex;align-items:center;gap:7px;}
+  .cmmeta span::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--sun);flex-shrink:0;}
+
+  /* ---- agenda ---- */
+  .cmag{margin-top:22px;border:1px solid var(--border);border-radius:18px;overflow:hidden;
+    background:#fff;box-shadow:var(--shadow);}
+  .cmag-r{display:grid;grid-template-columns:148px 1fr;gap:0;
+    border-bottom:1px solid var(--border-soft);}
+  .cmag-r:last-child{border-bottom:0;}
+  .cmag-t{padding:16px 18px;font-size:13.5px;font-weight:800;color:#8C6500;
+    background:rgba(255,246,226,.75);border-inline-end:1px solid var(--border-soft);}
+  .cmag-b{padding:16px 22px;}
+  .cmag-b h3{font-size:15.5px;font-weight:800;color:var(--navy);margin-bottom:3px;
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .split2-panel h3{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+    color:#8C6500;margin-bottom:14px;}
+  html[dir="rtl"] .split2-panel h3{letter-spacing:0;}
+  .cmag-k{font-size:9.5px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;
+    color:var(--sun-deep);border:1px solid rgba(224,100,30,.4);border-radius:20px;padding:2px 9px;}
+  .cmag-b p{font-size:13.5px;color:var(--text-muted);line-height:1.6;}
+  .cmag-b ul{list-style:none;margin-top:7px;}
+  .cmag-b li{font-size:13px;color:var(--text-muted);padding-inline-start:14px;position:relative;
+    line-height:1.6;}
+  .cmag-b li::before{content:'';position:absolute;inset-inline-start:0;top:9px;width:5px;height:5px;
+    border-radius:50%;background:var(--gold);}
+
+  /* ---- practical details ---- */
+  .cmpd{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:26px;}
+  .cmpd>*{min-width:0;}
+  .cmpd .p{background:#fff;border:1px solid var(--border-soft);border-radius:14px;padding:18px 20px;
+    box-shadow:var(--shadow);}
+  .cmpd .k{font-size:10.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;
+    color:#8C6500;margin-bottom:6px;}
+  .cmpd .v{font-size:14px;color:var(--navy);font-weight:700;line-height:1.55;}
+
+  /* ---- past events ---- */
+  .cmpast{list-style:none;margin-top:24px;display:grid;gap:12px;}
+  .cmpast li{background:rgba(255,255,255,.72);border:1px solid var(--border-soft);
+    border-radius:12px;padding:15px 20px;font-size:14.5px;color:var(--text-muted);}
+  .cmpast b{color:var(--navy);font-weight:800;}
+
+  /* ---- microsite footer ---- */
+  .cmfoot{background:var(--bg);border-top:3px solid var(--sun);padding:48px 0 28px;
+    position:relative;z-index:2;}
+  .cmfoot-top{display:flex;flex-wrap:wrap;gap:26px;align-items:flex-start;justify-content:space-between;}
+  .cmfoot-brand img{height:42px;margin-bottom:10px;display:block;}
+  .cmfoot-brand .by{font-size:12.5px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;
+    color:#8C6500;}
+  .cmfoot-brand .cn{font-size:13.5px;color:var(--text-muted);margin-top:8px;line-height:1.7;}
+  .cmfoot-links{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;}
+  .cmfoot-links a{font-size:14px;font-weight:600;color:var(--text-muted);}
+  .cmfoot-links a:hover{color:var(--sun-deep);}
+  .cmfoot-bot{margin-top:28px;padding-top:18px;border-top:1px solid var(--border-soft);
+    display:flex;flex-wrap:wrap;gap:10px 20px;justify-content:space-between;font-size:13px;
+    color:var(--text-muted);}
+
+  @media(max-width:1000px){
+    .cmfam,.cmrows,.cmrows.two,.cmmods{grid-template-columns:repeat(2,1fr);}
+    .cmpd{grid-template-columns:repeat(2,1fr);}
   }
-  /* Orange sun: smaller, in front, lower-right (matches logo mark) */
-  .sun-orange {
-    width:228px; height:228px; bottom:4px; right:0; z-index:2;
-    background:radial-gradient(ellipse at 37% 37%, #FFFFFF 0%, #FF8939 38%, #FF6803 72%, #E0641E 100%);
-    box-shadow:0 0 0 14px rgba(224,100,30,0.10), 0 0 0 38px rgba(224,100,30,0.06), 0 18px 70px rgba(205,84,28,0.30);
-    animation:sunBreath 5s ease-in-out infinite 1.4s;
+  @media(max-width:820px){
+    .cmtoggle{display:block;}
+    .cmlinks{display:none;position:absolute;top:70px;inset-inline:0;background:rgba(255,250,240,.99);
+      flex-direction:column;align-items:stretch;gap:0;padding:10px 24px 18px;
+      border-bottom:1px solid var(--border);box-shadow:0 14px 30px rgba(60,50,30,.14);}
+    .cmlinks.open{display:flex;}
+    .cmlinks a{padding:11px 0;}
+    .cmlang{border-inline:0;padding-inline:0;border-top:1px solid var(--border-soft);
+      padding-top:10px;margin-top:4px;}
   }
-  @keyframes sunBreath { 0%,100%{transform:scale(1)} 50%{transform:scale(1.045)} }
-  .sun-rays-svg { position:absolute; width:540px; height:540px; animation:rotateSun 40s linear infinite; z-index:0; }
-  .sun-inner-text { position:absolute; top:50%; left:51%; transform:translate(-50%,-50%); z-index:4; text-align:center; pointer-events:none; }
-  .sun-inner-text .sun-label { font-size:12px; color:#FFFFFF; font-weight:800; letter-spacing:1.2px; text-transform:uppercase; text-shadow:0 1px 3px rgba(120,45,0,0.85), 0 2px 12px rgba(120,45,0,0.6); }
-  .sun-inner-text .sun-stat { font-size:34px; font-weight:900; color:#FFFFFF; line-height:1; text-shadow:0 2px 4px rgba(120,45,0,0.85), 0 3px 16px rgba(120,45,0,0.65); }
-  .sun-floating-chips { position:absolute; width:100%; height:100%; pointer-events:none; z-index:6; }
-  .chip {
-    position:absolute; background:white; border-radius:12px; padding:10px 15px;
-    box-shadow:0 4px 20px rgba(0,0,0,0.1); font-size:11.5px; font-weight:800;
-    color:var(--navy); white-space:normal; max-width:170px; line-height:1.3;
-    animation:floatChip 3s ease-in-out infinite;
+  @media(max-width:620px){
+    .cmfam,.cmrows,.cmrows.two,.cmmods,.cmpd{grid-template-columns:1fr;}
+    .cmag-r,.cmses{grid-template-columns:1fr;}
+    .cmag-t{border-inline-end:0;border-bottom:1px solid var(--border-soft);}
+    .cmses-d{flex-direction:row;gap:10px;padding:12px;}
+    .cmhero{padding:72px 0 62px;}
   }
-  .chip span { color:#9A7209; font-size:12px; font-weight:700; display:block; margin-top:3px; }
-  .chip:nth-child(1) { top:8%; left:-12%; animation-delay:0s; }
-  .chip:nth-child(2) { top:14%; right:-12%; animation-delay:.8s; }
-  .chip:nth-child(3) { bottom:22%; left:-12%; animation-delay:1.4s; }
-  .chip:nth-child(4) { bottom:8%; right:-12%; animation-delay:.4s; }
-  @keyframes floatChip { 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-10px) scale(1.03)} }
-  @keyframes rotateSun { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
 
-  
-    /* landing overrides for the imported hero */
-    #hero{min-height:auto;padding:70px 0 64px;}
-    .hero-grid{align-items:center;}
-    @media(max-width:920px){
-      .hero-grid{grid-template-columns:1fr;gap:48px;}
-      .sun-rays-svg,.sun-floating-chips{display:none;}
-      .sun-visual{margin-top:8px;}
-      .twin-suns{margin:0 auto;}
-    }
-
-    /* platform structure hybrid */
-    .ps-row{display:grid;grid-template-columns:1fr 1.12fr 1fr;gap:30px;align-items:center;position:relative;margin-top:40px;}
-    .ps-row::before{content:"";position:absolute;left:5%;right:5%;top:50%;height:3px;border-radius:2px;background:linear-gradient(90deg,#4E95D9,#CC9900 50%,#E0641E);opacity:.45;}
-    .ps-c{border-radius:50%;aspect-ratio:1/1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:11%;position:relative;z-index:1;background:#FFFFFF;text-align:center;}
-    .ps-c ul{list-style:none;margin:10px 0 0;padding:0;text-align:left;}
-    .ps-c li{font-size:13.5px;font-weight:600;color:#3A3A3A;padding:4px 0 4px 16px;position:relative;line-height:1.4;}
-    .ps-c li::before{content:"\2022";position:absolute;left:2px;font-weight:800;}
-    .ps-c ul{text-align:center;}
-    .ps-c li{padding-left:0;}
-    .ps-c li::before{position:static;margin-right:7px;}
-    .ps-label{font-size:24px;font-weight:800;letter-spacing:.14em;margin-top:10px;}
-    .ps-ic{width:40px;height:40px;flex-shrink:0;}
-    .ps-hz{border:3px solid #4E95D9;box-shadow:0 18px 44px rgba(47,126,196,.16);}
-    .ps-hz .ps-label{color:#2F7EC4;} .ps-hz li::before{color:#4E95D9;}
-    .ps-core{background:radial-gradient(circle at 42% 32%,#FFF6D8 0%,#FFD34D 40%,#F0B429 66%,#D99700 100%);border:0;box-shadow:0 0 0 12px rgba(255,211,77,.22),0 0 80px rgba(240,180,41,.5),0 20px 48px rgba(176,126,0,.28);}
-    .ps-core .ps-label{color:#7A5A00;} .ps-core li{color:#123A63;font-weight:700;} .ps-core li::before{color:#123A63;}
-    .ps-pl{border:3px solid #E0641E;box-shadow:0 18px 44px rgba(224,100,30,.16);}
-    .ps-pl .ps-label{color:#C45213;} .ps-pl li::before{color:#E0641E;}
-    .ps-assist{display:flex;align-items:center;justify-content:center;gap:12px 26px;flex-wrap:wrap;margin:38px auto 0;max-width:1120px;background:linear-gradient(180deg,#F3F8FE 0%,#DCE9F7 100%);border:1px solid #C9DCF0;border-radius:22px;padding:20px 30px;box-shadow:0 14px 36px rgba(18,58,99,.12);position:relative;overflow:hidden;}
-    .ps-assist::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,rgba(240,180,41,0),#F0B429 50%,rgba(240,180,41,0));opacity:.8;}
-    .ps-aname{display:flex;align-items:center;gap:10px;font-size:19px;font-weight:800;letter-spacing:.12em;color:#123A63;}
-    .ps-aitem{display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:700;color:#1E3A5F;padding-left:26px;border-left:1px solid #C9DCF0;}
-    @media(max-width:920px){
-      .ps-row{grid-template-columns:1fr;max-width:420px;margin-left:auto;margin-right:auto;}
-      .ps-row::before{display:none;}
-      .ps-aitem{border-left:0;padding-left:0;}
-    }
-
-    /* cement solution hero */
-    .sol-hero{background-image:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 32%,rgba(255,246,226,.88) 40%,rgba(255,246,226,.60) 48%,rgba(255,245,222,.32) 55%,rgba(255,244,218,.12) 61%,rgba(255,243,216,0) 68%),url('cement-banner.jpg');background-size:cover,cover;background-position:center,center 8%;background-repeat:no-repeat;min-height:900px;padding:90px 0 80px;position:relative;overflow:hidden;}
-    .sol-hero canvas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;}
-    .sol-hero-inner{position:relative;z-index:2;max-width:780px;}
-    .sol-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(224,100,30,0.12);border:1px solid rgba(224,100,30,0.25);border-radius:100px;padding:6px 16px;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#9A7209;margin-bottom:24px;}
-    .sol-hero h1{font-size:clamp(42px,5.6vw,68px);font-weight:900;color:var(--navy);line-height:1.08;margin-bottom:20px;letter-spacing:-1px;}
-    .sol-hero h1 span{color:#9A7209;}
-    .sol-hero p{font-size:18px;color:rgba(30,26,20,0.86);line-height:1.7;max-width:620px;margin-bottom:36px;}
-    .sol-cta-row{display:flex;gap:11px;flex-wrap:wrap;}
-    .sol-btn-primary{background:#E0641E;color:#FFFFFF;padding:13px 22px;border-radius:10px;font-size:14px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:opacity .2s,transform .2s;border:none;cursor:pointer;}
-    .sol-btn-primary:hover{opacity:.88;transform:translateY(-2px);}
-    .sol-btn-secondary{background:#FFFFFF;color:#C45213;padding:13px 22px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(224,100,30,0.35);transition:background .2s;}
-    .sol-btn-secondary:hover{background:#FFF5DD;}
-
-    .site-footer{background:#FDEBCD;border-top:5px solid #0B3A66;padding:44px 0 30px;margin-top:0;}
-    .sf-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;max-width:1080px;margin:0 auto;padding:0 24px;}
-    .sf-col h4{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--sun-deep);margin-bottom:16px;}
-    .sf-col a{display:block;font-size:14px;color:rgba(30,26,20,0.72);padding:4px 0;}
-    .sf-col a:hover{color:var(--sun-deep);}
-    .sf-col a.mail{color:#CC9900;}
-    .sf-bottom{max-width:1080px;margin:36px auto 0;padding:20px 24px 0;border-top:1px solid rgba(30,26,20,0.12);font-size:12px;color:rgba(30,26,20,0.5);text-align:center;}
-    @media(max-width:860px){.sf-cols{grid-template-columns:1fr 1fr;}}
-
-    /* full site header */
-    .mtopbar{background:#F5E7C4;border-bottom:1px solid rgba(140,101,0,0.18);}
-    .mtopbar-in{max-width:1200px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:flex-end;height:34px;}
-    .mtopbar-in a{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#9A7209;padding:0 16px;border-right:1px solid rgba(140,101,0,0.15);line-height:34px;}
-    .mtopbar-in a:last-child{border-right:none;padding-right:0;}
-    .mtopbar-in a:hover{color:#C45213;}
-    .mnav{position:sticky;top:0;z-index:100;background:rgba(255,248,236,0.95);backdrop-filter:blur(16px);border-bottom:1px solid rgba(224,100,30,0.15);box-shadow:0 1px 20px rgba(224,100,30,0.08);}
-    .mnav-in{max-width:1200px;margin:0 auto;padding:0 32px;display:flex;align-items:center;height:70px;}
-    .mnav-in > a img{height:56px;width:auto;display:block;}
-    .mnav-links{display:flex;align-items:center;gap:32px;margin-left:auto;}
-    .mnav-links > * > a, .mnav-links > a{font-size:14px;color:#1E1A14;font-weight:500;}
-    .mnav-links a:hover{color:#9A7209;}
-    .btn-cta{background:linear-gradient(135deg,var(--sun),var(--sun-deep));color:#FFFFFF!important;font-weight:700;padding:11px 24px;border-radius:8px;font-size:14px;box-shadow:0 4px 14px rgba(224,100,30,0.4);display:inline-block;transition:all .2s;}
-    .btn-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(224,100,30,0.5);}
-    .ndrop{position:relative;display:flex;align-items:center;}
-    .ndrop > a{display:flex;align-items:center;gap:4px;cursor:pointer;}
-    .ndrop > a::after{content:'';width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:4px solid currentColor;margin-top:1px;transition:transform .2s;}
-    .ndrop:hover > a::after{transform:rotate(180deg);}
-    .ndrop-menu{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(-6px);background:#FFFDF7;border:1px solid rgba(224,100,30,0.2);border-radius:12px;padding:6px;box-shadow:0 8px 32px rgba(0,0,0,0.1);min-width:180px;opacity:0;visibility:hidden;transition:all .2s;z-index:200;}
-    .ndrop:hover .ndrop-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);}
-    .ndrop-menu a{display:block;padding:9px 16px;border-radius:8px;font-size:13.5px;color:#3A3A3A;font-weight:500;white-space:nowrap;}
-    .ndrop-menu a:hover{background:var(--sun-pale);color:#9A7209;}
-    .ndrop-menu .mdiv{height:1px;background:rgba(224,100,30,0.12);margin:4px 8px;}
-    @media(max-width:860px){.mtopbar{display:none;}.mnav-links{gap:16px;}.mnav-links .ndrop{display:none;}}
-@media(max-width:600px){.mnav-in{padding:0 16px;height:62px;}.mnav-in > a img{height:40px;}.mnav .btn-cta{padding:9px 14px;font-size:12.5px;box-shadow:none;white-space:nowrap;}}
-
-    /* hero dashboard panel */
-    .sol-hero .wrap{max-width:1260px;}
-    .sol-hero-grid{display:grid;grid-template-columns:minmax(0,700px);align-items:center;}
-    .sol-hero-grid .sol-hero-inner{max-width:none;}
-    .sol-hero-grid > *{min-width:0;}
-    img{max-width:100%;}
-    @media(max-width:1000px){.sol-hero-grid{grid-template-columns:1fr;gap:38px;}.sol-hero .wrap{max-width:1080px;}.sol-hero{background-image:linear-gradient(175deg,rgba(255,246,226,.94) 0%,rgba(255,246,226,.88) 55%,rgba(255,244,220,.55) 80%,rgba(255,242,214,.22) 100%),url('cement-banner.jpg');background-position:center,center;min-height:auto;}}
-
-    /* video-backed section */
-    .vid-sec{position:relative;overflow:hidden;isolation:isolate;}
-    .vid-sec > video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;}
-    .vid-sec::after{content:"";position:absolute;inset:0;z-index:-1;
-      background:linear-gradient(100deg,rgba(255,246,226,.96) 0%,rgba(255,246,226,.93) 34%,rgba(255,246,226,.85) 52%,rgba(255,246,226,.62) 70%,rgba(255,246,226,.30) 86%,rgba(255,246,226,.10) 100%);}
-    @media(prefers-reduced-motion:reduce){.vid-sec > video{display:none;}
-      .vid-sec{background:url('cement-plant-poster.jpg') center/cover no-repeat;}}
-
-    /* gated download modal */
-    .gm-back{position:fixed;inset:0;background:rgba(30,26,20,.55);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;z-index:999;padding:20px;}
-    .gm-back.open{display:flex;}
-    .gm{background:#fff;border-radius:22px;max-width:520px;width:100%;padding:34px;box-shadow:0 30px 80px rgba(30,26,20,.35);position:relative;max-height:92vh;overflow:auto;}
-    .gm h3{font-size:23px;font-weight:800;color:var(--navy);margin-bottom:6px;}
-    .gm .gm-sub{font-size:14.5px;color:var(--muted);margin-bottom:8px;}
-    .gm label{display:block;font-size:13px;font-weight:700;color:var(--navy);margin:14px 0 6px;}
-    .gm input{width:100%;background:#FFFBF2;border:1px solid rgba(30,26,20,.15);border-radius:10px;padding:12px 14px;font-size:14.5px;color:var(--navy);outline:none;font-family:inherit;}
-    .gm input:focus{border-color:var(--sun);}
-    .gm .gm-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-    .gm button.gm-submit{width:100%;margin-top:20px;background:linear-gradient(135deg,var(--sun),var(--sun-deep));color:#fff;border:0;border-radius:10px;padding:14px;font-size:15px;font-weight:800;cursor:pointer;}
-    .gm button.gm-submit:disabled{opacity:.6;cursor:default;}
-    .gm .gm-x{position:absolute;top:14px;right:16px;background:none;border:0;font-size:26px;line-height:1;color:#9A8F7E;cursor:pointer;}
-    .gm .gm-note{font-size:11.5px;color:rgba(30,26,20,.5);margin-top:12px;text-align:center;}
-    .gm-done{text-align:center;padding:12px 0;}
-    .gm-done .tick{font-size:40px;}
-    @media(max-width:520px){.gm .gm-row{grid-template-columns:1fr;}}
-
-    /* image-backed section: cards one side, photo bleeding the other */
-    .imgsec{position:relative;overflow:hidden;isolation:isolate;}
-    .imgsec::before{content:"";position:absolute;inset:0;z-index:-2;background-size:cover;background-repeat:no-repeat;}
-    .imgsec::after{content:"";position:absolute;inset:0;z-index:-1;}
-    .imgsec-r::before{background-position:right center;}
-    .imgsec-chal::before{background-image:url('sec-challenges.jpg');}
-    .imgsec-adv::before{background-image:url('sec-advantage.jpg');}
-    .imgsec-out::before{background-image:url('sec-outcomes.jpg');}
-    .imgsec-r::after{background:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 34%,rgba(255,246,226,.95) 44%,rgba(255,246,226,.78) 54%,rgba(255,245,222,.50) 64%,rgba(255,244,218,.24) 76%,rgba(255,243,216,.08) 100%);}
-    .imgsec-l::before{background-position:left center;}
-    .imgsec-l::after{background:linear-gradient(260deg,#FFF6E2 0%,#FFF6E2 34%,rgba(255,246,226,.95) 44%,rgba(255,246,226,.78) 54%,rgba(255,245,222,.50) 64%,rgba(255,244,218,.24) 76%,rgba(255,243,216,.08) 100%);}
-    .sec-split{display:block;}
-    .imgsec-r .sec-split{max-width:66%;}
-    .imgsec-l .sec-split{max-width:66%;margin-left:auto;}
-    .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:28px;text-align:left;}
-    @media(max-width:1000px){
-      .imgsec-r .sec-split,.imgsec-l .sec-split{max-width:100%;margin:0;}
-      .imgsec-r::after{background:linear-gradient(175deg,rgba(255,246,226,.96) 0%,rgba(255,246,226,.90) 55%,rgba(255,244,220,.60) 100%);}
-      .imgsec-l::after{background:linear-gradient(175deg,rgba(255,246,226,.96) 0%,rgba(255,246,226,.90) 55%,rgba(255,244,220,.60) 100%);}
-    }
-    @media(max-width:720px){.grid2{grid-template-columns:1fr;}}
+  html[dir="rtl"] .tick li{padding-left:0;padding-right:22px;}
+  html[dir="rtl"] .tick li::before{left:auto;right:0;}
+  html[dir="rtl"] .step{padding:20px 68px 20px 22px;}
+  html[dir="rtl"] .step::before{left:auto;right:22px;}
+  html[dir="rtl"] .split2-panel::after{right:auto;left:-50px;}
+  html[dir="rtl"] .hero-glow{right:auto;left:-90px;}
+  html[dir="rtl"] .btn-cta,html[dir="rtl"] .btn-ghost{letter-spacing:0;}
+  html[dir="rtl"] .section-tag,html[dir="rtl"] .hero-eyebrow,
+  html[dir="rtl"] .cmtier-k,html[dir="rtl"] .cmpd .k,html[dir="rtl"] .cmtbl th,
+  html[dir="rtl"] .cmbadge,html[dir="rtl"] .cmag-k,html[dir="rtl"] .cmfoot-brand .by,
+  html[dir="rtl"] .cmses-d .mm,html[dir="rtl"] .cmtier-n{letter-spacing:0;}
+  html[dir="rtl"] body{font-family:'Segoe UI','Noto Sans Arabic','Geeza Pro',Tahoma,
+    system-ui,-apple-system,sans-serif;}
+  html[dir="rtl"] .cmhero.plain{background-image:none;
+    background:linear-gradient(200deg,#FFF5DD 0%,#FFF3CD 30%,#FCE2BC 60%,#FEF9C3 100%);}
+  html[dir="rtl"] .cmhero h1{max-width:24ch;line-height:1.3;}
+  html[dir="rtl"] .hero h1{line-height:1.3;}
+  html[dir="rtl"] .section-heading{line-height:1.35;}
+  html[dir="rtl"] .cta-band h2{line-height:1.4;}
+  html[dir="rtl"] .cmev h3{line-height:1.4;}
 </style>
-<!-- LeadLander -->
-<script>
-  if (location.hostname === 'twosuns.ai') {
-    var llcookieless = true;
-    var formalyze = [];
-    formalyze.auto = true;
-    formalyze.callback = function(options) {};
-    (function() {
-      var a = document.createElement('script');
-      a.src = 'https://lltrck.com/scripts/lt-v3.js?llid=36860';
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(a, s);
-    })();
-  }
-</script>
-</head>
-<body>
-
-<div class="mtopbar">
-  <div class="mtopbar-in">
-    <a href="trust.html">Trust Centre</a>
-    <a href="contact.html">Contact Us</a>
-  </div>
-</div>
-<div class="mnav">
-  <div class="mnav-in">
-    <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" style="cursor:pointer;"><img src="/logo-color.svg" alt="TwoSuns"></a>
-    <div class="mnav-links">
-      <div class="ndrop">
-        <a href="platform.html">Platform</a>
-        <div class="ndrop-menu">
-          <a href="platform.html">Platform Overview</a>
-          <a href="how-it-works.html">How It Works</a>
-          <a href="why-twosuns.html">Why TwoSuns</a>
-          <div class="mdiv"></div>
-          <a href="modules.html">Capabilities</a>
-          <a href="technology.html">Technology</a>
-          <div class="mdiv"></div>
-          <a href="trust.html">Trust Centre</a>
-        </div>
-      </div>
-      <div class="ndrop">
-        <a href="blog.html">Resources</a>
-        <div class="ndrop-menu">
-          <a href="blog.html">Blog</a>
-          <a href="videos.html">Videos</a>
-          <a href="resources.html">Knowledge Center</a>
-          <div class="mdiv"></div>
-          <a href="community.html">Community</a>
-            <a href="events.html">Events</a>
-        </div>
-      </div>
-      <a href="book-discovery.html" class="btn-cta">Book a Discovery</a>
-    </div>
-  </div>
-</div>
-
-<section class="sol-hero">
-  <canvas id="sol-canvas"></canvas>
-  <div class="wrap">
-    <div class="sol-hero-grid">
-    <div class="sol-hero-inner">
-      <div class="sol-tag">&#9733; Cement &amp; Construction</div>
-      <h1>Turn Operational Complexity Into Orchestration and Execution.</h1>
-      <p style="font-size:20px;font-weight:700;color:#E0875A;margin-bottom:18px;letter-spacing:0.3px;">Structure. Control. Clarity.</p>
-      <p>TwoSuns helps cement producers, building materials companies, and construction organizations connect operations, supply chains, maintenance, procurement, financial performance, and market intelligence into one orchestrated decision environment.</p>
-      <p style="font-size:15px;color:rgba(30,26,20,0.72);line-height:1.7;margin-bottom:36px;max-width:600px;">Built for organizations where operational performance, cost control, and execution directly impact profitability and growth.</p>
-      <div class="sol-cta-row">
-        <a href="TwoSuns-Cement-Solution-Brief.pdf" download class="sol-btn-primary">Download the Solution Brief</a>
-        <a href="TwoSuns-Cement-Insight-Paper-August-2026.pdf" download class="sol-btn-secondary">Download Insight Paper</a>
-        <a href="#book" class="sol-btn-secondary">Book a Discovery Call</a>
-      </div>
-    </div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-
-
-<section>
-  <div class="wrap" style="text-align:center;">
-    <span class="eyebrow">Platform Structure</span>
-    <h2 class="sec-h">Personalized, Connected and Scalable Architecture</h2>
-    <p class="sec-sub" style="margin:0 auto;">Three interconnected environments, one persistent continuity layer, working together across cement and building materials operations.</p>
-    <div class="ps-row">
-      <div class="ps-c ps-hz">
-        <svg class="ps-ic" viewBox="0 0 40 40" fill="none" stroke="#4E95D9" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 32 L14 22 L21 27 L35 12"/><path d="M27 12 h8 v8"/><rect x="5" y="34" width="6" height="1" opacity="0"/></svg>
-        <div class="ps-label">HORIZON</div>
-        <ul>
-          <li>Revenue and commercial orchestration</li>
-          <li>Market intelligence</li>
-          <li>GTM execution</li>
-        </ul>
-      </div>
-      <div class="ps-c ps-core">
-        <svg class="ps-ic" viewBox="0 0 40 40" fill="none" stroke="#123A63" stroke-width="2.2" stroke-linecap="round"><rect x="11" y="11" width="18" height="18" rx="3"/><path d="M16 16 h8 v8 h-8 z"/><path d="M20 3v5M20 32v5M3 20h5M32 20h5M8 8l3.5 3.5M28.5 28.5L32 32M8 32l3.5-3.5M28.5 11.5L32 8"/></svg>
-        <div class="ps-label">CORE</div>
-        <ul>
-          <li>Governance</li>
-          <li>Organizational context and logs</li>
-          <li>Decision continuity</li>
-        </ul>
-      </div>
-      <div class="ps-c ps-pl">
-        <svg class="ps-ic" viewBox="0 0 40 40" fill="none" stroke="#E0641E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="20" cy="20" r="6"/><path d="M20 4v6M20 30v6M4 20h6M30 20h6M8.7 8.7l4.2 4.2M27.1 27.1l4.2 4.2M8.7 31.3l4.2-4.2M27.1 12.9l4.2-4.2"/></svg>
-        <div class="ps-label">PULSE</div>
-        <ul>
-          <li>Operational execution</li>
-          <li>Supply chain and resource orchestration</li>
-          <li>Performance management</li>
-        </ul>
-      </div>
-    </div>
-    <div class="ps-assist">
-      <span class="ps-aname"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#123A63" stroke-width="2" stroke-linejoin="round"><rect x="4" y="8" width="18" height="13" rx="4"/><path d="M13 8V4M9 4h8" stroke-linecap="round"/><circle cx="9.5" cy="14" r="1.4" fill="#123A63" stroke="none"/><circle cx="16.5" cy="14" r="1.4" fill="#123A63" stroke="none"/><path d="M10 17.5c1.8 1.2 4.2 1.2 6 0" stroke-linecap="round"/></svg>ASSISTANT &middot; RAY</span>
-      <span class="ps-aitem"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#2F7EC4" stroke-width="1.8" stroke-linecap="round"><path d="M10 2a6 6 0 016 6c0 2.2-1.2 3.6-2.4 4.8-.7.7-.9 1.4-1 2.2h-5.2c-.1-.8-.3-1.5-1-2.2C5.2 11.6 4 10.2 4 8a6 6 0 016-6z"/><path d="M8 18h4"/></svg>Persistent enterprise AI companion</span>
-      <span class="ps-aitem"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#2F7EC4" stroke-width="1.8" stroke-linejoin="round"><path d="M10 2l7 3v5c0 4-3 7-7 8-4-1-7-4-7-8V5z"/><path d="M7 10l2 2 4-4" stroke-linecap="round"/></svg>Contextual continuity</span>
-      <span class="ps-aitem"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#2F7EC4" stroke-width="1.8"><circle cx="5" cy="10" r="2.2"/><circle cx="15" cy="4.5" r="2.2"/><circle cx="15" cy="15.5" r="2.2"/><path d="M7 9l6-3.5M7 11l6 3.5"/></svg>Enterprise awareness</span>
-    </div>
-  </div>
-</section>
-
-
-<hr class="divider">
-
-<section class="vid-sec">
-  <video autoplay muted loop playsinline preload="metadata" poster="cement-plant-poster.jpg" aria-hidden="true"><source src="cement-plant.mp4" type="video/mp4"></video>
-  
-  <div class="wrap" style="max-width:1320px;text-align:center;">
-    <span class="eyebrow">Industry Overview</span>
-    <h2 class="sec-h">Profitability Depends on Thousands of Daily Decisions</h2>
-    <div style="max-width:820px;margin:18px auto 0;text-align:left;">
-      <p style="font-size:16px;color:var(--muted);margin-bottom:16px;">Cement and construction organizations operate in highly complex environments where profitability depends on thousands of daily decisions across production, maintenance, procurement, logistics, projects, commercial operations, and finance.</p>
-      <p style="font-size:16px;color:var(--muted);margin-bottom:16px;">Yet critical information often remains fragmented across ERP systems, plant systems, maintenance platforms, procurement tools, spreadsheets, emails, and meetings. As organizations grow, complexity increases.</p>
-      <p style="font-size:16px;color:var(--muted);margin-bottom:16px;">Leaders need greater visibility into operations, energy costs, production performance, supplier relationships, project execution, and financial outcomes.</p>
-      <p style="font-size:16px;color:var(--text);font-weight:600;">TwoSuns provides a unified operational intelligence environment that helps organizations orchestrate decisions, align teams, and improve execution across the enterprise.</p>
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<section class="imgsec imgsec-r imgsec-chal" style="background:#FFFFFF;">
-  <div class="wrap" style="max-width:1320px;"><div class="sec-split" style="text-align:left;">
-    <span class="eyebrow">Common Challenges</span>
-    <h2 class="sec-h">Where Performance Runs in Fragments</h2>
-    <p class="sec-sub">Disconnected systems and inconsistent information slow decisions and obscure where profitability is being lost across the enterprise.</p>
-    <div class="grid2">
-      <div class="card"><h3><span class="dot" style="background:linear-gradient(135deg,#4E95D9,#2F7EC4);">&#9678;</span>Operational Silos</h3><p>Production, maintenance, procurement, logistics, quality, finance, and commercial teams often operate from disconnected systems and inconsistent information.</p></div>
-      <div class="card"><h3><span class="dot" style="background:linear-gradient(135deg,#E0641E,#C45213);">&#8646;</span>Production Variability</h3><p>Small changes in kiln efficiency, fuel consumption, raw mix quality, equipment performance, or throughput can have a significant impact on profitability.</p></div>
-      <div class="card"><h3><span class="dot" style="background:linear-gradient(135deg,#4EA72E,#336600);">&#9788;</span>Rising Energy Costs</h3><p>Energy represents one of the largest operating expenses for many cement producers and heavy industrial organizations.</p></div>
-      <div class="card"><h3><span class="dot" style="background:linear-gradient(135deg,#FFC000,#B07E00);">&#9672;</span>Supply Chain Complexity</h3><p>Organizations depend on reliable access to raw materials, fuels, transportation providers, suppliers, and contractors to maintain production and project schedules.</p></div>
-      <div class="card"><h3><span class="dot" style="background:linear-gradient(135deg,#0B3A66,#003366);">&#9635;</span>Project &amp; Resource Orchestration</h3><p>Construction and infrastructure projects require orchestration across multiple stakeholders, contractors, suppliers, and internal teams.</p></div>
-      <div class="card"><h3><span class="dot" style="background:linear-gradient(135deg,#C00000,#8F0000);">&#9873;</span>ESG &amp; Regulatory Pressure</h3><p>Organizations face increasing pressure to improve sustainability performance, reduce emissions, manage reporting requirements, and prepare for evolving regulations.</p></div>
-    </div>
-  </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<section class="imgsec imgsec-l imgsec-adv">
-  <div class="wrap" style="max-width:1320px;"><div class="sec-split" style="text-align:left;">
-    <span class="eyebrow">The TwoSuns Advantage</span>
-    <h2 class="sec-h">From Fragmented Data to Orchestrated Intelligence</h2>
-    <p class="sec-sub">A orchestration and execution layer that connects people, processes, and information into one decision environment, without replacing the systems you already run.</p>
-    <div class="grid2">
-      <div class="card"><h3><span class="dot" style="background:linear-gradient(135deg,#4E95D9,#2F7EC4);">&#9678;</span>Orchestrated Operational Intelligence</h3><p>Connect operational, financial, procurement, maintenance, quality, logistics, and market information into a single decision environment.</p></div>
-      <div class="card"><h3><span class="dot" style="background:linear-gradient(135deg,#4EA72E,#336600);">&#8646;</span>Faster Decisions</h3><p>Reduce time spent collecting and reconciling information so teams can focus on execution and performance improvement.</p></div>
-      <div class="card"><h3><span class="dot" style="background:linear-gradient(135deg,#FFC000,#B07E00);">&#9672;</span>Explainable Intelligence</h3><p>Every recommendation, assumption, decision, and outcome remains visible, traceable, and auditable.</p></div>
-      <div class="card"><h3><span class="dot" style="background:linear-gradient(135deg,#E0641E,#C45213);">&#9788;</span>Costed Operational Insights</h3><p>Identify operational deviations, performance gaps, and inefficiencies while understanding their potential financial impact.</p></div>
-      <div class="card"><h3><span class="dot" style="background:linear-gradient(135deg,#0B3A66,#003366);">&#9635;</span>Institutional Knowledge Retention</h3><p>Preserve operational expertise, historical context, and decision rationale to reduce dependency on individuals and support workforce transitions.</p></div>
-      <div class="card"><h3><span class="dot" style="background:linear-gradient(135deg,#CC9900,#9A7209);">&#10022;</span>AI-Enhanced Orchestration</h3><p>Help teams evaluate options, align stakeholders, and orchestrate actions across departments without replacing existing systems.</p></div>
-    </div>
-  </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<section style="background:#FFFFFF;">
-  <div class="wrap" style="max-width:1320px;text-align:center;">
-    <span class="eyebrow">Where TwoSuns Creates Value</span>
-    <h2 class="sec-h">Across the Plant and the Enterprise</h2>
-    <div class="grid3">
-      <div class="card"><h3><span class="dot" style="background:linear-gradient(135deg,#4E95D9,#2F7EC4);">&#9678;</span>Plant Operations</h3><p>Monitor production performance, operational efficiency, throughput, quality metrics, and equipment utilization across one or multiple facilities.</p></div>
-      <div class="card"><h3><span class="dot" style="background:linear-gradient(135deg,#4EA72E,#336600);">&#8646;</span>Maintenance &amp; Reliability</h3><p>Improve maintenance planning, equipment visibility, asset prioritization, downtime reduction, and operational continuity.</p></div>
-      <div class="card"><h3><span class="dot" style="background:linear-gradient(135deg,#FFC000,#B07E00);">&#9672;</span>Procurement &amp; Supplier Management</h3><p>Orchestrate supplier relationships, sourcing activities, contract visibility, vendor evaluations, and procurement workflows.</p></div>
-      <div class="card"><h3><span class="dot" style="background:linear-gradient(135deg,#E0641E,#C45213);">&#8644;</span>Supply Chain &amp; Logistics</h3><p>Improve inventory visibility, material planning, transportation orchestration, terminal operations, and delivery performance.</p></div>
-      <div class="card"><h3><span class="dot" style="background:linear-gradient(135deg,#0B3A66,#003366);">&#9635;</span>Commercial &amp; Project Execution</h3><p>Align customer commitments, project requirements, tenders, contracts, and operational capabilities through a shared environment.</p></div>
-      <div class="card"><h3><span class="dot" style="background:linear-gradient(135deg,#CC9900,#9A7209);">&#9733;</span>Executive Decision Support</h3><p>Provide leadership teams with enterprise-wide visibility into performance, costs, operational risks, strategic initiatives, and future opportunities.</p></div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<section class="imgsec imgsec-r imgsec-out">
-  <div class="wrap" style="max-width:1320px;"><div class="sec-split" style="text-align:left;">
-    <span class="eyebrow">Business Outcomes</span>
-    <h2 class="sec-h">What Orchestration and Execution Delivers</h2>
-    <div class="grid2">
-      <div class="card"><h3><span class="dot" style="background:linear-gradient(135deg,#4E95D9,#2F7EC4);">&#9201;</span>Faster Decision-Making</h3><p>Reduce delays caused by fragmented systems and disconnected reporting processes.</p></div>
-      <div class="card"><h3><span class="dot" style="background:linear-gradient(135deg,#4EA72E,#336600);">&#9650;</span>Improved Operational Performance</h3><p>Identify inefficiencies, optimize production, and improve asset utilization.</p></div>
-      <div class="card"><h3><span class="dot" style="background:linear-gradient(135deg,#FFC000,#B07E00);">&#9679;</span>Better Cost Visibility</h3><p>Connect operational activity with financial outcomes to understand margin impacts sooner.</p></div>
-      <div class="card"><h3><span class="dot" style="background:linear-gradient(135deg,#E0641E,#C45213);">&#8646;</span>Increased Cross-Functional Alignment</h3><p>Create a shared view of priorities, risks, and opportunities across departments.</p></div>
-      <div class="card"><h3><span class="dot" style="background:linear-gradient(135deg,#0B3A66,#003366);">&#9730;</span>Reduced Operational Risk</h3><p>Improve visibility into emerging issues before they impact production, projects, or profitability.</p></div>
-      <div class="card"><h3><span class="dot" style="background:linear-gradient(135deg,#CC9900,#9A7209);">&#9878;</span>Stronger Organizational Resilience</h3><p>Preserve institutional knowledge and create continuity across teams, locations, and leadership transitions.</p></div>
-    </div>
-  </div>
-  </div>
-</section>
-
-<div class="band">
-  <video autoplay muted loop playsinline preload="metadata" poster="band-plant-poster.jpg" aria-hidden="true"><source src="band-plant.mp4" type="video/mp4"></video>
-  <h2>Transform fragmented operations into orchestrated execution.</h2>
-</div>
-
-
-
-<section id="book" style="padding-bottom:34px;">
-  <div class="wrap" style="text-align:center;">
-    <span class="eyebrow">Next Step</span>
-    <h2 class="sec-h">Book a Discovery Session</h2>
-    <p class="sec-sub" style="margin:0 auto;">Discover how TwoSuns helps cement producers and construction organizations improve visibility, strengthen orchestration, and make faster, more informed decisions.</p>
-    <div class="form-card" style="text-align:left;">
-      <form action="https://formsubmit.co/info@twosuns.ai" method="POST">
-        <input type="hidden" name="_subject" value="Cement campaign lead, twosuns.ai">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="campaign" value="cement-email-2026-07">
-        <input type="hidden" name="_next" value="draft/cement-landing.html?sent=1">
-        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
-        <label>Name</label>
-        <input type="text" name="name" placeholder="Your name" required>
-        <label>Work Email</label>
-        <input type="email" name="email" placeholder="you@company.com" required>
-        <label>Company</label>
-        <input type="text" name="company" placeholder="Company name" required>
-        <label>What would you like to improve? (optional)</label>
-        <textarea name="message" rows="3" placeholder="Plants, workflows, or challenges you are looking at"></textarea>
-        <button type="submit">Request My Discovery Session &rarr;</button>
-      </form>
-    </div>
-  </div>
-</section>
-<div class="site-footer">
-  <div class="sf-cols">
-    <div class="sf-col"><h4>Platform</h4>
-      <a href="platform.html">Platform Overview</a>
-      <a href="how-it-works.html">How It Works</a>
-      <a href="modules.html">Capabilities</a>
-      <a href="technology.html">Technology</a>
-      <a href="trust.html">Trust Centre</a>
-    </div>
-    <div class="sf-col"><h4>Company</h4>
-      <a href="about.html">About Us</a>
-      <a href="why-twosuns.html">Why TwoSuns</a>
-      <a href="industries.html">Industries</a>
-      <a href="press.html">Press &amp; Media</a>
-      <a href="careers.html">Careers</a>
-    </div>
-    <div class="sf-col"><h4>Resources</h4>
-      <a href="blog.html">Insights</a>
-      <a href="blog.html">Use Cases</a>
-      <a href="blog.html">Platform Briefs</a>
-      <a href="blog.html">Case Studies</a>
-    </div>
-    <div class="sf-col"><h4>Contact Us</h4>
-      <a class="mail" href="mailto:info@twosuns.ai">info@twosuns.ai</a>
-      <a class="mail" href="mailto:invest@twosuns.ai">invest@twosuns.ai</a>
-      <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">TwoSuns &#8599;</a>
-    </div>
-  </div>
-  <div class="sf-bottom">&copy; 2026 TwoSuns. All rights reserved.</div>
-</div>
-
-
-
-
-
 <script>
 (function(){
-  if(new URLSearchParams(location.search).get('sent')==='1'){
-    var f=document.querySelector('.form-card');
-    if(f){f.innerHTML='<div style="text-align:center;padding:14px;"><div style="font-size:34px;margin-bottom:10px;">&#9728;&#65039;</div><h3 style="color:#336600;margin-bottom:8px;">Request received</h3><p style="color:#3A3A3A;font-size:15px;">Thank you. The TwoSuns team will reach out within one business day to schedule your session.</p></div>';}
-    history.replaceState(null,'',location.pathname);
-  }
+  try{
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(!reduce && 'IntersectionObserver' in window) document.documentElement.classList.add('rv');
+  }catch(e){}
 })();
 </script>
 <script>
+  var llcookieless = true;
+  var formalyze = [];
+  formalyze.auto = true;
+  formalyze.callback = function(options) {}; 
+  (function() {
+    var a = document.createElement('script');
+    a.src = 'https://lltrck.com/scripts/lt-v3.js?llid=36860';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(a, s);
+  })();
+</script>
+
+</head>
+<body>
+<a class="cmskip" href="#main">Skip to content</a>
+<canvas id="sun-canvas" aria-hidden="true"></canvas>
+<nav class="cmnav">
+  <div class="cmnav-in">
+    <a class="brand" href="./"><img src="/logo-color.svg" alt="TwoSuns"></a>
+    <button class="cmtoggle" aria-label="Menu" aria-controls="cml" aria-expanded="false"
+      onclick="var l=document.getElementById('cml');l.classList.toggle('open');
+        this.setAttribute('aria-expanded',l.classList.contains('open'));">&#9776;</button>
+    <div class="cmlinks" id="cml"><a href="index.html#about">About</a><a href="index.html#context">Cement Context</a><a href="platform.html">Platform</a><a href="events.html">Events</a><span class="cmlang"><span class="on">EN</span><a href="ar/" lang="ar" hreflang="ar">العربية</a></span>
+      <a class="btn-cta" href="https://twosuns.ai/discuss.html?ask=Discuss+Your+Needs">Discuss Your Needs</a>
+    </div>
+  </div>
+</nav>
+<main id="main" tabindex="-1">
+<section class="cmhero">
+  <div class="hero-glow"></div>
+  <div class="container">
+    <div class="hero-eyebrow"><span class="dot"></span>Adaptive enterprise capability for cement producers</div>
+    <h1>Coordinate quarry, kiln, mill, dispatch and sales through shared enterprise context.</h1>
+    <p class="hero-sub">TwoSuns is an adaptive enterprise platform for the built industry, configured here around cement. It combines the inputs a plant already records, context-aware intelligence, agentic support and configurable workflows, so process, quality, commercial and finance teams coordinate from the same context.</p>
+    <div class="hero-actions"><a class="btn-cta" href="https://twosuns.ai/discuss.html?ask=Discuss+Your+Needs">Discuss Your Needs</a> <a class="btn-ghost" href="platform.html">Explore the Platform</a></div>
+  </div>
+</section>
+<div class="sun-divider"></div>
+<section id="about">
+  <div class="container">
+    <div class="section-tag">About TwoSuns</div>
+    <h2 class="section-heading">Enterprise experience applied to the work of a cement producer</h2>
+    <p class="lede">TwoSuns brings together enterprise strategy, product leadership, industry knowledge, growth expertise, analytics, software engineering, artificial intelligence, data engineering and implementation capability. The platform is developed by AEPG in Canada and configured with the producer's own process, quality and commercial leads.</p>
+    <p class="lede">We build practical enterprise capability that helps organizations grow, operate and coordinate complex work through connected context, intelligence and configurable workflows. In cement that work runs from the quarry face to cash collected, and it is carried out by functions that each hold their own authority.</p>
+    <h3 class="sub-heading" style="margin-top:34px;font-size:22px;">One platform across the plant and the market</h3>
+    <div class="cmfam"><div class="f"><h3>Core</h3><div class="d">The shared enterprise context, configuration and continuity layer.</div><div class="x">Plant basis, operating limits, roles, approval chains and decision history.</div></div><div class="f"><h3>Ray</h3><div class="d">Context-aware assistance available throughout the platform.</div><div class="x">Explanation, synthesis and workflow support, within each user's permissions.</div></div><div class="f"><h3>Horizon</h3><div class="d">Market, growth, relationship and commercial capabilities.</div><div class="x">Strategy and product market fit, signals, plays, contracts and offers, orders and invoicing, finance.</div></div><div class="f"><h3>Pulse</h3><div class="d">Product, project, operational and asset capabilities.</div><div class="x">Quarry, materials and supply, raw mix, pyro process, grinding, packing and dispatch, sustainability.</div></div></div>
+  </div>
+</section>
+<section id="context" class="band-alt">
+  <div class="container">
+    <div class="split2" style="align-items:start;">
+      <div>
+        <div class="section-tag">Cement Context</div>
+        <h2 class="section-heading">Cost per tonne is set by decisions taken in separate functions</h2>
+        <p class="section-sub">A cement plant takes many decisions each day that move cost per tonne: which faces feed the crusher, how the raw mix is corrected, which fuels are fired, which silos are released, and which tonnes and prices sales commits. Each one sits with a different function and a different system.</p>
+        <p class="section-sub" style="margin-top:16px;">TwoSuns brings those decisions into one enterprise environment alongside the systems already in place. Each function keeps its authority and sees what its decision does to cost, capacity, stock and quality elsewhere in the business.</p>
+      </div>
+      <div class="split2-panel"><h3>Conditions shared across cement operations</h3><ul class="tick"><li>Long quarry, kiln and asset lifecycles</li><li>Many functions contributing to one tonne</li><li>Regional requirements, permits and operating practices</li><li>Complex commercial, technical and regulatory relationships</li><li>Physical, financial, market and operational inputs</li><li>Frequent handoffs across functional boundaries</li><li>Continuing value long after the tonne is produced</li></ul></div>
+    </div>
+    <div class="callout">
+      <h3>Follow the workflow across the plant</h3>
+      <p>A change at the quarry face moves raw mix correction, kiln heat, clinker quality, cement strength, the tonnes dispatch can release and the prices sales can commit. An export order accepted on Monday sets grinding, packing and stock decisions for the rest of the week. A cement business is connected through these continuing workflows, and the platform is configured around them.</p>
+    </div>
+  </div>
+</section>
+<section class="band-warm">
+  <div class="container">
+    <div class="section-tag">Configuration</div>
+    <h2 class="section-heading">Configure TwoSuns around your plant</h2>
+    <p class="section-sub">Plants with similar kilns can need different decisions on the same day. Each deployment is shaped around the plant's own basis, its operating environment, users, regions, inputs, integrations and expected value, and is configured with the process, quality and commercial leads before the platform produces a recommendation.</p>
+    <div class="cmrows"><div class="r"><b>Plant and lines</b>Kiln lines, mills, packers and silos, with their operating limits</div><div class="r"><b>Raw materials and fuels</b>Quarry and corrective chemistry, and fuels with their calorific value, sulphur, chlorine and ash</div><div class="r"><b>Standards and permits</b>Cement classes produced, stack permits, fuel licences, export and carbon reporting</div><div class="r"><b>Organization and approvals</b>Roles, reporting lines, approval chains and authority levels</div><div class="r"><b>Markets</b>Regions, channels, customers and export destinations</div><div class="r"><b>Inputs</b>Historian, laboratory, ERP, weighbridge and surveys, and how often each arrives</div></div>
+  </div>
+</section>
+<section class="cta-band">
+  <div class="container">
+    <h2>Begin with the decision that matters now</h2>
+    <p>TwoSuns is developed in Canada. The team is in Cairo from 10 to 26 November and can meet at your plant or office to review one decision against your own reports, under a mutual NDA.</p>
+    <div class="cta-actions"><a class="btn-cta" href="https://twosuns.ai/discuss.html?ask=Request+an+Opportunity+Assessment">Request an Opportunity Assessment</a> <a class="btn-ghost" href="https://twosuns.ai/discuss.html?ask=Request+a+Technical+Conversation">Request a Technical Conversation</a></div>
+  </div>
+</section>
+</main>
+<footer class="cmfoot">
+  <div class="container">
+    <div class="cmfoot-top">
+      <div class="cmfoot-brand">
+        <img src="/logo-color.svg" alt="TwoSuns">
+        <div class="by">TwoSuns by AEPG</div>
+        <div class="cn"><a href="mailto:info@twosuns.ai">info@twosuns.ai</a><br>WhatsApp +1 250 859 6563</div>
+      </div>
+      <div class="cmfoot-links"><a href="index.html#about">About</a><a href="index.html#context">Cement Context</a><a href="platform.html">Platform</a><a href="events.html">Events</a><a href="https://twosuns.ai/discuss.html">Discuss Your Needs</a></div>
+    </div>
+    <div class="cmfoot-bot">
+      <div>© 2026 TwoSuns by AEPG. All rights reserved.</div>
+      <div><a href="https://twosuns.ai/privacy.html">Privacy</a> &nbsp;|&nbsp; <a href="https://twosuns.ai/terms.html">Terms</a>
+        &nbsp;|&nbsp; <a href="https://twosuns.ai/">twosuns.ai</a></div>
+    </div>
+  </div>
+</footer>
+<script>
 (function(){
-  var c=document.getElementById('sol-canvas');
-  if(!c)return;
-  var ctx=c.getContext('2d');
-  function resize(){c.width=c.offsetWidth;c.height=c.offsetHeight;}
-  resize();
-  window.addEventListener('resize',resize);
-  var pts=[];
-  var accent='#E0641E';
-  for(var i=0;i<55;i++){
-    pts.push({x:Math.random()*c.width,y:Math.random()*c.height,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,r:Math.random()*2.5+1,color:Math.random()>.6?accent:'rgba(255,255,255,0.6)'});
-  }
-  function draw(){
-    ctx.clearRect(0,0,c.width,c.height);
-    pts.forEach(function(p){
-      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle=p.color;ctx.globalAlpha=.55;ctx.fill();
-      p.x+=p.vx;p.y+=p.vy;
-      if(p.x<0||p.x>c.width)p.vx*=-1;
-      if(p.y<0||p.y>c.height)p.vy*=-1;
-    });
-    ctx.globalAlpha=1;
-    requestAnimationFrame(draw);
-  }
+  var c=document.getElementById('sun-canvas'); if(!c) return;
+  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){c.style.display='none';return;}
+  var x=c.getContext('2d'),W,H,ps=[];
+  function rs(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;}
+  function init(){ps=[];var n=Math.min(110,Math.floor(W*H/18000));
+    for(var i=0;i<n;i++)ps.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.2,vy:(Math.random()-.5)*.2,r:Math.random()*2+.5,op:Math.random()*.4+.1});}
+  rs();init();window.addEventListener('resize',function(){rs();init();});
+  function draw(){x.clearRect(0,0,W,H);
+    for(var i=0;i<ps.length;i++){var p=ps[i];p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0||p.x>W)p.vx*=-1; if(p.y<0||p.y>H)p.vy*=-1;
+      x.beginPath();x.arc(p.x,p.y,p.r,0,Math.PI*2);x.fillStyle='rgba(224,100,30,'+p.op+')';x.fill();}
+    for(var i=0;i<ps.length;i++)for(var j=i+1;j<ps.length;j++){var a=ps[i],b=ps[j],d=Math.hypot(a.x-b.x,a.y-b.y);
+      if(d<120){x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.strokeStyle='rgba(224,100,30,'+(.08*(1-d/120))+')';x.lineWidth=.5;x.stroke();}}
+    requestAnimationFrame(draw);}
   draw();
 })();
 </script>
-
-<div class="gm-back" id="gm-back" role="dialog" aria-modal="true" aria-labelledby="gm-title">
-  <div class="gm">
-    <button class="gm-x" id="gm-x" aria-label="Close">&times;</button>
-    <div id="gm-form-wrap">
-      <h3 id="gm-title">Get the Insight Paper</h3>
-      <p class="gm-sub">Tell us where to send it and the download starts right away.</p>
-      <form id="gm-form">
-        <div class="gm-row">
-          <div><label for="gm-first">First name</label><input id="gm-first" name="first_name" required></div>
-          <div><label for="gm-last">Last name</label><input id="gm-last" name="last_name" required></div>
-        </div>
-        <label for="gm-email">Work email</label>
-        <input id="gm-email" name="email" type="email" required placeholder="you@company.com">
-        <div class="gm-row">
-          <div><label for="gm-company">Company</label><input id="gm-company" name="company" required></div>
-          <div><label for="gm-title-f">Job title</label><input id="gm-title-f" name="job_title"></div>
-        </div>
-        <button type="submit" class="gm-submit" id="gm-submit">Download the Insight Paper &rarr;</button>
-        <div class="gm-note">We use this to send the paper and occasional TwoSuns updates. Unsubscribe any time.</div>
-      </form>
-    </div>
-    <div id="gm-done" class="gm-done" style="display:none;">
-      <div class="tick">&#9728;&#65039;</div>
-      <h3>Your download is starting</h3>
-      <p class="gm-sub">If it does not begin automatically,
-        <a id="gm-manual" href="TwoSuns-Cement-Insight-Paper-August-2026.pdf" download style="color:#C45213;font-weight:700;">click here</a>.</p>
-    </div>
-    <div id="gm-back-known" class="gm-done" style="display:none;">
-      <div class="tick">&#9728;&#65039;</div>
-      <h3>Welcome back, <span id="gm-known-name"></span></h3>
-      <p class="gm-sub">Your download is starting. If it does not begin automatically,
-        <a id="gm-manual2" href="TwoSuns-Cement-Insight-Paper-August-2026.pdf" download style="color:#C45213;font-weight:700;">click here</a>.</p>
-      <p class="gm-note" style="margin-top:14px;">Not you?
-        <a href="#" id="gm-forget" style="color:#C45213;font-weight:700;">Use a different email</a></p>
-    </div>
-  </div>
-</div>
-
 <script>
 (function(){
-  var SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbyz4qCsmkMasAHUe8ZZqTva4VvVGo-Q3vy3K_sTMIJY4Q3Mhnq_1HMg_-Z4DF_CUu9z/exec";
-  var EMAIL_FALLBACK = "https://formsubmit.co/ajax/info@twosuns.ai";
-  var PDF = "TwoSuns-Cement-Insight-Paper-August-2026.pdf";
-  var ASSET = "Insight Paper";
-  var STORE = "twosuns_lead";
+  var root=document.documentElement;
+  if(!root.classList.contains('rv')) return;
 
-  var back=document.getElementById('gm-back'), form=document.getElementById('gm-form'),
-      wrap=document.getElementById('gm-form-wrap'), done=document.getElementById('gm-done'),
-      known=document.getElementById('gm-back-known'), btn=document.getElementById('gm-submit');
-
-  function saved(){ try{ return JSON.parse(localStorage.getItem(STORE)||'null'); }catch(e){ return null; } }
-  function save(l){ try{ localStorage.setItem(STORE, JSON.stringify(l)); }catch(e){} }
-
-  function show(panel){
-    wrap.style.display = panel==='form' ? 'block':'none';
-    done.style.display = panel==='done' ? 'block':'none';
-    known.style.display = panel==='known'? 'block':'none';
-  }
-  function openModal(){ back.classList.add('open'); document.body.style.overflow='hidden'; }
-  function close(){ back.classList.remove('open'); document.body.style.overflow=''; }
-
-  function record(lead, kind){
-    var payload = {
-      form: ASSET + ' download' + (kind==='returning' ? ' (returning)' : ''),
-      campaign: 'cement-email-2026-07',
-      name: lead.name||'', email: lead.email||'', company: lead.company||'',
-      job_title: lead.job_title||'', message: '', page: location.href
-    };
-    var body = new URLSearchParams(payload).toString();
-    var jobs = [];
-    if (SHEET_ENDPOINT) jobs.push(fetch(SHEET_ENDPOINT, {method:'POST', mode:'no-cors',
-      headers:{'Content-Type':'application/x-www-form-urlencoded'}, body: body}).catch(function(){}));
-    if (kind !== 'returning') jobs.push(fetch(EMAIL_FALLBACK, {method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify(Object.assign({_subject: ASSET + ' download, twosuns.ai'}, payload))}).catch(function(){}));
-    return Promise.all(jobs);
-  }
-
-  function deliver(){
-    var a=document.createElement('a'); a.href=PDF; a.download=PDF;
-    document.body.appendChild(a); a.click(); a.remove();
-  }
-
-  function onGatedClick(e){
-    e.preventDefault();
-    var lead = saved();
-    if (lead && lead.email){
-      document.getElementById('gm-known-name').textContent = (lead.name||'').split(' ')[0] || '';
-      show('known'); openModal();
-      record(lead,'returning').then(deliver);
-    } else {
-      show('form'); openModal();
-      setTimeout(function(){ document.getElementById('gm-first').focus(); },60);
-    }
-  }
-
-  document.querySelectorAll('a[href$="'+PDF+'"], a[data-gated]').forEach(function(a){
-    if (a.id==='gm-manual' || a.id==='gm-manual2') return;
-    a.removeAttribute('download'); a.addEventListener('click', onGatedClick);
-  });
-  document.getElementById('gm-x').addEventListener('click', close);
-  back.addEventListener('click', function(e){ if(e.target===back) close(); });
-  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && back.classList.contains('open')) close(); });
-
-  document.getElementById('gm-forget').addEventListener('click', function(e){
-    e.preventDefault(); try{ localStorage.removeItem(STORE); }catch(err){}
-    form.reset(); show('form');
-    setTimeout(function(){ document.getElementById('gm-first').focus(); },60);
-  });
-
-  // Direct link: ?paper=1 or #insight-paper opens the download form on arrival
-  if (/[?&]paper(=|&|$)/.test(location.search) || location.hash === '#insight-paper') {
-    setTimeout(function(){ onGatedClick({ preventDefault: function(){} }); }, 250);
-  }
-
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    btn.disabled = true; btn.textContent = 'Sending...';
-    var d = new FormData(form);
-    var lead = {
-      name: ((d.get('first_name')||'') + ' ' + (d.get('last_name')||'')).trim(),
-      email: d.get('email')||'', company: d.get('company')||'',
-      job_title: d.get('job_title')||''
-    };
-    save(lead);
-    record(lead,'new').then(function(){
-      show('done'); deliver();
-      btn.disabled = false; btn.textContent = 'Download the Insight Paper \u2192';
+  var SEL = [".section-tag", ".section-heading", ".section-sub", ".lede", ".card", ".cardimg", ".person", ".step", ".callout", ".layer", ".ecl", ".ecl-fallback", ".acc", ".uc-frow", ".split2-panel", ".grid2 > *", ".grid3 > *"];
+  var els = [];
+  SEL.forEach(function(s){
+    [].forEach.call(document.querySelectorAll(s), function(el){
+      if(els.indexOf(el)<0) els.push(el);
     });
   });
-})();</script>
 
+  // never hide something that already contains a revealed ancestor's job
+  els = els.filter(function(el){
+    return !els.some(function(other){ return other!==el && other.contains(el); });
+  });
+
+  var JOINED = SEL.join(', ');
+  function show(el, delay){
+    if(delay) el.style.transitionDelay = delay + 'ms';
+    el.classList.add('in');
+    // the CSS hides by selector, so anything matching inside must come with it
+    [].forEach.call(el.querySelectorAll(JOINED), function(kid){ kid.classList.add('in'); });
+  }
+
+  // the hero plays on load, not on scroll
+  var hero = document.querySelector('.hero');
+  if(hero){
+    [].forEach.call(hero.querySelectorAll('.hero-eyebrow, h1, .hero-sub, .hero-actions'),
+      function(el,i){ setTimeout(function(){ show(el, 0); }, 90 + i*110); });
+  }
+
+  var seen = new WeakMap();
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting) return;
+      var el = e.target;
+      // stagger siblings that arrive together, capped so nothing waits long
+      var parent = el.parentNode, sibs = seen.get(parent) || 0;
+      seen.set(parent, sibs+1);
+      show(el, Math.min(sibs, 5) * 70);
+      io.unobserve(el);
+    });
+  }, {rootMargin: '0px 0px -8% 0px', threshold: 0.12});
+
+  els.forEach(function(el){
+    if(hero && hero.contains(el)) return;      // hero handled above
+    io.observe(el);
+  });
+
+  // failsafe: if anything is still hidden after 3s, show it
+  setTimeout(function(){
+    els.forEach(function(el){ if(!el.classList.contains('in')) show(el, 0); });
+  }, 1500);
+})();
+</script>
 </body>
 </html>

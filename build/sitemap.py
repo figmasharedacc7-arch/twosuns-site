@@ -1,12 +1,19 @@
 """robots.txt and sitemap.xml.
 
-Nine pages, written next to them so the two never drift apart. The cement
-microsite keeps its own life and is listed but not rebuilt here.
+The main pages plus the cement microsite, written next to them so the three
+never drift apart. The cement pages come in an English and an Arabic version of
+each, so every cement entry declares both as alternates of one another.
+
+Each page is dated by its own last commit, so publishing one page does not
+claim the other twelve changed today. The date on the command line is the
+fallback for a page git has not seen yet, which is how a new page gets dated
+the first time it ships.
 
 Run:  python3 sitemap.py YYYY-MM-DD
 """
 
 import os
+import subprocess
 import sys
 
 from theme import SITE
@@ -31,6 +38,14 @@ PAGES = [
     ("terms.html",           "yearly",  "0.2"),
 ]
 
+# cement microsite: page under /cement/, change frequency, priority. Each one
+# is published in English and in Arabic, so each produces two sitemap entries.
+CEMENT = [
+    ("",              "monthly", "0.8"),
+    ("platform.html", "monthly", "0.8"),
+    ("events.html",   "weekly",  "0.7"),
+]
+
 ROBOTS = """User-agent: *
 Allow: /
 
@@ -38,20 +53,49 @@ Sitemap: %s/sitemap.xml
 """ % SITE
 
 
+def modified(rel, stamp):
+    """Last commit date for a file, or the given stamp if git has no record."""
+    try:
+        out = subprocess.run(["git", "log", "-1", "--format=%cs", "--", rel],
+                             cwd=ROOT, capture_output=True, text=True, check=True)
+    except (OSError, subprocess.CalledProcessError):
+        return stamp
+    return out.stdout.strip() or stamp
+
+
+def url(loc, stamp, freq, pri, alts=()):
+    out = ["  <url>",
+           "    <loc>%s</loc>" % loc,
+           "    <lastmod>%s</lastmod>" % stamp,
+           "    <changefreq>%s</changefreq>" % freq,
+           "    <priority>%s</priority>" % pri]
+    for lang, href in alts:
+        out.append('    <xhtml:link rel="alternate" hreflang="%s" href="%s"/>'
+                   % (lang, href))
+    out.append("  </url>")
+    return out
+
+
 def build(stamp):
     out = ['<?xml version="1.0" encoding="UTF-8"?>',
-           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
+           '        xmlns:xhtml="http://www.w3.org/1999/xhtml">']
     for page, freq, pri in PAGES:
-        out.append("  <url>")
-        out.append("    <loc>%s/%s</loc>" % (SITE, page))
-        out.append("    <lastmod>%s</lastmod>" % stamp)
-        out.append("    <changefreq>%s</changefreq>" % freq)
-        out.append("    <priority>%s</priority>" % pri)
-        out.append("  </url>")
+        when = modified(page or "index.html", stamp)
+        out += url("%s/%s" % (SITE, page), when, freq, pri)
+    for page, freq, pri in CEMENT:
+        en = "%s/cement/%s" % (SITE, page)
+        ar = "%s/cement/ar/%s" % (SITE, page)
+        alts = (("en", en), ("ar", ar), ("x-default", en))
+        out += url(en, modified("cement/" + (page or "index.html"), stamp),
+                   freq, pri, alts)
+        out += url(ar, modified("cement/ar/" + (page or "index.html"), stamp),
+                   freq, pri, alts)
     out.append("</urlset>")
     open(os.path.join(ROOT, "sitemap.xml"), "w").write("\n".join(out) + "\n")
     open(os.path.join(ROOT, "robots.txt"), "w").write(ROBOTS)
-    print("sitemap.xml  %d urls, lastmod %s" % (len(PAGES), stamp))
+    print("sitemap.xml  %d urls (%d main, %d cement), lastmod %s"
+          % (len(PAGES) + 2 * len(CEMENT), len(PAGES), 2 * len(CEMENT), stamp))
     print("robots.txt   allow all, sitemap declared")
 
 
