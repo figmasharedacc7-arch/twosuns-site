@@ -73,18 +73,35 @@ CEM_CSS = r"""
     background:#fff;padding:8px 14px;border-radius:8px;border:2px solid var(--sun);}
 
   /* ---- hero with the washed plant photo ---- */
+  /* Hero. The photograph and the wash over it are two custom properties, so a
+     page only swaps the image and the right to left flip is written once:
+     redefining --cmwash under html[dir="rtl"] re-angles every hero together.
+     The wash is the main site's, opaque cream under the words and clear over
+     the photograph, so a cement page reads as the same site. Paths are rooted
+     because the microsite sits one level down and the Arabic two. */
   .cmhero{position:relative;overflow:hidden;padding:104px 0 90px;
-    background-image:linear-gradient(105deg,rgba(255,245,221,.97) 0%,rgba(255,243,205,.93) 38%,
-      rgba(252,226,188,.72) 66%,rgba(255,242,214,.42) 100%),url('/cement/cement-banner.jpg');
-    background-size:cover,cover;background-position:center,center 38%;}
-  html[dir="rtl"] .cmhero{background-image:linear-gradient(255deg,rgba(255,245,221,.97) 0%,
-      rgba(255,243,205,.93) 38%,rgba(252,226,188,.72) 66%,rgba(255,242,214,.42) 100%),
-      url('/cement/cement-banner.jpg');}
+    --cmshot:url('/cement/cement-banner.jpg');
+    --cmwash:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 40%,rgba(255,246,226,.94) 48%,
+      rgba(255,246,226,.74) 56%,rgba(255,245,222,.44) 64%,rgba(255,244,218,.16) 72%,
+      rgba(255,243,216,0) 80%);
+    background-image:var(--cmwash),var(--cmshot);
+    background-size:cover,cover;background-repeat:no-repeat;
+    background-position:center,center 30%;}
+  html[dir="rtl"] .cmhero{--cmwash:linear-gradient(260deg,#FFF6E2 0%,#FFF6E2 40%,rgba(255,246,226,.94) 48%,
+      rgba(255,246,226,.74) 56%,rgba(255,245,222,.44) 64%,rgba(255,244,218,.16) 72%,
+      rgba(255,243,216,0) 80%);}
+  .cmhero.sh-platform{--cmshot:url('/plat-hero.jpg');}
+  .cmhero.sh-capabilities{--cmshot:url('/cap-hero.jpg');}
+  .cmhero.sh-industries{--cmshot:url('/ecosystem.jpg');}
+  .cmhero.sh-construction{--cmshot:url('/cons-hero.jpg');}
+  .cmhero.sh-concrete{--cmshot:url('/bm-concrete.jpg');}
+  .cmhero.sh-distribution{--cmshot:url('/bm-distribution.jpg');}
+  .cmhero.sh-usecases{--cmshot:url('/uc-hero.jpg');}
+  .cmhero.sh-company{--cmshot:url('/company-hero.jpg');}
+  .cmhero.sh-events{--cmshot:url('/events-hero.jpg');}
   .cmhero h1{font-size:clamp(32px,4.4vw,54px);font-weight:900;line-height:1.1;color:var(--navy);
     margin-bottom:20px;max-width:19ch;}
-  .cmhero p.hero-sub{max-width:660px;}
-  .cmhero.plain{background-image:none;background:linear-gradient(160deg,#FFF5DD 0%,#FFF3CD 30%,
-    #FCE2BC 60%,#FEF9C3 100%);}
+  .cmhero p.hero-sub{max-width:620px;}
 
   /* ---- platform family cards ---- */
   .cmfam{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:30px;}
@@ -264,6 +281,9 @@ CEM_CSS = r"""
   html[dir="rtl"] .cmwf .w dt{letter-spacing:0;}
 
   @media(max-width:1000px){
+    .cmhero,html[dir="rtl"] .cmhero{background-position:center,center;
+      --cmwash:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,
+        rgba(255,244,220,.58) 80%,rgba(255,242,214,.24) 100%);}
     .cmfam,.cmrows,.cmrows.two,.cmmods{grid-template-columns:repeat(2,1fr);}
     .cmpd{grid-template-columns:repeat(2,1fr);}
     .cmsx{grid-template-columns:1fr;}
@@ -305,8 +325,6 @@ RTL_CSS = r"""
   html[dir="rtl"] .cmses-d .mm,html[dir="rtl"] .cmtier-n{letter-spacing:0;}
   html[dir="rtl"] body{font-family:'Segoe UI','Noto Sans Arabic','Geeza Pro',Tahoma,
     system-ui,-apple-system,sans-serif;}
-  html[dir="rtl"] .cmhero.plain{background-image:none;
-    background:linear-gradient(200deg,#FFF5DD 0%,#FFF3CD 30%,#FCE2BC 60%,#FEF9C3 100%);}
   html[dir="rtl"] .cmhero h1{max-width:24ch;line-height:1.3;}
   html[dir="rtl"] .hero h1{line-height:1.3;}
   html[dir="rtl"] .section-heading{line-height:1.35;}
@@ -412,7 +430,9 @@ def footer(d):
 TAIL_JS = theme.PARTICLES + reveal.body_script() + "\n</body>\n</html>\n"
 
 
-def hero(d, eyebrow, h1, sub, acts, plain=False):
+def hero(d, eyebrow, h1, sub, acts, shot=""):
+    """shot names the hero photograph, as the sh- class defined in CEM_CSS.
+    Empty means the cement banner the home page carries."""
     return """<section class="cmhero%s">
   <div class="hero-glow"></div>
   <div class="container">
@@ -423,7 +443,7 @@ def hero(d, eyebrow, h1, sub, acts, plain=False):
   </div>
 </section>
 <div class="sun-divider"></div>
-""" % (" plain" if plain else "", e(eyebrow), e(h1), e(sub), acts)
+""" % (" sh-" + shot if shot else "", e(eyebrow), e(h1), e(sub), acts)
 
 
 def cta_band(heading, para, acts):
@@ -524,7 +544,8 @@ def build_home(d):
 def build_platform(d):
     s = head(d, d["plat_title"], d["plat_desc"], "platform.html") + nav(d, "platform.html")
     s += hero(d, d["plat_eyebrow"], d["plat_h1"], d["plat_sub"],
-              btn(d["plat_cta1"]) + " " + btn(d["plat_cta2"], ghost=True), plain=True)
+              btn(d["plat_cta1"]) + " " + btn(d["plat_cta2"], ghost=True),
+              shot="platform")
 
     s += """<section>
   <div class="container">
@@ -685,7 +706,8 @@ def events_jsonld(d):
 def build_events(d):
     s = head(d, d["ev_title"], d["ev_desc"], "events.html") + nav(d, "events.html")
     s += hero(d, d["ev_eyebrow"], d["ev_h1"], d["ev_sub"],
-              btn(d["ev_cta1"]) + " " + btn(d["ev_cta2"], ghost=True), plain=True)
+              btn(d["ev_cta1"]) + " " + btn(d["ev_cta2"], ghost=True),
+              shot="events")
 
     s += """<section>
   <div class="container">
@@ -811,7 +833,8 @@ def cards(groups):
 def build_capabilities(d):
     s = head(d, d["cap_title"], d["cap_desc"], "capabilities.html") + nav(d, "capabilities.html")
     s += hero(d, d["cap_eyebrow"], d["cap_h1"], d["cap_sub"],
-              btn(d["cap_cta1"]) + " " + btn(d["cap_cta2"], "platform.html", ghost=True), plain=True)
+              btn(d["cap_cta1"]) + " " + btn(d["cap_cta2"], "platform.html", ghost=True),
+              shot="capabilities")
     s += sec(cards(d["cap_hz_groups"]), "", d["cap_hz_tag"], d["cap_hz_h"], d["cap_hz_p"])
     s += sec(cards(d["cap_pl_groups"]), "band-alt", d["cap_pl_tag"], d["cap_pl_h"], d["cap_pl_p"])
     s += sec("", "band-warm", d["cap_adapt_tag"], d["cap_adapt_h"], d["cap_adapt_p"], lede=True)
@@ -830,7 +853,8 @@ SECTORS = ["construction.html", "concrete.html", "distribution.html"]
 def build_industries(d):
     s = head(d, d["ind_title"], d["ind_desc"], "industries.html") + nav(d, "industries.html")
     s += hero(d, d["ind_eyebrow"], d["ind_h1"], d["ind_sub"],
-              btn(d["ind_cta1"]) + " " + btn(d["ind_cta2"], "platform.html", ghost=True), plain=True)
+              btn(d["ind_cta1"]) + " " + btn(d["ind_cta2"], "platform.html", ghost=True),
+              shot="industries")
 
     cells = []
     for (name, desc, bullets), href in zip(d["ind_sectors"], SECTORS):
@@ -855,7 +879,8 @@ def build_industries(d):
 def build_construction(d):
     s = head(d, d["con_title"], d["con_desc"], "construction.html") + nav(d, "industries.html")
     s += hero(d, d["con_eyebrow"], d["con_h1"], d["con_sub"],
-              btn(d["con_cta1"]) + " " + btn(d["con_cta2"], "industries.html", ghost=True), plain=True)
+              btn(d["con_cta1"]) + " " + btn(d["con_cta2"], "industries.html", ghost=True),
+              shot="construction")
     s += sec(rows(d["con_who_rows"], two=True), "", d["con_who_tag"], d["con_who_h"],
              d["con_who_p"], lede=True)
     s += sec(rows(d["con_dem_rows"], two=True), "band-alt", d["con_dem_tag"], d["con_dem_h"],
@@ -872,7 +897,8 @@ def build_construction(d):
 def build_concrete(d):
     s = head(d, d["cnc_title"], d["cnc_desc"], "concrete.html") + nav(d, "industries.html")
     s += hero(d, d["cnc_eyebrow"], d["cnc_h1"], d["cnc_sub"],
-              btn(d["cnc_cta1"]) + " " + btn(d["cnc_cta2"], "industries.html", ghost=True), plain=True)
+              btn(d["cnc_cta1"]) + " " + btn(d["cnc_cta2"], "industries.html", ghost=True),
+              shot="concrete")
     s += sec(rows(d["cnc_who_rows"], two=True), "", d["cnc_who_tag"], d["cnc_who_h"],
              d["cnc_who_p"], lede=True)
     s += sec(rows(d["cnc_dem_rows"], two=True), "band-alt", d["cnc_dem_tag"], d["cnc_dem_h"],
@@ -895,7 +921,8 @@ def build_concrete(d):
 def build_distribution(d):
     s = head(d, d["dst_title"], d["dst_desc"], "distribution.html") + nav(d, "industries.html")
     s += hero(d, d["dst_eyebrow"], d["dst_h1"], d["dst_sub"],
-              btn(d["dst_cta1"]) + " " + btn(d["dst_cta2"], "industries.html", ghost=True), plain=True)
+              btn(d["dst_cta1"]) + " " + btn(d["dst_cta2"], "industries.html", ghost=True),
+              shot="distribution")
     s += sec(rows(d["dst_who_rows"], two=True), "", d["dst_who_tag"], d["dst_who_h"],
              d["dst_who_p"], lede=True)
     s += sec('<p class="lede">%s</p>' % e(d["dst_req_p2"])
@@ -925,7 +952,8 @@ def build_distribution(d):
 def build_usecases(d):
     s = head(d, d["uc_title"], d["uc_desc"], "use-cases.html") + nav(d, "use-cases.html")
     s += hero(d, d["uc_eyebrow"], d["uc_h1"], d["uc_sub"],
-              btn(d["uc_cta1"]) + " " + btn(d["uc_cta2"], "platform.html", ghost=True), plain=True)
+              btn(d["uc_cta1"]) + " " + btn(d["uc_cta2"], "platform.html", ghost=True),
+              shot="usecases")
     s += sec(chips(d["uc_chain"]), "", d["uc_chain_tag"], d["uc_chain_h"], d["uc_chain_p"])
 
     labels = (d["uc_f_owner"], d["uc_f_surfaces"], d["uc_f_work"], d["uc_f_change"])
@@ -953,7 +981,8 @@ def build_company(d):
     s = head(d, d["co_title"], d["co_desc"], "company.html",
              extra_css=teamgrid.CSS) + nav(d, "company.html")
     s += hero(d, d["co_eyebrow"], d["co_h1"], d["co_sub"],
-              btn(d["co_cta1"]) + " " + btn(d["co_cta2"], "platform.html", ghost=True), plain=True)
+              btn(d["co_cta1"]) + " " + btn(d["co_cta2"], "platform.html", ghost=True),
+              shot="company")
 
     s += sec("".join('<p class="lede">%s</p>' % e(p)
                      for p in (d["co_purpose_p1"], d["co_purpose_p2"], d["co_purpose_p3"]))
