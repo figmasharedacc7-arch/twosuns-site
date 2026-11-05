@@ -1000,7 +1000,7 @@
   <div class="container">
     <div class="section-tag">Architecture</div>
     <h2 class="section-heading">Two operating domains, one shared context</h2>
-    <p class="section-sub">Horizon supports the market-facing work and Pulse supports the plant. Core holds the context both work from, and Ray works from the context available to each user and workflow. Activities and results generated in one area can inform related work elsewhere, while Core maintains continuity.</p>
+    <p class="section-sub">Horizon supports the market-facing work and Pulse supports the plant. Core holds the context both work from, and Ray works from the context available to each user and workflow. An order accepted in Horizon can inform grinding and dispatch planning in Pulse, and available capacity can inform the tonnes sales commits, while Core maintains continuity.</p>
 
     <div class="cmtier">
       <div class="cmtier-h"><span class="cmtier-n">01</span>
@@ -1031,7 +1031,7 @@
   <div class="container">
     <div class="section-tag">Inputs and integration</div>
     <h2 class="section-heading">Bring together the inputs the plant already records</h2>
-    <p class="section-sub">A TwoSuns environment can combine internal, external, real-time and human inputs according to the decision it is configured around.</p>
+    <p class="section-sub">A TwoSuns environment can combine process values, laboratory, fuel and emissions analyses, weighbridge and survey records, ledger entries, market data and uploads according to the decision it is configured around.</p>
     <div class="cmtblw" tabindex="0" role="region" aria-label="Inputs and integration, scrollable table"><table class="cmtbl">
       <thead><tr><th>Source</th><th>Typical content</th><th>Typical frequency</th></tr></thead><tbody><tr><td>Process historian (DCS)</td><td>Kiln, cooler, mill and fan process values</td><td>1 or 5 minute resolution</td></tr><tr><td>Laboratory and XRF</td><td>Raw meal, hot meal, clinker and cement chemistry; fineness; strength</td><td>Hourly composites for raw mix; about every 4 hours for hot meal; per sample for cement</td></tr><tr><td>Fuel analyses</td><td>NCV as received with analysis date; sulphur, chlorine and ash</td><td>By lot</td></tr><tr><td>ERP</td><td>Stock, purchase orders, sales orders, ledger</td><td>Hourly or daily extract</td></tr><tr><td>Weighbridge</td><td>Tonnes in and out</td><td>Hourly or by upload</td></tr><tr><td>Silo levels and surveys</td><td>Radar levels; stockpile and store surveys</td><td>Hourly for radar; surveys as scheduled</td></tr><tr><td>CEMS and stack tests</td><td>Dust, SO2, NOx, HCl, HF and TOC</td><td>Daily averages</td></tr><tr><td>Market data</td><td>Fuel benchmarks, exchange rates, freight, tenders, competitor activity</td><td>As published, with source and date</td></tr><tr><td>Uploads</td><td>Spreadsheets, survey sheets, permits and reports</td><td>As submitted by permitted users</td></tr></tbody>
     </table></div>
