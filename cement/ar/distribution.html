@@ -672,7 +672,13 @@
       rgba(255,243,216,0) 80%);}
   .cmhero.sh-platform{--cmshot:url('/plat-hero.jpg');}
   .cmhero.sh-capabilities{--cmshot:url('/cap-hero.jpg');}
-  .cmhero.sh-industries{--cmshot:url('/ecosystem.jpg');}
+  /* the Industries hub carries no photograph, the same as the main site's own
+     industries page. It keeps the plain cement gradient instead, mirrored for
+     right to left so the light still falls from the reading side. */
+  .cmhero.sh-plain{background-image:none;
+    background:linear-gradient(200deg,#FFF5DD 0%,#FFF3CD 30%,#FCE2BC 60%,#FEF9C3 100%);}
+  html[dir="rtl"] .cmhero.sh-plain{
+    background:linear-gradient(160deg,#FFF5DD 0%,#FFF3CD 30%,#FCE2BC 60%,#FEF9C3 100%);}
   .cmhero.sh-construction{--cmshot:url('/cons-hero.jpg');}
   .cmhero.sh-concrete{--cmshot:url('/bm-concrete.jpg');}
   .cmhero.sh-distribution{--cmshot:url('/bm-distribution.jpg');}
@@ -860,6 +866,17 @@
   .cmwf .w dd{font-size:13.5px;color:var(--text-muted);line-height:1.55;}
   html[dir="rtl"] .cmwf .w dt{letter-spacing:0;}
 
+  /* ---- photo band, the main site's .imgsec laid over a whole section ---- */
+  /* theme.CSS gives .imgsec its wash and its 58% copy column but names each
+     photograph in a class whose url is relative, so from /cement/ it resolves to
+     a file that is not there. The section carries its own rooted url in --cmband
+     instead, which needs no class per picture and works from /cement/ar/ too. */
+  .imgsec::before{background-image:var(--cmband);}
+  /* the copy column is a little over half the width, so the grids inside a band
+     drop a column earlier than they do in a full width section */
+  .imgsec .cmsx,.imgsec .cmrows.two,.imgsec .cmcg{grid-template-columns:1fr;}
+  @media(min-width:1180px){.imgsec .cmrows.two{grid-template-columns:repeat(2,1fr);}}
+
   @media(max-width:1000px){
     .cmhero,html[dir="rtl"] .cmhero{background-position:center,center;
       --cmwash:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,
@@ -902,6 +919,23 @@
   html[dir="rtl"] .cmses-d .mm,html[dir="rtl"] .cmtier-n{letter-spacing:0;}
   html[dir="rtl"] body{font-family:'Segoe UI','Noto Sans Arabic','Geeza Pro',Tahoma,
     system-ui,-apple-system,sans-serif;}
+  /* .imgsec is authored left to right: the photograph keeps one half of the
+     frame and the wash covers the other, where the copy sits. Mirror the pair,
+     or the Arabic copy lands on the photograph. The narrow screen wash has to be
+     restated because these selectors outrank the theme's own media query. */
+  html[dir="rtl"] .imgsec-r::before{background-position:left center;}
+  html[dir="rtl"] .imgsec-l::before{background-position:right center;}
+  html[dir="rtl"] .imgsec-r::after{background:linear-gradient(260deg,#FFF6E2 0%,#FFF6E2 44%,rgba(255,246,226,.97) 53%,rgba(255,246,226,.86) 62%,
+    rgba(255,245,222,.58) 72%,rgba(255,244,218,.26) 85%,rgba(255,243,216,.05) 100%);}
+  html[dir="rtl"] .imgsec-l::after{background:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 44%,rgba(255,246,226,.97) 53%,rgba(255,246,226,.86) 62%,
+    rgba(255,245,222,.58) 72%,rgba(255,244,218,.26) 85%,rgba(255,243,216,.05) 100%);}
+  html[dir="rtl"] .imgsec-l .sec-split{margin-left:0;margin-right:auto;}
+  @media(max-width:1000px){
+    html[dir="rtl"] .imgsec-r::after,html[dir="rtl"] .imgsec-l::after{
+      background:linear-gradient(175deg,rgba(255,246,226,.96) 0%,rgba(255,246,226,.90) 55%,
+        rgba(255,244,220,.60) 100%);}
+    html[dir="rtl"] .imgsec-l .sec-split{margin-right:0;}
+  }
   html[dir="rtl"] .cmhero h1{max-width:24ch;line-height:1.3;}
   html[dir="rtl"] .hero h1{line-height:1.3;}
   html[dir="rtl"] .section-heading{line-height:1.35;}
@@ -955,12 +989,14 @@
   </div>
 </section>
 <div class="sun-divider"></div>
-<section>
+<section class="imgsec imgsec-r area-sec" style="--cmband:url('/area-distribution.jpg');">
   <div class="container">
+   <div class="sec-split">
     <div class="section-tag">من هم</div>
     <h2 class="section-heading">من ينقل الأسمنت من المصنع إلى السوق</h2>
     <p class="lede">قلّما يبيع المنتج بطريقة واحدة. فالإنتاج نفسه يخرج من المصنع أطنانًا سائبة بموجب عقد، وأكياسًا في مخزن وكيل، وحمولةً لتاجر، وكلنكرًا إلى محطة طحن، وشحنة تصدير، ولكل منها سعرها وشروط ائتمانها ومستوى الخدمة المتوقع منها.</p>
     <div class="cmrows two"><div class="r"><b>الوكلاء والموزعون المعتمدون</b>اتفاقيات المناطق البيعية، والتخصيص الشهري، وسلالم الخصم الرجعي، وحدود الائتمان، مع حمل الأطنان المعبأة في أكياس داخل مناطقهم البيعية</div><div class="r"><b>التجزئة والأسمنت المعبأ في أكياس</b>متاجر مواد البناء والبائعون عند المواقع في آخر سلسلة الوكيل، وعندهم يُحكم على حالة الكيس ووزنه والعلامة التجارية</div><div class="r"><b>التجار ومعيدو البيع</b>مشترون يأخذون أحجامًا عارضة عبر المناطق البيعية والحدود، بسعر يُحدد حالة بحالة بالقياس إلى قائمة الأسعار المنشورة</div><div class="r"><b>مشترو التصدير</b>شحنات من الكلنكر والأسمنت مقابل اعتمادات مستندية أو دفع مقدم، مع معدل التحميل والمدة المسموحة للتحميل وشهادات المنشأ والتحليل والفحص التي تطلبها جهة الوصول</div><div class="r"><b>محطات التوزيع والمستودعات</b>تخزين مملوك أو لدى الغير بين المصنع والسوق، حيث يهم عمر المخزون وحالة الصوامع والمطابقة</div></div>
+   </div>
   </div>
 </section>
 <section class="band-alt">
@@ -987,12 +1023,14 @@
     <div class="steps"><div class="step"><b>الاتفاقيات في Core.</b> أساس المصنع، وحدود التشغيل، والأدوار، وسلاسل الموافقات، وسجل القرارات، مع المناطق البيعية وقواعد التخصيص وقوائم الأسعار وسلالم الخصم الرجعي وحدود الائتمان التي يعتمد عليها هذا العمل، ولكل منها مسؤول محدد.</div><div class="step"><b>الطلبات عبر Horizon.</b> تُقرأ طلبات الوكلاء والتجار والتصدير في ضوء التخصيص والموقف الائتماني والأطنان التي يمكن للطحن والتعبئة الإفراج عنها.</div><div class="step"><b>التنفيذ عبر Pulse.</b> يُتابع الطحن والتعبئة والتحميل والشحن لكل دفعة، فتحمل الشحنة المسلَّمة خطها وماكينة تعبئتها ورقم دفعتها.</div><div class="step"><b>التعرّض في المالية.</b> تُحفظ الفواتير وأعمار الأرصدة والتحصيل لكل حساب، ويحمل قرار الائتمان الرصيد الذي يقف خلفه.</div><div class="step"><b>الخصم الرجعي في السجلات.</b> تُحسب الخطة والفترة والحجم المستحق من سجلات الطلبات والشحن بدلًا من إعادة بنائها في نهاية الشهر.</div></div><div class="split2" style="margin-top:26px;align-items:start;"><div class="split2-panel"><h3>وحدات Horizon المستخدمة</h3><p>يُقرأ أمر التصدير مع الشروط التي تلزمه: نافذة الشحن، ومعدل التحميل، ومخاطر غرامة التأخير، وأداة الدفع، والشهادات التي تطلبها جهة الوصول. وتأخر السفينة يحرك خطة التحميل، والتخصيص المعبأ في أكياس الذي يُزاح بسببه، والتعرّض المرتبط بأداة الدفع، معًا.</p></div><div class="split2-panel"><h3>الوحدات المستخدمة من Pulse والمرافق المشتركة</h3><p>التصدير والتجارة عبر الحدود</p></div></div>
   </div>
 </section>
-<section>
+<section class="imgsec imgsec-l area-sec" style="--cmband:url('/cons-logistics.jpg');">
   <div class="container">
+   <div class="sec-split">
     <div class="section-tag">رؤية قناة التوزيع</div>
     <h2 class="section-heading">انظر إلى قناة التوزيع خطوة واحدة أبعد من الفاتورة</h2>
     <p class="lede">يعرف المنتج ما فوتره لكل وكيل. وهو يعرف عادة أقل من ذلك بكثير عما باعه الوكيل، وما لا يزال قائمًا في مستودعه، وفي أي منطقة بيعية استُخدمت الأطنان.</p>
     <p class="lede">تقرأ TwoSuns سجلات الشحن وإقرارات مخزون المستودعات وإقرارات مبيعات الوكلاء وأرقام الدفعات معًا، فتُتخذ قرارات التخصيص والتسعير في ضوء السحب الفعلي لا في ضوء فوترة الشهر الماضي. وتُوسم الأرقام بأنها مقاسة أو مستنتجة أو مفترضة، وإقرار الوكيل المتأخر يخفض درجة الثقة المعروضة على الأرقام التي تستخدمه.</p><div class="split2-panel" style="margin-top:22px;max-width:760px;"><h3>تُقرأ لكل وكيل ومنطقة بيعية وشهر</h3><ul class="tick"><li>الأطنان المفوترة والمشحونة والمقرّ ببيعها</li><li>مخزون المستودعات والوكلاء، مع عمر ذلك المخزون</li><li>توزيع المعبأ في أكياس والسائب، بحسب رتبة الأسمنت</li><li>صافي العائد بعد الخصم وأجرة النقل والخصم الرجعي</li><li>التخصيص المنفَّذ مقابل التخصيص المتفق عليه</li><li>أرقام الدفعات خلف كل تسليم، لمطالبات الجودة</li></ul></div>
+   </div>
   </div>
 </section>
 <section class="band-alt">

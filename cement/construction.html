@@ -672,7 +672,13 @@
       rgba(255,243,216,0) 80%);}
   .cmhero.sh-platform{--cmshot:url('/plat-hero.jpg');}
   .cmhero.sh-capabilities{--cmshot:url('/cap-hero.jpg');}
-  .cmhero.sh-industries{--cmshot:url('/ecosystem.jpg');}
+  /* the Industries hub carries no photograph, the same as the main site's own
+     industries page. It keeps the plain cement gradient instead, mirrored for
+     right to left so the light still falls from the reading side. */
+  .cmhero.sh-plain{background-image:none;
+    background:linear-gradient(200deg,#FFF5DD 0%,#FFF3CD 30%,#FCE2BC 60%,#FEF9C3 100%);}
+  html[dir="rtl"] .cmhero.sh-plain{
+    background:linear-gradient(160deg,#FFF5DD 0%,#FFF3CD 30%,#FCE2BC 60%,#FEF9C3 100%);}
   .cmhero.sh-construction{--cmshot:url('/cons-hero.jpg');}
   .cmhero.sh-concrete{--cmshot:url('/bm-concrete.jpg');}
   .cmhero.sh-distribution{--cmshot:url('/bm-distribution.jpg');}
@@ -860,6 +866,17 @@
   .cmwf .w dd{font-size:13.5px;color:var(--text-muted);line-height:1.55;}
   html[dir="rtl"] .cmwf .w dt{letter-spacing:0;}
 
+  /* ---- photo band, the main site's .imgsec laid over a whole section ---- */
+  /* theme.CSS gives .imgsec its wash and its 58% copy column but names each
+     photograph in a class whose url is relative, so from /cement/ it resolves to
+     a file that is not there. The section carries its own rooted url in --cmband
+     instead, which needs no class per picture and works from /cement/ar/ too. */
+  .imgsec::before{background-image:var(--cmband);}
+  /* the copy column is a little over half the width, so the grids inside a band
+     drop a column earlier than they do in a full width section */
+  .imgsec .cmsx,.imgsec .cmrows.two,.imgsec .cmcg{grid-template-columns:1fr;}
+  @media(min-width:1180px){.imgsec .cmrows.two{grid-template-columns:repeat(2,1fr);}}
+
   @media(max-width:1000px){
     .cmhero,html[dir="rtl"] .cmhero{background-position:center,center;
       --cmwash:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,
@@ -902,6 +919,23 @@
   html[dir="rtl"] .cmses-d .mm,html[dir="rtl"] .cmtier-n{letter-spacing:0;}
   html[dir="rtl"] body{font-family:'Segoe UI','Noto Sans Arabic','Geeza Pro',Tahoma,
     system-ui,-apple-system,sans-serif;}
+  /* .imgsec is authored left to right: the photograph keeps one half of the
+     frame and the wash covers the other, where the copy sits. Mirror the pair,
+     or the Arabic copy lands on the photograph. The narrow screen wash has to be
+     restated because these selectors outrank the theme's own media query. */
+  html[dir="rtl"] .imgsec-r::before{background-position:left center;}
+  html[dir="rtl"] .imgsec-l::before{background-position:right center;}
+  html[dir="rtl"] .imgsec-r::after{background:linear-gradient(260deg,#FFF6E2 0%,#FFF6E2 44%,rgba(255,246,226,.97) 53%,rgba(255,246,226,.86) 62%,
+    rgba(255,245,222,.58) 72%,rgba(255,244,218,.26) 85%,rgba(255,243,216,.05) 100%);}
+  html[dir="rtl"] .imgsec-l::after{background:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 44%,rgba(255,246,226,.97) 53%,rgba(255,246,226,.86) 62%,
+    rgba(255,245,222,.58) 72%,rgba(255,244,218,.26) 85%,rgba(255,243,216,.05) 100%);}
+  html[dir="rtl"] .imgsec-l .sec-split{margin-left:0;margin-right:auto;}
+  @media(max-width:1000px){
+    html[dir="rtl"] .imgsec-r::after,html[dir="rtl"] .imgsec-l::after{
+      background:linear-gradient(175deg,rgba(255,246,226,.96) 0%,rgba(255,246,226,.90) 55%,
+        rgba(255,244,220,.60) 100%);}
+    html[dir="rtl"] .imgsec-l .sec-split{margin-right:0;}
+  }
   html[dir="rtl"] .cmhero h1{max-width:24ch;line-height:1.3;}
   html[dir="rtl"] .hero h1{line-height:1.3;}
   html[dir="rtl"] .section-heading{line-height:1.35;}
@@ -955,12 +989,14 @@
   </div>
 </section>
 <div class="sun-divider"></div>
-<section>
+<section class="imgsec imgsec-l area-sec" style="--cmband:url('/cons-owners.jpg');">
   <div class="container">
+   <div class="sec-split">
     <div class="section-tag">Who they are</div>
     <h2 class="section-heading">The organizations behind a project order</h2>
     <p class="lede">Much of the cement leaving the plant is consumed by a project with a start date, a contract structure and an engineer specifying the class. Most project tonnes reach the site through a ready-mix or precast producer, and direct supply to a contractor is normal on site-batched works and on bagged consumption. The buying decision sits in several organizations at once, and each of them can change what the plant is asked to produce. Ready-mix and precast producers that serve these projects are covered on the Concrete and Precast page.</p>
     <div class="cmrows two"><div class="r"><b>Owners and public agencies</b>Developers, infrastructure authorities and corporate clients that fund the work and often name the approved suppliers</div><div class="r"><b>General contractors</b>Contractors and design-build consortia that carry delivery risk and either buy concrete from a ready-mix supplier or, on larger projects, buy cement directly for their own batching plants</div><div class="r"><b>Trade and specialist contractors</b>Civil, structural and finishing packages that draw the cement, each on its own sequence of pours</div><div class="r"><b>Site logistics and receiving</b>Site teams and logistics contractors that control the gate, the silo and the window a load can be received in</div><div class="r"><b>Designers and engineers</b>Architects, structural engineers and consultants that set strength class, durability and testing requirements</div><div class="r"><b>Procurement and cost teams</b>Quantity surveyors, cost managers and procurement leads that compare offers, terms and credit before an order is placed</div></div>
+   </div>
   </div>
 </section>
 <section class="band-alt">
@@ -979,12 +1015,14 @@
     <ul class="tick"><li>A project slips and the committed tonnes move a month, with no revision reaching grinding or packing</li><li>Dispatch sequences loads by truck availability rather than by the delivery windows sales committed to</li><li>A clinker or mill change shows in free lime, fineness and early mortar strength days before anything reaches the accounts already loading against a project</li><li>Delivery notes and conformity records for a consignment are assembled weeks later for the project file</li><li>Retention and certified progress are tracked outside the account, so exposure on a project is read late</li><li>The account team and the plant hold different versions of what was promised, and neither is the record</li></ul>
   </div>
 </section>
-<section class="band-warm">
+<section class="imgsec imgsec-r area-sec" style="--cmband:url('/plat-deploy.jpg');">
   <div class="container">
+   <div class="sec-split">
     <div class="section-tag">What TwoSuns does</div>
     <h2 class="section-heading">The project schedule and the plant on one plan</h2>
     <p class="lede">When a programme date moves, the committed tonnes, the delivery windows and the exposure on the account move with it inside one governed enterprise context. The revision reaches grinding, packing, dispatch and the account team on the same day, and each function keeps its own authority.</p>
     <div class="cmrows two"><div class="r"><b>Horizon</b>Project pipeline, contracts and offers, order management and invoicing, with credit exposure and collection read against each account</div><div class="r"><b>Pulse</b>Grinding and Product and Packing and Dispatch, with the shared Product Quality and Logistics facilities, planned against the committed tonnes and the delivery windows</div><div class="r"><b>Core</b>Plant basis, operating limits, roles, approval chains and decision history, with the cement classes and contract records this work depends on</div><div class="r"><b>Ray</b>Explanation, synthesis and workflow support for account, dispatch and quality staff, within each user's permissions</div></div><div class="split2-panel" style="margin-top:22px;max-width:760px;"><h3>What changes in practice</h3><ul class="tick"><li>A project date change moves the committed tonnes in the plan before the week is scheduled</li><li>Dispatch sees which loads carry a delivery window a customer can hold the plant to</li><li>Delivery notes and conformity records are attached to the consignment as it ships, not assembled for the project file later</li><li>Retention and certified progress sit with the account, so exposure on a project is read as it builds</li><li>Technical queries from site reach process and quality staff with the consignment history attached</li><li>Every commitment carries its owner, its approval chain and the reason it was made</li></ul></div>
+   </div>
   </div>
 </section>
 <section class="cta-band">

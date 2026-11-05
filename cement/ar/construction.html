@@ -672,7 +672,13 @@
       rgba(255,243,216,0) 80%);}
   .cmhero.sh-platform{--cmshot:url('/plat-hero.jpg');}
   .cmhero.sh-capabilities{--cmshot:url('/cap-hero.jpg');}
-  .cmhero.sh-industries{--cmshot:url('/ecosystem.jpg');}
+  /* the Industries hub carries no photograph, the same as the main site's own
+     industries page. It keeps the plain cement gradient instead, mirrored for
+     right to left so the light still falls from the reading side. */
+  .cmhero.sh-plain{background-image:none;
+    background:linear-gradient(200deg,#FFF5DD 0%,#FFF3CD 30%,#FCE2BC 60%,#FEF9C3 100%);}
+  html[dir="rtl"] .cmhero.sh-plain{
+    background:linear-gradient(160deg,#FFF5DD 0%,#FFF3CD 30%,#FCE2BC 60%,#FEF9C3 100%);}
   .cmhero.sh-construction{--cmshot:url('/cons-hero.jpg');}
   .cmhero.sh-concrete{--cmshot:url('/bm-concrete.jpg');}
   .cmhero.sh-distribution{--cmshot:url('/bm-distribution.jpg');}
@@ -860,6 +866,17 @@
   .cmwf .w dd{font-size:13.5px;color:var(--text-muted);line-height:1.55;}
   html[dir="rtl"] .cmwf .w dt{letter-spacing:0;}
 
+  /* ---- photo band, the main site's .imgsec laid over a whole section ---- */
+  /* theme.CSS gives .imgsec its wash and its 58% copy column but names each
+     photograph in a class whose url is relative, so from /cement/ it resolves to
+     a file that is not there. The section carries its own rooted url in --cmband
+     instead, which needs no class per picture and works from /cement/ar/ too. */
+  .imgsec::before{background-image:var(--cmband);}
+  /* the copy column is a little over half the width, so the grids inside a band
+     drop a column earlier than they do in a full width section */
+  .imgsec .cmsx,.imgsec .cmrows.two,.imgsec .cmcg{grid-template-columns:1fr;}
+  @media(min-width:1180px){.imgsec .cmrows.two{grid-template-columns:repeat(2,1fr);}}
+
   @media(max-width:1000px){
     .cmhero,html[dir="rtl"] .cmhero{background-position:center,center;
       --cmwash:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,
@@ -902,6 +919,23 @@
   html[dir="rtl"] .cmses-d .mm,html[dir="rtl"] .cmtier-n{letter-spacing:0;}
   html[dir="rtl"] body{font-family:'Segoe UI','Noto Sans Arabic','Geeza Pro',Tahoma,
     system-ui,-apple-system,sans-serif;}
+  /* .imgsec is authored left to right: the photograph keeps one half of the
+     frame and the wash covers the other, where the copy sits. Mirror the pair,
+     or the Arabic copy lands on the photograph. The narrow screen wash has to be
+     restated because these selectors outrank the theme's own media query. */
+  html[dir="rtl"] .imgsec-r::before{background-position:left center;}
+  html[dir="rtl"] .imgsec-l::before{background-position:right center;}
+  html[dir="rtl"] .imgsec-r::after{background:linear-gradient(260deg,#FFF6E2 0%,#FFF6E2 44%,rgba(255,246,226,.97) 53%,rgba(255,246,226,.86) 62%,
+    rgba(255,245,222,.58) 72%,rgba(255,244,218,.26) 85%,rgba(255,243,216,.05) 100%);}
+  html[dir="rtl"] .imgsec-l::after{background:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 44%,rgba(255,246,226,.97) 53%,rgba(255,246,226,.86) 62%,
+    rgba(255,245,222,.58) 72%,rgba(255,244,218,.26) 85%,rgba(255,243,216,.05) 100%);}
+  html[dir="rtl"] .imgsec-l .sec-split{margin-left:0;margin-right:auto;}
+  @media(max-width:1000px){
+    html[dir="rtl"] .imgsec-r::after,html[dir="rtl"] .imgsec-l::after{
+      background:linear-gradient(175deg,rgba(255,246,226,.96) 0%,rgba(255,246,226,.90) 55%,
+        rgba(255,244,220,.60) 100%);}
+    html[dir="rtl"] .imgsec-l .sec-split{margin-right:0;}
+  }
   html[dir="rtl"] .cmhero h1{max-width:24ch;line-height:1.3;}
   html[dir="rtl"] .hero h1{line-height:1.3;}
   html[dir="rtl"] .section-heading{line-height:1.35;}
@@ -955,12 +989,14 @@
   </div>
 </section>
 <div class="sun-divider"></div>
-<section>
+<section class="imgsec imgsec-l area-sec" style="--cmband:url('/cons-owners.jpg');">
   <div class="container">
+   <div class="sec-split">
     <div class="section-tag">من هم</div>
     <h2 class="section-heading">الجهات التي تقف وراء طلب المشروع</h2>
     <p class="lede">كثير من الأسمنت الذي يخرج من المصنع يستهلكه مشروع له تاريخ بدء، وهيكل تعاقدي، ومهندس يحدد الرتبة. ويصل معظم أطنان المشروعات إلى الموقع عبر منتِج للخرسانة الجاهزة أو الخرسانة مسبقة الصب، والتوريد المباشر للمقاول أمر معتاد في الأعمال التي تُخلط في الموقع وفي الاستهلاك المعبَّأ في أكياس. وقرار الشراء يقع في عدة جهات في الوقت نفسه، وكل واحدة منها قادرة على تغيير ما يُطلب من المصنع إنتاجه. أما منتجو الخرسانة الجاهزة والخرسانة مسبقة الصب الذين يخدمون هذه المشروعات فتتناولهم صفحة الخرسانة والخرسانة مسبقة الصب.</p>
     <div class="cmrows two"><div class="r"><b>أصحاب المشروعات والجهات العامة</b>المطورون وهيئات البنية التحتية والعملاء من الشركات الذين يمولون العمل ويحددون غالبًا الموردين المعتمدين</div><div class="r"><b>المقاولون العامون</b>المقاولون وتحالفات التصميم والتنفيذ. تحمل هذه الجهات مخاطر التسليم، وتشتري الخرسانة من مورد للخرسانة الجاهزة، أو تشتري الأسمنت مباشرةً لمحطات الخلط الخاصة بها في المشروعات الأكبر</div><div class="r"><b>مقاولو الأعمال التخصصية</b>حزم الأعمال المدنية والإنشائية وأعمال التشطيب التي تسحب الأسمنت، ولكل حزمة تتابعها الخاص لعمليات الصب</div><div class="r"><b>الخدمات اللوجستية والاستلام في الموقع</b>فرق الموقع ومقاولو الخدمات اللوجستية الذين يتحكمون في البوابة والصومعة والنافذة التي يمكن استلام الحمولة فيها</div><div class="r"><b>المصممون والمهندسون</b>المعماريون ومهندسو الإنشاءات والاستشاريون الذين يحددون رتبة المقاومة والمتانة ومتطلبات الاختبار</div><div class="r"><b>فرق المشتريات والتكاليف</b>مساحو الكميات ومديرو التكاليف ومسؤولو المشتريات الذين يقارنون العروض والشروط والائتمان قبل أن يُقدَّم الطلب</div></div>
+   </div>
   </div>
 </section>
 <section class="band-alt">
@@ -979,12 +1015,14 @@
     <ul class="tick"><li>يتأخر مشروع فتنتقل الأطنان الملتزم بها بمقدار شهر كامل، دون أن تصل أي مراجعة إلى الطحن أو التعبئة</li><li>يرتب الشحن الحمولات بحسب توافر الشاحنات لا بحسب نوافذ التسليم التي التزمت بها المبيعات</li><li>يظهر تغيّر الكلنكر أو الطاحونة في الجير الحر والنعومة والمقاومة المبكرة للمونة قبل أيام من وصول أي شيء إلى الحسابات التي تُحمَّل عليها أطنان مشروع بالفعل</li><li>تُجمع أذون التسليم وسجلات المطابقة الخاصة بشحنة بعد أسابيع لملف المشروع</li><li>تُتابع المحتجزات والمستخلصات المعتمدة خارج الحساب، فيُقرأ التعرّض الائتماني في مشروع متأخرًا</li><li>يحمل فريق الحساب والمصنع نسختين مختلفتين مما وُعد به، وليست أيٌّ منهما هي السجل</li></ul>
   </div>
 </section>
-<section class="band-warm">
+<section class="imgsec imgsec-r area-sec" style="--cmband:url('/plat-deploy.jpg');">
   <div class="container">
+   <div class="sec-split">
     <div class="section-tag">ما تفعله TwoSuns</div>
     <h2 class="section-heading">برنامج المشروع وحالة المصنع على خطة واحدة</h2>
     <p class="lede">عندما يتغير موعد في البرنامج الزمني، تتحرك معه الأطنان الملتزم بها ونوافذ التسليم والتعرّض الائتماني في الحساب، داخل سياق مؤسسي واحد خاضع للضوابط. وتصل المراجعة إلى الطحن والتعبئة والشحن وفريق الحساب في اليوم نفسه، وتحتفظ كل وظيفة بسلطتها.</p>
     <div class="cmrows two"><div class="r"><b>Horizon</b>خط المشروعات، والعقود والعروض، وإدارة الطلبات والفوترة، ويُقرأ التعرّض الائتماني والتحصيل لكل حساب</div><div class="r"><b>Pulse</b>الطحن والمنتج، والتعبئة والشحن، مع المرافق المشتركة لجودة المنتج والخدمات اللوجستية، ويُخطط لهذه الوحدات جميعًا على أساس الأطنان الملتزم بها ونوافذ التسليم</div><div class="r"><b>Core</b>أساس المصنع، وحدود التشغيل، والأدوار، وسلاسل الموافقات، وسجل القرارات، مع رتب الأسمنت وسجلات العقود التي يستند إليها هذا العمل</div><div class="r"><b>Ray</b>شرح وتركيب ودعم لمسارات العمل، لمسؤولي الحسابات والشحن والجودة، داخل صلاحيات كل مستخدم</div></div><div class="split2-panel" style="margin-top:22px;max-width:760px;"><h3>ما يتغير عمليًا</h3><ul class="tick"><li>تغيير موعد مشروع يحرك الأطنان الملتزم بها في الخطة قبل جدولة الأسبوع</li><li>يرى الشحن أيّ الحمولات تحمل نافذة تسليم يستطيع العميل أن يُلزم المصنع بها</li><li>تُرفق أذون التسليم وسجلات المطابقة بالشحنة عند إرسالها، ولا تُجمع لملف المشروع لاحقًا</li><li>تبقى المحتجزات والمستخلصات المعتمدة مع الحساب، فيُقرأ التعرّض الائتماني في مشروع وهو يتراكم</li><li>تصل الاستفسارات الفنية من الموقع إلى مسؤولي العمليات والجودة ومعها سجل الشحنة</li><li>كل التزام يحمل مسؤوله وسلسلة موافقاته وسببه</li></ul></div>
+   </div>
   </div>
 </section>
 <section class="cta-band">

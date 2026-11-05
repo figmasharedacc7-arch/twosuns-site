@@ -672,7 +672,13 @@
       rgba(255,243,216,0) 80%);}
   .cmhero.sh-platform{--cmshot:url('/plat-hero.jpg');}
   .cmhero.sh-capabilities{--cmshot:url('/cap-hero.jpg');}
-  .cmhero.sh-industries{--cmshot:url('/ecosystem.jpg');}
+  /* the Industries hub carries no photograph, the same as the main site's own
+     industries page. It keeps the plain cement gradient instead, mirrored for
+     right to left so the light still falls from the reading side. */
+  .cmhero.sh-plain{background-image:none;
+    background:linear-gradient(200deg,#FFF5DD 0%,#FFF3CD 30%,#FCE2BC 60%,#FEF9C3 100%);}
+  html[dir="rtl"] .cmhero.sh-plain{
+    background:linear-gradient(160deg,#FFF5DD 0%,#FFF3CD 30%,#FCE2BC 60%,#FEF9C3 100%);}
   .cmhero.sh-construction{--cmshot:url('/cons-hero.jpg');}
   .cmhero.sh-concrete{--cmshot:url('/bm-concrete.jpg');}
   .cmhero.sh-distribution{--cmshot:url('/bm-distribution.jpg');}
@@ -860,6 +866,17 @@
   .cmwf .w dd{font-size:13.5px;color:var(--text-muted);line-height:1.55;}
   html[dir="rtl"] .cmwf .w dt{letter-spacing:0;}
 
+  /* ---- photo band, the main site's .imgsec laid over a whole section ---- */
+  /* theme.CSS gives .imgsec its wash and its 58% copy column but names each
+     photograph in a class whose url is relative, so from /cement/ it resolves to
+     a file that is not there. The section carries its own rooted url in --cmband
+     instead, which needs no class per picture and works from /cement/ar/ too. */
+  .imgsec::before{background-image:var(--cmband);}
+  /* the copy column is a little over half the width, so the grids inside a band
+     drop a column earlier than they do in a full width section */
+  .imgsec .cmsx,.imgsec .cmrows.two,.imgsec .cmcg{grid-template-columns:1fr;}
+  @media(min-width:1180px){.imgsec .cmrows.two{grid-template-columns:repeat(2,1fr);}}
+
   @media(max-width:1000px){
     .cmhero,html[dir="rtl"] .cmhero{background-position:center,center;
       --cmwash:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,
@@ -902,6 +919,23 @@
   html[dir="rtl"] .cmses-d .mm,html[dir="rtl"] .cmtier-n{letter-spacing:0;}
   html[dir="rtl"] body{font-family:'Segoe UI','Noto Sans Arabic','Geeza Pro',Tahoma,
     system-ui,-apple-system,sans-serif;}
+  /* .imgsec is authored left to right: the photograph keeps one half of the
+     frame and the wash covers the other, where the copy sits. Mirror the pair,
+     or the Arabic copy lands on the photograph. The narrow screen wash has to be
+     restated because these selectors outrank the theme's own media query. */
+  html[dir="rtl"] .imgsec-r::before{background-position:left center;}
+  html[dir="rtl"] .imgsec-l::before{background-position:right center;}
+  html[dir="rtl"] .imgsec-r::after{background:linear-gradient(260deg,#FFF6E2 0%,#FFF6E2 44%,rgba(255,246,226,.97) 53%,rgba(255,246,226,.86) 62%,
+    rgba(255,245,222,.58) 72%,rgba(255,244,218,.26) 85%,rgba(255,243,216,.05) 100%);}
+  html[dir="rtl"] .imgsec-l::after{background:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 44%,rgba(255,246,226,.97) 53%,rgba(255,246,226,.86) 62%,
+    rgba(255,245,222,.58) 72%,rgba(255,244,218,.26) 85%,rgba(255,243,216,.05) 100%);}
+  html[dir="rtl"] .imgsec-l .sec-split{margin-left:0;margin-right:auto;}
+  @media(max-width:1000px){
+    html[dir="rtl"] .imgsec-r::after,html[dir="rtl"] .imgsec-l::after{
+      background:linear-gradient(175deg,rgba(255,246,226,.96) 0%,rgba(255,246,226,.90) 55%,
+        rgba(255,244,220,.60) 100%);}
+    html[dir="rtl"] .imgsec-l .sec-split{margin-right:0;}
+  }
   html[dir="rtl"] .cmhero h1{max-width:24ch;line-height:1.3;}
   html[dir="rtl"] .hero h1{line-height:1.3;}
   html[dir="rtl"] .section-heading{line-height:1.35;}
@@ -955,12 +989,14 @@
   </div>
 </section>
 <div class="sun-divider"></div>
-<section>
+<section class="imgsec imgsec-l area-sec" style="--cmband:url('/area-materials.jpg');">
   <div class="container">
+   <div class="sec-split">
     <div class="section-tag">Who they are</div>
     <h2 class="section-heading">The concrete customers that buy from one cement plant</h2>
     <p class="lede">A tonne of cement leaves the bulk loading bay or the packing plant and enters a process the producer does not run. Each of these customers mixes, cures and tests it differently, and each judges the cement on a different result.</p>
     <div class="cmrows two"><div class="r"><b>Ready-mix operators</b>Regional batching plants running dozens of approved mix designs against site schedules, where workability and setting are judged at the pour and strength days later.</div><div class="r"><b>Precast element plants</b>Beams, slabs, pipes and segments cast to a cycle, where demoulding time depends on early strength and on heat development in the element.</div><div class="r"><b>Concrete products plants</b>Block, paving, kerb and pipe lines running dry cast mixes, where demould strength, surface finish and colour are the acceptance criteria.</div><div class="r"><b>Masonry and dry mix blenders</b>Mortar, render, tile adhesive and grout producers blending cement with sand, lime, fillers and additives to a published specification.</div></div>
+   </div>
   </div>
 </section>
 <section class="band-alt">
@@ -987,12 +1023,14 @@
     <div class="cmrows two"><div class="r"><b>Horizon</b>Contracts and Offers, Order Management and Invoicing, Omni Signals and Finance carry the volume and price commitment, the delivery programme, the claim and the collection on each concrete account.</div><div class="r"><b>Pulse</b>Grinding and Product and Packing and Dispatch, with the shared Product Quality, Inventory and Logistics facilities, carry the mill run, the silo, the loading slot and the laboratory record behind every tonne the customer receives.</div><div class="r"><b>Core</b>Plant basis, operating limits, roles, approval chains and decision history, with the cement types and classes, silo configuration and quality bands this work depends on.</div><div class="r"><b>Ray</b>Explanation and synthesis against the loads, results and terms a user is permitted to see, with the evidence it worked from.</div></div><div class="cmrows two"><div class="r"><b>Mix-relevant quality, per load.</b>Each dispatched load carries its mill run, silo, fineness, SO3, declared constituents and the strength results known so far, so a customer question has one answer.</div><div class="r"><b>Bands the plant owns.</b>Fineness, SO3, clinker factor and strength targets are set per cement class within the bands the plant's engineers define and own, and a load outside band is flagged before it is committed to a specification-sensitive account.</div><div class="r"><b>Silo and stock visibility.</b>Silo levels by cement class are read against the order book and the delivery programme, so a stockout is visible while there is still time to grind or to reschedule.</div><div class="r"><b>Loading and turnaround.</b>Weighbridge and loading times are read per customer and per haulier, so queues appear as a service problem on named accounts rather than as a daily average.</div><div class="r"><b>Claims with evidence.</b>A quality claim opens against the specific loads in question, gathers their records in one place, and records the finding, its owner and the commercial outcome.</div><div class="r"><b>Account economics.</b>Volume, mix, price, freight, claims and days outstanding are read together per concrete account, against the cost of the cement actually shipped to it.</div></div>
   </div>
 </section>
-<section>
+<section class="imgsec imgsec-r area-sec" style="--cmband:url('/bm-process.jpg');">
   <div class="container">
+   <div class="sec-split">
     <div class="section-tag">Quality continuity</div>
     <h2 class="section-heading">From the cement mill to the customer cube test</h2>
     <p class="section-sub">A concrete relationship depends on quality data staying connected. The records along this path have to hold together for a producer to answer a technical question from the record rather than reconstruct it from several systems.</p>
     <div class="steps"><div class="step"><b>Mill.</b> The run is recorded with its clinker, additions, gypsum, fineness and the operating setpoints in force.</div><div class="step"><b>Silo.</b> Cement is fed to a silo, and the running composition of that silo is held with the mill runs that fed it and the periods they cover, because a silo is drawn down and topped up at the same time.</div><div class="step"><b>Loading.</b> A load takes the identity of the silo it is drawn from, with the time, tanker, haulier and destination.</div><div class="step"><b>Delivery.</b> The load is recorded against the customer silo named on the delivery, so a question about a given pour can be traced back to the loads that fed that silo.</div><div class="step"><b>Result.</b> Laboratory results, including later-age strength, attach back to the run and to the loads that carried it, and so does the customer result when it is shared.</div></div><div class="split2-panel" style="margin-top:22px;max-width:760px;"><h3>What travels with a load</h3><ul class="tick"><li>Cement type and class</li><li>Mill run and silo</li><li>Fineness and residue</li><li>SO3 and declared constituents</li><li>Early and 28 day strength, as each becomes known</li><li>Loading time, tanker and haulier</li><li>Destination plant and silo</li></ul></div><p class="cmnote">Figures are tagged as measured, derived or assumed, and a result still outstanding is shown as outstanding rather than filled in.</p>
+   </div>
   </div>
 </section>
 <section class="cta-band">

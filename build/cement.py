@@ -92,7 +92,13 @@ CEM_CSS = r"""
       rgba(255,243,216,0) 80%);}
   .cmhero.sh-platform{--cmshot:url('/plat-hero.jpg');}
   .cmhero.sh-capabilities{--cmshot:url('/cap-hero.jpg');}
-  .cmhero.sh-industries{--cmshot:url('/ecosystem.jpg');}
+  /* the Industries hub carries no photograph, the same as the main site's own
+     industries page. It keeps the plain cement gradient instead, mirrored for
+     right to left so the light still falls from the reading side. */
+  .cmhero.sh-plain{background-image:none;
+    background:linear-gradient(200deg,#FFF5DD 0%,#FFF3CD 30%,#FCE2BC 60%,#FEF9C3 100%);}
+  html[dir="rtl"] .cmhero.sh-plain{
+    background:linear-gradient(160deg,#FFF5DD 0%,#FFF3CD 30%,#FCE2BC 60%,#FEF9C3 100%);}
   .cmhero.sh-construction{--cmshot:url('/cons-hero.jpg');}
   .cmhero.sh-concrete{--cmshot:url('/bm-concrete.jpg');}
   .cmhero.sh-distribution{--cmshot:url('/bm-distribution.jpg');}
@@ -280,6 +286,17 @@ CEM_CSS = r"""
   .cmwf .w dd{font-size:13.5px;color:var(--text-muted);line-height:1.55;}
   html[dir="rtl"] .cmwf .w dt{letter-spacing:0;}
 
+  /* ---- photo band, the main site's .imgsec laid over a whole section ---- */
+  /* theme.CSS gives .imgsec its wash and its 58% copy column but names each
+     photograph in a class whose url is relative, so from /cement/ it resolves to
+     a file that is not there. The section carries its own rooted url in --cmband
+     instead, which needs no class per picture and works from /cement/ar/ too. */
+  .imgsec::before{background-image:var(--cmband);}
+  /* the copy column is a little over half the width, so the grids inside a band
+     drop a column earlier than they do in a full width section */
+  .imgsec .cmsx,.imgsec .cmrows.two,.imgsec .cmcg{grid-template-columns:1fr;}
+  @media(min-width:1180px){.imgsec .cmrows.two{grid-template-columns:repeat(2,1fr);}}
+
   @media(max-width:1000px){
     .cmhero,html[dir="rtl"] .cmhero{background-position:center,center;
       --cmwash:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,
@@ -325,6 +342,23 @@ RTL_CSS = r"""
   html[dir="rtl"] .cmses-d .mm,html[dir="rtl"] .cmtier-n{letter-spacing:0;}
   html[dir="rtl"] body{font-family:'Segoe UI','Noto Sans Arabic','Geeza Pro',Tahoma,
     system-ui,-apple-system,sans-serif;}
+  /* .imgsec is authored left to right: the photograph keeps one half of the
+     frame and the wash covers the other, where the copy sits. Mirror the pair,
+     or the Arabic copy lands on the photograph. The narrow screen wash has to be
+     restated because these selectors outrank the theme's own media query. */
+  html[dir="rtl"] .imgsec-r::before{background-position:left center;}
+  html[dir="rtl"] .imgsec-l::before{background-position:right center;}
+  html[dir="rtl"] .imgsec-r::after{background:linear-gradient(260deg,#FFF6E2 0%,#FFF6E2 44%,rgba(255,246,226,.97) 53%,rgba(255,246,226,.86) 62%,
+    rgba(255,245,222,.58) 72%,rgba(255,244,218,.26) 85%,rgba(255,243,216,.05) 100%);}
+  html[dir="rtl"] .imgsec-l::after{background:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 44%,rgba(255,246,226,.97) 53%,rgba(255,246,226,.86) 62%,
+    rgba(255,245,222,.58) 72%,rgba(255,244,218,.26) 85%,rgba(255,243,216,.05) 100%);}
+  html[dir="rtl"] .imgsec-l .sec-split{margin-left:0;margin-right:auto;}
+  @media(max-width:1000px){
+    html[dir="rtl"] .imgsec-r::after,html[dir="rtl"] .imgsec-l::after{
+      background:linear-gradient(175deg,rgba(255,246,226,.96) 0%,rgba(255,246,226,.90) 55%,
+        rgba(255,244,220,.60) 100%);}
+    html[dir="rtl"] .imgsec-l .sec-split{margin-right:0;}
+  }
   html[dir="rtl"] .cmhero h1{max-width:24ch;line-height:1.3;}
   html[dir="rtl"] .hero h1{line-height:1.3;}
   html[dir="rtl"] .section-heading{line-height:1.35;}
@@ -800,9 +834,15 @@ def build_events(d):
 
 # ================================================================ CHECKS
 # ========================================================== SHARED PAGE PIECES
-def sec(body, band="", tag="", h="", p="", lede=False):
+def sec(body, band="", tag="", h="", p="", lede=False, shot="", side="r"):
     """One section. band is "", "band-alt" or "band-warm"; p renders as the section
-    sub, or as a lede paragraph when the copy is long enough to want the wider type."""
+    sub, or as a lede paragraph when the copy is long enough to want the wider type.
+
+    shot lays the section over a photograph the way the main site's industry pages
+    do, and takes the image's path from the site root. side is the half of the
+    frame the photograph keeps, "r" or "l"; the wash covers the other half and the
+    copy sits there, so consecutive bands on a page alternate. A photograph
+    replaces the band colour, so the two are never combined."""
     top = ""
     if tag:
         top += '    <div class="section-tag">%s</div>\n' % e(tag)
@@ -810,6 +850,11 @@ def sec(body, band="", tag="", h="", p="", lede=False):
         top += '    <h2 class="section-heading">%s</h2>\n' % e(h)
     if p:
         top += '    <p class="%s">%s</p>\n' % ("lede" if lede else "section-sub", e(p))
+    if shot:
+        assert side in ("r", "l"), side
+        return ('<section class="imgsec imgsec-%s area-sec" style="--cmband:url(\'%s\');">\n'
+                '  <div class="container">\n   <div class="sec-split">\n%s    %s\n'
+                '   </div>\n  </div>\n</section>\n') % (side, shot, top, body)
     return '<section%s>\n  <div class="container">\n%s    %s\n  </div>\n</section>\n' % (
         ' class="%s"' % band if band else "", top, body)
 
@@ -849,12 +894,39 @@ def build_capabilities(d):
 # English one entry for entry.
 SECTORS = ["construction.html", "concrete.html", "distribution.html"]
 
+# The photograph each Industries section is laid over, and the half of the frame
+# it keeps. The bands on a page alternate sides, the way the main site's industry
+# pages do. Paths are rooted because the microsite sits one level down and the
+# Arabic two, and band() checks each file is really there, because a wrong name
+# costs nothing at build time and shows as an empty wash on the live page.
+# Do not reach for mfg-supply.jpg: the photograph is flipped, so its aisle
+# numerals read backwards. The main site uses it on manufacturing.html.
+BANDS = {
+    "ind_sectors": ("/bm-operations.jpg",    "l"),
+    "ind_areas":   ("/bm-extraction.jpg",    "r"),
+    "con_who":     ("/cons-owners.jpg",      "l"),
+    "con_ts":      ("/plat-deploy.jpg",      "r"),
+    "cnc_who":     ("/area-materials.jpg",   "l"),
+    "cnc_qual":    ("/bm-process.jpg",       "r"),
+    "dst_who":     ("/area-distribution.jpg", "r"),
+    "dst_vis":     ("/cons-logistics.jpg",   "l"),
+}
+
+
+def band(key):
+    """The shot and side keyword arguments sec() takes, from the BANDS table."""
+    shot, side = BANDS[key]
+    path = os.path.join(OUT, "..", shot.lstrip("/"))
+    if not os.path.exists(path):
+        raise SystemExit("BANDS[%r] names %s, which is not in the repository" % (key, shot))
+    return {"shot": shot, "side": side}
+
 
 def build_industries(d):
     s = head(d, d["ind_title"], d["ind_desc"], "industries.html") + nav(d, "industries.html")
     s += hero(d, d["ind_eyebrow"], d["ind_h1"], d["ind_sub"],
               btn(d["ind_cta1"]) + " " + btn(d["ind_cta2"], "platform.html", ghost=True),
-              shot="industries")
+              shot="plain")
 
     cells = []
     for (name, desc, bullets), href in zip(d["ind_sectors"], SECTORS):
@@ -863,12 +935,14 @@ def build_industries(d):
                      % (e(name), e(desc), "".join("<li>%s</li>" % e(b) for b in bullets),
                         href, e(d["ind_sec_link"])))
     s += sec('<div class="cmsx">%s</div>' % "".join(cells),
-             "", d["ind_sec_tag"], d["ind_sec_h"], d["ind_sec_p"])
+             "", d["ind_sec_tag"], d["ind_sec_h"], d["ind_sec_p"],
+             **band("ind_sectors"))
 
     s += sec(rows(d["ind_behind_items"], two=True)
              + '<div style="margin-top:26px;">%s</div>'
                % btn(d["ind_behind_cta"], "capabilities.html", ghost=True),
-             "band-alt", d["ind_behind_tag"], d["ind_behind_h"], d["ind_behind_p"])
+             "", d["ind_behind_tag"], d["ind_behind_h"], d["ind_behind_p"],
+             **band("ind_areas"))
 
     s += cta_band(d["ind_close_h"], d["ind_close_p"],
                   btn(d["ind_cta1"]) + " " + btn(d["ind_cta2"], "platform.html", ghost=True))
@@ -882,12 +956,13 @@ def build_construction(d):
               btn(d["con_cta1"]) + " " + btn(d["con_cta2"], "industries.html", ghost=True),
               shot="construction")
     s += sec(rows(d["con_who_rows"], two=True), "", d["con_who_tag"], d["con_who_h"],
-             d["con_who_p"], lede=True)
+             d["con_who_p"], lede=True, **band("con_who"))
     s += sec(rows(d["con_dem_rows"], two=True), "band-alt", d["con_dem_tag"], d["con_dem_h"],
              d["con_dem_p"])
     s += sec(ticks(d["con_gap_items"]), "", d["con_gap_tag"], d["con_gap_h"], d["con_gap_p"])
     s += sec(rows(d["con_ts_rows"], two=True) + panel(d["con_prac_h"], d["con_prac"]),
-             "band-warm", d["con_ts_tag"], d["con_ts_h"], d["con_ts_p"], lede=True)
+             "", d["con_ts_tag"], d["con_ts_h"], d["con_ts_p"], lede=True,
+             **band("con_ts"))
     s += cta_band(d["con_close_h"], d["con_close_p"],
                   btn(d["con_cta1"]) + " " + btn(d["con_cta2"], "industries.html", ghost=True))
     return s + footer(d) + TAIL_JS
@@ -900,7 +975,7 @@ def build_concrete(d):
               btn(d["cnc_cta1"]) + " " + btn(d["cnc_cta2"], "industries.html", ghost=True),
               shot="concrete")
     s += sec(rows(d["cnc_who_rows"], two=True), "", d["cnc_who_tag"], d["cnc_who_h"],
-             d["cnc_who_p"], lede=True)
+             d["cnc_who_p"], lede=True, **band("cnc_who"))
     s += sec(rows(d["cnc_dem_rows"], two=True), "band-alt", d["cnc_dem_tag"], d["cnc_dem_h"],
              d["cnc_dem_p"])
     s += sec(panel(d["cnc_gap_panel_h"], d["cnc_gap_items"])
@@ -911,7 +986,8 @@ def build_concrete(d):
              "band-warm", d["cnc_tws_tag"], d["cnc_tws_h"], d["cnc_tws_p"], lede=True)
     s += sec(steps(d["cnc_qual_steps"]) + panel(d["cnc_qual_carry_h"], d["cnc_qual_carry"])
              + '<p class="cmnote">%s</p>' % e(d["cnc_qual_note"]),
-             "", d["cnc_qual_tag"], d["cnc_qual_h"], d["cnc_qual_p"])
+             "", d["cnc_qual_tag"], d["cnc_qual_h"], d["cnc_qual_p"],
+             **band("cnc_qual"))
     s += cta_band(d["cnc_close_h"], d["cnc_close_p"],
                   btn(d["cnc_cta1"]) + " " + btn(d["cnc_cta2"], "industries.html", ghost=True))
     return s + footer(d) + TAIL_JS
@@ -924,7 +1000,7 @@ def build_distribution(d):
               btn(d["dst_cta1"]) + " " + btn(d["dst_cta2"], "industries.html", ghost=True),
               shot="distribution")
     s += sec(rows(d["dst_who_rows"], two=True), "", d["dst_who_tag"], d["dst_who_h"],
-             d["dst_who_p"], lede=True)
+             d["dst_who_p"], lede=True, **band("dst_who"))
     s += sec('<p class="lede">%s</p>' % e(d["dst_req_p2"])
              + panel(d["dst_req_panel_h"], d["dst_req_items"]),
              "band-alt", d["dst_req_tag"], d["dst_req_h"], d["dst_req_p1"], lede=True)
@@ -939,7 +1015,8 @@ def build_distribution(d):
              "band-warm", d["dst_plat_tag"], d["dst_plat_h"], d["dst_plat_p"], lede=True)
     s += sec('<p class="lede">%s</p>' % e(d["dst_vis_p2"])
              + panel(d["dst_vis_panel_h"], d["dst_vis_items"]),
-             "", d["dst_vis_tag"], d["dst_vis_h"], d["dst_vis_p1"], lede=True)
+             "", d["dst_vis_tag"], d["dst_vis_h"], d["dst_vis_p1"], lede=True,
+             **band("dst_vis"))
     s += sec('<p class="lede">%s</p>' % e(d["dst_cred_p2"])
              + rows(d["dst_cred_rows"], two=True),
              "band-alt", d["dst_cred_tag"], d["dst_cred_h"], d["dst_cred_p1"], lede=True)

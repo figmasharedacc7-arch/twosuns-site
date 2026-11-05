@@ -672,7 +672,13 @@
       rgba(255,243,216,0) 80%);}
   .cmhero.sh-platform{--cmshot:url('/plat-hero.jpg');}
   .cmhero.sh-capabilities{--cmshot:url('/cap-hero.jpg');}
-  .cmhero.sh-industries{--cmshot:url('/ecosystem.jpg');}
+  /* the Industries hub carries no photograph, the same as the main site's own
+     industries page. It keeps the plain cement gradient instead, mirrored for
+     right to left so the light still falls from the reading side. */
+  .cmhero.sh-plain{background-image:none;
+    background:linear-gradient(200deg,#FFF5DD 0%,#FFF3CD 30%,#FCE2BC 60%,#FEF9C3 100%);}
+  html[dir="rtl"] .cmhero.sh-plain{
+    background:linear-gradient(160deg,#FFF5DD 0%,#FFF3CD 30%,#FCE2BC 60%,#FEF9C3 100%);}
   .cmhero.sh-construction{--cmshot:url('/cons-hero.jpg');}
   .cmhero.sh-concrete{--cmshot:url('/bm-concrete.jpg');}
   .cmhero.sh-distribution{--cmshot:url('/bm-distribution.jpg');}
@@ -860,6 +866,17 @@
   .cmwf .w dd{font-size:13.5px;color:var(--text-muted);line-height:1.55;}
   html[dir="rtl"] .cmwf .w dt{letter-spacing:0;}
 
+  /* ---- photo band, the main site's .imgsec laid over a whole section ---- */
+  /* theme.CSS gives .imgsec its wash and its 58% copy column but names each
+     photograph in a class whose url is relative, so from /cement/ it resolves to
+     a file that is not there. The section carries its own rooted url in --cmband
+     instead, which needs no class per picture and works from /cement/ar/ too. */
+  .imgsec::before{background-image:var(--cmband);}
+  /* the copy column is a little over half the width, so the grids inside a band
+     drop a column earlier than they do in a full width section */
+  .imgsec .cmsx,.imgsec .cmrows.two,.imgsec .cmcg{grid-template-columns:1fr;}
+  @media(min-width:1180px){.imgsec .cmrows.two{grid-template-columns:repeat(2,1fr);}}
+
   @media(max-width:1000px){
     .cmhero,html[dir="rtl"] .cmhero{background-position:center,center;
       --cmwash:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,
@@ -902,6 +919,23 @@
   html[dir="rtl"] .cmses-d .mm,html[dir="rtl"] .cmtier-n{letter-spacing:0;}
   html[dir="rtl"] body{font-family:'Segoe UI','Noto Sans Arabic','Geeza Pro',Tahoma,
     system-ui,-apple-system,sans-serif;}
+  /* .imgsec is authored left to right: the photograph keeps one half of the
+     frame and the wash covers the other, where the copy sits. Mirror the pair,
+     or the Arabic copy lands on the photograph. The narrow screen wash has to be
+     restated because these selectors outrank the theme's own media query. */
+  html[dir="rtl"] .imgsec-r::before{background-position:left center;}
+  html[dir="rtl"] .imgsec-l::before{background-position:right center;}
+  html[dir="rtl"] .imgsec-r::after{background:linear-gradient(260deg,#FFF6E2 0%,#FFF6E2 44%,rgba(255,246,226,.97) 53%,rgba(255,246,226,.86) 62%,
+    rgba(255,245,222,.58) 72%,rgba(255,244,218,.26) 85%,rgba(255,243,216,.05) 100%);}
+  html[dir="rtl"] .imgsec-l::after{background:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 44%,rgba(255,246,226,.97) 53%,rgba(255,246,226,.86) 62%,
+    rgba(255,245,222,.58) 72%,rgba(255,244,218,.26) 85%,rgba(255,243,216,.05) 100%);}
+  html[dir="rtl"] .imgsec-l .sec-split{margin-left:0;margin-right:auto;}
+  @media(max-width:1000px){
+    html[dir="rtl"] .imgsec-r::after,html[dir="rtl"] .imgsec-l::after{
+      background:linear-gradient(175deg,rgba(255,246,226,.96) 0%,rgba(255,246,226,.90) 55%,
+        rgba(255,244,220,.60) 100%);}
+    html[dir="rtl"] .imgsec-l .sec-split{margin-right:0;}
+  }
   html[dir="rtl"] .cmhero h1{max-width:24ch;line-height:1.3;}
   html[dir="rtl"] .hero h1{line-height:1.3;}
   html[dir="rtl"] .section-heading{line-height:1.35;}
@@ -955,12 +989,14 @@
   </div>
 </section>
 <div class="sun-divider"></div>
-<section>
+<section class="imgsec imgsec-l area-sec" style="--cmband:url('/area-materials.jpg');">
   <div class="container">
+   <div class="sec-split">
     <div class="section-tag">من هم</div>
     <h2 class="section-heading">عملاء الخرسانة الذين يشترون من مصنع أسمنت واحد</h2>
     <p class="lede">يخرج طن الأسمنت من رصيف تحميل السائب أو من محطة التعبئة ليدخل عملية لا يشغّلها المنتِج. وكل واحد من هؤلاء العملاء يخلطه ويعالجه ويختبره على نحو مختلف، وكل واحد يحكم على الأسمنت بنتيجة مختلفة.</p>
     <div class="cmrows two"><div class="r"><b>مشغّلو الخرسانة الجاهزة</b>محطات خلط إقليمية تشغّل عشرات من تصاميم الخلطات المعتمدة وفق جداول المواقع، حيث تُقيّم قابلية التشغيل وزمن الشك عند الصب، وتُقيّم المقاومة بعد أيام.</div><div class="r"><b>مصانع العناصر مسبقة الصب</b>كمرات وبلاطات وأنابيب وقطاعات تُصب على دورة زمنية، حيث يعتمد زمن فك القوالب على المقاومة المبكرة وعلى تطور الحرارة داخل العنصر.</div><div class="r"><b>مصانع المنتجات الخرسانية</b>خطوط البلوك والبلاط المتداخل وحجر الرصيف والأنابيب تعمل بخلطات الصب الجاف، حيث تكون مقاومة فك القالب وتشطيب السطح واللون هي معايير القبول.</div><div class="r"><b>مصانع مواد البناء والخلطات الجافة</b>منتجو المونة والبياض ولاصق البلاط ومونة الحشو الذين يخلطون الأسمنت مع الرمل والجير والمواد المالئة والإضافات وفق مواصفة منشورة.</div></div>
+   </div>
   </div>
 </section>
 <section class="band-alt">
@@ -987,12 +1023,14 @@
     <div class="cmrows two"><div class="r"><b>Horizon</b>تحمل وحدات العقود والعروض، وإدارة الطلبات والفوترة، وOmni Signals، والمالية، التزامَ الكميات والسعر وبرنامج التسليم والمطالبة والتحصيل على كل حساب خرسانة.</div><div class="r"><b>Pulse</b>تحمل وحدة الطحن والمنتج ووحدة التعبئة والشحن، مع المرافق المشتركة لجودة المنتج والمخزون والخدمات اللوجستية، تشغيلةَ الطاحونة والصومعة وموعد التحميل وسجل المختبر وراء كل طن يستلمه العميل.</div><div class="r"><b>Core</b>أساس المصنع، وحدود التشغيل، والأدوار، وسلاسل الموافقات، وسجل القرارات، مع أنواع الأسمنت ورتبه، وتهيئة الصوامع، ونطاقات الجودة التي يعتمد عليها هذا العمل.</div><div class="r"><b>Ray</b>شرح وتركيب لما يُسمح للمستخدم برؤيته من حمولات ونتائج وشروط، مع الأدلة التي يعمل Ray منها.</div></div><div class="cmrows two"><div class="r"><b>جودة ذات صلة بالخلطة، لكل حمولة.</b>تحمل كل حمولة مشحونة تشغيلة طاحونتها وصومعتها ونعومتها ونسبة SO3 ومكوناتها المعلنة ونتائج المقاومة المعروفة حتى الآن، فيكون لسؤال العميل جواب واحد.</div><div class="r"><b>نطاقات يملكها المصنع.</b>تُحدد أهداف النعومة ونسبة SO3 ومعامل الكلنكر والمقاومة لكل رتبة أسمنت داخل النطاقات التي يحددها ويملكها مهندسو المصنع، ويُنبّه إلى أي حمولة خارج النطاق قبل الالتزام بها لحساب حسّاس للمواصفة.</div><div class="r"><b>وضوح الصوامع والمخزون.</b>تُقرأ مناسيب الصوامع بحسب رتبة الأسمنت في مقابل دفتر الطلبات وبرنامج التسليم، فيظهر نفاد المخزون وما زال هناك وقت للطحن أو لإعادة الجدولة.</div><div class="r"><b>التحميل وزمن الدوران.</b>تُقرأ أزمنة ميزان القبّان والتحميل لكل عميل ولكل ناقل، فتظهر الطوابير كمشكلة خدمة على حسابات محددة بالاسم لا كمتوسط يومي.</div><div class="r"><b>مطالبات مسندة بالأدلة.</b>تُفتح مطالبة الجودة بشأن الحمولات المعنية بالتحديد، وتُجمع سجلات تلك الحمولات في مكان واحد، وتُسجل الخلاصة ومسؤولها والنتيجة التجارية.</div><div class="r"><b>اقتصاديات الحساب.</b>تُقرأ الكميات وتركيبة المنتجات والسعر وأجور النقل والمطالبات وأيام التحصيل المستحقة معًا لكل حساب خرسانة، في مقابل تكلفة الأسمنت المشحون إليه فعلًا.</div></div>
   </div>
 </section>
-<section>
+<section class="imgsec imgsec-r area-sec" style="--cmband:url('/bm-process.jpg');">
   <div class="container">
+   <div class="sec-split">
     <div class="section-tag">استمرارية الجودة</div>
     <h2 class="section-heading">من طاحونة الأسمنت إلى اختبار مكعب العميل</h2>
     <p class="section-sub">تعتمد العلاقة مع عميل الخرسانة على بقاء بيانات الجودة مترابطة. والسجلات على هذا المسار يجب أن تتماسك حتى يجيب المنتِج عن سؤال فني من السجل بدلًا من أن يعيد بناءه من عدة أنظمة.</p>
     <div class="steps"><div class="step"><b>الطاحونة.</b> تُسجل التشغيلة بكلنكرها وإضافاتها والجبس والنعومة وقيم الضبط التشغيلية السارية.</div><div class="step"><b>الصومعة.</b> تُغذّى الصومعة بالأسمنت، ويُحفظ التركيب الجاري لتلك الصومعة مع تشغيلات الطاحونة التي غذّتها والفترات التي تغطيها، لأن الصومعة تُفرّغ وتُملأ في الوقت نفسه.</div><div class="step"><b>التحميل.</b> تأخذ الحمولة هوية الصومعة التي سُحبت منها، مع الوقت والصهريج والناقل والجهة المقصودة.</div><div class="step"><b>التسليم.</b> تُسجل الحمولة على صومعة العميل المذكورة في التسليم، فيمكن تتبّع سؤال عن صبّة معينة رجوعًا إلى الحمولات التي غذّت تلك الصومعة.</div><div class="step"><b>النتيجة.</b> تُربط نتائج المختبر، ومنها المقاومة في الأعمار المتأخرة، بالتشغيلة وبالحمولات التي حملتها، وكذلك نتيجة العميل عند مشاركتها.</div></div><div class="split2-panel" style="margin-top:22px;max-width:760px;"><h3>ما ينتقل مع الحمولة</h3><ul class="tick"><li>نوع الأسمنت ورتبته</li><li>تشغيلة الطاحونة والصومعة</li><li>النعومة والمتخلف على المنخل</li><li>نسبة SO3 والمكونات المعلنة</li><li>المقاومة المبكرة ومقاومة 28 يومًا، كلٌّ منهما عند معرفتها</li><li>وقت التحميل والصهريج والناقل</li><li>المصنع المقصود وصومعته</li></ul></div><p class="cmnote">تُوسم الأرقام بأنها مقاسة أو مستنتجة أو مفترضة، والنتيجة التي لم تصدر بعد تُعرض بأنها لم تصدر بدلًا من أن تُملأ.</p>
+   </div>
   </div>
 </section>
 <section class="cta-band">

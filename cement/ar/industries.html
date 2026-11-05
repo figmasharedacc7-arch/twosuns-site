@@ -672,7 +672,13 @@
       rgba(255,243,216,0) 80%);}
   .cmhero.sh-platform{--cmshot:url('/plat-hero.jpg');}
   .cmhero.sh-capabilities{--cmshot:url('/cap-hero.jpg');}
-  .cmhero.sh-industries{--cmshot:url('/ecosystem.jpg');}
+  /* the Industries hub carries no photograph, the same as the main site's own
+     industries page. It keeps the plain cement gradient instead, mirrored for
+     right to left so the light still falls from the reading side. */
+  .cmhero.sh-plain{background-image:none;
+    background:linear-gradient(200deg,#FFF5DD 0%,#FFF3CD 30%,#FCE2BC 60%,#FEF9C3 100%);}
+  html[dir="rtl"] .cmhero.sh-plain{
+    background:linear-gradient(160deg,#FFF5DD 0%,#FFF3CD 30%,#FCE2BC 60%,#FEF9C3 100%);}
   .cmhero.sh-construction{--cmshot:url('/cons-hero.jpg');}
   .cmhero.sh-concrete{--cmshot:url('/bm-concrete.jpg');}
   .cmhero.sh-distribution{--cmshot:url('/bm-distribution.jpg');}
@@ -860,6 +866,17 @@
   .cmwf .w dd{font-size:13.5px;color:var(--text-muted);line-height:1.55;}
   html[dir="rtl"] .cmwf .w dt{letter-spacing:0;}
 
+  /* ---- photo band, the main site's .imgsec laid over a whole section ---- */
+  /* theme.CSS gives .imgsec its wash and its 58% copy column but names each
+     photograph in a class whose url is relative, so from /cement/ it resolves to
+     a file that is not there. The section carries its own rooted url in --cmband
+     instead, which needs no class per picture and works from /cement/ar/ too. */
+  .imgsec::before{background-image:var(--cmband);}
+  /* the copy column is a little over half the width, so the grids inside a band
+     drop a column earlier than they do in a full width section */
+  .imgsec .cmsx,.imgsec .cmrows.two,.imgsec .cmcg{grid-template-columns:1fr;}
+  @media(min-width:1180px){.imgsec .cmrows.two{grid-template-columns:repeat(2,1fr);}}
+
   @media(max-width:1000px){
     .cmhero,html[dir="rtl"] .cmhero{background-position:center,center;
       --cmwash:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,
@@ -902,6 +919,23 @@
   html[dir="rtl"] .cmses-d .mm,html[dir="rtl"] .cmtier-n{letter-spacing:0;}
   html[dir="rtl"] body{font-family:'Segoe UI','Noto Sans Arabic','Geeza Pro',Tahoma,
     system-ui,-apple-system,sans-serif;}
+  /* .imgsec is authored left to right: the photograph keeps one half of the
+     frame and the wash covers the other, where the copy sits. Mirror the pair,
+     or the Arabic copy lands on the photograph. The narrow screen wash has to be
+     restated because these selectors outrank the theme's own media query. */
+  html[dir="rtl"] .imgsec-r::before{background-position:left center;}
+  html[dir="rtl"] .imgsec-l::before{background-position:right center;}
+  html[dir="rtl"] .imgsec-r::after{background:linear-gradient(260deg,#FFF6E2 0%,#FFF6E2 44%,rgba(255,246,226,.97) 53%,rgba(255,246,226,.86) 62%,
+    rgba(255,245,222,.58) 72%,rgba(255,244,218,.26) 85%,rgba(255,243,216,.05) 100%);}
+  html[dir="rtl"] .imgsec-l::after{background:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 44%,rgba(255,246,226,.97) 53%,rgba(255,246,226,.86) 62%,
+    rgba(255,245,222,.58) 72%,rgba(255,244,218,.26) 85%,rgba(255,243,216,.05) 100%);}
+  html[dir="rtl"] .imgsec-l .sec-split{margin-left:0;margin-right:auto;}
+  @media(max-width:1000px){
+    html[dir="rtl"] .imgsec-r::after,html[dir="rtl"] .imgsec-l::after{
+      background:linear-gradient(175deg,rgba(255,246,226,.96) 0%,rgba(255,246,226,.90) 55%,
+        rgba(255,244,220,.60) 100%);}
+    html[dir="rtl"] .imgsec-l .sec-split{margin-right:0;}
+  }
   html[dir="rtl"] .cmhero h1{max-width:24ch;line-height:1.3;}
   html[dir="rtl"] .hero h1{line-height:1.3;}
   html[dir="rtl"] .section-heading{line-height:1.35;}
@@ -945,7 +979,7 @@
   </div>
 </nav>
 <main id="main" tabindex="-1">
-<section class="cmhero sh-industries">
+<section class="cmhero sh-plain">
   <div class="hero-glow"></div>
   <div class="container">
     <div class="hero-eyebrow"><span class="dot"></span>الصناعات</div>
@@ -955,20 +989,24 @@
   </div>
 </section>
 <div class="sun-divider"></div>
-<section>
+<section class="imgsec imgsec-l area-sec" style="--cmband:url('/bm-operations.jpg');">
   <div class="container">
+   <div class="sec-split">
     <div class="section-tag">القطاعات</div>
     <h2 class="section-heading">منصة واحدة، تُهيّأ لكل قطاع</h2>
     <p class="section-sub">يُهيّأ كل قطاع من القدرات نفسها. وما يتغير هو العمل الذي يُهيّأ حوله، وأيُّ جزء من سلسلة القيمة يعتمد عليه القطاع أكثر من غيره.</p>
     <div class="cmsx"><div class="s"><h3>البناء والبنية التحتية</h3><p>مقاولون وأعمال مدنية وأصحاب مشروعات يشترون الأسمنت السائب والمعبأ وفق برنامج عمل.</p><ul><li>خط المشروعات، والمناقصات، وتواريخ الترسية</li><li>الأحجام الملتزم بها مقابل تواريخ البرنامج</li><li>نوافذ التسليم في الموقع، والنقل البري، والحمولات المرفوضة</li><li>شروط السداد، والضمانات المحتفظ بها، والتعرّض الائتماني في المشروع</li></ul><a class="go" href="construction.html">استعرض هذا القطاع</a></div><div class="s"><h3>الخرسانة والصب المسبق</h3><p>مشغّلو الخرسانة الجاهزة، ومصانع الصب المسبق، وخطوط منتجات الخرسانة، ومنتجو الطوب والبلوك، ومصانع الخلطات الجافة، يشترون الأسمنت وفق مواصفة يختبرها عملاؤهم.</p><ul><li>الالتزامات اليومية والأسبوعية بالأحجام لكل مصنع</li><li>رتبة الأسمنت، والقوام، ومتطلبات زمن الشك</li><li>مخزون صوامع العميل وتوقيت إعادة التعبئة</li><li>تجارب الخلطات، والدعم الفني، ومعالجة الشكاوى</li></ul><a class="go" href="concrete.html">استعرض هذا القطاع</a></div><div class="s"><h3>التوزيع والتجارة</h3><p>وكلاء وموزعون، ومنافذ التجزئة للأسمنت المعبأ، وتجار ومشترون للتصدير، يأخذون الأطنان عبر قناة توزيع بدلًا من موقع عمل.</p><ul><li>تغطية الوكلاء والقنوات بحسب المنطقة</li><li>مخزون الأكياس وطاقة التعبئة مقابل طلبات اليوم</li><li>قوائم الأسعار، والخصومات، وتسوية الحوافز</li><li>أوامر التصدير، والشحن، والمستندات</li></ul><a class="go" href="distribution.html">استعرض هذا القطاع</a></div></div>
+   </div>
   </div>
 </section>
-<section class="band-alt">
+<section class="imgsec imgsec-r area-sec" style="--cmband:url('/bm-extraction.jpg');">
   <div class="container">
+   <div class="sec-split">
     <div class="section-tag">مواضع التشغيل</div>
     <h2 class="section-heading">مواضع التشغيل وراء كل قطاع</h2>
     <p class="section-sub">القطاع يصف من يشتري الطن. وموضع التشغيل يصف أين يقع العمل داخل أعمال المنتج نفسه، من واجهة المحجر إلى النقد المحصّل. وكل طلب في كل قطاع يعتمد على المواضع نفسها، وتُهيّأ المنصة وفق المنظورين معًا.</p>
     <div class="cmrows two"><div class="r"><b>المحجر والمواد الخام</b>الواجهات والاحتياطيات والمواد المصححة والكيمياء الداخلة إلى الكسّارة.</div><div class="r"><b>التكسير، وطاحونة المواد الخام، والفرن</b>الخلطة الخام وتصحيحها، والوقود، والحرارة، والكلنكر الذي تستطيع الخطوط إنتاجه.</div><div class="r"><b>طاحونة الأسمنت والمنتج</b>الطحن والإضافات والنعومة ورتب الأسمنت المتاحة للبيع.</div><div class="r"><b>الجودة والامتثال</b>متطلبات رتبة الأسمنت، ونتائج المختبر وتحليل XRF، والتراخيص والشهادات.</div><div class="r"><b>الصيانة والموثوقية</b>سجل الأصول والخطط الوقائية، ونطاق أعمال الإيقاف، والأطنان التي يكلفها كل توقف.</div><div class="r"><b>التخزين والتعبئة والشحن</b>مخزون الصوامع والأكياس، وطاقة التعبئة والتحميل، وميزان القبّان والإفراج.</div><div class="r"><b>الخدمات اللوجستية والتوزيع</b>النقل البري وشركات النقل ومحطات التوزيع ونافذة التسليم التي يحتفظ بها كل عميل.</div><div class="r"><b>المبيعات والائتمان والتحصيل</b>العقود والأسعار والطلبات والفواتير، وحدود الائتمان، والنقد المحصّل.</div></div><div style="margin-top:26px;"><a class="btn-ghost" href="capabilities.html">استعرض حالات الاستخدام</a></div>
+   </div>
   </div>
 </section>
 <section class="cta-band">
