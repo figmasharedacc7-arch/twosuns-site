@@ -812,9 +812,41 @@
     display:flex;flex-wrap:wrap;gap:10px 20px;justify-content:space-between;font-size:13px;
     color:var(--text-muted);}
 
+  /* capability groups, sector cards and workflow cards. Three grids added for the
+     pages that mirror the main site. They reuse the card tokens above so a new
+     page cannot drift from the shipped ones. */
+  .cmcg{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:26px;}
+  .cmcg>*{min-width:0;}
+
+  .cmsx{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px;}
+  .cmsx>*{min-width:0;}
+  .cmsx .s{background:#fff;border:1px solid var(--border-soft);border-radius:14px;
+    padding:22px 22px 18px;box-shadow:var(--shadow);display:flex;flex-direction:column;}
+  .cmsx .s h3{font-size:17px;font-weight:900;color:var(--navy);margin-bottom:8px;}
+  .cmsx .s p{font-size:14px;color:var(--text-muted);line-height:1.65;margin-bottom:12px;}
+  .cmsx .s ul{list-style:none;margin-bottom:16px;}
+  .cmsx .s li{font-size:13.5px;color:var(--text-muted);line-height:1.5;padding:6px 0;
+    border-top:1px solid rgba(140,101,0,.12);}
+  .cmsx .s li:first-child{border-top:0;}
+  .cmsx .s .go{margin-top:auto;font-size:13.5px;font-weight:800;color:var(--sun-deep);
+    text-decoration:none;}
+  .cmsx .s .go:hover{text-decoration:underline;}
+
+  .cmwf{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:26px;}
+  .cmwf>*{min-width:0;}
+  .cmwf .w{background:#fff;border:1px solid var(--border-soft);border-radius:14px;
+    padding:20px 22px;box-shadow:var(--shadow);}
+  .cmwf .w h3{font-size:16px;font-weight:900;color:var(--navy);margin-bottom:12px;}
+  .cmwf .w dl{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;}
+  .cmwf .w dt{font-size:11.5px;font-weight:800;color:#8C6500;text-transform:uppercase;
+    letter-spacing:.6px;padding-top:2px;}
+  .cmwf .w dd{font-size:13.5px;color:var(--text-muted);line-height:1.55;}
+  html[dir="rtl"] .cmwf .w dt{letter-spacing:0;}
+
   @media(max-width:1000px){
     .cmfam,.cmrows,.cmrows.two,.cmmods{grid-template-columns:repeat(2,1fr);}
     .cmpd{grid-template-columns:repeat(2,1fr);}
+    .cmsx{grid-template-columns:1fr;}
   }
   @media(max-width:820px){
     .cmtoggle{display:block;}
@@ -828,6 +860,9 @@
   }
   @media(max-width:620px){
     .cmfam,.cmrows,.cmrows.two,.cmmods,.cmpd{grid-template-columns:1fr;}
+    .cmcg,.cmwf{grid-template-columns:1fr;}
+    .cmwf .w dl{grid-template-columns:1fr;gap:2px;}
+    .cmwf .w dd{margin-bottom:8px;}
     .cmag-r,.cmses{grid-template-columns:1fr;}
     .cmag-t{border-inline-end:0;border-bottom:1px solid var(--border-soft);}
     .cmses-d{flex-direction:row;gap:10px;padding:12px;}
@@ -886,7 +921,7 @@
     <button class="cmtoggle" aria-label="Menu" aria-controls="cml" aria-expanded="false"
       onclick="var l=document.getElementById('cml');l.classList.toggle('open');
         this.setAttribute('aria-expanded',l.classList.contains('open'));">&#9776;</button>
-    <div class="cmlinks" id="cml"><a href="index.html#about">About</a><a href="index.html#context">Cement Context</a><a href="platform.html">Platform</a><a href="events.html">Events</a><span class="cmlang"><span class="on">EN</span><a href="ar/" lang="ar" hreflang="ar">العربية</a></span>
+    <div class="cmlinks" id="cml"><a href="index.html#context">Cement Context</a><a href="platform.html">Platform</a><a href="capabilities.html">Capabilities</a><a href="industries.html">Industries</a><a href="use-cases.html">Use Cases</a><a href="company.html">Company</a><a href="events.html">Events</a><span class="cmlang"><span class="on">EN</span><a href="ar/" lang="ar" hreflang="ar">العربية</a></span>
       <a class="btn-cta" href="https://twosuns.ai/discuss.html?ask=Discuss+Your+Needs">Discuss Your Needs</a>
     </div>
   </div>
@@ -1006,7 +1041,7 @@
         <div class="by">TwoSuns by AEPG</div>
         <div class="cn"><a href="mailto:info@twosuns.ai">info@twosuns.ai</a><br>WhatsApp +1 250 859 6563</div>
       </div>
-      <div class="cmfoot-links"><a href="index.html#about">About</a><a href="index.html#context">Cement Context</a><a href="platform.html">Platform</a><a href="events.html">Events</a><a href="https://twosuns.ai/discuss.html">Discuss Your Needs</a></div>
+      <div class="cmfoot-links"><a href="index.html#context">Cement Context</a><a href="platform.html">Platform</a><a href="capabilities.html">Capabilities</a><a href="industries.html">Industries</a><a href="use-cases.html">Use Cases</a><a href="company.html">Company</a><a href="events.html">Events</a><a href="https://twosuns.ai/discuss.html">Discuss Your Needs</a></div>
     </div>
     <div class="cmfoot-bot">
       <div>© 2026 TwoSuns by AEPG. All rights reserved.</div>

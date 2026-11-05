@@ -3,67 +3,67 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://twosuns.ai/</loc>
-    <lastmod>2026-10-01</lastmod>
+    <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://twosuns.ai/platform.html</loc>
-    <lastmod>2026-10-01</lastmod>
+    <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://twosuns.ai/capabilities.html</loc>
-    <lastmod>2026-10-01</lastmod>
+    <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://twosuns.ai/industries.html</loc>
-    <lastmod>2026-10-01</lastmod>
+    <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://twosuns.ai/use-cases.html</loc>
-    <lastmod>2026-10-01</lastmod>
+    <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://twosuns.ai/company.html</loc>
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://twosuns.ai/events.html</loc>
-    <lastmod>2026-10-05</lastmod>
+    <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://twosuns.ai/building-materials.html</loc>
-    <lastmod>2026-10-01</lastmod>
+    <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://twosuns.ai/construction.html</loc>
-    <lastmod>2026-10-01</lastmod>
+    <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://twosuns.ai/manufacturing.html</loc>
-    <lastmod>2026-10-01</lastmod>
+    <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://twosuns.ai/discuss.html</loc>
-    <lastmod>2026-10-01</lastmod>
+    <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -81,7 +81,7 @@
   </url>
   <url>
     <loc>https://twosuns.ai/cement/</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://twosuns.ai/cement/"/>
@@ -90,7 +90,7 @@
   </url>
   <url>
     <loc>https://twosuns.ai/cement/ar/</loc>
-    <lastmod>2026-11-04</lastmod>
+    <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://twosuns.ai/cement/"/>
@@ -99,7 +99,7 @@
   </url>
   <url>
     <loc>https://twosuns.ai/cement/platform.html</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://twosuns.ai/cement/platform.html"/>
@@ -108,7 +108,7 @@
   </url>
   <url>
     <loc>https://twosuns.ai/cement/ar/platform.html</loc>
-    <lastmod>2026-11-04</lastmod>
+    <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://twosuns.ai/cement/platform.html"/>
@@ -116,8 +116,134 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://twosuns.ai/cement/platform.html"/>
   </url>
   <url>
+    <loc>https://twosuns.ai/cement/capabilities.html</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://twosuns.ai/cement/capabilities.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://twosuns.ai/cement/ar/capabilities.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://twosuns.ai/cement/capabilities.html"/>
+  </url>
+  <url>
+    <loc>https://twosuns.ai/cement/ar/capabilities.html</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://twosuns.ai/cement/capabilities.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://twosuns.ai/cement/ar/capabilities.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://twosuns.ai/cement/capabilities.html"/>
+  </url>
+  <url>
+    <loc>https://twosuns.ai/cement/industries.html</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://twosuns.ai/cement/industries.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://twosuns.ai/cement/ar/industries.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://twosuns.ai/cement/industries.html"/>
+  </url>
+  <url>
+    <loc>https://twosuns.ai/cement/ar/industries.html</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://twosuns.ai/cement/industries.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://twosuns.ai/cement/ar/industries.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://twosuns.ai/cement/industries.html"/>
+  </url>
+  <url>
+    <loc>https://twosuns.ai/cement/construction.html</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://twosuns.ai/cement/construction.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://twosuns.ai/cement/ar/construction.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://twosuns.ai/cement/construction.html"/>
+  </url>
+  <url>
+    <loc>https://twosuns.ai/cement/ar/construction.html</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://twosuns.ai/cement/construction.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://twosuns.ai/cement/ar/construction.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://twosuns.ai/cement/construction.html"/>
+  </url>
+  <url>
+    <loc>https://twosuns.ai/cement/concrete.html</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://twosuns.ai/cement/concrete.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://twosuns.ai/cement/ar/concrete.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://twosuns.ai/cement/concrete.html"/>
+  </url>
+  <url>
+    <loc>https://twosuns.ai/cement/ar/concrete.html</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://twosuns.ai/cement/concrete.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://twosuns.ai/cement/ar/concrete.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://twosuns.ai/cement/concrete.html"/>
+  </url>
+  <url>
+    <loc>https://twosuns.ai/cement/distribution.html</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://twosuns.ai/cement/distribution.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://twosuns.ai/cement/ar/distribution.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://twosuns.ai/cement/distribution.html"/>
+  </url>
+  <url>
+    <loc>https://twosuns.ai/cement/ar/distribution.html</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://twosuns.ai/cement/distribution.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://twosuns.ai/cement/ar/distribution.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://twosuns.ai/cement/distribution.html"/>
+  </url>
+  <url>
+    <loc>https://twosuns.ai/cement/use-cases.html</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://twosuns.ai/cement/use-cases.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://twosuns.ai/cement/ar/use-cases.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://twosuns.ai/cement/use-cases.html"/>
+  </url>
+  <url>
+    <loc>https://twosuns.ai/cement/ar/use-cases.html</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://twosuns.ai/cement/use-cases.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://twosuns.ai/cement/ar/use-cases.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://twosuns.ai/cement/use-cases.html"/>
+  </url>
+  <url>
+    <loc>https://twosuns.ai/cement/company.html</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://twosuns.ai/cement/company.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://twosuns.ai/cement/ar/company.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://twosuns.ai/cement/company.html"/>
+  </url>
+  <url>
+    <loc>https://twosuns.ai/cement/ar/company.html</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://twosuns.ai/cement/company.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://twosuns.ai/cement/ar/company.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://twosuns.ai/cement/company.html"/>
+  </url>
+  <url>
     <loc>https://twosuns.ai/cement/events.html</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://twosuns.ai/cement/events.html"/>
@@ -126,7 +252,7 @@
   </url>
   <url>
     <loc>https://twosuns.ai/cement/ar/events.html</loc>
-    <lastmod>2026-11-04</lastmod>
+    <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://twosuns.ai/cement/events.html"/>

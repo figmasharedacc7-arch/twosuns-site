@@ -41,9 +41,16 @@ PAGES = [
 # cement microsite: page under /cement/, change frequency, priority. Each one
 # is published in English and in Arabic, so each produces two sitemap entries.
 CEMENT = [
-    ("",              "monthly", "0.8"),
-    ("platform.html", "monthly", "0.8"),
-    ("events.html",   "weekly",  "0.7"),
+    ("",                  "monthly", "0.8"),
+    ("platform.html",     "monthly", "0.8"),
+    ("capabilities.html", "monthly", "0.8"),
+    ("industries.html",   "monthly", "0.7"),
+    ("construction.html", "monthly", "0.6"),
+    ("concrete.html",     "monthly", "0.6"),
+    ("distribution.html", "monthly", "0.6"),
+    ("use-cases.html",    "monthly", "0.7"),
+    ("company.html",      "monthly", "0.6"),
+    ("events.html",       "weekly",  "0.7"),
 ]
 
 ROBOTS = """User-agent: *

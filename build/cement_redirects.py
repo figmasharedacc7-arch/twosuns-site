@@ -22,26 +22,29 @@ OUT = os.path.normpath(os.path.join(HERE, "..", "cement"))
 
 # Old page -> where its subject now lives. The three pages the rebuild keeps at
 # the same URL are absent on purpose: the new page is the destination.
+# A destination without a "cement/" prefix leaves the microsite for the main
+# site, because the stub refreshes to /<dest>. Only send a visitor out when the
+# microsite has no page that covers it: discuss, privacy and terms. Everything
+# else now has a cement equivalent and stays inside /cement/.
 TARGETS = {
     "cement.html": "cement/",
     "404.html": "cement/",
-    "product.html": "platform.html",
-    "technology.html": "platform.html",
-    "why-twosuns.html": "platform.html",
-    "videos.html": "platform.html",
+    "product.html": "cement/platform.html",
+    "technology.html": "cement/platform.html",
+    "why-twosuns.html": "cement/platform.html",
+    "videos.html": "cement/platform.html",
     "how-it-works.html": "cement/platform.html",
     "trust.html": "cement/platform.html",
-    "modules.html": "capabilities.html",
-    "solutions-contract-analytics.html": "capabilities.html",
-    "solutions-market-intelligence.html": "capabilities.html",
-    "solutions-risk-management.html": "capabilities.html",
-    "applications.html": "use-cases.html",
-    "use-cases.html": "use-cases.html",
-    "resources.html": "use-cases.html",
-    "about.html": "company.html",
-    "careers.html": "company.html",
-    "press.html": "company.html",
-    "blog.html": "company.html",
+    "modules.html": "cement/capabilities.html",
+    "solutions-contract-analytics.html": "cement/capabilities.html",
+    "solutions-market-intelligence.html": "cement/capabilities.html",
+    "solutions-risk-management.html": "cement/capabilities.html",
+    "applications.html": "cement/use-cases.html",
+    "resources.html": "cement/use-cases.html",
+    "about.html": "cement/company.html",
+    "careers.html": "cement/company.html",
+    "press.html": "cement/company.html",
+    "blog.html": "cement/company.html",
     "community.html": "discuss.html",
     "contact.html": "discuss.html",
     "engage.html": "discuss.html",
@@ -50,23 +53,31 @@ TARGETS = {
     "privacy.html": "privacy.html",
     "cookies.html": "privacy.html",
     "terms.html": "terms.html",
-    "industries.html": "industries.html",
-    "mining.html": "industries.html",
-    "finance.html": "industries.html",
-    "manufacturing.html": "manufacturing.html",
-    "blog/ai-ip-discipline-gap.html": "company.html",
+    "mining.html": "cement/industries.html",
+    "finance.html": "cement/industries.html",
+    # the microsite has no manufacturing sector page, the hub covers it
+    "manufacturing.html": "cement/industries.html",
+    "blog/ai-ip-discipline-gap.html": "cement/company.html",
     "blog/ai-operational-intelligence-cement-decarbonization.html": "cement/platform.html",
-    "blog/decision-intelligence-vs-analytics.html": "platform.html",
-    "blog/glassbox-ai-explainability.html": "capabilities.html",
-    "blog/industrial-ai-orchestrated-intelligence.html": "platform.html",
-    "blog/logistics-intelligence-gap.html": "industries.html",
-    "blog/post-9.html": "capabilities.html",
-    "blog/system-decision-record.html": "platform.html",
+    "blog/decision-intelligence-vs-analytics.html": "cement/platform.html",
+    "blog/glassbox-ai-explainability.html": "cement/capabilities.html",
+    "blog/industrial-ai-orchestrated-intelligence.html": "cement/platform.html",
+    "blog/logistics-intelligence-gap.html": "cement/industries.html",
+    "blog/post-9.html": "cement/capabilities.html",
+    "blog/system-decision-record.html": "cement/platform.html",
 }
 
-# These three URLs survive the rebuild, so a stub would redirect them to
+# Old microsite URLs that survive the rebuild, so a stub would redirect them to
 # themselves. Listed so the count below can be checked against the old site.
-KEPT = ["index.html", "platform.html", "events.html"]
+KEPT = ["index.html", "platform.html", "events.html",
+        "use-cases.html", "industries.html"]
+
+# Everything cement.py generates. A stub written over one of these would destroy
+# a real page, and the two lists are edited in different files, so assert rather
+# than trust. KEPT is the subset of these that the old site also had.
+PAGES = ["index.html", "platform.html", "capabilities.html", "industries.html",
+         "construction.html", "concrete.html", "distribution.html",
+         "use-cases.html", "company.html", "events.html"]
 
 STUB = """<!DOCTYPE html>
 <html lang="en">
@@ -103,9 +114,14 @@ STUB = """<!DOCTYPE html>
 
 
 def build():
+    assert set(KEPT) <= set(PAGES), "KEPT lists a page cement.py does not build: %s" % (
+        sorted(set(KEPT) - set(PAGES)),)
     for old, dest in sorted(TARGETS.items()):
-        assert old not in KEPT, "%s is a page the rebuild keeps, not a redirect" % old
+        assert old not in PAGES, "%s is a page the rebuild generates, not a redirect" % old
         assert not dest.startswith("/"), "%s: dest is root-relative without a slash" % old
+        if dest.startswith("cement/"):
+            assert dest[len("cement/"):] in PAGES or dest == "cement/", (
+                "%s points at %s, which the microsite does not build" % (old, dest))
         path = os.path.join(OUT, old)
         os.makedirs(os.path.dirname(path), exist_ok=True)
         open(path, "w").write(STUB % {"site": SITE, "dest": dest})

@@ -11,6 +11,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import arch
 import theme
 import reveal
+import teamgrid
+import content2
 from cement_copy import LANGS
 
 OUT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)),
@@ -230,9 +232,41 @@ CEM_CSS = r"""
     display:flex;flex-wrap:wrap;gap:10px 20px;justify-content:space-between;font-size:13px;
     color:var(--text-muted);}
 
+  /* capability groups, sector cards and workflow cards. Three grids added for the
+     pages that mirror the main site. They reuse the card tokens above so a new
+     page cannot drift from the shipped ones. */
+  .cmcg{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:26px;}
+  .cmcg>*{min-width:0;}
+
+  .cmsx{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px;}
+  .cmsx>*{min-width:0;}
+  .cmsx .s{background:#fff;border:1px solid var(--border-soft);border-radius:14px;
+    padding:22px 22px 18px;box-shadow:var(--shadow);display:flex;flex-direction:column;}
+  .cmsx .s h3{font-size:17px;font-weight:900;color:var(--navy);margin-bottom:8px;}
+  .cmsx .s p{font-size:14px;color:var(--text-muted);line-height:1.65;margin-bottom:12px;}
+  .cmsx .s ul{list-style:none;margin-bottom:16px;}
+  .cmsx .s li{font-size:13.5px;color:var(--text-muted);line-height:1.5;padding:6px 0;
+    border-top:1px solid rgba(140,101,0,.12);}
+  .cmsx .s li:first-child{border-top:0;}
+  .cmsx .s .go{margin-top:auto;font-size:13.5px;font-weight:800;color:var(--sun-deep);
+    text-decoration:none;}
+  .cmsx .s .go:hover{text-decoration:underline;}
+
+  .cmwf{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:26px;}
+  .cmwf>*{min-width:0;}
+  .cmwf .w{background:#fff;border:1px solid var(--border-soft);border-radius:14px;
+    padding:20px 22px;box-shadow:var(--shadow);}
+  .cmwf .w h3{font-size:16px;font-weight:900;color:var(--navy);margin-bottom:12px;}
+  .cmwf .w dl{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;}
+  .cmwf .w dt{font-size:11.5px;font-weight:800;color:#8C6500;text-transform:uppercase;
+    letter-spacing:.6px;padding-top:2px;}
+  .cmwf .w dd{font-size:13.5px;color:var(--text-muted);line-height:1.55;}
+  html[dir="rtl"] .cmwf .w dt{letter-spacing:0;}
+
   @media(max-width:1000px){
     .cmfam,.cmrows,.cmrows.two,.cmmods{grid-template-columns:repeat(2,1fr);}
     .cmpd{grid-template-columns:repeat(2,1fr);}
+    .cmsx{grid-template-columns:1fr;}
   }
   @media(max-width:820px){
     .cmtoggle{display:block;}
@@ -246,6 +280,9 @@ CEM_CSS = r"""
   }
   @media(max-width:620px){
     .cmfam,.cmrows,.cmrows.two,.cmmods,.cmpd{grid-template-columns:1fr;}
+    .cmcg,.cmwf{grid-template-columns:1fr;}
+    .cmwf .w dl{grid-template-columns:1fr;gap:2px;}
+    .cmwf .w dd{margin-bottom:8px;}
     .cmag-r,.cmses{grid-template-columns:1fr;}
     .cmag-t{border-inline-end:0;border-bottom:1px solid var(--border-soft);}
     .cmses-d{flex-direction:row;gap:10px;padding:12px;}
@@ -278,8 +315,9 @@ RTL_CSS = r"""
 """
 
 
-def head(d, title, desc, page):
-    """Page head. Arabic sits one level deeper, so canonical and alternates differ."""
+def head(d, title, desc, page, extra_css=""):
+    """Page head. Arabic sits one level deeper, so canonical and alternates differ.
+    extra_css carries styling only one page needs, so the other nine stay lean."""
     sub = "ar/" if d["lang"] == "ar" else ""
     canon = SITE + BASE + sub + ("" if page == "index.html" else page)
     en_url = SITE + BASE + ("" if page == "index.html" else page)
@@ -311,7 +349,7 @@ def head(d, title, desc, page):
 <meta name="twitter:description" content="{esc_d}">
 <meta name="twitter:image" content="{SITE}/og-twosuns.jpg">
 <link rel="icon" type="image/svg+xml" href="/logo-mini.svg">
-<style>{theme.CSS}{theme.REVEAL_CSS}{arch.CSS}{CEM_CSS}{RTL_CSS}</style>
+<style>{theme.CSS}{theme.REVEAL_CSS}{arch.CSS}{CEM_CSS}{RTL_CSS}{extra_css}</style>
 {theme.REVEAL_HEAD}
 {theme.LEADLANDER}
 </head>
@@ -739,6 +777,222 @@ def build_events(d):
 
 
 # ================================================================ CHECKS
+# ========================================================== SHARED PAGE PIECES
+def sec(body, band="", tag="", h="", p="", lede=False):
+    """One section. band is "", "band-alt" or "band-warm"; p renders as the section
+    sub, or as a lede paragraph when the copy is long enough to want the wider type."""
+    top = ""
+    if tag:
+        top += '    <div class="section-tag">%s</div>\n' % e(tag)
+    if h:
+        top += '    <h2 class="section-heading">%s</h2>\n' % e(h)
+    if p:
+        top += '    <p class="%s">%s</p>\n' % ("lede" if lede else "section-sub", e(p))
+    return '<section%s>\n  <div class="container">\n%s    %s\n  </div>\n</section>\n' % (
+        ' class="%s"' % band if band else "", top, body)
+
+
+def panel(h, items):
+    return '<div class="split2-panel" style="margin-top:22px;max-width:760px;">' \
+           '<h3>%s</h3>%s</div>' % (e(h), ticks(items))
+
+
+def cards(groups):
+    """Capability groups: [name, descriptor, [items]] rendered as the platform page's
+    module card, so a capability family reads the same as a platform module."""
+    out = []
+    for name, desc, items in groups:
+        out.append('<div class="cmmod"><h3>%s</h3><div class="d">%s</div><ul>%s</ul></div>'
+                   % (e(name), e(desc), "".join("<li>%s</li>" % e(i) for i in items)))
+    return '<div class="cmcg">%s</div>' % "".join(out)
+
+
+# ========================================================== CAPABILITIES
+def build_capabilities(d):
+    s = head(d, d["cap_title"], d["cap_desc"], "capabilities.html") + nav(d, "capabilities.html")
+    s += hero(d, d["cap_eyebrow"], d["cap_h1"], d["cap_sub"],
+              btn(d["cap_cta1"]) + " " + btn(d["cap_cta2"], "platform.html", ghost=True), plain=True)
+    s += sec(cards(d["cap_hz_groups"]), "", d["cap_hz_tag"], d["cap_hz_h"], d["cap_hz_p"])
+    s += sec(cards(d["cap_pl_groups"]), "band-alt", d["cap_pl_tag"], d["cap_pl_h"], d["cap_pl_p"])
+    s += sec("", "band-warm", d["cap_adapt_tag"], d["cap_adapt_h"], d["cap_adapt_p"], lede=True)
+    s += cta_band(d["cap_close_h"], d["cap_close_p"],
+                  btn(d["cap_cta1"]) + " " + btn(d["cap_cta2"], "platform.html", ghost=True))
+    return s + footer(d) + TAIL_JS
+
+
+# ========================================================== INDUSTRIES HUB
+# The sector pages in display order. The hrefs live here and not in the copy dict
+# because a filename is not translatable, and the Arabic dict must mirror the
+# English one entry for entry.
+SECTORS = ["construction.html", "concrete.html", "distribution.html"]
+
+
+def build_industries(d):
+    s = head(d, d["ind_title"], d["ind_desc"], "industries.html") + nav(d, "industries.html")
+    s += hero(d, d["ind_eyebrow"], d["ind_h1"], d["ind_sub"],
+              btn(d["ind_cta1"]) + " " + btn(d["ind_cta2"], "platform.html", ghost=True), plain=True)
+
+    cells = []
+    for (name, desc, bullets), href in zip(d["ind_sectors"], SECTORS):
+        cells.append('<div class="s"><h3>%s</h3><p>%s</p><ul>%s</ul>'
+                     '<a class="go" href="%s">%s</a></div>'
+                     % (e(name), e(desc), "".join("<li>%s</li>" % e(b) for b in bullets),
+                        href, e(d["ind_sec_link"])))
+    s += sec('<div class="cmsx">%s</div>' % "".join(cells),
+             "", d["ind_sec_tag"], d["ind_sec_h"], d["ind_sec_p"])
+
+    s += sec(rows(d["ind_behind_items"], two=True)
+             + '<div style="margin-top:26px;">%s</div>'
+               % btn(d["ind_behind_cta"], "capabilities.html", ghost=True),
+             "band-alt", d["ind_behind_tag"], d["ind_behind_h"], d["ind_behind_p"])
+
+    s += cta_band(d["ind_close_h"], d["ind_close_p"],
+                  btn(d["ind_cta1"]) + " " + btn(d["ind_cta2"], "platform.html", ghost=True))
+    return s + footer(d) + TAIL_JS
+
+
+# ========================================================== SECTOR: CONSTRUCTION
+def build_construction(d):
+    s = head(d, d["con_title"], d["con_desc"], "construction.html") + nav(d, "industries.html")
+    s += hero(d, d["con_eyebrow"], d["con_h1"], d["con_sub"],
+              btn(d["con_cta1"]) + " " + btn(d["con_cta2"], "industries.html", ghost=True), plain=True)
+    s += sec(rows(d["con_who_rows"], two=True), "", d["con_who_tag"], d["con_who_h"],
+             d["con_who_p"], lede=True)
+    s += sec(rows(d["con_dem_rows"], two=True), "band-alt", d["con_dem_tag"], d["con_dem_h"],
+             d["con_dem_p"])
+    s += sec(ticks(d["con_gap_items"]), "", d["con_gap_tag"], d["con_gap_h"], d["con_gap_p"])
+    s += sec(rows(d["con_ts_rows"], two=True) + panel(d["con_prac_h"], d["con_prac"]),
+             "band-warm", d["con_ts_tag"], d["con_ts_h"], d["con_ts_p"], lede=True)
+    s += cta_band(d["con_close_h"], d["con_close_p"],
+                  btn(d["con_cta1"]) + " " + btn(d["con_cta2"], "industries.html", ghost=True))
+    return s + footer(d) + TAIL_JS
+
+
+# ========================================================== SECTOR: CONCRETE
+def build_concrete(d):
+    s = head(d, d["cnc_title"], d["cnc_desc"], "concrete.html") + nav(d, "industries.html")
+    s += hero(d, d["cnc_eyebrow"], d["cnc_h1"], d["cnc_sub"],
+              btn(d["cnc_cta1"]) + " " + btn(d["cnc_cta2"], "industries.html", ghost=True), plain=True)
+    s += sec(rows(d["cnc_who_rows"], two=True), "", d["cnc_who_tag"], d["cnc_who_h"],
+             d["cnc_who_p"], lede=True)
+    s += sec(rows(d["cnc_dem_rows"], two=True), "band-alt", d["cnc_dem_tag"], d["cnc_dem_h"],
+             d["cnc_dem_p"])
+    s += sec(panel(d["cnc_gap_panel_h"], d["cnc_gap_items"])
+             + '<div class="callout" style="margin-top:22px;"><h3>%s</h3><p>%s</p></div>'
+               % (e(d["cnc_gap_call_h"]), e(d["cnc_gap_call_p"])),
+             "", d["cnc_gap_tag"], d["cnc_gap_h"], d["cnc_gap_p"], lede=True)
+    s += sec(rows(d["cnc_tws_dom_rows"], two=True) + rows(d["cnc_tws_rows"], two=True),
+             "band-warm", d["cnc_tws_tag"], d["cnc_tws_h"], d["cnc_tws_p"], lede=True)
+    s += sec(steps(d["cnc_qual_steps"]) + panel(d["cnc_qual_carry_h"], d["cnc_qual_carry"])
+             + '<p class="cmnote">%s</p>' % e(d["cnc_qual_note"]),
+             "", d["cnc_qual_tag"], d["cnc_qual_h"], d["cnc_qual_p"])
+    s += cta_band(d["cnc_close_h"], d["cnc_close_p"],
+                  btn(d["cnc_cta1"]) + " " + btn(d["cnc_cta2"], "industries.html", ghost=True))
+    return s + footer(d) + TAIL_JS
+
+
+# ========================================================== SECTOR: DISTRIBUTION
+def build_distribution(d):
+    s = head(d, d["dst_title"], d["dst_desc"], "distribution.html") + nav(d, "industries.html")
+    s += hero(d, d["dst_eyebrow"], d["dst_h1"], d["dst_sub"],
+              btn(d["dst_cta1"]) + " " + btn(d["dst_cta2"], "industries.html", ghost=True), plain=True)
+    s += sec(rows(d["dst_who_rows"], two=True), "", d["dst_who_tag"], d["dst_who_h"],
+             d["dst_who_p"], lede=True)
+    s += sec('<p class="lede">%s</p>' % e(d["dst_req_p2"])
+             + panel(d["dst_req_panel_h"], d["dst_req_items"]),
+             "band-alt", d["dst_req_tag"], d["dst_req_h"], d["dst_req_p1"], lede=True)
+    s += sec(rows(d["dst_gap_rows"], two=True), "", d["dst_gap_tag"], d["dst_gap_h"],
+             d["dst_gap_p"])
+    s += sec(steps(d["dst_plat_steps"])
+             + '<div class="split2" style="margin-top:26px;align-items:start;">'
+               '<div class="split2-panel"><h3>%s</h3><p>%s</p></div>'
+               '<div class="split2-panel"><h3>%s</h3><p>%s</p></div></div>'
+               % (e(d["dst_plat_hz_h"]), e(d["dst_exp_p"]),
+                  e(d["dst_plat_pl_h"]), e(d["dst_exp_h"])),
+             "band-warm", d["dst_plat_tag"], d["dst_plat_h"], d["dst_plat_p"], lede=True)
+    s += sec('<p class="lede">%s</p>' % e(d["dst_vis_p2"])
+             + panel(d["dst_vis_panel_h"], d["dst_vis_items"]),
+             "", d["dst_vis_tag"], d["dst_vis_h"], d["dst_vis_p1"], lede=True)
+    s += sec('<p class="lede">%s</p>' % e(d["dst_cred_p2"])
+             + rows(d["dst_cred_rows"], two=True),
+             "band-alt", d["dst_cred_tag"], d["dst_cred_h"], d["dst_cred_p1"], lede=True)
+    s += cta_band(d["dst_close_h"], d["dst_close_p"],
+                  btn(d["dst_cta1"]) + " " + btn(d["dst_cta2"], "industries.html", ghost=True))
+    return s + footer(d) + TAIL_JS
+
+
+# ========================================================== USE CASES
+def build_usecases(d):
+    s = head(d, d["uc_title"], d["uc_desc"], "use-cases.html") + nav(d, "use-cases.html")
+    s += hero(d, d["uc_eyebrow"], d["uc_h1"], d["uc_sub"],
+              btn(d["uc_cta1"]) + " " + btn(d["uc_cta2"], "platform.html", ghost=True), plain=True)
+    s += sec(chips(d["uc_chain"]), "", d["uc_chain_tag"], d["uc_chain_h"], d["uc_chain_p"])
+
+    labels = (d["uc_f_owner"], d["uc_f_surfaces"], d["uc_f_work"], d["uc_f_change"])
+    wf = []
+    for name, owner, surfaces, work, change in d["uc_items"]:
+        pairs = "".join("<dt>%s</dt><dd>%s</dd>" % (e(k), e(v))
+                        for k, v in zip(labels, (owner, surfaces, work, change)))
+        wf.append('<div class="w"><h3>%s</h3><dl>%s</dl></div>' % (e(name), pairs))
+    s += sec('<div class="cmwf">%s</div>' % "".join(wf)
+             + '<p class="cmnote">%s</p>' % e(d["uc_wf_note"]),
+             "band-alt", d["uc_wf_tag"], d["uc_wf_h"], d["uc_wf_p"])
+
+    s += sec("".join('<p class="lede">%s</p>' % e(p) for p in d["uc_bring_p"]),
+             "band-warm", d["uc_bring_tag"], d["uc_bring_h"], "")
+    s += cta_band(d["uc_close_h"], d["uc_close_p"],
+                  btn(d["uc_close_cta1"]) + " " + btn(d["uc_close_cta2"], "platform.html", ghost=True))
+    return s + footer(d) + TAIL_JS
+
+
+# ========================================================== COMPANY
+def build_company(d):
+    """The roster is not in the copy dict. A person's name and photo are the same in
+    both languages, so they are read straight from the main site's content2.COMPANY
+    and paired by position with the translated role and bio."""
+    s = head(d, d["co_title"], d["co_desc"], "company.html",
+             extra_css=teamgrid.CSS) + nav(d, "company.html")
+    s += hero(d, d["co_eyebrow"], d["co_h1"], d["co_sub"],
+              btn(d["co_cta1"]) + " " + btn(d["co_cta2"], "platform.html", ghost=True), plain=True)
+
+    s += sec("".join('<p class="lede">%s</p>' % e(p)
+                     for p in (d["co_purpose_p1"], d["co_purpose_p2"], d["co_purpose_p3"]))
+             + '<div class="callout" style="margin-top:22px;"><p>%s</p></div>' % e(d["co_ab_p"]),
+             "", d["co_purpose_tag"], d["co_purpose_h"], "")
+
+    groups = content2.COMPANY["groups"]
+    spec = (("co_lead_tag", "co_lead_h", "co_lead", True, "band-alt"),
+            ("co_pae_tag", "co_pae_h", "co_pae", False, ""),
+            ("co_ge_tag", "co_ge_h", "co_ge", False, "band-alt"))
+    for (tagk, hk, rowk, is_lead, band), group in zip(spec, groups):
+        people = group[-1]
+        if len(people) != len(d[rowk]):
+            raise SystemExit("cement.py: %s has %d rows but content2 group %r has %d people"
+                             % (rowk, len(d[rowk]), group[0], len(people)))
+        merged = []
+        for src, (role, bio) in zip(people, d[rowk]):
+            name, photo = src[0], (src[2] if len(src) == 4 else "")
+            # content2 stores the portrait bare, which resolves against the main
+            # site's root. The microsite sits a level down and the Arabic two, so
+            # the path has to be rooted or every portrait 404s.
+            if photo:
+                photo = "/" + photo.lstrip("/")
+            merged.append((name, role, photo, bio) if photo else (name, role, bio))
+        s += ('<section%s>\n  <div class="container" style="%s">\n'
+              '    <div class="section-tag">%s</div>\n'
+              '    <h2 class="section-heading">%s</h2>\n    %s\n  </div>\n</section>\n'
+              % (' class="%s"' % band if band else "", teamgrid.vars_for("warm"),
+                 e(d[tagk]), e(d[hk]), teamgrid.grid(merged, lead=is_lead, e=e)))
+
+    s += sec("", "band-warm", d["co_aepg_tag"], d["co_aepg_h"], d["co_aepg_p"], lede=True)
+    s += sec('<div style="margin-top:26px;">%s</div>'
+             % btn(d["co_ev_cta"], "events.html", ghost=True),
+             "", d["co_ev_tag"], d["co_ev_h"], d["co_ev_p"])
+    s += cta_band(d["co_close_h"], d["co_close_p"],
+                  btn(d["co_cta1"]) + " " + btn(d["co_cta2"], "platform.html", ghost=True))
+    return s + footer(d) + TAIL_JS
+
+
 BANNED = ["—", "–", "revolutionary", "cutting-edge", "seamless", "leverage",
           "unlock", "empower", "AI-powered", "robust", "game-chang", "best-in-class",
           "transform the", "supercharge", "effortless", "turnkey solution"]
@@ -794,6 +1048,13 @@ if __name__ == "__main__":
         os.makedirs(out, exist_ok=True)
         pages = {"index.html": build_home(d),
                  "platform.html": build_platform(d),
+                 "capabilities.html": build_capabilities(d),
+                 "industries.html": build_industries(d),
+                 "construction.html": build_construction(d),
+                 "concrete.html": build_concrete(d),
+                 "distribution.html": build_distribution(d),
+                 "use-cases.html": build_usecases(d),
+                 "company.html": build_company(d),
                  "events.html": build_events(d)}
         for n, b in pages.items():
             check(b, "%s/%s" % (code, n))
