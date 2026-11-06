@@ -912,7 +912,7 @@ def build_home(d):
     return s + footer(d) + tail(d)
 
 
-# ================================================================ PLATFORM
+# ================================================== PLATFORM CAPABILITY MAP
 def capmap(d):
     """The platform capability map: administration and inputs, the three module
     columns either side of Core, and the shared facilities. This is the diagram the
@@ -967,6 +967,7 @@ def capmap(d):
     return out
 
 
+# ================================================================ EVENTS
 def events_jsonld(d):
     """Event structured data for the three dated items on the events page.
     Times are Africa/Cairo, which is UTC+2 in November. The invitation-only
@@ -1329,7 +1330,7 @@ def stations(fam, groups, run, stops):
 def build_capabilities(d):
     s = head(d, d["cap_title"], d["cap_desc"], "capabilities.html") + nav(d, "capabilities.html")
     s += hero(d, d["cap_eyebrow"], d["cap_h1"], d["cap_sub"],
-              btn(d["cap_cta1"]) + " " + btn(d["cap_cta2"], "use-cases.html", ghost=True),
+              btn(d["cap_cta1"]),
               shot="capabilities")
     s += capmap(d)
     s += sec(stations("hz", d["cap_hz_groups"], d["cap_hz_run"], d["cap_hz_stops"]),
@@ -1338,8 +1339,7 @@ def build_capabilities(d):
              "band-alt", d["cap_pl_tag"], d["cap_pl_h"], d["cap_pl_p"])
     s += sec("", "", d["cap_adapt_tag"], d["cap_adapt_h"], d["cap_adapt_p"],
              lede=True, **band("cap_adapt"))
-    s += cta_band(d["cap_close_h"], d["cap_close_p"],
-                  btn(d["cap_cta1"]) + " " + btn(d["cap_cta2"], "use-cases.html", ghost=True))
+    s += cta_band(d["cap_close_h"], d["cap_close_p"], btn(d["cap_cta1"]))
     return s + footer(d) + tail(d)
 
 
@@ -1373,8 +1373,9 @@ BANDS = {
     "dst_vis":     ("/cons-logistics.jpg",   "l"),
     # the two moving bands. cx_wf is the dusk plant that was briefly the home
     # hero and was pulled from it, back on the page about the cement context
-    # rather than over a headline. plat_dep is a works at sunrise, a plant of
-    # the size a first deployment actually lands in.
+    # rather than over a headline. cap_adapt is a works at sunrise, a plant of
+    # the size a first deployment actually lands in. It was cut for the platform
+    # page's deployment section and moved here when that page was retired.
     # the side each one takes is where its subject actually is. The wash is
     # solid cream to 44 percent and only thins past about 72, so the far
     # quarter is the only part of a band that is really seen, which is what
@@ -1520,7 +1521,7 @@ def build_usecases(d):
     s += sec("".join('<p class="lede">%s</p>' % e(p) for p in d["uc_bring_p"]),
              "band-warm", d["uc_bring_tag"], d["uc_bring_h"], "")
     s += cta_band(d["uc_close_h"], d["uc_close_p"],
-                  btn(d["uc_close_cta1"]) + " " + btn(d["uc_close_cta2"], "capabilities.html", ghost=True))
+                  btn(d["uc_close_cta1"]) + " " + btn(d["uc_close_cta2"], ghost=True))
     return s + footer(d) + tail(d)
 
 
