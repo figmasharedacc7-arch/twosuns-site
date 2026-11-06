@@ -914,32 +914,17 @@ def build_home(d):
 
 
 # ================================================================ PLATFORM
-def build_platform(d):
-    s = head(d, d["plat_title"], d["plat_desc"], "platform.html") + nav(d, "platform.html")
-    s += hero(d, d["plat_eyebrow"], d["plat_h1"], d["plat_sub"],
-              btn(d["plat_cta1"]) + " " + btn(d["plat_cta2"], ghost=True),
-              shot="platform")
-
-    s += """<section>
-  <div class="container">
-    <div class="section-tag">%s</div>
-    <h2 class="section-heading">%s</h2>
-    %s
-    <div class="split2" style="margin-top:34px;align-items:start;">
-      <div class="split2-panel"><h3>%s</h3>%s</div>
-      <div class="callout" style="margin-top:0;"><p>%s</p></div>
-    </div>
-  </div>
-</section>
-""" % (e(d["how_tag"]), e(d["how_h"]), steps(d["how_steps"]),
-       e(d["how_carry_h"]), ticks(d["how_carry"]), e(d["how_note"]))
-
+def capmap(d):
+    """The platform capability map: administration and inputs, the three module
+    columns either side of Core, and the shared facilities. This is the diagram the
+    business plan carries as slide 5, as real bilingual markup rather than a raster,
+    so the Arabic page gets Arabic and a phone gets a reflow."""
     def mod(cls, h, dd, cnt, items):
         c = '<div class="d">%s%s</div>' % (e(dd), (" · " + e(cnt)) if cnt else "")
         return ('<div class="cmmod %s"><h3>%s</h3>%s<ul>%s</ul></div>'
                 % (cls, e(h), c, "".join("<li>%s</li>" % e(i) for i in items)))
 
-    s += """<section class="band-alt">
+    out = """<section class="band-alt">
   <div class="container">
     <div class="section-tag">%s</div>
     <h2 class="section-heading">%s</h2>
@@ -980,6 +965,30 @@ def build_platform(d):
        e(d["arch_t3_n"]), e(d["arch_t3_k"]), e(d["arch_t3_a"]),
        e(d["arch_ray"]), chips(d["arch_t3"]), e(d["arch_t3_note"]),
        e(d["arch_units"]))
+    return out
+
+
+def build_platform(d):
+    s = head(d, d["plat_title"], d["plat_desc"], "platform.html") + nav(d, "platform.html")
+    s += hero(d, d["plat_eyebrow"], d["plat_h1"], d["plat_sub"],
+              btn(d["plat_cta1"]) + " " + btn(d["plat_cta2"], ghost=True),
+              shot="platform")
+
+    s += """<section>
+  <div class="container">
+    <div class="section-tag">%s</div>
+    <h2 class="section-heading">%s</h2>
+    %s
+    <div class="split2" style="margin-top:34px;align-items:start;">
+      <div class="split2-panel"><h3>%s</h3>%s</div>
+      <div class="callout" style="margin-top:0;"><p>%s</p></div>
+    </div>
+  </div>
+</section>
+""" % (e(d["how_tag"]), e(d["how_h"]), steps(d["how_steps"]),
+       e(d["how_carry_h"]), ticks(d["how_carry"]), e(d["how_note"]))
+
+    s += capmap(d)
 
     head_cells = "".join("<th>%s</th>" % e(c) for c in d["data_cols"])
     body_rows = "".join("<tr>%s</tr>" % "".join("<td>%s</td>" % e(c) for c in r)
@@ -1388,6 +1397,7 @@ def build_capabilities(d):
     s += hero(d, d["cap_eyebrow"], d["cap_h1"], d["cap_sub"],
               btn(d["cap_cta1"]) + " " + btn(d["cap_cta2"], "platform.html", ghost=True),
               shot="capabilities")
+    s += capmap(d)
     s += sec(stations("hz", d["cap_hz_groups"], d["cap_hz_run"], d["cap_hz_stops"]),
              "", d["cap_hz_tag"], d["cap_hz_h"], d["cap_hz_p"])
     s += sec(stations("pl", d["cap_pl_groups"], d["cap_pl_run"], d["cap_pl_stops"]),
