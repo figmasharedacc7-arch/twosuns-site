@@ -1257,11 +1257,13 @@ EN = {
  "cx_close_cta2": "Explore the Platform",
 
  # the production line figure on the context page, drawn by process.py. The
- # seven stages are the physical run a producer works, and they are the run the
- # Pulse capability groups are configured against.
- "prc_tag": "The process",
- "prc_h": "The line this platform is configured around",
- "prc_p": "Seven stages, one run. Every capability group under Pulse is configured against a decision somewhere on this line.",
+ # seven stages are the physical run a producer works. The copy does not claim the
+ # Pulse groups map onto them one for one, because they do not: cap_pl_groups holds
+ # six groups against seven drawn stages, and maintenance and quality sit on the
+ # whole line rather than on any single stage.
+ "prc_tag": "The production line",
+ "prc_h": "From the quarry face to the loaded truck",
+ "prc_p": "Cost per tonne accumulates stage by stage along this line, from the face selected in the quarry to the silo released for loading. The Pulse capability groups sit where those decisions are taken.",
  "prc_labels": {"svg_aria": "The cement production line as one run: the quarry face, crushing, the raw mill, the preheater and kiln, the cooler, the cement mill, and the silo the truck loads from.",
                 "s1": "Quarry",
                 "s1_d": "Limestone won at the face",
@@ -2453,9 +2455,9 @@ AR = {
  "cx_close_cta2": "استعرض المنصة",
 
  # the production line figure on the context page, drawn by process.py
- "prc_tag": "العملية",
- "prc_h": "الخط الذي تُهيَّأ عليه هذه المنصة",
- "prc_p": "سبع مراحل في خط واحد. تُهيَّأ كل مجموعة قدرات ضمن Pulse على قرار في موضع من هذا الخط.",
+ "prc_tag": "خط الإنتاج",
+ "prc_h": "من واجهة المحجر إلى الشاحنة المحمَّلة",
+ "prc_p": "تتراكم تكلفة الطن عبر هذا الخط مرحلةً بمرحلة، من الواجهة المختارة في المحجر إلى الصومعة المُفرَج عنها للتحميل. ومجموعات القدرات في Pulse تقع حيث تُتخذ هذه القرارات.",
  "prc_labels": {"svg_aria": "خط إنتاج الأسمنت مسارًا واحدًا: واجهة المحجر، والتكسير، وطاحونة المواد الخام، ووحدة التكليس والفرن، والمبرد، وطاحونة الأسمنت، والصومعة التي تُحمَّل منها الشاحنة.",
                 "s1": "المحجر",
                 "s1_d": "الحجر الجيري من واجهة المحجر",
