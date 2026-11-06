@@ -689,6 +689,19 @@
   .cmhero.sh-usecases{--cmshot:url('/uc-hero.jpg');}
   .cmhero.sh-company{--cmshot:url('/company-hero.jpg');}
   .cmhero.sh-events{--cmshot:url('/events-hero.jpg');}
+  /* A hero that carries a loop plays it where the still would sit, under the
+     same cream wash, so a page with video and a page without read as one site.
+     The still stays the poster: it is what shows while the file loads, if the
+     browser refuses to autoplay, and if the reader has asked for no motion. */
+  .cmhero>.cmvid{position:absolute;inset:0;z-index:0;overflow:hidden;}
+  .cmhero>.cmvid video{width:100%;height:100%;object-fit:cover;
+    object-position:center 30%;display:block;}
+  .cmhero>.cmvid::after{content:"";position:absolute;inset:0;background:var(--cmwash);}
+  .cmhero>.hero-glow{z-index:1;}
+  .cmhero>.container{position:relative;z-index:2;}
+  @media(prefers-reduced-motion:reduce){.cmhero>.cmvid{display:none;}}
+  /* the poster frame of each loop, which is also the still the page falls back to */
+  .cmhero.vd-plant{--cmshot:url('/cement/hero-plant.jpg');}
   .cmhero h1{font-size:clamp(32px,4.4vw,54px);font-weight:900;line-height:1.1;color:var(--navy);
     margin-bottom:20px;max-width:19ch;}
   .cmhero p.hero-sub{max-width:620px;}

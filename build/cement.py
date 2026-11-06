@@ -106,6 +106,19 @@ CEM_CSS = r"""
   .cmhero.sh-usecases{--cmshot:url('/uc-hero.jpg');}
   .cmhero.sh-company{--cmshot:url('/company-hero.jpg');}
   .cmhero.sh-events{--cmshot:url('/events-hero.jpg');}
+  /* A hero that carries a loop plays it where the still would sit, under the
+     same cream wash, so a page with video and a page without read as one site.
+     The still stays the poster: it is what shows while the file loads, if the
+     browser refuses to autoplay, and if the reader has asked for no motion. */
+  .cmhero>.cmvid{position:absolute;inset:0;z-index:0;overflow:hidden;}
+  .cmhero>.cmvid video{width:100%;height:100%;object-fit:cover;
+    object-position:center 30%;display:block;}
+  .cmhero>.cmvid::after{content:"";position:absolute;inset:0;background:var(--cmwash);}
+  .cmhero>.hero-glow{z-index:1;}
+  .cmhero>.container{position:relative;z-index:2;}
+  @media(prefers-reduced-motion:reduce){.cmhero>.cmvid{display:none;}}
+  /* the poster frame of each loop, which is also the still the page falls back to */
+  .cmhero.vd-plant{--cmshot:url('/cement/hero-plant.jpg');}
   .cmhero h1{font-size:clamp(32px,4.4vw,54px);font-weight:900;line-height:1.1;color:var(--navy);
     margin-bottom:20px;max-width:19ch;}
   .cmhero p.hero-sub{max-width:620px;}
@@ -638,11 +651,36 @@ def footer(d):
 TAIL_JS = theme.PARTICLES + reveal.body_script() + "\n</body>\n</html>\n"
 
 
-def hero(d, eyebrow, h1, sub, acts, shot=""):
+# The loop a hero plays, by the page it heads. The value is the basename under
+# cement/: <name>.mp4 is the loop and <name>.jpg its poster, and the poster is
+# also the still the page shows when the loop cannot play. A page absent here
+# keeps its photograph, so adding a loop is one line and one pair of files.
+HERO_VIDEOS = {
+    "index.html": "hero-plant",
+}
+
+
+def hero(d, eyebrow, h1, sub, acts, shot="", video=""):
     """shot names the hero photograph, as the sh- class defined in CEM_CSS.
-    Empty means the cement banner the home page carries."""
-    return """<section class="cmhero%s">
-  <div class="hero-glow"></div>
+    Empty means the cement banner the home page carries.
+
+    video names a loop from HERO_VIDEOS. It plays where the still would sit and
+    the still becomes its poster, so nothing moves when the loop cannot play:
+    a refused autoplay, a slow file, or a reader who has asked for no motion.
+    Muted and inert, so it is decoration a screen reader and the tab order both
+    skip, and the page says nothing a reader would miss without it."""
+    vd = ""
+    if video:
+        if not os.path.exists(os.path.join(OUT, video + ".mp4")):
+            raise SystemExit("hero video %s.mp4 is not in cement/" % video)
+        if not os.path.exists(os.path.join(OUT, video + ".jpg")):
+            raise SystemExit("hero video %s needs a poster, %s.jpg is not in "
+                             "cement/" % (video, video))
+        vd = ('<div class="cmvid"><video src="/cement/%s.mp4" poster="/cement/%s.jpg"'
+              ' autoplay muted loop playsinline preload="metadata" aria-hidden="true"'
+              ' tabindex="-1"></video></div>\n  ' % (video, video))
+    return """<section class="cmhero%s%s">
+  %s<div class="hero-glow"></div>
   <div class="container">
     <div class="hero-eyebrow"><span class="dot"></span>%s</div>
     <h1>%s</h1>
@@ -651,7 +689,8 @@ def hero(d, eyebrow, h1, sub, acts, shot=""):
   </div>
 </section>
 <div class="sun-divider"></div>
-""" % (" sh-" + shot if shot else "", e(eyebrow), e(h1), e(sub), acts)
+""" % (" sh-" + shot if shot else "", " vd-" + video.replace("hero-", "") if video else "",
+       vd, e(eyebrow), e(h1), e(sub), acts)
 
 
 def cta_band(heading, para, acts):
@@ -687,7 +726,8 @@ def steps(items):
 def build_home(d):
     s = head(d, d["home_title"], d["home_desc"], "index.html") + nav(d, "index.html")
     s += hero(d, d["home_eyebrow"], d["home_h1"], d["home_sub"],
-              btn(d["home_cta1"]) + " " + btn(d["home_cta2"], "platform.html", ghost=True))
+              btn(d["home_cta1"]) + " " + btn(d["home_cta2"], "platform.html", ghost=True),
+              video=HERO_VIDEOS["index.html"])
 
     fams = "".join('<div class="f"><h3>%s</h3><div class="d">%s</div><div class="x">%s</div></div>'
                    % (e(n), e(a), e(b)) for n, a, b in d["fams"])
