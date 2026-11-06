@@ -30,6 +30,9 @@ CSS = r"""
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
+  /* the capabilities rail jumps up to 4000px in one click, which is a long
+     animated slide for a reader who has asked the system for no motion */
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
   body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.6;overflow-x:hidden;}
   a{color:inherit;text-decoration:none;}
   img{max-width:100%;}

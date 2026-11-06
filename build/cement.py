@@ -319,11 +319,9 @@ CEM_CSS = r"""
     display:flex;flex-wrap:wrap;gap:10px 20px;justify-content:space-between;font-size:13px;
     color:var(--text-muted);}
 
-  /* capability groups, sector cards and workflow cards. Three grids added for the
-     pages that mirror the main site. They reuse the card tokens above so a new
-     page cannot drift from the shipped ones. */
-  .cmcg{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:26px;}
-  .cmcg>*{min-width:0;}
+  /* sector cards and workflow cards. Two grids added for the pages that mirror
+     the main site. They reuse the card tokens above so a new page cannot drift
+     from the shipped ones. */
 
   /* ---- Capabilities: the family run rail and its stations ---- */
   /* The six groups in a family are positions in a run, not six interchangeable
@@ -334,24 +332,26 @@ CEM_CSS = r"""
      do not yet, and a frame filled because a slot wanted filling is worse than
      no frame, so a row without a picture is simply full width. */
   .cmrail{margin-top:26px;border-radius:18px;padding:26px 30px 30px;color:#F6EEDE;
-    background:linear-gradient(140deg,#2E2822,#141110);}
+    background:linear-gradient(140deg,#2A2520,#171310);}
   .cmrail .run{font-size:16.5px;font-weight:800;line-height:1.35;color:#fff;
     letter-spacing:.04em;text-transform:uppercase;}
-  .cmrail .track{position:relative;display:grid;grid-template-columns:repeat(6,1fr);
+  .cmrail .track{position:relative;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));
     margin-top:22px;}
   /* the thread behind the stops, inset so it begins and ends inside the first
      and last number rather than running off the ends of the rail */
   .cmrail .track::before{content:"";position:absolute;inset-inline:8%;top:14px;
     height:1px;background:rgba(224,178,80,.45);}
   .cmrail a{position:relative;text-align:center;text-decoration:none;}
-  .cmrail .n{width:30px;height:30px;margin:0 auto;border-radius:50%;background:#2E2822;
+  .cmrail .n{width:30px;height:30px;margin:0 auto;border-radius:50%;background:#2A2520;
     border:1px solid rgba(224,178,80,.55);color:var(--gold);font-size:11.5px;
     font-weight:800;display:flex;align-items:center;justify-content:center;
     transition:background .25s,border-color .25s,color .25s;}
   .cmrail .l{margin-top:9px;font-size:11.5px;font-weight:800;line-height:1.25;
     color:#F6EEDE;letter-spacing:.1em;text-transform:uppercase;transition:color .25s;}
+  /* the glyph darkens rather than turning white: white on --sun is 3.49:1 at
+     11.5px, and the hovered or focused stop is the one being read */
   .cmrail a:hover .n,.cmrail a:focus-visible .n{background:var(--sun);
-    border-color:var(--sun);color:#fff;}
+    border-color:var(--sun);color:#2A2520;}
   .cmrail a:hover .l,.cmrail a:focus-visible .l{color:var(--gold);}
 
   .cmsts{margin-top:30px;}
@@ -360,6 +360,7 @@ CEM_CSS = r"""
   .cmst{display:grid;grid-template-columns:340px 1fr;gap:14px 36px;padding:30px 0;
     border-top:1px solid rgba(204,153,0,.30);scroll-margin-top:90px;}
   .cmst:first-child{border-top:0;padding-top:8px;}
+  .cmst:focus{outline:none;}
   .cmst>*{min-width:0;}
   .cmst.shot{grid-template-columns:5fr 7fr;gap:36px;align-items:center;}
   .cmst .ph{position:relative;overflow:hidden;border-radius:16px;aspect-ratio:3/2;
@@ -386,9 +387,11 @@ CEM_CSS = r"""
   .cmst .tick{columns:2;column-gap:32px;}
   .cmst.shot .tick{margin-top:16px;column-gap:28px;}
   .cmst .tick li{break-inside:avoid;margin-bottom:9px;}
-  /* the rows cross, picture at the start then at the end. grid order does the
-     flip, so the DOM keeps picture before text for a screen reader, and Arabic
-     mirrors the whole rhythm without a rule of its own. */
+  /* a picture sits at the start of an odd row and at the end of an even one, so
+     the side follows the station's number in the family, not the order of the
+     pictures: two pictures on 01 and 03 both sit at the start. grid order does
+     the flip, so the DOM keeps picture before text for a screen reader, and
+     Arabic mirrors the whole rhythm without a rule of its own. */
   .cmst.shot:nth-child(even){grid-template-columns:7fr 5fr;}
   .cmst.shot:nth-child(even) .ph{order:2;}
   .cmst.shot:nth-child(even) .bd{order:1;}
@@ -426,9 +429,12 @@ CEM_CSS = r"""
   .imgsec::before{background-image:var(--cmband);}
   /* the copy column is a little over half the width, so the grids inside a band
      drop a column earlier than they do in a full width section */
-  .imgsec .cmsx,.imgsec .cmrows.two,.imgsec .cmcg{grid-template-columns:1fr;}
+  .imgsec .cmsx,.imgsec .cmrows.two{grid-template-columns:1fr;}
   @media(min-width:1180px){.imgsec .cmrows.two{grid-template-columns:repeat(2,1fr);}}
   @media(min-width:1200px){.cmst:not(.shot) .tick{columns:3;column-gap:30px;}}
+  /* between the chip breakpoint and about 705 the longest stop, MAINTENANCE,
+     is wider than a sixth of the rail and pushes its neighbours off the beat */
+  @media(max-width:760px){.cmrail .l{font-size:10.5px;letter-spacing:.04em;}}
 
   @media(max-width:1000px){
     .cmhero,html[dir="rtl"] .cmhero{background-position:center,center;
@@ -450,7 +456,7 @@ CEM_CSS = r"""
   }
   @media(max-width:620px){
     .cmfam,.cmrows,.cmrows.two,.cmmods,.cmpd{grid-template-columns:1fr;}
-    .cmcg,.cmwf,.cmpr,.cmfl .g{grid-template-columns:1fr;}
+    .cmwf,.cmpr,.cmfl .g{grid-template-columns:1fr;}
     /* a station stacks, picture above its text, and the stops wrap */
     .cmst,.cmst.shot,.cmst.shot:nth-child(even){grid-template-columns:1fr;gap:18px;}
     .cmst.shot:nth-child(even) .ph{order:0;}
@@ -460,11 +466,10 @@ CEM_CSS = r"""
     /* stops as inline chips: a number over a label twice over costs 270px of a
        phone screen, and the rail is a jump index, not a diagram */
     .cmrail{padding:20px 20px 22px;}
-    .cmrail .track{display:flex;flex-wrap:wrap;gap:10px 14px;margin-top:16px;}
+    .cmrail .track{display:flex;flex-wrap:wrap;gap:18px 10px;margin-top:16px;}
     .cmrail a{display:flex;align-items:center;gap:7px;text-align:start;}
     .cmrail .n{width:24px;height:24px;font-size:10.5px;margin:0;}
     .cmrail .l{margin-top:0;font-size:11px;letter-spacing:.06em;}
-    .cmrail .track{grid-template-columns:repeat(3,1fr);gap:18px 10px;}
     .cmrail .track::before{display:none;}
     .cmwf .w dl{grid-template-columns:1fr;gap:2px;}
     .cmwf .w dd{margin-bottom:8px;}
@@ -563,7 +568,7 @@ def head(d, title, desc, page, extra_css=""):
 # built and reachable by their own URL. Hiding here rather than cutting the
 # entries out of cement_copy means the Arabic labels survive the hiatus and
 # putting an item back is one line, and it keeps the two copy dicts at the same
-# 364 keys. The three sector pages come with sectors.html: they are only ever
+# number of keys. The three sector pages come with sectors.html: they are only ever
 # reached from that hub, so hiding it alone would leave them orphaned.
 # Requested 2026-11-05 as a temporary measure while capabilities is reworked.
 HIDDEN = {"sectors.html", "use-cases.html"}
@@ -1033,16 +1038,6 @@ def panel(h, items):
            '<h3>%s</h3>%s</div>' % (e(h), ticks(items))
 
 
-def cards(groups):
-    """Capability groups: [name, descriptor, [items]] rendered as the platform page's
-    module card, so a capability family reads the same as a platform module."""
-    out = []
-    for name, desc, items in groups:
-        out.append('<div class="cmmod"><h3>%s</h3><div class="d">%s</div><ul>%s</ul></div>'
-                   % (e(name), e(desc), "".join("<li>%s</li>" % e(i) for i in items)))
-    return '<div class="cmcg">%s</div>' % "".join(out)
-
-
 def mods(names):
     """The modules a pressure or a workflow reaches. The microsite has no module
     reference page, so these name the module rather than linking to it. Every name
@@ -1116,11 +1111,18 @@ def build_context(d):
 # grey pulled out of the spoil face, which is the best the repository can do for
 # this station until the real one arrives.
 STATION_SHOTS = {
+    "hz-1": "/cement/cap-hz-1.jpg",
+    "hz-2": "/cement/cap-hz-2.jpg",
     "pl-1": "/cement/cap-pl-1.jpg",
+    "pl-2": "/cement/cap-pl-2.jpg",
+    "pl-3": "/cement/cap-pl-3.jpg",
+    "pl-4": "/cement/cap-pl-4.jpg",
+    "pl-5": "/cement/cap-pl-5.jpg",
+    "pl-6": "/cement/cap-pl-6.jpg",
 }
 
 
-def stations(d, fam, groups, run, steps):
+def stations(fam, groups, run, stops):
     """One capability family as a run: a dark rail naming the run and its six
     stops, then the six groups as wide rows beneath it.
 
@@ -1130,12 +1132,12 @@ def stations(d, fam, groups, run, steps):
     change shape as pictures arrive.
 
     fam prefixes the row ids so the rail's stops reach them, "hz" or "pl"."""
-    assert len(groups) == len(steps) == 6, (
+    assert len(groups) == len(stops) == 6, (
         "the rail is drawn for six stops, got %d groups and %d labels"
-        % (len(groups), len(steps)))
+        % (len(groups), len(stops)))
     track = "".join(
         '<a href="#%s-%d"><div class="n">%02d</div><div class="l">%s</div></a>'
-        % (fam, i, i, e(lab)) for i, lab in enumerate(steps, 1))
+        % (fam, i, i, e(lab)) for i, lab in enumerate(stops, 1))
     out = ['<div class="cmrail"><div class="run">%s</div><div class="track">%s</div></div>'
            % (e(run), track), '<div class="cmsts">']
     for i, (name, desc, items) in enumerate(groups, 1):
@@ -1144,7 +1146,7 @@ def stations(d, fam, groups, run, steps):
         if shot and not os.path.exists(os.path.join(OUT, "..", shot.lstrip("/"))):
             raise SystemExit("STATION_SHOTS[%r] names %s, which is not in the "
                              "repository" % (sid, shot))
-        num = '<div class="n">%02d</div>' % i
+        num = '<div class="n" aria-hidden="true">%02d</div>' % i
         if shot:
             head = '<h3>%s</h3><div class="d">%s</div>' % (e(name), e(desc))
             # alt is empty on purpose: the row's own heading names the work, and
@@ -1154,10 +1156,12 @@ def stations(d, fam, groups, run, steps):
                     ' loading="lazy" decoding="async"></div>'
                     '<div class="bd">%s%s</div>' % (num, shot, head, ticks(items)))
         else:
-            body = ('<div class="bd"><div class="hd">%s<h3>%s</h3></div>'
-                    '<div class="d">%s</div></div><div>%s</div>'
+            # .nm is the name rail, .it the items beside it. .bd is the picture
+            # row's text half only, so a class means one thing in both branches.
+            body = ('<div class="nm"><div class="hd">%s<h3>%s</h3></div>'
+                    '<div class="d">%s</div></div><div class="it">%s</div>'
                     % (num, e(name), e(desc), ticks(items)))
-        out.append('<div class="cmst%s" id="%s">%s</div>'
+        out.append('<div class="cmst%s" id="%s" tabindex="-1">%s</div>'
                    % (" shot" if shot else "", sid, body))
     out.append("</div>")
     unseen = set(STATION_SHOTS) - {"%s-%d" % (fam, i) for i in range(1, 7)}
@@ -1172,9 +1176,9 @@ def build_capabilities(d):
     s += hero(d, d["cap_eyebrow"], d["cap_h1"], d["cap_sub"],
               btn(d["cap_cta1"]) + " " + btn(d["cap_cta2"], "platform.html", ghost=True),
               shot="capabilities")
-    s += sec(stations(d, "hz", d["cap_hz_groups"], d["cap_hz_run"], d["cap_hz_steps"]),
+    s += sec(stations("hz", d["cap_hz_groups"], d["cap_hz_run"], d["cap_hz_stops"]),
              "", d["cap_hz_tag"], d["cap_hz_h"], d["cap_hz_p"])
-    s += sec(stations(d, "pl", d["cap_pl_groups"], d["cap_pl_run"], d["cap_pl_steps"]),
+    s += sec(stations("pl", d["cap_pl_groups"], d["cap_pl_run"], d["cap_pl_stops"]),
              "band-alt", d["cap_pl_tag"], d["cap_pl_h"], d["cap_pl_p"])
     s += sec("", "band-warm", d["cap_adapt_tag"], d["cap_adapt_h"], d["cap_adapt_p"], lede=True)
     s += cta_band(d["cap_close_h"], d["cap_close_p"],
