@@ -1055,16 +1055,23 @@ def build_events(d):
        e(d["ses_h"]), e(d["ses_who"]), e(d["ses_p"]),
        e(d["ses_when"]), e(d["ses_time"]), e(d["ses_place"]))
 
-    ag = ""
-    for t, h, kind, p, who in d["ag_rows"]:
-        k = '<span class="cmag-k">%s</span>' % e(kind) if kind else ""
-        body = "<h3>%s%s</h3>" % (e(h), k)
-        if p:
-            body += "<p>%s</p>" % e(p)
-        if who:
-            body += "<ul>%s</ul>" % "".join("<li>%s</li>" % e(w) for w in who)
-        ag += ('<div class="cmag-r"><div class="cmag-t">%s</div>'
-               '<div class="cmag-b">%s</div></div>' % (e(t), body))
+    def agenda(rows):
+        """A time column beside a block of detail. The invitation's three blocks
+        and the detailed running order are the same shape, so they share this."""
+        out = ""
+        for t, h, kind, p, who in rows:
+            k = '<span class="cmag-k">%s</span>' % e(kind) if kind else ""
+            body = "<h3>%s%s</h3>" % (e(h), k)
+            if p:
+                body += "<p>%s</p>" % e(p)
+            if who:
+                body += "<ul>%s</ul>" % "".join("<li>%s</li>" % e(w) for w in who)
+            out += ('<div class="cmag-r"><div class="cmag-t">%s</div>'
+                    '<div class="cmag-b">%s</div></div>' % (e(t), body))
+        return out
+
+    eve = agenda(d["eve_rows"])
+    ag = agenda(d["ag_rows"])
 
     pd = "".join('<div class="p"><div class="k">%s</div><div class="v">%s</div></div>'
                  % (e(k), e(v)) for k, v in d["pd_rows"])
@@ -1080,7 +1087,12 @@ def build_events(d):
       <p style="margin-top:16px;">%s</p>
       <div class="acts">%s %s</div>
       <p class="cmnote">%s</p>
+      <p class="cmnote">%s</p>
     </div>
+
+    <h3 class="sub-heading" style="margin-top:38px;font-size:22px;">%s</h3>
+    <div class="cmag">%s</div>
+    <p class="cmnote">%s</p>
 
     <h3 class="sub-heading" style="margin-top:38px;font-size:22px;">%s</h3>
     <div class="cmag">%s</div>
@@ -1093,6 +1105,8 @@ def build_events(d):
 """ % (e(d["ev2_badge"]), e(d["ev2_h"]), e(d["ev2_kicker"]), e(d["ev2_line"]),
        e(d["ev2_when"]), e(d["ev2_time"]), e(d["ev2_place"]), e(d["ev2_dress"]),
        e(d["ev2_p"]), btn(d["ev2_cta1"]), btn(d["ev2_cta2"], ghost=True), e(d["ev2_note"]),
+       e(d["ev2_cred"]),
+       e(d["eve_h"]), eve, e(d["eve_note"]),
        e(d["ag_h"]), ag, e(d["ag_note"]), e(d["pd_tag"]), pd)
 
     past = "".join("<li><b>%s</b> &middot; %s &middot; %s</li>" % (e(a), e(b), e(c))
