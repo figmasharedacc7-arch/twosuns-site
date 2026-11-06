@@ -160,6 +160,7 @@ CEM_CSS = r"""
     padding:6px 14px;background:var(--bg2);}
   .cmfl>h3::after{content:"";flex:1;height:1px;background:var(--border);}
   html[dir="rtl"] .cmfl>h3{letter-spacing:0;}
+  html[dir="rtl"] .cmrail .run,html[dir="rtl"] .cmrail .l{letter-spacing:0;}
   .cmfl .g{display:grid;grid-template-columns:repeat(2,1fr);gap:0 34px;}
   .cmfl .g>*{min-width:0;}
   .cmfl .w{display:grid;grid-template-columns:auto 1fr;gap:0 14px;align-items:start;
@@ -324,6 +325,74 @@ CEM_CSS = r"""
   .cmcg{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:26px;}
   .cmcg>*{min-width:0;}
 
+  /* ---- Capabilities: the family run rail and its stations ---- */
+  /* The six groups in a family are positions in a run, not six interchangeable
+     boxes, so each family opens on a dark rail naming the run and its six stops
+     and the groups below are wide rows. Twelve identical cards in two grids was
+     the page, and it was the page the owner called box after box.
+     A row carries a photograph only where one exists that shows that work. Most
+     do not yet, and a frame filled because a slot wanted filling is worse than
+     no frame, so a row without a picture is simply full width. */
+  .cmrail{margin-top:26px;border-radius:18px;padding:26px 30px 30px;color:#F6EEDE;
+    background:linear-gradient(140deg,#2E2822,#141110);}
+  .cmrail .run{font-size:16.5px;font-weight:800;line-height:1.35;color:#fff;
+    letter-spacing:.04em;text-transform:uppercase;}
+  .cmrail .track{position:relative;display:grid;grid-template-columns:repeat(6,1fr);
+    margin-top:22px;}
+  /* the thread behind the stops, inset so it begins and ends inside the first
+     and last number rather than running off the ends of the rail */
+  .cmrail .track::before{content:"";position:absolute;inset-inline:8%;top:14px;
+    height:1px;background:rgba(224,178,80,.45);}
+  .cmrail a{position:relative;text-align:center;text-decoration:none;}
+  .cmrail .n{width:30px;height:30px;margin:0 auto;border-radius:50%;background:#2E2822;
+    border:1px solid rgba(224,178,80,.55);color:var(--gold);font-size:11.5px;
+    font-weight:800;display:flex;align-items:center;justify-content:center;
+    transition:background .25s,border-color .25s,color .25s;}
+  .cmrail .l{margin-top:9px;font-size:11.5px;font-weight:800;line-height:1.25;
+    color:#F6EEDE;letter-spacing:.1em;text-transform:uppercase;transition:color .25s;}
+  .cmrail a:hover .n,.cmrail a:focus-visible .n{background:var(--sun);
+    border-color:var(--sun);color:#fff;}
+  .cmrail a:hover .l,.cmrail a:focus-visible .l{color:var(--gold);}
+
+  .cmsts{margin-top:30px;}
+  /* without a picture the row runs the full measure, title and descriptor in a
+     rail at the start so a reader scanning names has one column to run down */
+  .cmst{display:grid;grid-template-columns:340px 1fr;gap:14px 36px;padding:30px 0;
+    border-top:1px solid rgba(204,153,0,.30);scroll-margin-top:90px;}
+  .cmst:first-child{border-top:0;padding-top:8px;}
+  .cmst>*{min-width:0;}
+  .cmst.shot{grid-template-columns:5fr 7fr;gap:36px;align-items:center;}
+  .cmst .ph{position:relative;overflow:hidden;border-radius:16px;aspect-ratio:3/2;
+    background:var(--gold-soft);box-shadow:var(--shadow);}
+  .cmst .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  /* the warm veil the hero wash already puts over a photograph, so a picture
+     joins the page rather than sitting on top of it */
+  .cmst .ph::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(224,100,30,.06),rgba(255,246,226,.16));}
+  .cmst .n{width:38px;height:38px;border-radius:50%;color:#fff;font-size:14px;
+    font-weight:900;display:flex;align-items:center;justify-content:center;flex:none;
+    background:linear-gradient(135deg,var(--sun),var(--sun-deep));}
+  /* on a picture row the ordinal sits on the picture, otherwise it leads the name */
+  .cmst.shot .n{position:absolute;z-index:2;top:14px;inset-inline-start:14px;
+    box-shadow:0 4px 14px rgba(60,50,30,.35);}
+  .cmst h3{font-size:19px;font-weight:900;color:var(--navy);line-height:1.3;}
+  .cmst.shot h3{font-size:21px;line-height:1.25;}
+  .cmst .d{font-size:13.5px;font-weight:700;color:var(--sun-deep);line-height:1.55;
+    margin-top:9px;}
+  /* the ordinal leads the name on a plain row, on the same line, because it
+     numbers that name and because stacking it cost a phone 50px a row */
+  .cmst .hd{display:flex;align-items:center;gap:12px;}
+  .cmst .hd .n{width:30px;height:30px;font-size:12px;}
+  .cmst .tick{columns:2;column-gap:32px;}
+  .cmst.shot .tick{margin-top:16px;column-gap:28px;}
+  .cmst .tick li{break-inside:avoid;margin-bottom:9px;}
+  /* the rows cross, picture at the start then at the end. grid order does the
+     flip, so the DOM keeps picture before text for a screen reader, and Arabic
+     mirrors the whole rhythm without a rule of its own. */
+  .cmst.shot:nth-child(even){grid-template-columns:7fr 5fr;}
+  .cmst.shot:nth-child(even) .ph{order:2;}
+  .cmst.shot:nth-child(even) .bd{order:1;}
+
   .cmsx{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px;}
   .cmsx>*{min-width:0;}
   .cmsx .s{background:#fff;border:1px solid var(--border-soft);border-radius:14px;
@@ -359,6 +428,7 @@ CEM_CSS = r"""
      drop a column earlier than they do in a full width section */
   .imgsec .cmsx,.imgsec .cmrows.two,.imgsec .cmcg{grid-template-columns:1fr;}
   @media(min-width:1180px){.imgsec .cmrows.two{grid-template-columns:repeat(2,1fr);}}
+  @media(min-width:1200px){.cmst:not(.shot) .tick{columns:3;column-gap:30px;}}
 
   @media(max-width:1000px){
     .cmhero,html[dir="rtl"] .cmhero{background-position:center,center;
@@ -381,6 +451,21 @@ CEM_CSS = r"""
   @media(max-width:620px){
     .cmfam,.cmrows,.cmrows.two,.cmmods,.cmpd{grid-template-columns:1fr;}
     .cmcg,.cmwf,.cmpr,.cmfl .g{grid-template-columns:1fr;}
+    /* a station stacks, picture above its text, and the stops wrap */
+    .cmst,.cmst.shot,.cmst.shot:nth-child(even){grid-template-columns:1fr;gap:18px;}
+    .cmst.shot:nth-child(even) .ph{order:0;}
+    .cmst.shot:nth-child(even) .bd{order:0;}
+    .cmst .tick{columns:1;}
+    .cmst{padding:24px 0;}
+    /* stops as inline chips: a number over a label twice over costs 270px of a
+       phone screen, and the rail is a jump index, not a diagram */
+    .cmrail{padding:20px 20px 22px;}
+    .cmrail .track{display:flex;flex-wrap:wrap;gap:10px 14px;margin-top:16px;}
+    .cmrail a{display:flex;align-items:center;gap:7px;text-align:start;}
+    .cmrail .n{width:24px;height:24px;font-size:10.5px;margin:0;}
+    .cmrail .l{margin-top:0;font-size:11px;letter-spacing:.06em;}
+    .cmrail .track{grid-template-columns:repeat(3,1fr);gap:18px 10px;}
+    .cmrail .track::before{display:none;}
     .cmwf .w dl{grid-template-columns:1fr;gap:2px;}
     .cmwf .w dd{margin-bottom:8px;}
     .cmag-r,.cmses{grid-template-columns:1fr;}
@@ -1019,14 +1104,78 @@ def build_context(d):
     return s + footer(d) + TAIL_JS
 
 
+# The photograph a capability station carries, by station id. A station appears
+# here only when a picture exists that really shows that work. The page was first
+# drawn with twelve, and eleven of them were an office, a conference stage, an air
+# handling unit or a batching plant, chosen because the layout had a slot. The
+# owner's instruction was that the pictures be relevant, so a station with no
+# entry renders as a plain wide row and adding its picture is one line here.
+# Files are named cap-<station>.jpg so a commissioned picture drops into the slot
+# it was briefed for. cap-pl-1.jpg is a stopgap, not a commissioned one: it is
+# bm-extraction.jpg cropped below the ridge and onto the working bench, with the
+# grey pulled out of the spoil face, which is the best the repository can do for
+# this station until the real one arrives.
+STATION_SHOTS = {
+    "pl-1": "/cement/cap-pl-1.jpg",
+}
+
+
+def stations(d, fam, groups, run, steps):
+    """One capability family as a run: a dark rail naming the run and its six
+    stops, then the six groups as wide rows beneath it.
+
+    A row with a picture splits, picture against name, descriptor and items. A
+    row without one puts the name and descriptor in a rail at the start and the
+    items beside it, so both kinds read as wide rows and the page does not
+    change shape as pictures arrive.
+
+    fam prefixes the row ids so the rail's stops reach them, "hz" or "pl"."""
+    assert len(groups) == len(steps) == 6, (
+        "the rail is drawn for six stops, got %d groups and %d labels"
+        % (len(groups), len(steps)))
+    track = "".join(
+        '<a href="#%s-%d"><div class="n">%02d</div><div class="l">%s</div></a>'
+        % (fam, i, i, e(lab)) for i, lab in enumerate(steps, 1))
+    out = ['<div class="cmrail"><div class="run">%s</div><div class="track">%s</div></div>'
+           % (e(run), track), '<div class="cmsts">']
+    for i, (name, desc, items) in enumerate(groups, 1):
+        sid = "%s-%d" % (fam, i)
+        shot = STATION_SHOTS.get(sid)
+        if shot and not os.path.exists(os.path.join(OUT, "..", shot.lstrip("/"))):
+            raise SystemExit("STATION_SHOTS[%r] names %s, which is not in the "
+                             "repository" % (sid, shot))
+        num = '<div class="n">%02d</div>' % i
+        if shot:
+            head = '<h3>%s</h3><div class="d">%s</div>' % (e(name), e(desc))
+            # alt is empty on purpose: the row's own heading names the work, and
+            # a caption repeating it is noise in a screen reader. The ordinal
+            # rides on the picture, so the name starts the text half.
+            body = ('<div class="ph">%s<img src="%s" alt="" width="1000" height="667"'
+                    ' loading="lazy" decoding="async"></div>'
+                    '<div class="bd">%s%s</div>' % (num, shot, head, ticks(items)))
+        else:
+            body = ('<div class="bd"><div class="hd">%s<h3>%s</h3></div>'
+                    '<div class="d">%s</div></div><div>%s</div>'
+                    % (num, e(name), e(desc), ticks(items)))
+        out.append('<div class="cmst%s" id="%s">%s</div>'
+                   % (" shot" if shot else "", sid, body))
+    out.append("</div>")
+    unseen = set(STATION_SHOTS) - {"%s-%d" % (fam, i) for i in range(1, 7)}
+    assert unseen <= {"%s-%d" % (f, i) for f in ("hz", "pl") for i in range(1, 7)}, (
+        "STATION_SHOTS has keys no station will ever ask for: %s" % sorted(unseen))
+    return "".join(out)
+
+
 # ========================================================== CAPABILITIES
 def build_capabilities(d):
     s = head(d, d["cap_title"], d["cap_desc"], "capabilities.html") + nav(d, "capabilities.html")
     s += hero(d, d["cap_eyebrow"], d["cap_h1"], d["cap_sub"],
               btn(d["cap_cta1"]) + " " + btn(d["cap_cta2"], "platform.html", ghost=True),
               shot="capabilities")
-    s += sec(cards(d["cap_hz_groups"]), "", d["cap_hz_tag"], d["cap_hz_h"], d["cap_hz_p"])
-    s += sec(cards(d["cap_pl_groups"]), "band-alt", d["cap_pl_tag"], d["cap_pl_h"], d["cap_pl_p"])
+    s += sec(stations(d, "hz", d["cap_hz_groups"], d["cap_hz_run"], d["cap_hz_steps"]),
+             "", d["cap_hz_tag"], d["cap_hz_h"], d["cap_hz_p"])
+    s += sec(stations(d, "pl", d["cap_pl_groups"], d["cap_pl_run"], d["cap_pl_steps"]),
+             "band-alt", d["cap_pl_tag"], d["cap_pl_h"], d["cap_pl_p"])
     s += sec("", "band-warm", d["cap_adapt_tag"], d["cap_adapt_h"], d["cap_adapt_p"], lede=True)
     s += cta_band(d["cap_close_h"], d["cap_close_p"],
                   btn(d["cap_cta1"]) + " " + btn(d["cap_cta2"], "platform.html", ghost=True))

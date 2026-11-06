@@ -740,6 +740,7 @@
     padding:6px 14px;background:var(--bg2);}
   .cmfl>h3::after{content:"";flex:1;height:1px;background:var(--border);}
   html[dir="rtl"] .cmfl>h3{letter-spacing:0;}
+  html[dir="rtl"] .cmrail .run,html[dir="rtl"] .cmrail .l{letter-spacing:0;}
   .cmfl .g{display:grid;grid-template-columns:repeat(2,1fr);gap:0 34px;}
   .cmfl .g>*{min-width:0;}
   .cmfl .w{display:grid;grid-template-columns:auto 1fr;gap:0 14px;align-items:start;
@@ -904,6 +905,74 @@
   .cmcg{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:26px;}
   .cmcg>*{min-width:0;}
 
+  /* ---- Capabilities: the family run rail and its stations ---- */
+  /* The six groups in a family are positions in a run, not six interchangeable
+     boxes, so each family opens on a dark rail naming the run and its six stops
+     and the groups below are wide rows. Twelve identical cards in two grids was
+     the page, and it was the page the owner called box after box.
+     A row carries a photograph only where one exists that shows that work. Most
+     do not yet, and a frame filled because a slot wanted filling is worse than
+     no frame, so a row without a picture is simply full width. */
+  .cmrail{margin-top:26px;border-radius:18px;padding:26px 30px 30px;color:#F6EEDE;
+    background:linear-gradient(140deg,#2E2822,#141110);}
+  .cmrail .run{font-size:16.5px;font-weight:800;line-height:1.35;color:#fff;
+    letter-spacing:.04em;text-transform:uppercase;}
+  .cmrail .track{position:relative;display:grid;grid-template-columns:repeat(6,1fr);
+    margin-top:22px;}
+  /* the thread behind the stops, inset so it begins and ends inside the first
+     and last number rather than running off the ends of the rail */
+  .cmrail .track::before{content:"";position:absolute;inset-inline:8%;top:14px;
+    height:1px;background:rgba(224,178,80,.45);}
+  .cmrail a{position:relative;text-align:center;text-decoration:none;}
+  .cmrail .n{width:30px;height:30px;margin:0 auto;border-radius:50%;background:#2E2822;
+    border:1px solid rgba(224,178,80,.55);color:var(--gold);font-size:11.5px;
+    font-weight:800;display:flex;align-items:center;justify-content:center;
+    transition:background .25s,border-color .25s,color .25s;}
+  .cmrail .l{margin-top:9px;font-size:11.5px;font-weight:800;line-height:1.25;
+    color:#F6EEDE;letter-spacing:.1em;text-transform:uppercase;transition:color .25s;}
+  .cmrail a:hover .n,.cmrail a:focus-visible .n{background:var(--sun);
+    border-color:var(--sun);color:#fff;}
+  .cmrail a:hover .l,.cmrail a:focus-visible .l{color:var(--gold);}
+
+  .cmsts{margin-top:30px;}
+  /* without a picture the row runs the full measure, title and descriptor in a
+     rail at the start so a reader scanning names has one column to run down */
+  .cmst{display:grid;grid-template-columns:340px 1fr;gap:14px 36px;padding:30px 0;
+    border-top:1px solid rgba(204,153,0,.30);scroll-margin-top:90px;}
+  .cmst:first-child{border-top:0;padding-top:8px;}
+  .cmst>*{min-width:0;}
+  .cmst.shot{grid-template-columns:5fr 7fr;gap:36px;align-items:center;}
+  .cmst .ph{position:relative;overflow:hidden;border-radius:16px;aspect-ratio:3/2;
+    background:var(--gold-soft);box-shadow:var(--shadow);}
+  .cmst .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  /* the warm veil the hero wash already puts over a photograph, so a picture
+     joins the page rather than sitting on top of it */
+  .cmst .ph::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(224,100,30,.06),rgba(255,246,226,.16));}
+  .cmst .n{width:38px;height:38px;border-radius:50%;color:#fff;font-size:14px;
+    font-weight:900;display:flex;align-items:center;justify-content:center;flex:none;
+    background:linear-gradient(135deg,var(--sun),var(--sun-deep));}
+  /* on a picture row the ordinal sits on the picture, otherwise it leads the name */
+  .cmst.shot .n{position:absolute;z-index:2;top:14px;inset-inline-start:14px;
+    box-shadow:0 4px 14px rgba(60,50,30,.35);}
+  .cmst h3{font-size:19px;font-weight:900;color:var(--navy);line-height:1.3;}
+  .cmst.shot h3{font-size:21px;line-height:1.25;}
+  .cmst .d{font-size:13.5px;font-weight:700;color:var(--sun-deep);line-height:1.55;
+    margin-top:9px;}
+  /* the ordinal leads the name on a plain row, on the same line, because it
+     numbers that name and because stacking it cost a phone 50px a row */
+  .cmst .hd{display:flex;align-items:center;gap:12px;}
+  .cmst .hd .n{width:30px;height:30px;font-size:12px;}
+  .cmst .tick{columns:2;column-gap:32px;}
+  .cmst.shot .tick{margin-top:16px;column-gap:28px;}
+  .cmst .tick li{break-inside:avoid;margin-bottom:9px;}
+  /* the rows cross, picture at the start then at the end. grid order does the
+     flip, so the DOM keeps picture before text for a screen reader, and Arabic
+     mirrors the whole rhythm without a rule of its own. */
+  .cmst.shot:nth-child(even){grid-template-columns:7fr 5fr;}
+  .cmst.shot:nth-child(even) .ph{order:2;}
+  .cmst.shot:nth-child(even) .bd{order:1;}
+
   .cmsx{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px;}
   .cmsx>*{min-width:0;}
   .cmsx .s{background:#fff;border:1px solid var(--border-soft);border-radius:14px;
@@ -939,6 +1008,7 @@
      drop a column earlier than they do in a full width section */
   .imgsec .cmsx,.imgsec .cmrows.two,.imgsec .cmcg{grid-template-columns:1fr;}
   @media(min-width:1180px){.imgsec .cmrows.two{grid-template-columns:repeat(2,1fr);}}
+  @media(min-width:1200px){.cmst:not(.shot) .tick{columns:3;column-gap:30px;}}
 
   @media(max-width:1000px){
     .cmhero,html[dir="rtl"] .cmhero{background-position:center,center;
@@ -961,6 +1031,21 @@
   @media(max-width:620px){
     .cmfam,.cmrows,.cmrows.two,.cmmods,.cmpd{grid-template-columns:1fr;}
     .cmcg,.cmwf,.cmpr,.cmfl .g{grid-template-columns:1fr;}
+    /* a station stacks, picture above its text, and the stops wrap */
+    .cmst,.cmst.shot,.cmst.shot:nth-child(even){grid-template-columns:1fr;gap:18px;}
+    .cmst.shot:nth-child(even) .ph{order:0;}
+    .cmst.shot:nth-child(even) .bd{order:0;}
+    .cmst .tick{columns:1;}
+    .cmst{padding:24px 0;}
+    /* stops as inline chips: a number over a label twice over costs 270px of a
+       phone screen, and the rail is a jump index, not a diagram */
+    .cmrail{padding:20px 20px 22px;}
+    .cmrail .track{display:flex;flex-wrap:wrap;gap:10px 14px;margin-top:16px;}
+    .cmrail a{display:flex;align-items:center;gap:7px;text-align:start;}
+    .cmrail .n{width:24px;height:24px;font-size:10.5px;margin:0;}
+    .cmrail .l{margin-top:0;font-size:11px;letter-spacing:.06em;}
+    .cmrail .track{grid-template-columns:repeat(3,1fr);gap:18px 10px;}
+    .cmrail .track::before{display:none;}
     .cmwf .w dl{grid-template-columns:1fr;gap:2px;}
     .cmwf .w dd{margin-bottom:8px;}
     .cmag-r,.cmses{grid-template-columns:1fr;}
