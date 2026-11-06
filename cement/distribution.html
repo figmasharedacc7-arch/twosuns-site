@@ -867,9 +867,15 @@
     .cncmix video{display:none;}
     .cncmix img{display:block;}
   }
-  /* under about 1080 the gutter is too narrow for the truck to read, so it
-     stops being a margin figure and sits under the panel at its own size */
-  @media(max-width:1080px){
+  /* The gutter never gets wider than this. .container caps at 1240 box and
+     1176 inside it, so with a 760 panel and a 30 gap the figure column is
+     pinned at 386px from 1240 up, and below 1240 it only shrinks: 346 at 1200,
+     266 at 1120, 227 at 1081. The first version broke at 1080, which put the
+     truck at its smallest in the 1081 to 1200 band and made crossing the
+     breakpoint upward shrink it from 520 to 227. Breaking where the column
+     stops being full size instead means the step is 520 to 386 and the
+     starved band does not exist. */
+  @media(max-width:1239px){
     .cncgap{grid-template-columns:minmax(0,1fr);gap:0;}
     .cncmix{max-width:520px;}
   }
@@ -1090,6 +1096,52 @@
      a file that is not there. The section carries its own rooted url in --cmband
      instead, which needs no class per picture and works from /cement/ar/ too. */
   .imgsec::before{background-image:var(--cmband);}
+  /* A band whose photograph moves. The loop sits at the same depth as the still,
+     under the same wash, so a band that plays and a band that does not read as
+     the same device. ::before keeps the photograph, which makes it the poster:
+     it is what shows while the file loads, if the browser refuses to autoplay,
+     and for a reader who has asked for no motion. The loop is decoration behind
+     the copy, so it is aria-hidden and out of the tab order, exactly as a CSS
+     background photograph already is.
+     Tree order does the layering: ::before and .cmband-v are both at -2, so the
+     pseudo paints first and the loop lands on top of it, and ::after at -1 puts
+     the wash over both. */
+  .imgsec>.cmband-v{position:absolute;inset:0;z-index:-2;overflow:hidden;}
+  .imgsec>.cmband-v video{width:100%;height:100%;display:block;object-fit:cover;}
+  /* the loop keeps the half of the frame its still kept. A photograph is never
+     mirrored for Arabic, it is repositioned, the same thing ::before does. */
+  .imgsec-r>.cmband-v video{object-position:right center;}
+  .imgsec-l>.cmband-v video{object-position:left center;}
+  html[dir="rtl"] .imgsec-r>.cmband-v video{object-position:left center;}
+  html[dir="rtl"] .imgsec-l>.cmband-v video{object-position:right center;}
+  /* belt and braces: the script never attaches a loop under reduced motion, so
+     there is normally nothing here to hide. This covers the loop already
+     playing when a reader changes the setting mid-visit. */
+  @media(prefers-reduced-motion:reduce){.imgsec>.cmband-v{display:none;}}
+
+  /* Every loop on this microsite starts by itself, runs longer than five
+     seconds and sits beside the copy, which is the case WCAG 2.2.2 asks to be
+     pausable. The control is small and quiet because the motion it governs is
+     too. It is written by script rather than into the markup, because without
+     script nothing moves and there would be nothing for it to pause. */
+  .cmpause{position:absolute;right:14px;bottom:14px;z-index:2;width:30px;height:30px;
+    border-radius:50%;border:1px solid rgba(42,37,32,.18);cursor:pointer;padding:0;
+    background:rgba(255,246,226,.82);display:grid;place-items:center;
+    -webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);}
+  .cmpause:hover{background:#FFF6E2;border-color:rgba(42,37,32,.34);}
+  .cmpause:focus-visible{outline:2px solid var(--sun-deep);outline-offset:2px;}
+  html[dir="rtl"] .cmpause{right:auto;left:14px;}
+  /* two bars for pause, one triangle for play, drawn in borders so they keep
+     their weight beside the type rather than riding on a font */
+  .cmpause-i{width:9px;height:10px;box-sizing:border-box;
+    border-left:3px solid var(--navy);border-right:3px solid var(--navy);}
+  .cmpause.is-off .cmpause-i{width:0;height:0;border:0;
+    border-left:9px solid var(--navy);
+    border-top:5px solid transparent;border-bottom:5px solid transparent;}
+  /* on the truck the control would land on the caption, so it takes the empty
+     cream above the cab instead */
+  .cncmix{position:relative;}
+  .cncmix .cmpause{bottom:auto;top:10px;}
   /* the copy column is a little over half the width, so the grids inside a band
      drop a column earlier than they do in a full width section */
   .imgsec .cmsx,.imgsec .cmrows.two{grid-template-columns:1fr;}
@@ -1166,6 +1218,24 @@
   html[dir="rtl"] .imgsec-l::after{background:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 44%,rgba(255,246,226,.97) 53%,rgba(255,246,226,.86) 62%,
     rgba(255,245,222,.58) 72%,rgba(255,244,218,.26) 85%,rgba(255,243,216,.05) 100%);}
   html[dir="rtl"] .imgsec-l .sec-split{margin-left:0;margin-right:auto;}
+
+  /* A band composed for one side cannot be mirrored for Arabic. The still
+     bands can be: their subject sits near the middle of the frame, so moving
+     the photograph across is enough, which is what the rules above do. A band
+     whose crop deliberately carried its subject out into the clear quarter has
+     nothing in the other half to show, and those rules would swing the picture
+     onto the empty side and leave an Arabic reader a band of sky. The tower on
+     the context page did exactly that. So a band with a loop keeps the side it
+     was composed for and the copy column moves instead, which for Arabic puts
+     the copy at the reading start anyway. */
+  html[dir="rtl"] .imgsec-keep.imgsec-r::before{background-position:right center;}
+  html[dir="rtl"] .imgsec-keep.imgsec-l::before{background-position:left center;}
+  html[dir="rtl"] .imgsec-keep.imgsec-r>.cmband-v video{object-position:right center;}
+  html[dir="rtl"] .imgsec-keep.imgsec-l>.cmband-v video{object-position:left center;}
+  html[dir="rtl"] .imgsec-keep.imgsec-r::after{background:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 44%,rgba(255,246,226,.97) 53%,rgba(255,246,226,.86) 62%,rgba(255,245,222,.58) 72%,rgba(255,244,218,.26) 85%,rgba(255,243,216,.05) 100%);}
+  html[dir="rtl"] .imgsec-keep.imgsec-l::after{background:linear-gradient(260deg,#FFF6E2 0%,#FFF6E2 44%,rgba(255,246,226,.97) 53%,rgba(255,246,226,.86) 62%,rgba(255,245,222,.58) 72%,rgba(255,244,218,.26) 85%,rgba(255,243,216,.05) 100%);}
+  html[dir="rtl"] .imgsec-keep.imgsec-r .sec-split{margin-left:0;margin-right:auto;}
+  html[dir="rtl"] .imgsec-keep.imgsec-l .sec-split{margin-left:auto;margin-right:0;}
   @media(max-width:1000px){
     html[dir="rtl"] .imgsec-r::after,html[dir="rtl"] .imgsec-l::after{
       background:linear-gradient(175deg,rgba(255,246,226,.96) 0%,rgba(255,246,226,.90) 55%,
@@ -1376,6 +1446,49 @@
   setTimeout(function(){
     els.forEach(function(el){ if(!el.classList.contains('in')) show(el, 0); });
   }, 1500);
+})();
+</script><script>
+(function(){
+  var vs = [].slice.call(document.querySelectorAll('video[data-src]'));
+  if(!vs.length) return;
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var PAUSE = "Pause the motion", PLAY = "Play the motion";
+
+  function control(v){
+    // the band's video sits in a layer behind the copy, so the button cannot
+    // live beside it; both kinds hang it on the positioned box one level up
+    var host = v.closest('.cncmix') || v.closest('.imgsec');
+    if(!host) return;
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'cmpause';
+    b.setAttribute('aria-label', PAUSE);
+    b.innerHTML = '<span class="cmpause-i"></span>';
+    b.addEventListener('click', function(){
+      if(v.paused){ v.play(); b.classList.remove('is-off'); b.setAttribute('aria-label', PAUSE); }
+      else { v.pause(); b.classList.add('is-off'); b.setAttribute('aria-label', PLAY); }
+    });
+    host.appendChild(b);
+  }
+
+  function start(v){
+    if(v.getAttribute('src')) return;
+    v.setAttribute('src', v.getAttribute('data-src'));
+    var p = v.play();
+    if(p && p.catch) p.catch(function(){});
+    control(v);
+  }
+
+  if(!('IntersectionObserver' in window)){ vs.forEach(start); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting) return;
+      io.unobserve(en.target);
+      start(en.target);
+    });
+  }, {rootMargin: '300px 0px'});
+  vs.forEach(function(v){ io.observe(v); });
 })();
 </script>
 </body>

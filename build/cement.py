@@ -234,9 +234,15 @@ CEM_CSS = r"""
     .cncmix video{display:none;}
     .cncmix img{display:block;}
   }
-  /* under about 1080 the gutter is too narrow for the truck to read, so it
-     stops being a margin figure and sits under the panel at its own size */
-  @media(max-width:1080px){
+  /* The gutter never gets wider than this. .container caps at 1240 box and
+     1176 inside it, so with a 760 panel and a 30 gap the figure column is
+     pinned at 386px from 1240 up, and below 1240 it only shrinks: 346 at 1200,
+     266 at 1120, 227 at 1081. The first version broke at 1080, which put the
+     truck at its smallest in the 1081 to 1200 band and made crossing the
+     breakpoint upward shrink it from 520 to 227. Breaking where the column
+     stops being full size instead means the step is 520 to 386 and the
+     starved band does not exist. */
+  @media(max-width:1239px){
     .cncgap{grid-template-columns:minmax(0,1fr);gap:0;}
     .cncmix{max-width:520px;}
   }
@@ -457,6 +463,52 @@ CEM_CSS = r"""
      a file that is not there. The section carries its own rooted url in --cmband
      instead, which needs no class per picture and works from /cement/ar/ too. */
   .imgsec::before{background-image:var(--cmband);}
+  /* A band whose photograph moves. The loop sits at the same depth as the still,
+     under the same wash, so a band that plays and a band that does not read as
+     the same device. ::before keeps the photograph, which makes it the poster:
+     it is what shows while the file loads, if the browser refuses to autoplay,
+     and for a reader who has asked for no motion. The loop is decoration behind
+     the copy, so it is aria-hidden and out of the tab order, exactly as a CSS
+     background photograph already is.
+     Tree order does the layering: ::before and .cmband-v are both at -2, so the
+     pseudo paints first and the loop lands on top of it, and ::after at -1 puts
+     the wash over both. */
+  .imgsec>.cmband-v{position:absolute;inset:0;z-index:-2;overflow:hidden;}
+  .imgsec>.cmband-v video{width:100%;height:100%;display:block;object-fit:cover;}
+  /* the loop keeps the half of the frame its still kept. A photograph is never
+     mirrored for Arabic, it is repositioned, the same thing ::before does. */
+  .imgsec-r>.cmband-v video{object-position:right center;}
+  .imgsec-l>.cmband-v video{object-position:left center;}
+  html[dir="rtl"] .imgsec-r>.cmband-v video{object-position:left center;}
+  html[dir="rtl"] .imgsec-l>.cmband-v video{object-position:right center;}
+  /* belt and braces: the script never attaches a loop under reduced motion, so
+     there is normally nothing here to hide. This covers the loop already
+     playing when a reader changes the setting mid-visit. */
+  @media(prefers-reduced-motion:reduce){.imgsec>.cmband-v{display:none;}}
+
+  /* Every loop on this microsite starts by itself, runs longer than five
+     seconds and sits beside the copy, which is the case WCAG 2.2.2 asks to be
+     pausable. The control is small and quiet because the motion it governs is
+     too. It is written by script rather than into the markup, because without
+     script nothing moves and there would be nothing for it to pause. */
+  .cmpause{position:absolute;right:14px;bottom:14px;z-index:2;width:30px;height:30px;
+    border-radius:50%;border:1px solid rgba(42,37,32,.18);cursor:pointer;padding:0;
+    background:rgba(255,246,226,.82);display:grid;place-items:center;
+    -webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);}
+  .cmpause:hover{background:#FFF6E2;border-color:rgba(42,37,32,.34);}
+  .cmpause:focus-visible{outline:2px solid var(--sun-deep);outline-offset:2px;}
+  html[dir="rtl"] .cmpause{right:auto;left:14px;}
+  /* two bars for pause, one triangle for play, drawn in borders so they keep
+     their weight beside the type rather than riding on a font */
+  .cmpause-i{width:9px;height:10px;box-sizing:border-box;
+    border-left:3px solid var(--navy);border-right:3px solid var(--navy);}
+  .cmpause.is-off .cmpause-i{width:0;height:0;border:0;
+    border-left:9px solid var(--navy);
+    border-top:5px solid transparent;border-bottom:5px solid transparent;}
+  /* on the truck the control would land on the caption, so it takes the empty
+     cream above the cab instead */
+  .cncmix{position:relative;}
+  .cncmix .cmpause{bottom:auto;top:10px;}
   /* the copy column is a little over half the width, so the grids inside a band
      drop a column earlier than they do in a full width section */
   .imgsec .cmsx,.imgsec .cmrows.two{grid-template-columns:1fr;}
@@ -536,6 +588,24 @@ RTL_CSS = r"""
   html[dir="rtl"] .imgsec-l::after{background:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 44%,rgba(255,246,226,.97) 53%,rgba(255,246,226,.86) 62%,
     rgba(255,245,222,.58) 72%,rgba(255,244,218,.26) 85%,rgba(255,243,216,.05) 100%);}
   html[dir="rtl"] .imgsec-l .sec-split{margin-left:0;margin-right:auto;}
+
+  /* A band composed for one side cannot be mirrored for Arabic. The still
+     bands can be: their subject sits near the middle of the frame, so moving
+     the photograph across is enough, which is what the rules above do. A band
+     whose crop deliberately carried its subject out into the clear quarter has
+     nothing in the other half to show, and those rules would swing the picture
+     onto the empty side and leave an Arabic reader a band of sky. The tower on
+     the context page did exactly that. So a band with a loop keeps the side it
+     was composed for and the copy column moves instead, which for Arabic puts
+     the copy at the reading start anyway. */
+  html[dir="rtl"] .imgsec-keep.imgsec-r::before{background-position:right center;}
+  html[dir="rtl"] .imgsec-keep.imgsec-l::before{background-position:left center;}
+  html[dir="rtl"] .imgsec-keep.imgsec-r>.cmband-v video{object-position:right center;}
+  html[dir="rtl"] .imgsec-keep.imgsec-l>.cmband-v video{object-position:left center;}
+  html[dir="rtl"] .imgsec-keep.imgsec-r::after{background:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 44%,rgba(255,246,226,.97) 53%,rgba(255,246,226,.86) 62%,rgba(255,245,222,.58) 72%,rgba(255,244,218,.26) 85%,rgba(255,243,216,.05) 100%);}
+  html[dir="rtl"] .imgsec-keep.imgsec-l::after{background:linear-gradient(260deg,#FFF6E2 0%,#FFF6E2 44%,rgba(255,246,226,.97) 53%,rgba(255,246,226,.86) 62%,rgba(255,245,222,.58) 72%,rgba(255,244,218,.26) 85%,rgba(255,243,216,.05) 100%);}
+  html[dir="rtl"] .imgsec-keep.imgsec-r .sec-split{margin-left:0;margin-right:auto;}
+  html[dir="rtl"] .imgsec-keep.imgsec-l .sec-split{margin-left:auto;margin-right:0;}
   @media(max-width:1000px){
     html[dir="rtl"] .imgsec-r::after,html[dir="rtl"] .imgsec-l::after{
       background:linear-gradient(175deg,rgba(255,246,226,.96) 0%,rgba(255,246,226,.90) 55%,
@@ -665,7 +735,72 @@ def footer(d):
        SITE, e(d["foot_privacy"]), SITE, e(d["foot_terms"]), SITE, e(d["main_site"]))
 
 
-TAIL_JS = theme.PARTICLES + reveal.body_script() + "\n</body>\n</html>\n"
+# The loops on this microsite, attached late and only when they will be seen.
+#
+# A <video> carrying autoplay and a src fetches the whole file as soon as the
+# page parses, wherever on the page it sits and whatever the reader has asked
+# for. preload="metadata" does not hold that back; autoplay overrides it. On the
+# concrete page that meant half a megabyte pulled down three viewports before
+# the truck was reached, and pulled down in full for a reader with reduced
+# motion who is then shown the still instead. So the markup carries data-src and
+# no autoplay, and this attaches the real src when the element comes near the
+# viewport, and never at all under prefers-reduced-motion.
+#
+# It also gives each loop the pause control WCAG 2.2.2 asks for. The button is
+# built here rather than written into the markup because with no script nothing
+# moves, and a pause button over a still picture is a lie.
+MOTION_JS = """<script>
+(function(){
+  var vs = [].slice.call(document.querySelectorAll('video[data-src]'));
+  if(!vs.length) return;
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var PAUSE = %s, PLAY = %s;
+
+  function control(v){
+    // the band's video sits in a layer behind the copy, so the button cannot
+    // live beside it; both kinds hang it on the positioned box one level up
+    var host = v.closest('.cncmix') || v.closest('.imgsec');
+    if(!host) return;
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'cmpause';
+    b.setAttribute('aria-label', PAUSE);
+    b.innerHTML = '<span class="cmpause-i"></span>';
+    b.addEventListener('click', function(){
+      if(v.paused){ v.play(); b.classList.remove('is-off'); b.setAttribute('aria-label', PAUSE); }
+      else { v.pause(); b.classList.add('is-off'); b.setAttribute('aria-label', PLAY); }
+    });
+    host.appendChild(b);
+  }
+
+  function start(v){
+    if(v.getAttribute('src')) return;
+    v.setAttribute('src', v.getAttribute('data-src'));
+    var p = v.play();
+    if(p && p.catch) p.catch(function(){});
+    control(v);
+  }
+
+  if(!('IntersectionObserver' in window)){ vs.forEach(start); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting) return;
+      io.unobserve(en.target);
+      start(en.target);
+    });
+  }, {rootMargin: '300px 0px'});
+  vs.forEach(function(v){ io.observe(v); });
+})();
+</script>"""
+
+
+def tail(d):
+    """The scripts every page ends on, with this page's language in them."""
+    import json
+    return (theme.PARTICLES + reveal.body_script()
+            + MOTION_JS % (json.dumps(d["motion_pause"]), json.dumps(d["motion_play"]))
+            + "\n</body>\n</html>\n")
 
 
 def hero(d, eyebrow, h1, sub, acts, shot=""):
@@ -775,7 +910,7 @@ def build_home(d):
 
     s += cta_band(d["home_close_h"], d["home_close_p"],
                   btn(d["home_close_cta1"]) + " " + btn(d["home_close_cta2"], ghost=True))
-    return s + footer(d) + TAIL_JS
+    return s + footer(d) + tail(d)
 
 
 # ================================================================ PLATFORM
@@ -865,17 +1000,14 @@ def build_platform(d):
        head_cells, body_rows,
        e(d["data_p2"]), e(d["data_p3"]))
 
-    s += """<section class="band-warm">
-  <div class="container">
-    <div class="section-tag">%s</div>
-    <h2 class="section-heading">%s</h2>
-    %s
-    <p class="lede" style="margin-top:22px;">%s</p>
-    <div class="split2-panel" style="margin-top:22px;max-width:700px;"><h3>%s</h3>%s</div>
-  </div>
-</section>
-""" % (e(d["dep_tag"]), e(d["dep_h"]), steps(d["dep_steps"]), e(d["dep_p"]),
-       e(d["dep_prov_h"]), ticks(d["dep_prov"]))
+    # the steps are a single column and the panel is capped by max-width, so
+    # this section is the one on the page that fits the band's copy column
+    # without anything inside it having to give way
+    s += sec(steps(d["dep_steps"])
+             + '<p class="lede" style="margin-top:22px;">%s</p>' % e(d["dep_p"])
+             + '<div class="split2-panel" style="margin-top:22px;max-width:700px;">'
+               '<h3>%s</h3>%s</div>' % (e(d["dep_prov_h"]), ticks(d["dep_prov"])),
+             tag=d["dep_tag"], h=d["dep_h"], **band("plat_dep"))
 
     s += """<section>
   <div class="container">
@@ -888,7 +1020,7 @@ def build_platform(d):
 
     s += cta_band(d["plat_close_h"], d["plat_close_p"],
                   btn(d["plat_cta1"]) + " " + btn(d["plat_cta2"], ghost=True))
-    return s + footer(d) + TAIL_JS
+    return s + footer(d) + tail(d)
 
 
 # ================================================================ EVENTS
@@ -1033,12 +1165,12 @@ def build_events(d):
 
     s += cta_band(d["ev_close_h"], d["ev_close_p"],
                   btn(d["ev_cta2"]) + " " + btn(d["ev_cta1"], ghost=True))
-    return s + events_jsonld(d) + footer(d) + TAIL_JS
+    return s + events_jsonld(d) + footer(d) + tail(d)
 
 
 # ================================================================ CHECKS
 # ========================================================== SHARED PAGE PIECES
-def sec(body, band="", tag="", h="", p="", lede=False, shot="", side="r"):
+def sec(body, band="", tag="", h="", p="", lede=False, shot="", side="r", clip=""):
     """One section. band is "", "band-alt" or "band-warm"; p renders as the section
     sub, or as a lede paragraph when the copy is long enough to want the wider type.
 
@@ -1046,7 +1178,13 @@ def sec(body, band="", tag="", h="", p="", lede=False, shot="", side="r"):
     do, and takes the image's path from the site root. side is the half of the
     frame the photograph keeps, "r" or "l"; the wash covers the other half and the
     copy sits there, so consecutive bands on a page alternate. A photograph
-    replaces the band colour, so the two are never combined."""
+    replaces the band colour, so the two are never combined.
+
+    clip names a loop that plays where that photograph sits, as the basename of
+    a pair under cement/: <clip>.mp4 is the loop and the shot stays its poster,
+    so the section looks the same the moment the page opens and only then starts
+    moving. It needs a shot to be its poster, and the builder refuses to generate
+    a page whose loop is not in the repository."""
     top = ""
     if tag:
         top += '    <div class="section-tag">%s</div>\n' % e(tag)
@@ -1056,9 +1194,18 @@ def sec(body, band="", tag="", h="", p="", lede=False, shot="", side="r"):
         top += '    <p class="%s">%s</p>\n' % ("lede" if lede else "section-sub", e(p))
     if shot:
         assert side in ("r", "l"), side
-        return ('<section class="imgsec imgsec-%s area-sec" style="--cmband:url(\'%s\');">\n'
-                '  <div class="container">\n   <div class="sec-split">\n%s    %s\n'
-                '   </div>\n  </div>\n</section>\n') % (side, shot, top, body)
+        vd = ""
+        if clip:
+            if not os.path.exists(os.path.join(OUT, clip + ".mp4")):
+                raise SystemExit("the band loop %s.mp4 is not in cement/" % clip)
+            vd = ('  <div class="cmband-v"><video data-src="/cement/%s.mp4" muted'
+                  ' loop playsinline aria-hidden="true"'
+                  ' tabindex="-1"></video></div>\n' % clip)
+        keep = " imgsec-keep" if clip else ""
+        return ('<section class="imgsec imgsec-%s%s area-sec" style="--cmband:url(\'%s\');">\n'
+                '%s  <div class="container">\n   <div class="sec-split">\n%s    %s\n'
+                '   </div>\n  </div>\n</section>\n') % (side, keep, shot, vd, top, body)
+    assert not clip, "a loop needs a shot to be its poster"
     return '<section%s>\n  <div class="container">\n%s    %s\n  </div>\n</section>\n' % (
         ' class="%s"' % band if band else "", top, body)
 
@@ -1080,18 +1227,23 @@ def mixer(d):
     Muted, inline and looping, so no browser refuses to start it and nothing
     plays sound. The still carries the description and the caption carries the
     point, which is whose truck this is.
+
+    The src is withheld until MOTION_JS attaches it, so the file is fetched
+    when the figure is nearly in view and not at all under reduced motion. The
+    poster is what the element shows until then, which is also what it shows
+    if there is no script at all. role="img" is not a role <video> is allowed
+    to take, so the description lives on the <img> that reduced motion reveals
+    and the video is left to the caption.
     """
     for f in ("mixer-truck.mp4", "mixer-truck.jpg"):
         if not os.path.exists(os.path.join(OUT, f)):
             raise SystemExit("the mixer figure needs cement/%s" % f)
     return ('<figure class="cncmix">'
-            '<video src="/cement/mixer-truck.mp4" poster="/cement/mixer-truck.jpg"'
-            ' autoplay muted loop playsinline preload="metadata" role="img"'
-            ' aria-label="%s"></video>'
+            '<video data-src="/cement/mixer-truck.mp4" poster="/cement/mixer-truck.jpg"'
+            ' muted loop playsinline aria-hidden="true" tabindex="-1"></video>'
             '<img src="/cement/mixer-truck.jpg" alt="%s">'
             '<figcaption>%s</figcaption></figure>'
-            % (e(d["cnc_gap_fig_alt"]), e(d["cnc_gap_fig_alt"]),
-               e(d["cnc_gap_fig_cap"])))
+            % (e(d["cnc_gap_fig_alt"]), e(d["cnc_gap_fig_cap"])))
 
 
 def mods(names):
@@ -1148,14 +1300,15 @@ def build_context(d):
               btn(d["cx_cta1"]) + " " + btn(d["cx_cta2"], "platform.html", ghost=True),
               shot="context")
     s += sec(pressures(d), "band-alt", d["cx_rp_tag"], d["cx_rp_h"], d["cx_rp_p"])
-    s += sec(flows(d), "", d["cx_wf_tag"], d["cx_wf_h"], d["cx_wf_p"])
+    s += sec(flows(d), "", d["cx_wf_tag"], d["cx_wf_h"], d["cx_wf_p"],
+             **band("cx_wf"))
     # the production line the page has been describing in words, drawn
     s += sec(process.figure(dict((k, e(v)) for k, v in d["prc_labels"].items())),
              "band-warm", d["prc_tag"], d["prc_h"], d["prc_p"])
     s += cta_band(d["cx_close_h"], d["cx_close_p"],
                   btn(d["cx_close_cta1"]) + " "
                   + btn(d["cx_close_cta2"], "platform.html", ghost=True))
-    return s + footer(d) + TAIL_JS
+    return s + footer(d) + tail(d)
 
 
 # The photograph a capability station carries, by station id. A station appears
@@ -1242,7 +1395,7 @@ def build_capabilities(d):
     s += sec("", "band-warm", d["cap_adapt_tag"], d["cap_adapt_h"], d["cap_adapt_p"], lede=True)
     s += cta_band(d["cap_close_h"], d["cap_close_p"],
                   btn(d["cap_cta1"]) + " " + btn(d["cap_cta2"], "platform.html", ghost=True))
-    return s + footer(d) + TAIL_JS
+    return s + footer(d) + tail(d)
 
 
 # ========================================================== INDUSTRIES HUB
@@ -1261,6 +1414,9 @@ SECTORS = ["construction.html", "concrete.html", "distribution.html"]
 # plant-aerial.jpg is not in this table: it was supplied for the Sectors
 # hero and is set as sh-aerial above. It was flipped horizontally on request,
 # which stands the preheater tower in the half the hero wash leaves clear.
+# A third entry names a loop that plays where that band's photograph sits, as
+# the basename of a pair built by build/cementvid.py. The still stays the
+# poster, so a band that moves and a band that does not open identically.
 BANDS = {
     "ind_sectors": ("/bm-operations.jpg",    "l"),
     "ind_areas":   ("/bm-extraction.jpg",    "r"),
@@ -1270,16 +1426,27 @@ BANDS = {
     "cnc_qual":    ("/bm-process.jpg",       "r"),
     "dst_who":     ("/area-distribution.jpg", "r"),
     "dst_vis":     ("/cons-logistics.jpg",   "l"),
+    # the two moving bands. cx_wf is the dusk plant that was briefly the home
+    # hero and was pulled from it, back on the page about the cement context
+    # rather than over a headline. plat_dep is a works at sunrise, a plant of
+    # the size a first deployment actually lands in.
+    # the side each one takes is where its subject actually is. The wash is
+    # solid cream to 44 percent and only thins past about 72, so the far
+    # quarter is the only part of a band that is really seen, which is what
+    # the crops in build/cementvid.py put there.
+    "cx_wf":       ("/cement/band-dusk.jpg",   "l", "band-dusk"),
+    "plat_dep":    ("/cement/band-works.jpg",  "r", "band-works"),
 }
 
 
 def band(key):
-    """The shot and side keyword arguments sec() takes, from the BANDS table."""
-    shot, side = BANDS[key]
+    """The shot, side and clip keyword arguments sec() takes, from BANDS."""
+    shot, side = BANDS[key][0], BANDS[key][1]
+    clip = BANDS[key][2] if len(BANDS[key]) > 2 else ""
     path = os.path.join(OUT, "..", shot.lstrip("/"))
     if not os.path.exists(path):
         raise SystemExit("BANDS[%r] names %s, which is not in the repository" % (key, shot))
-    return {"shot": shot, "side": side}
+    return {"shot": shot, "side": side, "clip": clip}
 
 
 def build_sectors(d):
@@ -1306,7 +1473,7 @@ def build_sectors(d):
 
     s += cta_band(d["ind_close_h"], d["ind_close_p"],
                   btn(d["ind_cta1"]) + " " + btn(d["ind_cta2"], "platform.html", ghost=True))
-    return s + footer(d) + TAIL_JS
+    return s + footer(d) + tail(d)
 
 
 # ========================================================== SECTOR: CONSTRUCTION
@@ -1325,7 +1492,7 @@ def build_construction(d):
              **band("con_ts"))
     s += cta_band(d["con_close_h"], d["con_close_p"],
                   btn(d["con_cta1"]) + " " + btn(d["con_cta2"], "sectors.html", ghost=True))
-    return s + footer(d) + TAIL_JS
+    return s + footer(d) + tail(d)
 
 
 # ========================================================== SECTOR: CONCRETE
@@ -1352,7 +1519,7 @@ def build_concrete(d):
              **band("cnc_qual"))
     s += cta_band(d["cnc_close_h"], d["cnc_close_p"],
                   btn(d["cnc_cta1"]) + " " + btn(d["cnc_cta2"], "sectors.html", ghost=True))
-    return s + footer(d) + TAIL_JS
+    return s + footer(d) + tail(d)
 
 
 # ========================================================== SECTOR: DISTRIBUTION
@@ -1384,7 +1551,7 @@ def build_distribution(d):
              "band-alt", d["dst_cred_tag"], d["dst_cred_h"], d["dst_cred_p1"], lede=True)
     s += cta_band(d["dst_close_h"], d["dst_close_p"],
                   btn(d["dst_cta1"]) + " " + btn(d["dst_cta2"], "sectors.html", ghost=True))
-    return s + footer(d) + TAIL_JS
+    return s + footer(d) + tail(d)
 
 
 # ========================================================== USE CASES
@@ -1409,7 +1576,7 @@ def build_usecases(d):
              "band-warm", d["uc_bring_tag"], d["uc_bring_h"], "")
     s += cta_band(d["uc_close_h"], d["uc_close_p"],
                   btn(d["uc_close_cta1"]) + " " + btn(d["uc_close_cta2"], "platform.html", ghost=True))
-    return s + footer(d) + TAIL_JS
+    return s + footer(d) + tail(d)
 
 
 # ========================================================== COMPANY
@@ -1458,7 +1625,7 @@ def build_company(d):
              "", d["co_ev_tag"], d["co_ev_h"], d["co_ev_p"])
     s += cta_band(d["co_close_h"], d["co_close_p"],
                   btn(d["co_cta1"]) + " " + btn(d["co_cta2"], "platform.html", ghost=True))
-    return s + footer(d) + TAIL_JS
+    return s + footer(d) + tail(d)
 
 
 BANNED = ["—", "–", "revolutionary", "cutting-edge", "seamless", "leverage",

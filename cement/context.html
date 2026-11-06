@@ -867,9 +867,15 @@
     .cncmix video{display:none;}
     .cncmix img{display:block;}
   }
-  /* under about 1080 the gutter is too narrow for the truck to read, so it
-     stops being a margin figure and sits under the panel at its own size */
-  @media(max-width:1080px){
+  /* The gutter never gets wider than this. .container caps at 1240 box and
+     1176 inside it, so with a 760 panel and a 30 gap the figure column is
+     pinned at 386px from 1240 up, and below 1240 it only shrinks: 346 at 1200,
+     266 at 1120, 227 at 1081. The first version broke at 1080, which put the
+     truck at its smallest in the 1081 to 1200 band and made crossing the
+     breakpoint upward shrink it from 520 to 227. Breaking where the column
+     stops being full size instead means the step is 520 to 386 and the
+     starved band does not exist. */
+  @media(max-width:1239px){
     .cncgap{grid-template-columns:minmax(0,1fr);gap:0;}
     .cncmix{max-width:520px;}
   }
@@ -1090,6 +1096,52 @@
      a file that is not there. The section carries its own rooted url in --cmband
      instead, which needs no class per picture and works from /cement/ar/ too. */
   .imgsec::before{background-image:var(--cmband);}
+  /* A band whose photograph moves. The loop sits at the same depth as the still,
+     under the same wash, so a band that plays and a band that does not read as
+     the same device. ::before keeps the photograph, which makes it the poster:
+     it is what shows while the file loads, if the browser refuses to autoplay,
+     and for a reader who has asked for no motion. The loop is decoration behind
+     the copy, so it is aria-hidden and out of the tab order, exactly as a CSS
+     background photograph already is.
+     Tree order does the layering: ::before and .cmband-v are both at -2, so the
+     pseudo paints first and the loop lands on top of it, and ::after at -1 puts
+     the wash over both. */
+  .imgsec>.cmband-v{position:absolute;inset:0;z-index:-2;overflow:hidden;}
+  .imgsec>.cmband-v video{width:100%;height:100%;display:block;object-fit:cover;}
+  /* the loop keeps the half of the frame its still kept. A photograph is never
+     mirrored for Arabic, it is repositioned, the same thing ::before does. */
+  .imgsec-r>.cmband-v video{object-position:right center;}
+  .imgsec-l>.cmband-v video{object-position:left center;}
+  html[dir="rtl"] .imgsec-r>.cmband-v video{object-position:left center;}
+  html[dir="rtl"] .imgsec-l>.cmband-v video{object-position:right center;}
+  /* belt and braces: the script never attaches a loop under reduced motion, so
+     there is normally nothing here to hide. This covers the loop already
+     playing when a reader changes the setting mid-visit. */
+  @media(prefers-reduced-motion:reduce){.imgsec>.cmband-v{display:none;}}
+
+  /* Every loop on this microsite starts by itself, runs longer than five
+     seconds and sits beside the copy, which is the case WCAG 2.2.2 asks to be
+     pausable. The control is small and quiet because the motion it governs is
+     too. It is written by script rather than into the markup, because without
+     script nothing moves and there would be nothing for it to pause. */
+  .cmpause{position:absolute;right:14px;bottom:14px;z-index:2;width:30px;height:30px;
+    border-radius:50%;border:1px solid rgba(42,37,32,.18);cursor:pointer;padding:0;
+    background:rgba(255,246,226,.82);display:grid;place-items:center;
+    -webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);}
+  .cmpause:hover{background:#FFF6E2;border-color:rgba(42,37,32,.34);}
+  .cmpause:focus-visible{outline:2px solid var(--sun-deep);outline-offset:2px;}
+  html[dir="rtl"] .cmpause{right:auto;left:14px;}
+  /* two bars for pause, one triangle for play, drawn in borders so they keep
+     their weight beside the type rather than riding on a font */
+  .cmpause-i{width:9px;height:10px;box-sizing:border-box;
+    border-left:3px solid var(--navy);border-right:3px solid var(--navy);}
+  .cmpause.is-off .cmpause-i{width:0;height:0;border:0;
+    border-left:9px solid var(--navy);
+    border-top:5px solid transparent;border-bottom:5px solid transparent;}
+  /* on the truck the control would land on the caption, so it takes the empty
+     cream above the cab instead */
+  .cncmix{position:relative;}
+  .cncmix .cmpause{bottom:auto;top:10px;}
   /* the copy column is a little over half the width, so the grids inside a band
      drop a column earlier than they do in a full width section */
   .imgsec .cmsx,.imgsec .cmrows.two{grid-template-columns:1fr;}
@@ -1166,6 +1218,24 @@
   html[dir="rtl"] .imgsec-l::after{background:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 44%,rgba(255,246,226,.97) 53%,rgba(255,246,226,.86) 62%,
     rgba(255,245,222,.58) 72%,rgba(255,244,218,.26) 85%,rgba(255,243,216,.05) 100%);}
   html[dir="rtl"] .imgsec-l .sec-split{margin-left:0;margin-right:auto;}
+
+  /* A band composed for one side cannot be mirrored for Arabic. The still
+     bands can be: their subject sits near the middle of the frame, so moving
+     the photograph across is enough, which is what the rules above do. A band
+     whose crop deliberately carried its subject out into the clear quarter has
+     nothing in the other half to show, and those rules would swing the picture
+     onto the empty side and leave an Arabic reader a band of sky. The tower on
+     the context page did exactly that. So a band with a loop keeps the side it
+     was composed for and the copy column moves instead, which for Arabic puts
+     the copy at the reading start anyway. */
+  html[dir="rtl"] .imgsec-keep.imgsec-r::before{background-position:right center;}
+  html[dir="rtl"] .imgsec-keep.imgsec-l::before{background-position:left center;}
+  html[dir="rtl"] .imgsec-keep.imgsec-r>.cmband-v video{object-position:right center;}
+  html[dir="rtl"] .imgsec-keep.imgsec-l>.cmband-v video{object-position:left center;}
+  html[dir="rtl"] .imgsec-keep.imgsec-r::after{background:linear-gradient(100deg,#FFF6E2 0%,#FFF6E2 44%,rgba(255,246,226,.97) 53%,rgba(255,246,226,.86) 62%,rgba(255,245,222,.58) 72%,rgba(255,244,218,.26) 85%,rgba(255,243,216,.05) 100%);}
+  html[dir="rtl"] .imgsec-keep.imgsec-l::after{background:linear-gradient(260deg,#FFF6E2 0%,#FFF6E2 44%,rgba(255,246,226,.97) 53%,rgba(255,246,226,.86) 62%,rgba(255,245,222,.58) 72%,rgba(255,244,218,.26) 85%,rgba(255,243,216,.05) 100%);}
+  html[dir="rtl"] .imgsec-keep.imgsec-r .sec-split{margin-left:0;margin-right:auto;}
+  html[dir="rtl"] .imgsec-keep.imgsec-l .sec-split{margin-left:auto;margin-right:0;}
   @media(max-width:1000px){
     html[dir="rtl"] .imgsec-r::after,html[dir="rtl"] .imgsec-l::after{
       background:linear-gradient(175deg,rgba(255,246,226,.96) 0%,rgba(255,246,226,.90) 55%,
@@ -1233,12 +1303,15 @@
     <div class="cmpr"><div class="p"><div class="p-top"><div class="n">01</div><h3>Gulf energy and shipping disruption</h3><p>Disruption to Gulf shipping and LNG supply has raised oil, gas and freight prices.</p></div><div class="p-mid"><span class="k">Effect on the plant</span><dl><dt>Kiln fuel</dt><dd>Imported coal and petcoke are priced in a higher global energy market, and Egypt raised domestic fuel prices this year.</dd><dt>Power</dt><dd>Egypt imports pipeline gas and LNG for power generation. When supply falls, industrial users are curtailed first, and some cement plants have had mazut and diesel deliveries suspended.</dd><dt>Currency</dt><dd>Higher energy import bills reduce foreign currency liquidity and put pressure on the pound.</dd></dl></div><div class="p-end"><span class="k">Scenario to model</span><p>A rise in coal and freight prices, or a cut in gas supply to industry, and its effect on the lowest-cost fuel mix, power exposure and margin per tonne.</p><div class="mods"><span>Pyro Process and Cooling</span><span>Materials and Supply</span><span>Finance</span></div></div></div><div class="p"><div class="p-top"><div class="n">02</div><h3>Red Sea shipping risk</h3><p>Attacks on shipping since late 2023 have made routing, transit times and war-risk insurance uncertain, although some carriers have started returning to the Suez Canal.</p></div><div class="p-mid"><span class="k">Effect on the plant</span><dl><dt>Currency</dt><dd>Lower Suez Canal receipts added to Egypt's foreign currency shortage, which affects the pound and the availability of letters of credit for imported fuel, refractory and spares.</dd><dt>Fuel supply</dt><dd>Coal and petcoke cargoes face longer, less predictable voyages and higher insurance, so fuel cover has to be planned on actual arrival dates.</dd><dt>Exports</dt><dd>Shipments toward the Gulf, East Africa and Asia carry higher freight and war-risk premiums when competing with lower-cost Asian suppliers.</dd></dl></div><div class="p-end"><span class="k">Scenario to model</span><p>A delayed coal vessel or a weaker pound, and which stocks run short first, when to reorder and what it does to cost per tonne.</p><div class="mods"><span>Materials and Supply</span><span>Finance</span><span>Contracts and Offers</span></div></div></div><div class="p"><div class="p-top"><div class="n">03</div><h3>Neighbouring export markets and EU carbon rules</h3><p>Conflict in Sudan and political division in Libya make Egypt's nearest land export markets volatile, and the EU carbon border adjustment now applies to cement.</p></div><div class="p-mid"><span class="k">Effect on the plant</span><dl><dt>Demand</dt><dd>Volumes to Sudan and Libya depend on security, payment channels and reconstruction timing. With domestic capacity above demand, tonnes that cannot be exported return to the home market.</dd><dt>Logistics</dt><dd>Long truck round trips to Libya take trucks away from domestic dispatch.</dd><dt>Compliance</dt><dd>Cement shipped to the EU carries CBAM carbon costs, and export approval requires a carbon emissions report to GOEIC.</dd></dl></div><div class="p-end"><span class="k">Scenario to model</span><p>An export market closing or a payment channel freezing, and where the volume goes, the margin at home and the trucks it frees.</p><div class="mods"><span>Omni Signals</span><span>Strategy and Product Market Fit</span><span>Packing and Dispatch</span><span>Sustainability</span></div></div></div></div>
   </div>
 </section>
-<section>
+<section class="imgsec imgsec-l imgsec-keep area-sec" style="--cmband:url('/cement/band-dusk.jpg');">
+  <div class="cmband-v"><video data-src="/cement/band-dusk.mp4" muted loop playsinline aria-hidden="true" tabindex="-1"></video></div>
   <div class="container">
+   <div class="sec-split">
     <div class="section-tag">In practice</div>
     <h2 class="section-heading">Representative workflows</h2>
     <p class="section-sub">Each workflow is configured from the same modules. The technical basis for each module is on the Platform page.</p>
     <div class="cmfl"><h3><b>Operational · Pulse</b></h3><div class="g"><div class="w"><div class="n">1</div><div><h4>Fuel mix under a price or supply change</h4><p>Compares fuel mixes on cost per tonne of clinker within heat, clinker SO3, chloride, ash and coal mill limits, and drafts the change for approval.</p><div class="mods"><span>Pyro Process and Cooling</span><span>Materials and Supply</span></div></div></div><div class="w"><div class="n">2</div><div><h4>Raw mix correction after a quarry or corrective change</h4><p>Forecasts LSF, SM and AM for the next pile, checks the room left on corrective materials, and costs each correction.</p><div class="mods"><span>Crushing and Raw Mix</span><span>Quarry</span></div></div></div><div class="w"><div class="n">3</div><div><h4>Cover for imported fuel, refractory and spares</h4><p>Calculates days of cover against plant-yard arrival dates, and drafts requisitions before cover runs short.</p><div class="mods"><span>Materials and Supply</span><span>Finance</span></div></div></div><div class="w"><div class="n">4</div><div><h4>Grade release and grinding power</h4><p>Sets the release target for each strength class from the plant's own variability, and checks whether each grade is ground finer than it needs to be.</p><div class="mods"><span>Grinding and Product</span></div></div></div></div></div><div class="cmfl"><h3><b>Commercial · Horizon</b></h3><div class="g"><div class="w"><div class="n">5</div><div><h4>Export offer pricing</h4><p>Tests each export offer against delivered cost, capacity and existing commitments, and routes it to the approver before it reaches the customer.</p><div class="mods"><span>Contracts and Offers</span><span>Finance</span></div></div></div><div class="w"><div class="n">6</div><div><h4>Domestic and export channel margin</h4><p>Compares regions, channels and cement types on delivered margin per tonne of clinker, using demand shares the team sets.</p><div class="mods"><span>Strategy and Product Market Fit</span></div></div></div><div class="w"><div class="n">7</div><div><h4>Order to invoice for bulk and bagged cement</h4><p>Places orders on the operations calendar, confirms delivery through Packing and Dispatch, and matches each invoice to what was loaded and weighed.</p><div class="mods"><span>Order Management and Invoicing</span><span>Packing and Dispatch</span></div></div></div><div class="w"><div class="n">8</div><div><h4>Tender and competitor tracking</h4><p>Records each signal with its source and date, links it to the accounts and plants it affects, and turns it into an action with an owner and a deadline.</p><div class="mods"><span>Omni Signals</span><span>Omni Plays</span></div></div></div></div></div>
+   </div>
   </div>
 </section>
 <section class="band-warm">
@@ -1348,6 +1421,49 @@
   setTimeout(function(){
     els.forEach(function(el){ if(!el.classList.contains('in')) show(el, 0); });
   }, 1500);
+})();
+</script><script>
+(function(){
+  var vs = [].slice.call(document.querySelectorAll('video[data-src]'));
+  if(!vs.length) return;
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var PAUSE = "Pause the motion", PLAY = "Play the motion";
+
+  function control(v){
+    // the band's video sits in a layer behind the copy, so the button cannot
+    // live beside it; both kinds hang it on the positioned box one level up
+    var host = v.closest('.cncmix') || v.closest('.imgsec');
+    if(!host) return;
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'cmpause';
+    b.setAttribute('aria-label', PAUSE);
+    b.innerHTML = '<span class="cmpause-i"></span>';
+    b.addEventListener('click', function(){
+      if(v.paused){ v.play(); b.classList.remove('is-off'); b.setAttribute('aria-label', PAUSE); }
+      else { v.pause(); b.classList.add('is-off'); b.setAttribute('aria-label', PLAY); }
+    });
+    host.appendChild(b);
+  }
+
+  function start(v){
+    if(v.getAttribute('src')) return;
+    v.setAttribute('src', v.getAttribute('data-src'));
+    var p = v.play();
+    if(p && p.catch) p.catch(function(){});
+    control(v);
+  }
+
+  if(!('IntersectionObserver' in window)){ vs.forEach(start); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting) return;
+      io.unobserve(en.target);
+      start(en.target);
+    });
+  }, {rootMargin: '300px 0px'});
+  vs.forEach(function(v){ io.observe(v); });
 })();
 </script>
 </body>
