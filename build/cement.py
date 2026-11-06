@@ -244,7 +244,27 @@ CEM_CSS = r"""
   @media(max-width:1239px){
     .cncgap{grid-template-columns:minmax(0,1fr);gap:0;}
     .cncmix{max-width:520px;}
+    .cmfig{max-width:520px;margin-top:26px;}
   }
+  /* ---- a photograph beside the copy, where a band cannot go ---- */
+  /* The home page's about section runs the four card family grid under its
+     ledes, and .cmfam has no narrowed form inside .imgsec, so a photo band
+     would squeeze those cards into a quarter of the 682px copy column. The
+     picture takes the gutter .cncgap already leaves beside a 760 column
+     instead, and the grid keeps the full measure below it.
+     This borrows the mixer truck's layout and deliberately not its figure
+     class: .cncmix hides its <img> until reduced motion, because there the
+     still is only the loop's stand-in, and mirrors it for Arabic, because a
+     composited vehicle should face into the copy. Both are wrong for a
+     photograph, which always shows and is never mirrored on this site.
+     The box is .cmst .ph: same 3:2, same radius, same warm veil, so a picture
+     beside type reads the same here as it does on the capabilities rows. */
+  .cmfig{position:relative;overflow:hidden;border-radius:16px;aspect-ratio:3/2;
+    margin:0;background:var(--gold-soft);box-shadow:var(--shadow);}
+  .cmfig img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    display:block;}
+  .cmfig::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(224,100,30,.06),rgba(255,246,226,.16));}
   .cmmods{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:4px;}
   .cmmods>*{min-width:0;}
   .cmmod{border:1px solid var(--border-soft);border-radius:14px;padding:18px 18px 20px;
@@ -855,18 +875,27 @@ def build_home(d):
 
     fams = "".join('<div class="f"><h3>%s</h3><div class="d">%s</div><div class="x">%s</div></div>'
                    % (e(n), e(a), e(b)) for n, a, b in d["fams"])
+    # the heading and the two ledes take the 760 column and the works takes the
+    # gutter beside them; the family grid stays at the full measure underneath,
+    # which is the whole reason this is a figure and not a photo band
     s += """<section id="about">
   <div class="container">
-    <div class="section-tag">%s</div>
-    <h2 class="section-heading">%s</h2>
-    <p class="lede">%s</p>
-    <p class="lede">%s</p>
+    <div class="cncgap">
+      <div>
+        <div class="section-tag">%s</div>
+        <h2 class="section-heading">%s</h2>
+        <p class="lede">%s</p>
+        <p class="lede">%s</p>
+      </div>
+      <figure class="cmfig"><img src="/cement/about-works.jpg" alt="%s"
+        width="840" height="560" loading="lazy" decoding="async"></figure>
+    </div>
     <h3 class="sub-heading" style="margin-top:34px;font-size:22px;">%s</h3>
     <div class="cmfam">%s</div>
   </div>
 </section>
 """ % (e(d["about_tag"]), e(d["about_h"]), e(d["about_p1"]), e(d["about_p2"]),
-       e(d["about_fam_h"]), fams)
+       e(d["about_fig_alt"]), e(d["about_fam_h"]), fams)
 
     # the platform architecture figure, the same one the main site home carries,
     # in this page's own language
@@ -876,36 +905,30 @@ def build_home(d):
                       foot=e(d["arx_foot"]),
                       labels=dict((k, e(v)) for k, v in d["arx_labels"].items()))
 
-    s += """<section id="context" class="band-alt">
-  <div class="container">
-    <div class="split2" style="align-items:start;">
-      <div>
-        <div class="section-tag">%s</div>
-        <h2 class="section-heading">%s</h2>
-        <p class="section-sub">%s</p>
-        <p class="section-sub" style="margin-top:16px;">%s</p>
-      </div>
-      <div class="split2-panel"><h3>%s</h3>%s</div>
-    </div>
-    <div class="callout">
-      <h3>%s</h3>
-      <p>%s</p>
-    </div>
-  </div>
-</section>
-""" % (e(d["ctx_tag"]), e(d["ctx_h"]), e(d["ctx_p1"]), e(d["ctx_p2"]),
-       e(d["ctx_cond_h"]), ticks(d["ctx_cond"]),
-       e(d["ctx_flow_h"]), e(d["ctx_flow_p"]))
+    # The decision problem, over the dusk works. The side by side split this
+    # section used to run cannot survive a band: the copy column and the
+    # conditions panel measure 590 and 534 and would have to share 682, and
+    # nothing in the CSS narrows .split2 or .callout inside .imgsec. Stacked
+    # into the band's one column they are both WIDER than they were, which is
+    # the trade this makes, and the section grows by roughly 350px for it.
+    # The plate is the one already on context.html, which this section is the
+    # precis of, and it is the only graded loop whose crop was cut to empty the
+    # half the copy needs. sec() gives it imgsec-keep because it carries a clip,
+    # so Arabic repositions nothing and the tower cannot jump into that half.
+    ctx_body = ('<p class="section-sub" style="margin-top:16px;">%s</p>\n'
+                '    %s\n'
+                '    <div class="callout"><h3>%s</h3><p>%s</p></div>'
+                % (e(d["ctx_p2"]), panel(d["ctx_cond_h"], d["ctx_cond"]),
+                   e(d["ctx_flow_h"]), e(d["ctx_flow_p"])))
+    s += sec(ctx_body, tag=d["ctx_tag"], h=d["ctx_h"], p=d["ctx_p1"],
+             **band("cx_wf"))
 
-    s += """<section class="band-warm">
-  <div class="container">
-    <div class="section-tag">%s</div>
-    <h2 class="section-heading">%s</h2>
-    <p class="section-sub">%s</p>
-    %s
-  </div>
-</section>
-""" % (e(d["cfg_tag"]), e(d["cfg_h"]), e(d["cfg_p"]), rows(d["cfg_rows"]))
+    # Configuration, over the kiln shell its first row names. two=True is not
+    # optional: .imgsec .cmrows.two is the only rows form the CSS narrows inside
+    # a band, so plain rows() would be stranded at three columns of 207px in a
+    # 682px column. This is the pairing the four industry pages already run.
+    s += sec(rows(d["cfg_rows"], two=True), tag=d["cfg_tag"], h=d["cfg_h"],
+             p=d["cfg_p"], **band("cfg_kiln"))
 
     s += cta_band(d["home_close_h"], d["home_close_p"],
                   btn(d["home_close_cta1"]) + " " + btn(d["home_close_cta2"], ghost=True))
@@ -1396,6 +1419,16 @@ BANDS = {
     # the crops in build/cementvid.py put there.
     "cx_wf":       ("/cement/band-dusk.jpg",   "l", "band-dusk"),
     "cap_adapt":   ("/cement/band-works.jpg",  "r", "band-works"),
+    # the kiln shell on the home page's configuration section, the only picture
+    # on this microsite that is not an exterior of a works. It is a still and
+    # not a loop because the source is a tracking shot: its head and tail are
+    # 50.7 mean levels apart with 84 percent of pixels moved, against 2.1 and
+    # 0.8 percent for band-dusk, so no crossfade closes it, and at 8.90s the
+    # source is shorter than the 10.0s SEG cementvid.py cuts. It takes no
+    # imgsec-keep: both outer quarters measure an edge density of 22.0 and
+    # 19.0, so neither half is empty and the Arabic reposition shows the far
+    # end of the same kiln rather than sky.
+    "cfg_kiln":    ("/cement/band-kiln.jpg",   "r"),
 }
 
 

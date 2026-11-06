@@ -877,7 +877,27 @@
   @media(max-width:1239px){
     .cncgap{grid-template-columns:minmax(0,1fr);gap:0;}
     .cncmix{max-width:520px;}
+    .cmfig{max-width:520px;margin-top:26px;}
   }
+  /* ---- a photograph beside the copy, where a band cannot go ---- */
+  /* The home page's about section runs the four card family grid under its
+     ledes, and .cmfam has no narrowed form inside .imgsec, so a photo band
+     would squeeze those cards into a quarter of the 682px copy column. The
+     picture takes the gutter .cncgap already leaves beside a 760 column
+     instead, and the grid keeps the full measure below it.
+     This borrows the mixer truck's layout and deliberately not its figure
+     class: .cncmix hides its <img> until reduced motion, because there the
+     still is only the loop's stand-in, and mirrors it for Arabic, because a
+     composited vehicle should face into the copy. Both are wrong for a
+     photograph, which always shows and is never mirrored on this site.
+     The box is .cmst .ph: same 3:2, same radius, same warm veil, so a picture
+     beside type reads the same here as it does on the capabilities rows. */
+  .cmfig{position:relative;overflow:hidden;border-radius:16px;aspect-ratio:3/2;
+    margin:0;background:var(--gold-soft);box-shadow:var(--shadow);}
+  .cmfig img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    display:block;}
+  .cmfig::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(224,100,30,.06),rgba(255,246,226,.16));}
   .cmmods{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:4px;}
   .cmmods>*{min-width:0;}
   .cmmod{border:1px solid var(--border-soft);border-radius:14px;padding:18px 18px 20px;
@@ -1296,10 +1316,16 @@
 <div class="sun-divider"></div>
 <section id="about">
   <div class="container">
-    <div class="section-tag">نبذة عن TwoSuns</div>
-    <h2 class="section-heading">خبرة مؤسسية مطبّقة على عمل منتج الأسمنت</h2>
-    <p class="lede">تجمع TwoSuns بين الاستراتيجية المؤسسية وقيادة المنتج والمعرفة القطاعية وخبرة النمو والتحليلات وهندسة البرمجيات والذكاء الاصطناعي وهندسة البيانات وقدرة التنفيذ. تُطوّر AEPG المنصة في كندا، وتُهيّأ مع مسؤولي العمليات والجودة والنشاط التجاري لدى المنتج نفسه.</p>
-    <p class="lede">نبني قدرة مؤسسية عملية من سياق مترابط وذكاء ومسارات عمل قابلة للتهيئة. وفي صناعة الأسمنت يمتد نطاق هذه القدرة من واجهة المحجر إلى النقد المحصّل، وتنفّذ هذا العملَ فرقُ المحجر والعمليات والجودة والصيانة والشحن والنشاط التجاري والمالية، ويحتفظ كل فريق منها بسلطته.</p>
+    <div class="cncgap">
+      <div>
+        <div class="section-tag">نبذة عن TwoSuns</div>
+        <h2 class="section-heading">خبرة مؤسسية مطبّقة على عمل منتج الأسمنت</h2>
+        <p class="lede">تجمع TwoSuns بين الاستراتيجية المؤسسية وقيادة المنتج والمعرفة القطاعية وخبرة النمو والتحليلات وهندسة البرمجيات والذكاء الاصطناعي وهندسة البيانات وقدرة التنفيذ. تُطوّر AEPG المنصة في كندا، وتُهيّأ مع مسؤولي العمليات والجودة والنشاط التجاري لدى المنتج نفسه.</p>
+        <p class="lede">نبني قدرة مؤسسية عملية من سياق مترابط وذكاء ومسارات عمل قابلة للتهيئة. وفي صناعة الأسمنت يمتد نطاق هذه القدرة من واجهة المحجر إلى النقد المحصّل، وتنفّذ هذا العملَ فرقُ المحجر والعمليات والجودة والصيانة والشحن والنشاط التجاري والمالية، ويحتفظ كل فريق منها بسلطته.</p>
+      </div>
+      <figure class="cmfig"><img src="/cement/about-works.jpg" alt="مصنع أسمنت كامل في موقع واحد، بخط الفرن والصوامع ومخزن الكلنكر."
+        width="840" height="560" loading="lazy" decoding="async"></figure>
+    </div>
     <h3 class="sub-heading" style="margin-top:34px;font-size:22px;">منصة واحدة تغطي المصنع والسوق</h3>
     <div class="cmfam"><div class="f"><h3>Core</h3><div class="d">طبقة السياق المؤسسي المشترك والتهيئة والاستمرارية.</div><div class="x">أساس المصنع، وحدود التشغيل، والأدوار، وسلاسل الموافقات، وسجل القرارات.</div></div><div class="f"><h3>Ray</h3><div class="d">مساعدة مدركة للسياق متاحة في كل أنحاء المنصة.</div><div class="x">شرح وتركيب ودعم لمسارات العمل، داخل صلاحيات كل مستخدم.</div></div><div class="f"><h3>Horizon</h3><div class="d">قدرات السوق والنمو والعلاقات والنشاط التجاري.</div><div class="x">الاستراتيجية وملاءمة المنتج للسوق، والمؤشرات، والخطط، والعقود والعروض، وإدارة الطلبات والفوترة، والمالية.</div></div><div class="f"><h3>Pulse</h3><div class="d">قدرات المنتج والمشروعات والتشغيل والأصول.</div><div class="x">المحجر، والمواد والتوريد، والخلطة الخام، والعملية الحرارية، والطحن، والتعبئة والشحن، والاستدامة.</div></div></div>
   </div>
@@ -1357,29 +1383,27 @@
     <div style="margin-top:30px;"><a class="btn-ghost" href="capabilities.html">استعرض المنصة</a></div>
   </div>
 </section>
-<section id="context" class="band-alt">
+<section class="imgsec imgsec-l imgsec-keep area-sec" style="--cmband:url('/cement/band-dusk.jpg');">
+  <div class="cmband-v"><video data-src="/cement/band-dusk.mp4" muted loop playsinline aria-hidden="true" tabindex="-1"></video></div>
   <div class="container">
-    <div class="split2" style="align-items:start;">
-      <div>
-        <div class="section-tag">مشكلة القرار</div>
-        <h2 class="section-heading">تكلفة الطن تتحدد بقرارات تُتخذ في وظائف منفصلة</h2>
-        <p class="section-sub">يتخذ مصنع الأسمنت كل يوم قرارات كثيرة تحرك تكلفة الطن: أي واجهات المحجر تغذي الكسّارة، وكيف تُصحّح الخلطة الخام، وأي أنواع الوقود تُحرق، وأي الصوامع تُفرّغ، وأي الأطنان والأسعار تلتزم بها المبيعات. وكل قرار منها يقع في وظيفة مختلفة ونظام مختلف.</p>
-        <p class="section-sub" style="margin-top:16px;">تجمع TwoSuns هذه القرارات في بيئة مؤسسية واحدة إلى جانب الأنظمة القائمة بالفعل. تحتفظ كل وظيفة بسلطتها وترى أثر قرارها على التكلفة والطاقة الإنتاجية والمخزون والجودة في باقي أجزاء الأعمال.</p>
-      </div>
-      <div class="split2-panel"><h3>ظروف مشتركة في تشغيل الأسمنت</h3><ul class="tick"><li>دورات حياة طويلة للمحجر والفرن والأصول</li><li>وظائف عديدة تشارك في إنتاج الطن الواحد</li><li>تراخيص المداخن ورخص الوقود وممارسات إقليمية</li><li>علاقات مع الموزّعين وشركات النقل والعملاء والجهات التنظيمية</li><li>مدخلات العملية والمختبر ودفتر الأستاذ والسوق</li><li>تناقل متكرر للمسؤولية عبر حدود الوظائف</li><li>قيمة مستمرة بعد إنتاج الطن بزمن طويل</li></ul></div>
-    </div>
-    <div class="callout">
-      <h3>تتبّع مسار العمل عبر المصنع</h3>
-      <p>تغيير عند واجهة المحجر يحرك تصحيح الخلطة الخام، وحرارة الفرن، وجودة الكلنكر، ومقاومة الأسمنت، والأطنان التي يمكن للشحن تسليمها، والأسعار التي يمكن للمبيعات الالتزام بها. وأمر تصدير يُقبل يوم الاثنين يحدد قرارات الطحن والتعبئة والمخزون لباقي الأسبوع. أعمال الأسمنت مترابطة عبر مسارات العمل المستمرة هذه، والمنصة تُهيّأ حولها.</p>
-    </div>
+   <div class="sec-split">
+    <div class="section-tag">مشكلة القرار</div>
+    <h2 class="section-heading">تكلفة الطن تتحدد بقرارات تُتخذ في وظائف منفصلة</h2>
+    <p class="section-sub">يتخذ مصنع الأسمنت كل يوم قرارات كثيرة تحرك تكلفة الطن: أي واجهات المحجر تغذي الكسّارة، وكيف تُصحّح الخلطة الخام، وأي أنواع الوقود تُحرق، وأي الصوامع تُفرّغ، وأي الأطنان والأسعار تلتزم بها المبيعات. وكل قرار منها يقع في وظيفة مختلفة ونظام مختلف.</p>
+    <p class="section-sub" style="margin-top:16px;">تجمع TwoSuns هذه القرارات في بيئة مؤسسية واحدة إلى جانب الأنظمة القائمة بالفعل. تحتفظ كل وظيفة بسلطتها وترى أثر قرارها على التكلفة والطاقة الإنتاجية والمخزون والجودة في باقي أجزاء الأعمال.</p>
+    <div class="split2-panel" style="margin-top:22px;max-width:760px;"><h3>ظروف مشتركة في تشغيل الأسمنت</h3><ul class="tick"><li>دورات حياة طويلة للمحجر والفرن والأصول</li><li>وظائف عديدة تشارك في إنتاج الطن الواحد</li><li>تراخيص المداخن ورخص الوقود وممارسات إقليمية</li><li>علاقات مع الموزّعين وشركات النقل والعملاء والجهات التنظيمية</li><li>مدخلات العملية والمختبر ودفتر الأستاذ والسوق</li><li>تناقل متكرر للمسؤولية عبر حدود الوظائف</li><li>قيمة مستمرة بعد إنتاج الطن بزمن طويل</li></ul></div>
+    <div class="callout"><h3>تتبّع مسار العمل عبر المصنع</h3><p>تغيير عند واجهة المحجر يحرك تصحيح الخلطة الخام، وحرارة الفرن، وجودة الكلنكر، ومقاومة الأسمنت، والأطنان التي يمكن للشحن تسليمها، والأسعار التي يمكن للمبيعات الالتزام بها. وأمر تصدير يُقبل يوم الاثنين يحدد قرارات الطحن والتعبئة والمخزون لباقي الأسبوع. أعمال الأسمنت مترابطة عبر مسارات العمل المستمرة هذه، والمنصة تُهيّأ حولها.</p></div>
+   </div>
   </div>
 </section>
-<section class="band-warm">
+<section class="imgsec imgsec-r area-sec" style="--cmband:url('/cement/band-kiln.jpg');">
   <div class="container">
+   <div class="sec-split">
     <div class="section-tag">التهيئة</div>
     <h2 class="section-heading">هيّئ TwoSuns وفق مصنعك</h2>
     <p class="section-sub">المصانع التي تتشابه أفرانها قد تحتاج قرارات مختلفة في اليوم نفسه. يُشكّل كل تطبيق حول أساس المصنع نفسه، وبيئته التشغيلية، ومستخدميه، ومناطقه، ومدخلاته، وتكاملاته، والقيمة المتوقعة، ويُهيّأ مع مسؤولي العمليات والجودة والنشاط التجاري قبل أن تنتج المنصة أي توصية.</p>
-    <div class="cmrows"><div class="r"><b>المصنع والخطوط</b>خطوط الأفران والطواحين وماكينات التعبئة والصوامع، مع حدود تشغيلها</div><div class="r"><b>المواد الخام والوقود</b>كيمياء المحجر والمواد المصححة، والوقود بقيمته الحرارية ونسب الكبريت والكلور والرماد</div><div class="r"><b>المواصفات والتراخيص</b>رتب الأسمنت المنتجة، وتراخيص المداخن، وتراخيص الوقود، وتقارير التصدير والكربون</div><div class="r"><b>التنظيم والموافقات</b>الأدوار والتسلسل الإداري وسلاسل الموافقات ومستويات الصلاحية</div><div class="r"><b>الأسواق</b>المناطق والقنوات والعملاء وجهات التصدير</div><div class="r"><b>المدخلات</b>قاعدة البيانات التاريخية والمختبر ونظام ERP وميزان القبّان والمسوحات، ومعدل ورود كل منها</div></div>
+    <div class="cmrows two"><div class="r"><b>المصنع والخطوط</b>خطوط الأفران والطواحين وماكينات التعبئة والصوامع، مع حدود تشغيلها</div><div class="r"><b>المواد الخام والوقود</b>كيمياء المحجر والمواد المصححة، والوقود بقيمته الحرارية ونسب الكبريت والكلور والرماد</div><div class="r"><b>المواصفات والتراخيص</b>رتب الأسمنت المنتجة، وتراخيص المداخن، وتراخيص الوقود، وتقارير التصدير والكربون</div><div class="r"><b>التنظيم والموافقات</b>الأدوار والتسلسل الإداري وسلاسل الموافقات ومستويات الصلاحية</div><div class="r"><b>الأسواق</b>المناطق والقنوات والعملاء وجهات التصدير</div><div class="r"><b>المدخلات</b>قاعدة البيانات التاريخية والمختبر ونظام ERP وميزان القبّان والمسوحات، ومعدل ورود كل منها</div></div>
+   </div>
   </div>
 </section>
 <section class="cta-band">

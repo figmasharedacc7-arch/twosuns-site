@@ -54,6 +54,9 @@ EN = {
               "developed by AEPG in Canada and configured with the producer's own process, "
               "quality and commercial leads.",
  "about_p2": "We build practical enterprise capability out of connected context, intelligence and configurable workflows. In cement that capability runs from the quarry face to cash collected, and the work is carried out by quarry, process, quality, maintenance, dispatch, commercial and finance teams that each hold their own authority.",
+ # the works beside the two ledes. alt, not a caption: the heading next to it
+ # already names the subject, so a caption would only say it twice.
+ "about_fig_alt": "A complete cement works on one site, with its kiln line, silos and clinker store.",
  'about_fam_h': 'One platform across the plant and the market',
  'fams': [
            (
@@ -1161,6 +1164,7 @@ AR = {
               "التنفيذ. تُطوّر AEPG المنصة في كندا، وتُهيّأ مع مسؤولي العمليات والجودة والنشاط "
               "التجاري لدى المنتج نفسه.",
  "about_p2": "نبني قدرة مؤسسية عملية من سياق مترابط وذكاء ومسارات عمل قابلة للتهيئة. وفي صناعة الأسمنت يمتد نطاق هذه القدرة من واجهة المحجر إلى النقد المحصّل، وتنفّذ هذا العملَ فرقُ المحجر والعمليات والجودة والصيانة والشحن والنشاط التجاري والمالية، ويحتفظ كل فريق منها بسلطته.",
+ "about_fig_alt": "مصنع أسمنت كامل في موقع واحد، بخط الفرن والصوامع ومخزن الكلنكر.",
  'about_fam_h': 'منصة واحدة تغطي المصنع والسوق',
  'fams': [
            (

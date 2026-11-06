@@ -877,7 +877,27 @@
   @media(max-width:1239px){
     .cncgap{grid-template-columns:minmax(0,1fr);gap:0;}
     .cncmix{max-width:520px;}
+    .cmfig{max-width:520px;margin-top:26px;}
   }
+  /* ---- a photograph beside the copy, where a band cannot go ---- */
+  /* The home page's about section runs the four card family grid under its
+     ledes, and .cmfam has no narrowed form inside .imgsec, so a photo band
+     would squeeze those cards into a quarter of the 682px copy column. The
+     picture takes the gutter .cncgap already leaves beside a 760 column
+     instead, and the grid keeps the full measure below it.
+     This borrows the mixer truck's layout and deliberately not its figure
+     class: .cncmix hides its <img> until reduced motion, because there the
+     still is only the loop's stand-in, and mirrors it for Arabic, because a
+     composited vehicle should face into the copy. Both are wrong for a
+     photograph, which always shows and is never mirrored on this site.
+     The box is .cmst .ph: same 3:2, same radius, same warm veil, so a picture
+     beside type reads the same here as it does on the capabilities rows. */
+  .cmfig{position:relative;overflow:hidden;border-radius:16px;aspect-ratio:3/2;
+    margin:0;background:var(--gold-soft);box-shadow:var(--shadow);}
+  .cmfig img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    display:block;}
+  .cmfig::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(224,100,30,.06),rgba(255,246,226,.16));}
   .cmmods{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:4px;}
   .cmmods>*{min-width:0;}
   .cmmod{border:1px solid var(--border-soft);border-radius:14px;padding:18px 18px 20px;
