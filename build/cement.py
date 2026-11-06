@@ -90,7 +90,11 @@ CEM_CSS = r"""
   html[dir="rtl"] .cmhero{--cmwash:linear-gradient(260deg,#FFF6E2 0%,#FFF6E2 40%,rgba(255,246,226,.94) 48%,
       rgba(255,246,226,.74) 56%,rgba(255,245,222,.44) 64%,rgba(255,244,218,.16) 72%,
       rgba(255,243,216,0) 80%);}
-  .cmhero.sh-plain{--cmshot:linear-gradient(#FFF6E2,#FFF6E2);}
+  /* Supplied for this page: a works in desert, which suits a page about Egypt
+     better than the flat band it replaces. Cropped, and its sky graded warm,
+     in the file rather than here: every other hero is cream and gold, and a
+     deep blue band across the top read as a different site. */
+  .cmhero.sh-context{--cmshot:url('/cement/context-hero.jpg');}
   .cmhero.sh-platform{--cmshot:url('/plat-hero.jpg');}
   .cmhero.sh-capabilities{--cmshot:url('/cap-hero.jpg');}
   /* the Sectors hub takes the supplied plant aerial, flipped, so its tower
@@ -1006,7 +1010,7 @@ def build_context(d):
     s = head(d, d["cx_title"], d["cx_desc"], "context.html") + nav(d, "context.html")
     s += hero(d, d["cx_eyebrow"], d["cx_h1"], d["cx_sub"],
               btn(d["cx_cta1"]) + " " + btn(d["cx_cta2"], "platform.html", ghost=True),
-              shot="plain")
+              shot="context")
     s += sec(pressures(d), "band-alt", d["cx_rp_tag"], d["cx_rp_h"], d["cx_rp_p"])
     s += sec(flows(d), "", d["cx_wf_tag"], d["cx_wf_h"], d["cx_wf_p"])
     s += cta_band(d["cx_close_h"], d["cx_close_p"],
