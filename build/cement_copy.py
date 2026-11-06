@@ -17,7 +17,6 @@ EN = {
  'other_label': 'العربية',
  'self_label': 'EN',
  "nav": [("Cement Context", "context.html"),
-        ("Platform", "platform.html"),
         ("Capabilities", "capabilities.html"),
         ("Sectors", "sectors.html"),
         ("Use Cases", "use-cases.html"),
@@ -27,7 +26,6 @@ EN = {
  'skip': 'Skip to content',
  'by': 'TwoSuns by AEPG',
  "foot_links": [("Cement Context", "context.html"),
-               ("Platform", "platform.html"),
                ("Capabilities", "capabilities.html"),
                ("Sectors", "sectors.html"),
                ("Use Cases", "use-cases.html"),
@@ -171,55 +169,6 @@ EN = {
  "home_close_p": "TwoSuns is developed in Canada. The team is in Cairo from 10 to 26 November and can meet at your plant or office to review one decision against your own production and cost reports, under a mutual NDA.",
  'home_close_cta1': 'Request an Opportunity Assessment',
  'home_close_cta2': 'Request a Technical Conversation',
- 'plat_title': 'The TwoSuns Platform for Cement | Modules, inputs and deployment',
- 'plat_desc': "Core and Ray provide the shared foundation. Pulse extends it into the plant, "
-               "Horizon into commercial work. Read-only integration throughout.",
- 'plat_eyebrow': 'The TwoSuns Platform',
- 'plat_h1': 'One enterprise environment. Shared context across the plant and the market.',
- 'plat_sub': "TwoSuns connects relevant inputs, organizational context, intelligence, people "
-              "and workflows within an adaptive enterprise platform. Core and Ray provide the "
-              "common foundation for every deployment. Pulse extends that foundation into the "
-              "plant and Horizon into commercial work, within the limits the plant's engineers "
-              "own.",
- 'plat_cta1': 'Request a Product Demonstration',
- 'plat_cta2': 'Request a Technical Conversation',
- 'how_tag': 'How it works',
- 'how_h': 'Five steps behind every recommendation',
- 'how_steps': [
-                (
-                  'Ingest.',
-                  "Historian, laboratory, ERP, cost and market inputs, read from the systems "
-                   "already in place.",
-                ),
-                (
-                  'Detect.',
-                  "Each value is compared with the band the plant's engineers define and own.",
-                ),
-                (
-                  'Cost.',
-                  'Each deviation is costed as exposure per day and ranked by severity.',
-                ),
-                (
-                  'Decide.',
-                  'Options go to the people accountable, with the evidence behind them.',
-                ),
-                (
-                  'Record.',
-                  "The decision, its owner, its inputs and its outcome stay in the decision "
-                   "history.",
-                ),
-              ],
- 'how_carry_h': 'Every decision carries',
- 'how_carry': [
-                'Deviation against band',
-                'Cost exposure per day',
-                'Severity',
-                'Owner',
-                'Approval chain',
-                'Disposition',
-                'Input lineage',
-              ],
- 'how_note': 'No one approves their own request.',
  'arch_tag': 'Architecture',
  'arch_h': 'Two operating domains, one shared context',
  "arch_p": "Horizon supports the market-facing work and Pulse supports the plant. Core holds the context both work from, and Ray works from the context available to each user and workflow. An order accepted in Horizon can inform grinding and dispatch planning in Pulse, and available capacity can inform the tonnes sales commits, while Core maintains continuity.",
@@ -291,131 +240,6 @@ EN = {
  'arch_units': "Heat in kcal/kg clinker on an NCV basis. Power in kWh per tonne of cement. "
                 "Costs per tonne of clinker or cement, in EGP and US$. CO2 per tonne of "
                 "clinker and of cement shown separately.",
- 'data_tag': 'Inputs and integration',
- 'data_h': 'Bring together the inputs the plant already records',
- "data_p": "A TwoSuns environment can combine process values, laboratory, fuel and emissions analyses, weighbridge and survey records, ledger entries, market data and uploads according to the decision it is configured around.",
- 'data_cols': ['Source', 'Typical content', 'Typical frequency'],
- 'data_rows': [
-                (
-                  'Process historian (DCS)',
-                  'Kiln, cooler, mill and fan process values',
-                  '1 or 5 minute resolution',
-                ),
-                (
-                  'Laboratory and XRF',
-                  'Raw meal, hot meal, clinker and cement chemistry; fineness; strength',
-                  "Hourly composites for raw mix; about every 4 hours for hot meal; per "
-                   "sample for cement",
-                ),
-                (
-                  'Fuel analyses',
-                  'NCV as received with analysis date; sulphur, chlorine and ash',
-                  'By lot',
-                ),
-                (
-                  'ERP',
-                  'Stock, purchase orders, sales orders, ledger',
-                  'Hourly or daily extract',
-                ),
-                ('Weighbridge', 'Tonnes in and out', 'Hourly or by upload'),
-                (
-                  'Silo levels and surveys',
-                  'Radar levels; stockpile and store surveys',
-                  'Hourly for radar; surveys as scheduled',
-                ),
-                ('CEMS and stack tests', 'Dust, SO2, NOx, HCl, HF and TOC', 'Daily averages'),
-                (
-                  'Market data',
-                  'Fuel benchmarks, exchange rates, freight, tenders, competitor activity',
-                  'As published, with source and date',
-                ),
-                (
-                  'Uploads',
-                  'Spreadsheets, survey sheets, permits and reports',
-                  'As submitted by permitted users',
-                ),
-              ],
- 'data_p2': "TwoSuns reads inputs through APIs, configurable connectors, file upload or "
-             "direct connection, with templates where a site is not yet connected. Integration "
-             "is read-only. Nothing is written to the DCS, PLCs, ERP or laboratory systems, "
-             "and the platform works alongside any advanced process control already in "
-             "service.",
- 'data_p3': "Plant figures are tagged as measured, derived or assumed, and finance figures as "
-             "measured, ledger-derived or modelled. Late or stale inputs lower the confidence "
-             "shown on the figures that use them.",
- 'dep_tag': 'Deployment',
- 'dep_h': 'Configure, deploy and expand',
- 'dep_steps': [
-                (
-                  'Conversation.',
-                  'The decision that matters most, its owner and the limit that binds.',
-                ),
-                (
-                  'Discovery.',
-                  "The plant's inputs are reviewed under a mutual NDA, one decision is "
-                   "agreed, and the baseline is measured from the plant's own trailing twelve "
-                   "months.",
-                ),
-                (
-                  'Configuration.',
-                  "Plant basis, limits, targets and approval chains are set in Core with the "
-                   "process, quality and commercial leads.",
-                ),
-                (
-                  'Pilot.',
-                  "The relevant modules run read-only on that decision and are measured "
-                   "against targets the plant sets.",
-                ),
-                (
-                  'Expansion.',
-                  "Further decisions, lines and plants are added once the pilot meets its "
-                   "targets.",
-                ),
-              ],
- 'dep_p': "The initial deployment typically takes several weeks to three months, depending on "
-           "scope, integrations and operating requirements. The producer decides whether to "
-           "continue at the end of each step.",
- 'dep_prov_h': 'What the plant provides for discovery',
- 'dep_prov': [
-               'A trailing twelve months of production and cost reports',
-               'The operating limits in force, and the names of the people who own them',
-               'A sample of laboratory, XRF and fuel analyses',
-               'A stock, order and ledger extract from ERP',
-               'The approval chain for the decision in scope, and its named owner',
-             ],
- 'gov_tag': 'Governance',
- 'gov_h': 'Security, access and hosting',
- 'gov_rows': [
-               (
-                 'Permissions by role.',
-                 'Permissions govern inputs, visibility and actions throughout the platform.',
-               ),
-               (
-                 'Restricted administration.',
-                 "Users, roles and the audit trail are managed by the TwoSuns implementation "
-                  "team and the producer's authorized administrators.",
-               ),
-               (
-                 'Audit trail.',
-                 'Every recommendation, approval and outcome is logged with its reason.',
-               ),
-               ('Data isolation.', "Each producer's information is kept separate."),
-               (
-                 'Hosting.',
-                 "A shared managed cloud environment is the preferred option. Dedicated and "
-                  "local environments can be evaluated where operating, security, residency or "
-                  "performance requirements support a different arrangement. Hosting and data "
-                  "residency are agreed before deployment.",
-               ),
-               (
-                 'Confidentiality.',
-                 'Documents shared during discovery are covered by a mutual NDA.',
-               ),
-             ],
- 'plat_close_h': 'See the platform on a cement value chain',
- 'plat_close_p': "The team can take process, quality, IT and finance leads through the "
-                  "modules, the technical basis and the deployment path, from the quarry face "
-                  "to cash collected.",
  'ev_title': 'TwoSuns in Cairo | AICCE29 and The Future of Cement',
  'ev_desc': "TwoSuns is in Egypt from 10 to 26 November 2026, at AICCE29 from 23 to 25 "
              "November, with an invitation-only evening for cement leaders on 25 November.",
@@ -580,7 +404,6 @@ EN = {
  'ev_close_p': "Share what you want to look at, and the team will arrange a meeting in Cairo "
                 "or a call.",
  'menu_label': 'Menu',
- 'table_label': 'Inputs and integration, scrollable table',
  # the pause control MOTION_JS hangs on every loop. It is the only chrome on
  # the site a reader reaches by keyboard and never sees named, so the label
  # says what the control does rather than what the picture is.
@@ -1289,7 +1112,6 @@ AR = {
  'other_label': 'EN',
  'self_label': 'العربية',
  "nav": [("سياق صناعة الأسمنت", "context.html"),
-        ("المنصة", "platform.html"),
         ("القدرات", "capabilities.html"),
         ("القطاعات", "sectors.html"),
         ("حالات الاستخدام", "use-cases.html"),
@@ -1299,7 +1121,6 @@ AR = {
  'skip': 'انتقل إلى المحتوى',
  'by': 'TwoSuns من AEPG',
  "foot_links": [("سياق صناعة الأسمنت", "context.html"),
-               ("المنصة", "platform.html"),
                ("القدرات", "capabilities.html"),
                ("القطاعات", "sectors.html"),
                ("حالات الاستخدام", "use-cases.html"),
@@ -1441,42 +1262,6 @@ AR = {
  "home_close_p": "تُطور TwoSuns في كندا. الفريق في القاهرة من 10 إلى 26 نوفمبر، ويمكنه اللقاء في مصنعك أو مكتبك لمراجعة قرار واحد في ضوء تقارير الإنتاج والتكلفة الخاصة بك، بموجب اتفاقية سرية متبادلة.",
  'home_close_cta1': 'اطلب تقييم فرصة',
  'home_close_cta2': 'اطلب محادثة فنية',
- 'plat_title': 'منصة TwoSuns للأسمنت | الوحدات والمدخلات والتطبيق',
- 'plat_desc': "يوفر Core وRay الأساس المشترك. يمتد Pulse إلى المصنع وHorizon إلى النشاط "
-               "التجاري. تكامل للقراءة فقط مع مدخلات النظام التاريخي والمختبر وERP وميزان "
-               "القبّان.",
- 'plat_eyebrow': 'منصة TwoSuns',
- 'plat_h1': 'بيئة مؤسسية واحدة. سياق مشترك يربط المصنع بالسوق.',
- 'plat_sub': "تربط TwoSuns المدخلات المعنية والسياق التنظيمي والذكاء والأشخاص ومسارات العمل "
-              "داخل منصة مؤسسية متكيفة. يوفر Core وRay الأساس المشترك لكل تطبيق. ويمتد Pulse "
-              "بهذا الأساس إلى المصنع وHorizon إلى النشاط التجاري، داخل الحدود التي يملكها "
-              "مهندسو المصنع.",
- 'plat_cta1': 'اطلب عرضًا توضيحيًا للمنتج',
- 'plat_cta2': 'اطلب محادثة فنية',
- 'how_tag': 'كيف تعمل',
- 'how_h': 'خمس خطوات وراء كل توصية',
- 'how_steps': [
-                (
-                  'الاستيعاب.',
-                  "مدخلات النظام التاريخي والمختبر وERP والتكلفة والسوق، تُقرأ من الأنظمة "
-                   "القائمة بالفعل.",
-                ),
-                ('الاكتشاف.', 'تُقارن كل قيمة بالنطاق الذي يحدده ويملكه مهندسو المصنع.'),
-                ('التكلفة.', 'يُقاس كل انحراف كتعرّض مالي يومي ويُرتب بحسب درجة الخطورة.'),
-                ('القرار.', 'تُعرض الخيارات على المسؤولين، مع الأدلة التي تستند إليها.'),
-                ('التسجيل.', 'يبقى القرار ومسؤوله ومدخلاته ونتيجته في سجل القرارات.'),
-              ],
- 'how_carry_h': 'كل قرار يحمل',
- 'how_carry': [
-                'الانحراف عن النطاق',
-                'التعرّض المالي اليومي',
-                'درجة الخطورة',
-                'المسؤول',
-                'سلسلة الموافقات',
-                'التصرف النهائي',
-                'مسار المدخلات',
-              ],
- 'how_note': 'لا أحد يوافق على طلبه الخاص.',
  'arch_tag': 'البنية',
  'arch_h': 'مجالا تشغيل، وسياق مشترك واحد',
  "arch_p": "يدعم Horizon العمل الموجّه للسوق ويدعم Pulse المصنع. يحمل Core السياق الذي يعمل منه كلاهما، ويعمل Ray من السياق المتاح لكل مستخدم ومسار عمل. والطلب المقبول في Horizon يمكن أن يُسترشَد به في تخطيط الطحن والشحن في Pulse، والطاقة الإنتاجية المتاحة يمكن أن يُسترشَد بها في تحديد الأطنان التي تلتزم بها المبيعات، بينما يحفظ Core الاستمرارية.",
@@ -1541,124 +1326,6 @@ AR = {
  'arch_units': "الحرارة بوحدة kcal/kg كلنكر على أساس NCV. الطاقة بوحدة kWh لكل طن أسمنت. "
                 "التكاليف لكل طن كلنكر أو أسمنت، بالجنيه المصري والدولار الأمريكي. ويُعرض ثاني "
                 "أكسيد الكربون لكل طن كلنكر ولكل طن أسمنت كلٌّ على حدة.",
- 'data_tag': 'المدخلات والتكامل',
- 'data_h': 'اجمع المدخلات التي يسجلها المصنع بالفعل',
- "data_p": "يمكن لبيئة TwoSuns أن تجمع قيم التشغيل وتحليلات المختبر والوقود والانبعاثات وسجلات ميزان القبّان والمسوحات وقيود دفتر الأستاذ وبيانات السوق والملفات المُحمّلة بحسب القرار الذي تُهيّأ حوله.",
- 'data_cols': ['المصدر', 'المحتوى المعتاد', 'التكرار المعتاد'],
- 'data_rows': [
-                (
-                  'النظام التاريخي للعملية (DCS)',
-                  'قيم تشغيل الفرن والمبرد والطاحونة والمراوح',
-                  'بدقة دقيقة واحدة أو 5 دقائق',
-                ),
-                (
-                  'المختبر وتحليل XRF',
-                  'كيمياء الوجبة الخام والوجبة الساخنة والكلنكر والأسمنت؛ النعومة؛ المقاومة',
-                  'مجمعات كل ساعة للخلطة الخام؛ نحو كل 4 ساعات للوجبة الساخنة؛ لكل عينة أسمنت',
-                ),
-                (
-                  'تحليلات الوقود',
-                  "القيمة الحرارية الصافية على أساس الاستلام مع تاريخ التحليل؛ الكبريت "
-                   "والكلور والرماد",
-                  'لكل دفعة',
-                ),
-                (
-                  'ERP',
-                  'المخزون وأوامر الشراء وأوامر البيع ودفتر الأستاذ',
-                  'استخراج كل ساعة أو كل يوم',
-                ),
-                ('ميزان القبّان', 'الأطنان الداخلة والخارجة', 'كل ساعة أو برفع ملف'),
-                (
-                  'مناسيب الصوامع والمسوحات',
-                  'مناسيب الرادار؛ مسوحات المخازن والأكوام',
-                  'كل ساعة للرادار؛ والمسوحات بحسب الجدول',
-                ),
-                (
-                  'القياس المستمر للانبعاثات واختبارات المداخن',
-                  'الغبار وSO2 وNOx وHCl وHF وTOC',
-                  'متوسطات يومية',
-                ),
-                (
-                  'بيانات السوق',
-                  'مراجع أسعار الوقود وأسعار الصرف والشحن والمناقصات ونشاط المنافسين',
-                  'كما تُنشر، مع المصدر والتاريخ',
-                ),
-                (
-                  'الملفات المُحمّلة',
-                  'جداول بيانات وأوراق مسح وتراخيص وتقارير',
-                  'بحسب ما يقدمه المستخدمون المسموح لهم',
-                ),
-              ],
- 'data_p2': "تقرأ TwoSuns المدخلات عبر واجهات برمجية وموصلات قابلة للتهيئة وتحميل ملفات أو "
-             "اتصال مباشر، مع نماذج جاهزة حيث لا يكون الموقع متصلًا بعد. التكامل للقراءة فقط. "
-             "لا يُكتب شيء إلى أنظمة DCS أو PLC أو ERP أو المختبر، وتعمل المنصة جنبًا إلى جنب "
-             "مع أي نظام تحكم متقدم قيد الخدمة.",
- 'data_p3': "تُوسم أرقام المصنع بأنها مقاسة أو مستنتجة أو مفترضة، وأرقام المالية بأنها مقاسة "
-             "أو مستندة إلى الدفاتر أو مُنمذَجة. والمدخلات المتأخرة أو القديمة تخفض درجة الثقة "
-             "المعروضة على الأرقام التي تستخدمها.",
- 'dep_tag': 'التطبيق',
- 'dep_h': 'التهيئة والتطبيق والتوسع',
- 'dep_steps': [
-                ('المحادثة.', 'القرار الأكثر أهمية، ومسؤوله، والحد الملزم.'),
-                (
-                  'الاستكشاف.',
-                  "تُراجع مدخلات المصنع بموجب اتفاقية سرية متبادلة، ويُتفق على قرار واحد، "
-                   "ويُقاس خط الأساس من تقارير المصنع نفسه عن الأشهر الاثني عشر الماضية.",
-                ),
-                (
-                  'التهيئة.',
-                  "تُحدد أساس المصنع والحدود والأهداف وسلاسل الموافقات في Core مع مسؤولي "
-                   "العمليات والجودة والنشاط التجاري.",
-                ),
-                (
-                  'التشغيل التجريبي.',
-                  "تعمل الوحدات المعنية للقراءة فقط على هذا القرار، وتُقاس بالمقارنة بأهداف "
-                   "يضعها المصنع.",
-                ),
-                (
-                  'التوسع.',
-                  'تُضاف قرارات وخطوط ومصانع أخرى بعد أن يحقق التشغيل التجريبي أهدافه.',
-                ),
-              ],
- 'dep_p': "يستغرق التطبيق الأولي عادة من عدة أسابيع إلى ثلاثة أشهر، بحسب النطاق والتكاملات "
-           "ومتطلبات التشغيل. والمنتج هو من يقرر الاستمرار من عدمه في نهاية كل خطوة.",
- 'dep_prov_h': 'ما يوفره المصنع لمرحلة الاستكشاف',
- 'dep_prov': [
-               'تقارير الإنتاج والتكلفة لاثني عشر شهرًا سابقة',
-               'حدود التشغيل السارية، وأسماء من يملكونها',
-               'عينة من تحليلات المختبر وXRF والوقود',
-               'استخراج للمخزون والطلبات والدفاتر من ERP',
-               'سلسلة الموافقات للقرار المعني، ومسؤوله المحدد',
-             ],
- 'gov_tag': 'الضوابط',
- 'gov_h': 'الأمن والوصول والاستضافة',
- 'gov_rows': [
-               (
-                 'الصلاحيات بحسب الدور.',
-                 'تحكم الصلاحيات المدخلات والرؤية والإجراءات في كل أنحاء المنصة.',
-               ),
-               (
-                 'إدارة مقيّدة.',
-                 "يدير المستخدمين والأدوار وسجل التدقيق فريق تنفيذ TwoSuns والمديرون "
-                  "المعتمدون لدى المنتج.",
-               ),
-               ('سجل التدقيق.', 'تُسجل كل توصية وموافقة ونتيجة مع سببها.'),
-               ('عزل البيانات.', 'تُحفظ معلومات كل شركة منتِجة على حدة.'),
-               (
-                 'الاستضافة.',
-                 "الخيار المفضل هو بيئة سحابية مشتركة مدارة. ويمكن دراسة بيئات مخصصة أو محلية "
-                  "حيث تدعم متطلبات التشغيل أو الأمن أو موقع البيانات أو الأداء ترتيبًا "
-                  "مختلفًا. ويُتفق على الاستضافة وموقع البيانات قبل التطبيق.",
-               ),
-               (
-                 'السرية.',
-                 'المستندات التي تُتبادل خلال الاستكشاف مشمولة باتفاقية سرية متبادلة.',
-               ),
-             ],
- 'plat_close_h': 'شاهد المنصة على سلسلة قيمة أسمنت',
- 'plat_close_p': "يمكن للفريق أن يأخذ مسؤولي العمليات والجودة وتقنية المعلومات والمالية في "
-                  "جولة عبر الوحدات والأساس الفني ومسار التطبيق، من واجهة المحجر إلى النقد "
-                  "المحصّل.",
  'ev_title': 'TwoSuns في القاهرة | AICCE29 ومستقبل الأسمنت',
  'ev_desc': "فريق TwoSuns في مصر من 10 إلى 26 نوفمبر 2026. يحضر الفريق AICCE29 من 23 إلى 25 "
              "نوفمبر، ويتحدث يوم 24 نوفمبر، ويستضيف أمسية بالدعوة فقط لقادة الأسمنت يوم 25 "
@@ -1808,7 +1475,6 @@ AR = {
  'ev_close_h': 'ألا تحضر أيًّا منها؟',
  'ev_close_p': 'أخبرنا بما تريد النظر فيه، وسيرتب الفريق لقاءً في القاهرة أو مكالمة.',
  'menu_label': 'القائمة',
- 'table_label': 'المدخلات والتكامل، جدول قابل للتمرير',
  'motion_pause': 'إيقاف الحركة مؤقتًا',
  'motion_play': 'تشغيل الحركة',
 

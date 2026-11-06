@@ -96,7 +96,6 @@ CEM_CSS = r"""
      in the file rather than here: every other hero is cream and gold, and a
      deep blue band across the top read as a different site. */
   .cmhero.sh-context{--cmshot:url('/cement/context-hero.jpg');}
-  .cmhero.sh-platform{--cmshot:url('/plat-hero.jpg');}
   .cmhero.sh-capabilities{--cmshot:url('/cap-hero.jpg');}
   /* the Sectors hub takes the supplied plant aerial, flipped, so its tower
      stands in the half the wash leaves clear */
@@ -852,7 +851,7 @@ def steps(items):
 def build_home(d):
     s = head(d, d["home_title"], d["home_desc"], "index.html") + nav(d, "index.html")
     s += hero(d, d["home_eyebrow"], d["home_h1"], d["home_sub"],
-              btn(d["home_cta1"]) + " " + btn(d["home_cta2"], "platform.html", ghost=True))
+              btn(d["home_cta1"]) + " " + btn(d["home_cta2"], "capabilities.html", ghost=True))
 
     fams = "".join('<div class="f"><h3>%s</h3><div class="d">%s</div><div class="x">%s</div></div>'
                    % (e(n), e(a), e(b)) for n, a, b in d["fams"])
@@ -872,7 +871,7 @@ def build_home(d):
     # the platform architecture figure, the same one the main site home carries,
     # in this page's own language
     s += arch.section(e(d["arx_h"]), e(d["arx_p"]),
-                      btn(d["arx_cta"], "platform.html", ghost=True),
+                      btn(d["arx_cta"], "capabilities.html", ghost=True),
                       tag=e(d["arx_tag"]), band="band-warm", variant="explain",
                       foot=e(d["arx_foot"]),
                       labels=dict((k, e(v)) for k, v in d["arx_labels"].items()))
@@ -968,71 +967,6 @@ def capmap(d):
     return out
 
 
-def build_platform(d):
-    s = head(d, d["plat_title"], d["plat_desc"], "platform.html") + nav(d, "platform.html")
-    s += hero(d, d["plat_eyebrow"], d["plat_h1"], d["plat_sub"],
-              btn(d["plat_cta1"]) + " " + btn(d["plat_cta2"], ghost=True),
-              shot="platform")
-
-    s += """<section>
-  <div class="container">
-    <div class="section-tag">%s</div>
-    <h2 class="section-heading">%s</h2>
-    %s
-    <div class="split2" style="margin-top:34px;align-items:start;">
-      <div class="split2-panel"><h3>%s</h3>%s</div>
-      <div class="callout" style="margin-top:0;"><p>%s</p></div>
-    </div>
-  </div>
-</section>
-""" % (e(d["how_tag"]), e(d["how_h"]), steps(d["how_steps"]),
-       e(d["how_carry_h"]), ticks(d["how_carry"]), e(d["how_note"]))
-
-    s += capmap(d)
-
-    head_cells = "".join("<th>%s</th>" % e(c) for c in d["data_cols"])
-    body_rows = "".join("<tr>%s</tr>" % "".join("<td>%s</td>" % e(c) for c in r)
-                        for r in d["data_rows"])
-    s += """<section>
-  <div class="container">
-    <div class="section-tag">%s</div>
-    <h2 class="section-heading">%s</h2>
-    <p class="section-sub">%s</p>
-    <div class="cmtblw" tabindex="0" role="region" aria-label="%s"><table class="cmtbl">
-      <thead><tr>%s</tr></thead><tbody>%s</tbody>
-    </table></div>
-    <p class="lede" style="margin-top:24px;">%s</p>
-    <p class="lede">%s</p>
-  </div>
-</section>
-""" % (e(d["data_tag"]), e(d["data_h"]), e(d["data_p"]), e(d["table_label"]),
-       head_cells, body_rows,
-       e(d["data_p2"]), e(d["data_p3"]))
-
-    # the steps are a single column and the panel is capped by max-width, so
-    # this section is the one on the page that fits the band's copy column
-    # without anything inside it having to give way
-    s += sec(steps(d["dep_steps"])
-             + '<p class="lede" style="margin-top:22px;">%s</p>' % e(d["dep_p"])
-             + '<div class="split2-panel" style="margin-top:22px;max-width:700px;">'
-               '<h3>%s</h3>%s</div>' % (e(d["dep_prov_h"]), ticks(d["dep_prov"])),
-             tag=d["dep_tag"], h=d["dep_h"], **band("plat_dep"))
-
-    s += """<section>
-  <div class="container">
-    <div class="section-tag">%s</div>
-    <h2 class="section-heading">%s</h2>
-    %s
-  </div>
-</section>
-""" % (e(d["gov_tag"]), e(d["gov_h"]), rows(d["gov_rows"], two=True))
-
-    s += cta_band(d["plat_close_h"], d["plat_close_p"],
-                  btn(d["plat_cta1"]) + " " + btn(d["plat_cta2"], ghost=True))
-    return s + footer(d) + tail(d)
-
-
-# ================================================================ EVENTS
 def events_jsonld(d):
     """Event structured data for the three dated items on the events page.
     Times are Africa/Cairo, which is UTC+2 in November. The invitation-only
@@ -1306,7 +1240,7 @@ def build_context(d):
     left behind is now called the decision problem instead."""
     s = head(d, d["cx_title"], d["cx_desc"], "context.html") + nav(d, "context.html")
     s += hero(d, d["cx_eyebrow"], d["cx_h1"], d["cx_sub"],
-              btn(d["cx_cta1"]) + " " + btn(d["cx_cta2"], "platform.html", ghost=True),
+              btn(d["cx_cta1"]) + " " + btn(d["cx_cta2"], "capabilities.html", ghost=True),
               shot="context")
     s += sec(pressures(d), "band-alt", d["cx_rp_tag"], d["cx_rp_h"], d["cx_rp_p"])
     s += sec(flows(d), "", d["cx_wf_tag"], d["cx_wf_h"], d["cx_wf_p"],
@@ -1316,7 +1250,7 @@ def build_context(d):
              "band-warm", d["prc_tag"], d["prc_h"], d["prc_p"])
     s += cta_band(d["cx_close_h"], d["cx_close_p"],
                   btn(d["cx_close_cta1"]) + " "
-                  + btn(d["cx_close_cta2"], "platform.html", ghost=True))
+                  + btn(d["cx_close_cta2"], "capabilities.html", ghost=True))
     return s + footer(d) + tail(d)
 
 
@@ -1395,16 +1329,17 @@ def stations(fam, groups, run, stops):
 def build_capabilities(d):
     s = head(d, d["cap_title"], d["cap_desc"], "capabilities.html") + nav(d, "capabilities.html")
     s += hero(d, d["cap_eyebrow"], d["cap_h1"], d["cap_sub"],
-              btn(d["cap_cta1"]) + " " + btn(d["cap_cta2"], "platform.html", ghost=True),
+              btn(d["cap_cta1"]) + " " + btn(d["cap_cta2"], "use-cases.html", ghost=True),
               shot="capabilities")
     s += capmap(d)
     s += sec(stations("hz", d["cap_hz_groups"], d["cap_hz_run"], d["cap_hz_stops"]),
              "", d["cap_hz_tag"], d["cap_hz_h"], d["cap_hz_p"])
     s += sec(stations("pl", d["cap_pl_groups"], d["cap_pl_run"], d["cap_pl_stops"]),
              "band-alt", d["cap_pl_tag"], d["cap_pl_h"], d["cap_pl_p"])
-    s += sec("", "band-warm", d["cap_adapt_tag"], d["cap_adapt_h"], d["cap_adapt_p"], lede=True)
+    s += sec("", "", d["cap_adapt_tag"], d["cap_adapt_h"], d["cap_adapt_p"],
+             lede=True, **band("cap_adapt"))
     s += cta_band(d["cap_close_h"], d["cap_close_p"],
-                  btn(d["cap_cta1"]) + " " + btn(d["cap_cta2"], "platform.html", ghost=True))
+                  btn(d["cap_cta1"]) + " " + btn(d["cap_cta2"], "use-cases.html", ghost=True))
     return s + footer(d) + tail(d)
 
 
@@ -1445,7 +1380,7 @@ BANDS = {
     # quarter is the only part of a band that is really seen, which is what
     # the crops in build/cementvid.py put there.
     "cx_wf":       ("/cement/band-dusk.jpg",   "l", "band-dusk"),
-    "plat_dep":    ("/cement/band-works.jpg",  "r", "band-works"),
+    "cap_adapt":   ("/cement/band-works.jpg",  "r", "band-works"),
 }
 
 
@@ -1462,7 +1397,7 @@ def band(key):
 def build_sectors(d):
     s = head(d, d["ind_title"], d["ind_desc"], "sectors.html") + nav(d, "sectors.html")
     s += hero(d, d["ind_eyebrow"], d["ind_h1"], d["ind_sub"],
-              btn(d["ind_cta1"]) + " " + btn(d["ind_cta2"], "platform.html", ghost=True),
+              btn(d["ind_cta1"]) + " " + btn(d["ind_cta2"], "capabilities.html", ghost=True),
               shot="aerial")
 
     cells = []
@@ -1482,7 +1417,7 @@ def build_sectors(d):
              **band("ind_areas"))
 
     s += cta_band(d["ind_close_h"], d["ind_close_p"],
-                  btn(d["ind_cta1"]) + " " + btn(d["ind_cta2"], "platform.html", ghost=True))
+                  btn(d["ind_cta1"]) + " " + btn(d["ind_cta2"], "capabilities.html", ghost=True))
     return s + footer(d) + tail(d)
 
 
@@ -1568,7 +1503,7 @@ def build_distribution(d):
 def build_usecases(d):
     s = head(d, d["uc_title"], d["uc_desc"], "use-cases.html") + nav(d, "use-cases.html")
     s += hero(d, d["uc_eyebrow"], d["uc_h1"], d["uc_sub"],
-              btn(d["uc_cta1"]) + " " + btn(d["uc_cta2"], "platform.html", ghost=True),
+              btn(d["uc_cta1"]) + " " + btn(d["uc_cta2"], "capabilities.html", ghost=True),
               shot="usecases")
     s += sec(chips(d["uc_chain"]), "", d["uc_chain_tag"], d["uc_chain_h"], d["uc_chain_p"])
 
@@ -1585,7 +1520,7 @@ def build_usecases(d):
     s += sec("".join('<p class="lede">%s</p>' % e(p) for p in d["uc_bring_p"]),
              "band-warm", d["uc_bring_tag"], d["uc_bring_h"], "")
     s += cta_band(d["uc_close_h"], d["uc_close_p"],
-                  btn(d["uc_close_cta1"]) + " " + btn(d["uc_close_cta2"], "platform.html", ghost=True))
+                  btn(d["uc_close_cta1"]) + " " + btn(d["uc_close_cta2"], "capabilities.html", ghost=True))
     return s + footer(d) + tail(d)
 
 
@@ -1597,7 +1532,7 @@ def build_company(d):
     s = head(d, d["co_title"], d["co_desc"], "company.html",
              extra_css=teamgrid.CSS) + nav(d, "company.html")
     s += hero(d, d["co_eyebrow"], d["co_h1"], d["co_sub"],
-              btn(d["co_cta1"]) + " " + btn(d["co_cta2"], "platform.html", ghost=True),
+              btn(d["co_cta1"]) + " " + btn(d["co_cta2"], "capabilities.html", ghost=True),
               shot="company")
 
     s += sec("".join('<p class="lede">%s</p>' % e(p)
@@ -1634,7 +1569,7 @@ def build_company(d):
              % btn(d["co_ev_cta"], "events.html", ghost=True),
              "", d["co_ev_tag"], d["co_ev_h"], d["co_ev_p"])
     s += cta_band(d["co_close_h"], d["co_close_p"],
-                  btn(d["co_cta1"]) + " " + btn(d["co_cta2"], "platform.html", ghost=True))
+                  btn(d["co_cta1"]) + " " + btn(d["co_cta2"], "capabilities.html", ghost=True))
     return s + footer(d) + tail(d)
 
 
@@ -1693,7 +1628,6 @@ if __name__ == "__main__":
         os.makedirs(out, exist_ok=True)
         pages = {"index.html": build_home(d),
                  "context.html": build_context(d),
-                 "platform.html": build_platform(d),
                  "capabilities.html": build_capabilities(d),
                  "sectors.html": build_sectors(d),
                  "construction.html": build_construction(d),

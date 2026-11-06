@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """Redirect stubs for the cement microsite pages the rebuild retires.
 
-The old microsite had 42 pages. Eleven replace them, four of which take the same
-URLs (index, platform, use-cases and events), so 38 old URLs need somewhere to
+The old microsite had 42 pages. Ten replace them, three of which take the same
+URLs (index, use-cases and events), so 39 old URLs need somewhere to
 go. Those URLs are in inboxes, decks and search indexes, and GitHub Pages has no
 server redirects, so each one gets a small page that sends the visitor on and
 tells search engines where the content really is.
@@ -32,12 +32,13 @@ OUT = os.path.normpath(os.path.join(HERE, "..", "cement"))
 TARGETS = {
     "cement.html": "cement/",
     "404.html": "cement/",
-    "product.html": "cement/platform.html",
-    "technology.html": "cement/platform.html",
-    "why-twosuns.html": "cement/platform.html",
-    "videos.html": "cement/platform.html",
-    "how-it-works.html": "cement/platform.html",
-    "trust.html": "cement/platform.html",
+    "platform.html": "cement/capabilities.html",
+    "product.html": "cement/capabilities.html",
+    "technology.html": "cement/capabilities.html",
+    "why-twosuns.html": "cement/capabilities.html",
+    "videos.html": "cement/capabilities.html",
+    "how-it-works.html": "cement/capabilities.html",
+    "trust.html": "cement/capabilities.html",
     "modules.html": "cement/capabilities.html",
     "solutions-contract-analytics.html": "cement/capabilities.html",
     "solutions-market-intelligence.html": "cement/capabilities.html",
@@ -62,23 +63,23 @@ TARGETS = {
     # the microsite has no manufacturing sector page, the hub covers it
     "manufacturing.html": "cement/sectors.html",
     "blog/ai-ip-discipline-gap.html": "cement/company.html",
-    "blog/ai-operational-intelligence-cement-decarbonization.html": "cement/platform.html",
-    "blog/decision-intelligence-vs-analytics.html": "cement/platform.html",
+    "blog/ai-operational-intelligence-cement-decarbonization.html": "cement/capabilities.html",
+    "blog/decision-intelligence-vs-analytics.html": "cement/capabilities.html",
     "blog/glassbox-ai-explainability.html": "cement/capabilities.html",
-    "blog/industrial-ai-orchestrated-intelligence.html": "cement/platform.html",
+    "blog/industrial-ai-orchestrated-intelligence.html": "cement/capabilities.html",
     "blog/logistics-intelligence-gap.html": "cement/sectors.html",
     "blog/post-9.html": "cement/capabilities.html",
-    "blog/system-decision-record.html": "cement/platform.html",
+    "blog/system-decision-record.html": "cement/capabilities.html",
 }
 
 # Old microsite URLs that survive the rebuild, so a stub would redirect them to
 # themselves. Listed so the count below can be checked against the old site.
-KEPT = ["index.html", "platform.html", "events.html", "use-cases.html"]
+KEPT = ["index.html", "events.html", "use-cases.html"]
 
 # Everything cement.py generates. A stub written over one of these would destroy
 # a real page, and the two lists are edited in different files, so assert rather
 # than trust. KEPT is the subset of these that the old site also had.
-PAGES = ["index.html", "context.html", "platform.html", "capabilities.html",
+PAGES = ["index.html", "context.html", "capabilities.html",
          "sectors.html", "construction.html", "concrete.html",
          "distribution.html", "use-cases.html", "company.html", "events.html"]
 
@@ -87,6 +88,7 @@ PAGES = ["index.html", "context.html", "platform.html", "capabilities.html",
 # covers the English half. Destinations here carry the ar/ segment themselves.
 AR_TARGETS = {
     "industries.html": "cement/ar/sectors.html",
+    "platform.html": "cement/ar/capabilities.html",
 }
 
 STUB = """<!DOCTYPE html>

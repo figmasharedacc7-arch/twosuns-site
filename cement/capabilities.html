@@ -729,7 +729,6 @@
      in the file rather than here: every other hero is cream and gold, and a
      deep blue band across the top read as a different site. */
   .cmhero.sh-context{--cmshot:url('/cement/context-hero.jpg');}
-  .cmhero.sh-platform{--cmshot:url('/plat-hero.jpg');}
   .cmhero.sh-capabilities{--cmshot:url('/cap-hero.jpg');}
   /* the Sectors hub takes the supplied plant aerial, flipped, so its tower
      stands in the half the wash leaves clear */
@@ -1279,7 +1278,7 @@
     <button class="cmtoggle" aria-label="Menu" aria-controls="cml" aria-expanded="false"
       onclick="var l=document.getElementById('cml');l.classList.toggle('open');
         this.setAttribute('aria-expanded',l.classList.contains('open'));">&#9776;</button>
-    <div class="cmlinks" id="cml"><a href="context.html">Cement Context</a><a href="platform.html">Platform</a><a href="capabilities.html" class="active" aria-current="page">Capabilities</a><a href="company.html">Company</a><a href="events.html">Events</a><span class="cmlang"><span class="on">EN</span><a href="ar/capabilities.html" lang="ar" hreflang="ar">العربية</a></span>
+    <div class="cmlinks" id="cml"><a href="context.html">Cement Context</a><a href="capabilities.html" class="active" aria-current="page">Capabilities</a><a href="company.html">Company</a><a href="events.html">Events</a><span class="cmlang"><span class="on">EN</span><a href="ar/capabilities.html" lang="ar" hreflang="ar">العربية</a></span>
       <a class="btn-cta" href="https://twosuns.ai/discuss.html?ask=Discuss+Your+Needs">Discuss Your Needs</a>
     </div>
   </div>
@@ -1291,7 +1290,7 @@
     <div class="hero-eyebrow"><span class="dot"></span>Capabilities</div>
     <h1>Configure the capabilities the plant and the market require.</h1>
     <p class="hero-sub">Horizon and Pulse organize the capabilities available through TwoSuns, here configured around cement. They can be configured independently or combined around one workflow, a kiln stoppage or a tender price. Plant values stay within the limits the plant's engineers define and own.</p>
-    <div class="hero-actions"><a class="btn-cta" href="https://twosuns.ai/discuss.html?ask=Discuss+Your+Needs">Discuss Your Needs</a> <a class="btn-ghost" href="platform.html">Explore the Platform</a></div>
+    <div class="hero-actions"><a class="btn-cta" href="https://twosuns.ai/discuss.html?ask=Discuss+Your+Needs">Discuss Your Needs</a> <a class="btn-ghost" href="use-cases.html">Explore the Platform</a></div>
   </div>
 </section>
 <div class="sun-divider"></div>
@@ -1342,19 +1341,22 @@
     <div class="cmrail"><div class="run">From the quarry face to dispatch</div><div class="track"><a href="#pl-1"><div class="n">01</div><div class="l">Quarry</div></a><a href="#pl-2"><div class="n">02</div><div class="l">Kiln</div></a><a href="#pl-3"><div class="n">03</div><div class="l">Mill</div></a><a href="#pl-4"><div class="n">04</div><div class="l">Maintenance</div></a><a href="#pl-5"><div class="n">05</div><div class="l">Quality</div></a><a href="#pl-6"><div class="n">06</div><div class="l">Dispatch</div></a></div></div><div class="cmsts"><div class="cmst shot" id="pl-1" tabindex="-1"><div class="ph"><div class="n" aria-hidden="true">01</div><img src="/cement/cap-pl-1.jpg" alt="" width="1000" height="667" loading="lazy" decoding="async"></div><div class="bd"><h3>Quarry and raw materials</h3><div class="d">Coordinate the material and fuel that feed the plant, starting at the quarry face.</div><ul class="tick"><li>Reserve blocks, their chemistry and the extraction sequence in force</li><li>Drill, blast and haulage plans set against the mix the plant needs</li><li>Quarry equipment availability and cost per tonne of material moved</li><li>Corrective material purchases, lot analyses and stockpile position</li><li>Fuel supply by lot, with calorific value, sulphur, chlorine and ash recorded</li><li>Days of cover on each raw material and fuel against the plan in force</li></ul></div></div><div class="cmst shot" id="pl-2" tabindex="-1"><div class="ph"><div class="n" aria-hidden="true">02</div><img src="/cement/cap-pl-2.jpg" alt="" width="1000" height="667" loading="lazy" decoding="async"></div><div class="bd"><h3>Crushing, raw mill and kiln</h3><div class="d">Support the crushing, raw mill and pyro process decisions that set heat, output and clinker quality.</div><ul class="tick"><li>Crushing throughput, availability and cost per tonne of raw material</li><li>Raw mix targets and the correction the raw mill is running, with the corrective material it requires</li><li>Kiln, calciner and cooler values against the bands the plant's engineers define and own</li><li>Fuel mix, thermal substitution rate and heat in kcal per kg of clinker</li><li>Clinker free lime, phase composition and strength potential</li><li>Clinker production rate, kiln run factor and cost per tonne of clinker against target</li></ul></div></div><div class="cmst shot" id="pl-3" tabindex="-1"><div class="ph"><div class="n" aria-hidden="true">03</div><img src="/cement/cap-pl-3.jpg" alt="" width="1000" height="667" loading="lazy" decoding="async"></div><div class="bd"><h3>Cement mill and product</h3><div class="d">Coordinate the mills, the product mix and the power each tonne consumes.</div><ul class="tick"><li>Mill schedules set against the order book and silo position</li><li>Cement types, additions and blend ratios by product</li><li>Clinker factor and the gypsum, limestone and supplementary materials each product carries</li><li>Fineness, setting time and strength results by cement class</li><li>Power in kWh per tonne of cement, by mill and by product</li><li>Grinding aid and additive economics against cost per tonne of cement</li></ul></div></div><div class="cmst shot" id="pl-4" tabindex="-1"><div class="ph"><div class="n" aria-hidden="true">04</div><img src="/cement/cap-pl-4.jpg" alt="" width="1000" height="667" loading="lazy" decoding="async"></div><div class="bd"><h3>Maintenance and reliability</h3><div class="d">Hold the asset register, the preventive and shutdown plan and the record of what each stoppage cost in downtime hours and lost tonnes, configured on Core asset records with Calendars and the Pulse process modules.</div><ul class="tick"><li>Asset register for kiln lines, mills, packers, fans and conveyors</li><li>Preventive plans, shutdown scope and shutdown sequencing</li><li>Spare parts holding and exposure on critical spares</li><li>Stoppage, restart and refractory event history by kiln line</li><li>Failure history, root cause and repeat events by asset</li><li>Downtime hours and lost tonnes costed for each event</li></ul></div></div><div class="cmst shot" id="pl-5" tabindex="-1"><div class="ph"><div class="n" aria-hidden="true">05</div><img src="/cement/cap-pl-5.jpg" alt="" width="1000" height="667" loading="lazy" decoding="async"></div><div class="bd"><h3>Quality and compliance</h3><div class="d">Carry the cement standards, the evidence and the permit and carbon reporting the plant is held to.</div><ul class="tick"><li>Cement class requirements and the test results that support them</li><li>Laboratory and XRF results with sample time and input lineage</li><li>Stack emissions against permit limits, with the reporting each permit requires</li><li>Certificates, declarations and customer quality documents</li><li>Non-conformance records, dispositions and corrective actions</li><li>CO2 per tonne of clinker and per tonne of cement, reported separately</li></ul></div></div><div class="cmst shot" id="pl-6" tabindex="-1"><div class="ph"><div class="n" aria-hidden="true">06</div><img src="/cement/cap-pl-6.jpg" alt="" width="1000" height="667" loading="lazy" decoding="async"></div><div class="bd"><h3>Storage, packing and dispatch</h3><div class="d">Coordinate what the plant can release, how it is loaded and how it reaches the customer.</div><ul class="tick"><li>Silo and stockpile levels for raw materials, clinker and cement</li><li>Bagged and bulk stock position by product and by terminal</li><li>Packing line and bulk loading capacity against the day's orders</li><li>Weighbridge records, truck turnaround and queue position</li><li>Haulage allocation, freight cost and delivery windows by carrier</li><li>Order release against stock, credit status and committed tonnes</li></ul></div></div></div>
   </div>
 </section>
-<section class="band-warm">
+<section class="imgsec imgsec-r imgsec-keep area-sec" style="--cmband:url('/cement/band-works.jpg');">
+  <div class="cmband-v"><video data-src="/cement/band-works.mp4" muted loop playsinline aria-hidden="true" tabindex="-1"></video></div>
   <div class="container">
+   <div class="sec-split">
     <div class="section-tag">Adaptable</div>
     <h2 class="section-heading">The capability groups are a starting structure</h2>
     <p class="lede">A deployment carries the lines, products, markets and reporting obligations the producer actually holds, and TwoSuns can model further workflows as operating requirements, export destinations, fuel sources and customer relationships change.</p>
     
+   </div>
   </div>
 </section>
 <section class="cta-band">
   <div class="container">
     <h2>Start from the decision that binds</h2>
     <p>Tell us the decision that matters now, the function that owns it and the limit that binds, and the team will map the capabilities that apply, from the quarry face to cash collected.</p>
-    <div class="cta-actions"><a class="btn-cta" href="https://twosuns.ai/discuss.html?ask=Discuss+Your+Needs">Discuss Your Needs</a> <a class="btn-ghost" href="platform.html">Explore the Platform</a></div>
+    <div class="cta-actions"><a class="btn-cta" href="https://twosuns.ai/discuss.html?ask=Discuss+Your+Needs">Discuss Your Needs</a> <a class="btn-ghost" href="use-cases.html">Explore the Platform</a></div>
   </div>
 </section>
 </main>
@@ -1366,7 +1368,7 @@
         <div class="by">TwoSuns by AEPG</div>
         <div class="cn"><a href="mailto:info@twosuns.ai">info@twosuns.ai</a><br>WhatsApp +1 250 859 6563</div>
       </div>
-      <div class="cmfoot-links"><a href="context.html">Cement Context</a><a href="platform.html">Platform</a><a href="capabilities.html">Capabilities</a><a href="company.html">Company</a><a href="events.html">Events</a><a href="https://twosuns.ai/discuss.html">Discuss Your Needs</a></div>
+      <div class="cmfoot-links"><a href="context.html">Cement Context</a><a href="capabilities.html">Capabilities</a><a href="company.html">Company</a><a href="events.html">Events</a><a href="https://twosuns.ai/discuss.html">Discuss Your Needs</a></div>
     </div>
     <div class="cmfoot-bot">
       <div>© 2026 TwoSuns by AEPG. All rights reserved.</div>

@@ -43,7 +43,6 @@ PAGES = [
 CEMENT = [
     ("",                  "monthly", "0.8"),
     ("context.html",      "monthly", "0.8"),
-    ("platform.html",     "monthly", "0.8"),
     ("capabilities.html", "monthly", "0.8"),
     ("sectors.html",      "monthly", "0.7"),
     ("construction.html", "monthly", "0.6"),
