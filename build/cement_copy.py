@@ -1245,6 +1245,28 @@ EN = {
  "cx_close_p": "Share the decision you want to look at first. The team will show how the relevant modules would be configured on your plant's data.",
  "cx_close_cta1": "Discuss Your Needs",
  "cx_close_cta2": "Explore the Platform",
+
+ # the production line figure on the context page, drawn by process.py. The
+ # seven stages are the physical run a producer works, and they are the run the
+ # Pulse capability groups are configured against.
+ "prc_tag": "The process",
+ "prc_h": "The line this platform is configured around",
+ "prc_p": "Seven stages, one run. Every capability group under Pulse is configured against a decision somewhere on this line.",
+ "prc_labels": {"svg_aria": "The cement production line as one run: the quarry face, crushing, the raw mill, the preheater and kiln, the cooler, the cement mill, and the silo the truck loads from.",
+                "s1": "Quarry",
+                "s1_d": "Limestone won at the face",
+                "s2": "Crushing",
+                "s2_d": "Sized for the mill",
+                "s3": "Raw mill",
+                "s3_d": "Ground and blended",
+                "s4": "Preheater and kiln",
+                "s4_d": "Raw meal burned to clinker",
+                "s5": "Cooler",
+                "s5_d": "Cooled, heat recovered",
+                "s6": "Cement mill",
+                "s6_d": "Clinker ground to cement",
+                "s7": "Silo and dispatch",
+                "s7_d": "Held, loaded and released"},
 }
 
 
@@ -2415,6 +2437,26 @@ AR = {
  "cx_cta2": "استعرض المنصة",
  "cx_close_cta1": "ناقش احتياجاتك",
  "cx_close_cta2": "استعرض المنصة",
+
+ # the production line figure on the context page, drawn by process.py
+ "prc_tag": "العملية",
+ "prc_h": "الخط الذي تُهيَّأ عليه هذه المنصة",
+ "prc_p": "سبع مراحل في خط واحد. تُهيَّأ كل مجموعة قدرات ضمن Pulse على قرار في موضع من هذا الخط.",
+ "prc_labels": {"svg_aria": "خط إنتاج الأسمنت مسارًا واحدًا: واجهة المحجر، والتكسير، وطاحونة المواد الخام، ووحدة التكليس والفرن، والمبرد، وطاحونة الأسمنت، والصومعة التي تُحمَّل منها الشاحنة.",
+                "s1": "المحجر",
+                "s1_d": "الحجر الجيري من واجهة المحجر",
+                "s2": "التكسير",
+                "s2_d": "تكسير إلى مقاس الطاحونة",
+                "s3": "طاحونة المواد الخام",
+                "s3_d": "طحن وخلط",
+                "s4": "وحدة التكليس والفرن",
+                "s4_d": "حرق الخلطة الخام إلى كلنكر",
+                "s5": "المبرد",
+                "s5_d": "تبريد واستعادة حرارة",
+                "s6": "طاحونة الأسمنت",
+                "s6_d": "طحن الكلنكر إلى أسمنت",
+                "s7": "الصوامع والشحن",
+                "s7_d": "تخزين وتحميل وإفراج"},
  "cx_rp_tags": [["العملية الحرارية والتبريد",
                  "المواد والتوريد",
                  "المالية"],

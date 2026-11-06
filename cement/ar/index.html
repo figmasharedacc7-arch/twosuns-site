@@ -634,6 +634,57 @@
     .arxf-r .n{color:#B8860B;}
   }
 
+  /* CEMENT PRODUCTION LINE */
+  .prc{position:relative;width:100%;max-width:1240px;margin:26px auto 0;
+    aspect-ratio:2000/596;container-type:inline-size;}
+  .prc svg{position:absolute;inset:0;width:100%;height:100%;}
+  html[dir="rtl"] .prc svg{transform:scaleX(-1);}
+  .prc-lab{position:absolute;transform:translateX(-50%);width:12%;text-align:center;}
+  html[dir="rtl"] .prc-lab{transform:translateX(50%);}
+  .prc-n{font-size:1.02cqw;font-weight:900;letter-spacing:.14em;color:var(--sun-deep);}
+  .prc-t{font-size:1.30cqw;font-weight:900;line-height:1.2;color:var(--navy);
+    margin-top:.2cqw;min-height:2.4em;}
+  .prc-d{font-size:1.00cqw;font-weight:600;line-height:1.38;color:var(--text-muted);
+    margin-top:.35cqw;}
+
+  /* the belts, the drums, the kiln and the elevators all move by walking a dash
+     pattern along their own path, which costs one property and never reflows */
+  @keyframes prc-belt{to{stroke-dashoffset:-72;}}
+  @keyframes prc-drum{to{stroke-dashoffset:-90;}}
+  @keyframes prc-kiln{to{stroke-dashoffset:-120;}}
+  @keyframes prc-lift{to{stroke-dashoffset:-64;}}
+  @keyframes prc-fall{0%{opacity:0;transform:translateY(-12px);}
+    20%{opacity:1;}80%{opacity:1;}100%{opacity:0;transform:translateY(24px);}}
+  @keyframes prc-smoke{0%{opacity:0;transform:translateY(0) scale(.6);}
+    30%{opacity:.42;}100%{opacity:0;transform:translateY(-82px) scale(1.8);}}
+  @keyframes prc-flame{0%,100%{transform:scale(1,1);}50%{transform:scale(1.18,.84);}}
+  @keyframes prc-glow{0%,100%{opacity:.5;}50%{opacity:1;}}
+  .prc-belt{stroke-dasharray:13 15;animation:prc-belt 1.3s linear infinite;}
+  .prc-spin{stroke-dasharray:16 20;animation:prc-drum 1.9s linear infinite;}
+  .prc-band{stroke-dasharray:14 34;animation:prc-kiln 2.6s linear infinite;}
+  .prc-lift{stroke-dasharray:12 20;animation:prc-lift 1.5s linear infinite;}
+  .prc-fall circle{animation:prc-fall 1.5s linear infinite;}
+  .prc-smoke circle{transform-box:fill-box;transform-origin:center;
+    animation:prc-smoke 4.4s ease-out infinite;}
+  .prc-flame{transform-box:fill-box;transform-origin:right center;
+    animation:prc-flame 1.1s ease-in-out infinite;}
+  .prc-hot{animation:prc-glow 2.2s ease-in-out infinite;}
+
+  /* a reader who has asked for no motion gets the same plant, standing still */
+  @media(prefers-reduced-motion:reduce){
+    .prc-belt,.prc-spin,.prc-band,.prc-lift,.prc-fall circle,.prc-smoke circle,
+    .prc-flame,.prc-hot{animation:none;}
+  }
+  /* the run is too wide to read on a narrow screen, so it scrolls as one piece
+     rather than shrinking the labels past legibility. The width is held well
+     above the viewport on purpose: the label sizes are container units, so a
+     figure narrow enough to nearly fit would take the words down with it. */
+  @media(max-width:900px){
+    .prc-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;
+      scrollbar-width:thin;padding-bottom:10px;}
+    .prc{width:1120px;max-width:none;}
+  }
+
   /* ---- microsite chrome ---- */
   .cmnav{position:sticky;top:0;z-index:100;background:rgba(255,248,236,.95);
     backdrop-filter:blur(16px);border-bottom:1px solid rgba(224,100,30,.15);
@@ -689,19 +740,6 @@
   .cmhero.sh-usecases{--cmshot:url('/uc-hero.jpg');}
   .cmhero.sh-company{--cmshot:url('/company-hero.jpg');}
   .cmhero.sh-events{--cmshot:url('/events-hero.jpg');}
-  /* A hero that carries a loop plays it where the still would sit, under the
-     same cream wash, so a page with video and a page without read as one site.
-     The still stays the poster: it is what shows while the file loads, if the
-     browser refuses to autoplay, and if the reader has asked for no motion. */
-  .cmhero>.cmvid{position:absolute;inset:0;z-index:0;overflow:hidden;}
-  .cmhero>.cmvid video{width:100%;height:100%;object-fit:cover;
-    object-position:center 30%;display:block;}
-  .cmhero>.cmvid::after{content:"";position:absolute;inset:0;background:var(--cmwash);}
-  .cmhero>.hero-glow{z-index:1;}
-  .cmhero>.container{position:relative;z-index:2;}
-  @media(prefers-reduced-motion:reduce){.cmhero>.cmvid{display:none;}}
-  /* the poster frame of each loop, which is also the still the page falls back to */
-  .cmhero.vd-plant{--cmshot:url('/cement/hero-plant.jpg');}
   .cmhero h1{font-size:clamp(32px,4.4vw,54px);font-weight:900;line-height:1.1;color:var(--navy);
     margin-bottom:20px;max-width:19ch;}
   .cmhero p.hero-sub{max-width:620px;}
@@ -1148,8 +1186,7 @@
   </div>
 </nav>
 <main id="main" tabindex="-1">
-<section class="cmhero vd-plant">
-  <div class="cmvid"><video src="/cement/hero-plant.mp4" poster="/cement/hero-plant.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true" tabindex="-1"></video></div>
+<section class="cmhero">
   <div class="hero-glow"></div>
   <div class="container">
     <div class="hero-eyebrow"><span class="dot"></span>قدرة مؤسسية متكيفة لمنتجي الأسمنت</div>
