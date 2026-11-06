@@ -247,9 +247,13 @@ COMPANY = dict(
              "into structured platform requirements and outputs."),
             ("Bhupat Patel", "Senior Full-Stack Engineer", "team-bhupat.jpg",
              "Bhupat develops enterprise application capabilities, interfaces and integrations across the TwoSuns platform."),
+            # name and role only, as asked. The empty bio is deliberate: teamgrid
+            # drops the hover overlay for it rather than revealing a blank panel.
+            ("Mohamed Mostafa", "Senior Full-Stack Engineer", ""),
             ("Omar Ezzat", "Product Engineer",
              "Omar supports product engineering, configuration and the implementation of platform experiences "
              "around client requirements."),
+            ("Islam Alsoultan", "Product Delivery Specialist", ""),
             ("Yuva Raja", "Senior AI Engineer",
              "Yuva leads applied intelligence and agentic capabilities that operate within the context, controls "
              "and workflows configured in TwoSuns."),

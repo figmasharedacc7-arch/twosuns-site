@@ -64,11 +64,19 @@ def tile(name, role, photo, bio, lead=False, e=lambda s: s):
     else:
         art = '<div class="tmb-mono">%s</div>' % e(_mono(name))
         wash = ""
-    return ("""<div class="tmb%s" tabindex="0">%s%s
+    # A tile with no bio has nothing to reveal, so it carries no .tmb-bio at all.
+    # Both bio rules select that element, so omitting it removes the hover overlay
+    # and the empty padded div the mobile override would otherwise leave. The tab
+    # stop goes with it: tabindex is here only so :focus-within can reach the bio,
+    # and a focusable div that announces no name and does nothing on Enter is noise
+    # for a keyboard or screen reader user. The name and role sit in .tmb-dl, which
+    # is always rendered, so nothing becomes unreachable.
+    rev = ('\n      <div class="tmb-bio"><div>%s</div></div>' % e(bio)) if bio else ""
+    return ("""<div class="tmb%s"%s>%s%s
       <div class="tmb-scrim"></div>
-      <div class="tmb-dl"><div class="tmb-nm">%s</div><div class="tmb-rl">%s</div></div>
-      <div class="tmb-bio"><div>%s</div></div>
-    </div>""" % (" tmb-lead" if lead else "", art, wash, e(name), e(role), e(bio)))
+      <div class="tmb-dl"><div class="tmb-nm">%s</div><div class="tmb-rl">%s</div></div>%s
+    </div>""" % (" tmb-lead" if lead else "", ' tabindex="0"' if bio else "",
+                 art, wash, e(name), e(role), rev))
 
 
 def grid(people, lead=False, e=lambda s: s):
