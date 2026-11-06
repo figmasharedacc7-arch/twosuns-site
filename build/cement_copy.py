@@ -861,7 +861,12 @@ EN = {
                    "A cement class loaded into the wrong silo, at either end of the delivery",
                    "A failed cube test with no shared record to separate cement, aggregate, admixture and site practice",
                    "Collection held up while a quality claim stays open"],
- "cnc_gap_call_h": "One low cube result, several systems",
+ # the mixer is the customer's vehicle, not the producer's: this page's copy
+ # says tanker seven times and never says mixer, so the caption names whose
+ # truck it is rather than leaving a cheerful machine sitting unexplained
+ "cnc_gap_fig_cap": "Accepted at the gate from a tanker. Questioned here, after the pour.",
+ "cnc_gap_fig_alt": "A concrete mixing truck with its drum turning, the customer's vehicle after the cement is delivered.",
+"cnc_gap_call_h": "One low cube result, several systems",
  "cnc_gap_call_p": "A low cube result reaches the quality manager, the mill operator holding the fineness target, the dispatch planner who chose the silo and the sales manager who holds the account. Each of them reconstructs the same load from a different system, so the answer is assembled by hand while the customer waits for it.",
  "cnc_tws_tag": "What TwoSuns does",
  "cnc_tws_h": "The load, its quality record and the account in one context",
@@ -2077,7 +2082,9 @@ AR = {
                    "رتبة أسمنت تُحمّل في الصومعة غير الصحيحة، في أي من طرفي التسليم",
                    "نتيجة اختبار مكعب غير مطابقة بلا سجل مشترك يفصل بين الأسمنت والركام والإضافة الكيميائية وممارسة الموقع",
                    "تحصيل معلّق ما دامت مطالبة الجودة مفتوحة"],
- "cnc_gap_call_h": "نتيجة مكعب منخفضة واحدة، أنظمة عديدة",
+ "cnc_gap_fig_cap": "يُقبل من صهريج عند التسليم. ويُسأل عنه هنا، بعد الصب.",
+ "cnc_gap_fig_alt": "شاحنة خلط الخرسانة، وهي شاحنة العميل بعد تسليم الأسمنت.",
+"cnc_gap_call_h": "نتيجة مكعب منخفضة واحدة، أنظمة عديدة",
  "cnc_gap_call_p": "تصل نتيجة مكعب منخفضة إلى مدير الجودة، ومشغّل الطاحونة الذي يملك هدف النعومة، ومخطّط الشحن الذي اختار الصومعة، ومدير المبيعات الذي يملك الحساب. وكل منهم يعيد بناء الحمولة نفسها من نظام مختلف، فيُجمع الجواب يدويًا والعميل في انتظاره.",
  "cnc_tws_tag": "ما تفعله TwoSuns",
  "cnc_tws_h": "الحمولة وسجل جودتها والحساب في سياق واحد",

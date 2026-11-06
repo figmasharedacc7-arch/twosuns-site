@@ -844,6 +844,35 @@
   .cmchips li{list-style:none;background:var(--bg2);border:1px solid var(--border-soft);
     border-radius:9px;padding:9px 14px;font-size:13.5px;font-weight:700;color:var(--navy);}
   .cmnote{font-size:13px;color:var(--text-muted);margin-top:14px;line-height:1.65;font-style:italic;}
+
+  /* THE CUSTOMER'S MIXER, in the empty column beside the panel on the concrete
+     page. The clip is composited onto the flat cream this section paints, so it
+     carries no card and no border: what shows is the truck standing on the page.
+     It is a figure with a caption, not a mascot, because the copy on this page
+     says tanker seven times and never says mixer: the caption is what makes the
+     difference between the producer's vehicle and the customer's legible. */
+  .cncgap{display:grid;grid-template-columns:minmax(0,760px) minmax(0,1fr);
+    gap:30px;align-items:center;}
+  .cncmix{margin:22px 0 0;}
+  .cncmix video,.cncmix img{display:block;width:100%;height:auto;}
+  /* the clip faces left, into the panel. In Arabic the panel is on the other
+     side, so the truck turns with it, the same mirror .prc svg takes. */
+  html[dir="rtl"] .cncmix video,html[dir="rtl"] .cncmix img{transform:scaleX(-1);}
+  .cncmix figcaption{margin-top:8px;font-size:13.5px;line-height:1.55;font-weight:600;
+    color:var(--text-muted);max-width:40ch;}
+  /* the still is the same frame the loop opens on, so a reader who has asked
+     for no motion gets the same truck, parked, and loses nothing */
+  .cncmix img{display:none;}
+  @media(prefers-reduced-motion:reduce){
+    .cncmix video{display:none;}
+    .cncmix img{display:block;}
+  }
+  /* under about 1080 the gutter is too narrow for the truck to read, so it
+     stops being a margin figure and sits under the panel at its own size */
+  @media(max-width:1080px){
+    .cncgap{grid-template-columns:minmax(0,1fr);gap:0;}
+    .cncmix{max-width:520px;}
+  }
   .cmmods{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:4px;}
   .cmmods>*{min-width:0;}
   .cmmod{border:1px solid var(--border-soft);border-radius:14px;padding:18px 18px 20px;
@@ -1219,7 +1248,7 @@
     <div class="section-tag">Where it goes wrong</div>
     <h2 class="section-heading">The cement is accepted on delivery and questioned after the pour</h2>
     <p class="lede">A dispute with a concrete customer starts with information that did not travel with the cement. The mill run that produced the load, the silo it was drawn from and the laboratory results that describe it stay in the plant systems, while the customer holds a delivery note and a cube that broke low.</p>
-    <div class="split2-panel" style="margin-top:22px;max-width:760px;"><h3>What shows up on the account</h3><ul class="tick"><li>Batch-to-batch variation that the plant reads as within specification and the customer reads as a changed mix</li><li>A strength result that arrives days after the concrete is placed</li><li>Tanker queues at loading that push a customer past its batching window</li><li>A silo stockout that moves an account to a competitor</li><li>A cement class loaded into the wrong silo, at either end of the delivery</li><li>A failed cube test with no shared record to separate cement, aggregate, admixture and site practice</li><li>Collection held up while a quality claim stays open</li></ul></div><div class="callout" style="margin-top:22px;"><h3>One low cube result, several systems</h3><p>A low cube result reaches the quality manager, the mill operator holding the fineness target, the dispatch planner who chose the silo and the sales manager who holds the account. Each of them reconstructs the same load from a different system, so the answer is assembled by hand while the customer waits for it.</p></div>
+    <div class="cncgap"><div class="split2-panel" style="margin-top:22px;max-width:760px;"><h3>What shows up on the account</h3><ul class="tick"><li>Batch-to-batch variation that the plant reads as within specification and the customer reads as a changed mix</li><li>A strength result that arrives days after the concrete is placed</li><li>Tanker queues at loading that push a customer past its batching window</li><li>A silo stockout that moves an account to a competitor</li><li>A cement class loaded into the wrong silo, at either end of the delivery</li><li>A failed cube test with no shared record to separate cement, aggregate, admixture and site practice</li><li>Collection held up while a quality claim stays open</li></ul></div><figure class="cncmix"><video src="/cement/mixer-truck.mp4" poster="/cement/mixer-truck.jpg" autoplay muted loop playsinline preload="metadata" role="img" aria-label="A concrete mixing truck with its drum turning, the customer's vehicle after the cement is delivered."></video><img src="/cement/mixer-truck.jpg" alt="A concrete mixing truck with its drum turning, the customer's vehicle after the cement is delivered."><figcaption>Accepted at the gate from a tanker. Questioned here, after the pour.</figcaption></figure></div><div class="callout" style="margin-top:22px;"><h3>One low cube result, several systems</h3><p>A low cube result reaches the quality manager, the mill operator holding the fineness target, the dispatch planner who chose the silo and the sales manager who holds the account. Each of them reconstructs the same load from a different system, so the answer is assembled by hand while the customer waits for it.</p></div>
   </div>
 </section>
 <section class="band-warm">

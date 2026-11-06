@@ -211,6 +211,35 @@ CEM_CSS = r"""
   .cmchips li{list-style:none;background:var(--bg2);border:1px solid var(--border-soft);
     border-radius:9px;padding:9px 14px;font-size:13.5px;font-weight:700;color:var(--navy);}
   .cmnote{font-size:13px;color:var(--text-muted);margin-top:14px;line-height:1.65;font-style:italic;}
+
+  /* THE CUSTOMER'S MIXER, in the empty column beside the panel on the concrete
+     page. The clip is composited onto the flat cream this section paints, so it
+     carries no card and no border: what shows is the truck standing on the page.
+     It is a figure with a caption, not a mascot, because the copy on this page
+     says tanker seven times and never says mixer: the caption is what makes the
+     difference between the producer's vehicle and the customer's legible. */
+  .cncgap{display:grid;grid-template-columns:minmax(0,760px) minmax(0,1fr);
+    gap:30px;align-items:center;}
+  .cncmix{margin:22px 0 0;}
+  .cncmix video,.cncmix img{display:block;width:100%;height:auto;}
+  /* the clip faces left, into the panel. In Arabic the panel is on the other
+     side, so the truck turns with it, the same mirror .prc svg takes. */
+  html[dir="rtl"] .cncmix video,html[dir="rtl"] .cncmix img{transform:scaleX(-1);}
+  .cncmix figcaption{margin-top:8px;font-size:13.5px;line-height:1.55;font-weight:600;
+    color:var(--text-muted);max-width:40ch;}
+  /* the still is the same frame the loop opens on, so a reader who has asked
+     for no motion gets the same truck, parked, and loses nothing */
+  .cncmix img{display:none;}
+  @media(prefers-reduced-motion:reduce){
+    .cncmix video{display:none;}
+    .cncmix img{display:block;}
+  }
+  /* under about 1080 the gutter is too narrow for the truck to read, so it
+     stops being a margin figure and sits under the panel at its own size */
+  @media(max-width:1080px){
+    .cncgap{grid-template-columns:minmax(0,1fr);gap:0;}
+    .cncmix{max-width:520px;}
+  }
   .cmmods{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:4px;}
   .cmmods>*{min-width:0;}
   .cmmod{border:1px solid var(--border-soft);border-radius:14px;padding:18px 18px 20px;
@@ -1039,6 +1068,32 @@ def panel(h, items):
            '<h3>%s</h3>%s</div>' % (e(h), ticks(items))
 
 
+def mixer(d):
+    """The supplied mixer truck loop, as a captioned figure.
+
+    The clip is composited onto the exact cream this section paints, measured
+    off the rendered page, so it needs no alpha and no card: every edge is the
+    page's own background. The poster is the frame the loop opens on, which is
+    both what shows while the file loads and what a reader who has asked for no
+    motion sees instead, so nothing is lost either way.
+
+    Muted, inline and looping, so no browser refuses to start it and nothing
+    plays sound. The still carries the description and the caption carries the
+    point, which is whose truck this is.
+    """
+    for f in ("mixer-truck.mp4", "mixer-truck.jpg"):
+        if not os.path.exists(os.path.join(OUT, f)):
+            raise SystemExit("the mixer figure needs cement/%s" % f)
+    return ('<figure class="cncmix">'
+            '<video src="/cement/mixer-truck.mp4" poster="/cement/mixer-truck.jpg"'
+            ' autoplay muted loop playsinline preload="metadata" role="img"'
+            ' aria-label="%s"></video>'
+            '<img src="/cement/mixer-truck.jpg" alt="%s">'
+            '<figcaption>%s</figcaption></figure>'
+            % (e(d["cnc_gap_fig_alt"]), e(d["cnc_gap_fig_alt"]),
+               e(d["cnc_gap_fig_cap"])))
+
+
 def mods(names):
     """The modules a pressure or a workflow reaches. The microsite has no module
     reference page, so these name the module rather than linking to it. Every name
@@ -1283,7 +1338,9 @@ def build_concrete(d):
              d["cnc_who_p"], lede=True, **band("cnc_who"))
     s += sec(rows(d["cnc_dem_rows"], two=True), "band-alt", d["cnc_dem_tag"], d["cnc_dem_h"],
              d["cnc_dem_p"])
-    s += sec(panel(d["cnc_gap_panel_h"], d["cnc_gap_items"])
+    # the panel keeps the reading order; the truck sits in the column beside it
+    s += sec('<div class="cncgap">'
+             + panel(d["cnc_gap_panel_h"], d["cnc_gap_items"]) + mixer(d) + '</div>'
              + '<div class="callout" style="margin-top:22px;"><h3>%s</h3><p>%s</p></div>'
                % (e(d["cnc_gap_call_h"]), e(d["cnc_gap_call_p"])),
              "", d["cnc_gap_tag"], d["cnc_gap_h"], d["cnc_gap_p"], lede=True)
