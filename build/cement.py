@@ -692,6 +692,12 @@ def head(d, title, desc, page, extra_css=""):
 # Requested 2026-11-05 as a temporary measure while capabilities is reworked.
 HIDDEN = {"sectors.html", "use-cases.html"}
 
+# The evening blocks and the detailed running order, held back while the speaker
+# list is unconfirmed. The events page shows a short note in their place. Both
+# agendas stay in the copy dicts untouched, so publishing them again is this one
+# flag and nothing else. Requested 2026-11-09.
+AGENDA_PUBLIC = False
+
 
 def shown(pairs):
     """The nav or footer pairs that are not currently hidden."""
@@ -1099,6 +1105,23 @@ def build_events(d):
     pd = "".join('<div class="p"><div class="k">%s</div><div class="v">%s</div></div>'
                  % (e(k), e(v)) for k, v in d["pd_rows"])
 
+    if AGENDA_PUBLIC:
+        programme = ("""<h3 class="sub-heading" style="margin-top:38px;font-size:22px;">%s</h3>
+    <div class="cmag">%s</div>
+    <p class="cmnote">%s</p>
+
+    <h3 class="sub-heading" style="margin-top:38px;font-size:22px;">%s</h3>
+    <div class="cmag">%s</div>
+    <p class="cmnote">%s</p>
+"""
+                     % (e(d["eve_h"]), eve, e(d["eve_note"]),
+                        e(d["ag_h"]), ag, e(d["ag_note"])))
+    else:
+        # .callout is the gold panel the home page already uses, so holding the
+        # programme back needs no styling of its own.
+        programme = ('<div class="callout"><h3>%s</h3><p>%s</p></div>\n'
+                     % (e(d["ev_soon_h"]), e(d["ev_soon_p"])))
+
     s += """<section class="band-alt">
   <div class="container">
     <div class="cmev feat">
@@ -1113,14 +1136,7 @@ def build_events(d):
       <p class="cmnote">%s</p>
     </div>
 
-    <h3 class="sub-heading" style="margin-top:38px;font-size:22px;">%s</h3>
-    <div class="cmag">%s</div>
-    <p class="cmnote">%s</p>
-
-    <h3 class="sub-heading" style="margin-top:38px;font-size:22px;">%s</h3>
-    <div class="cmag">%s</div>
-    <p class="cmnote">%s</p>
-
+    %s
     <h3 class="sub-heading" style="margin-top:38px;font-size:22px;">%s</h3>
     <div class="cmpd">%s</div>
   </div>
@@ -1129,8 +1145,7 @@ def build_events(d):
        e(d["ev2_when"]), e(d["ev2_time"]), e(d["ev2_place"]), e(d["ev2_dress"]),
        e(d["ev2_p"]), btn(d["ev2_cta1"]), btn(d["ev2_cta2"], ghost=True), e(d["ev2_note"]),
        e(d["ev2_cred"]),
-       e(d["eve_h"]), eve, e(d["eve_note"]),
-       e(d["ag_h"]), ag, e(d["ag_note"]), e(d["pd_tag"]), pd)
+       programme, e(d["pd_tag"]), pd)
 
     past = "".join("<li><b>%s</b> &middot; %s &middot; %s</li>" % (e(a), e(b), e(c))
                    for a, b, c in d["past_rows"])
