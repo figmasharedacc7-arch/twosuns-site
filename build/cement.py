@@ -579,6 +579,30 @@ CEM_CSS = r"""
     .cmses-d{flex-direction:row;gap:10px;padding:12px;}
     .cmhero{padding:72px 0 62px;}
   }
+
+  /* ---- vertical rhythm between sections ---- */
+  /* Measured on the rendered home page at 1340, the empty band between the end
+     of one section and the start of the next ran 184px where two plain sections
+     meet, 168 and 170 where a plain section meets a photograph band, and 152
+     between the two bands. That is theme.py's 92px of section padding counted
+     twice, plus area-sec's 76 twice. It reads as a pause between pages rather
+     than a join between sections. These take the same four gaps to 132, 122,
+     122 and 112, which is still an unambiguous break and about 190px off the
+     home page.
+     Scope. This sits in CEM_CSS, so it reaches the twenty microsite pages and
+     nothing else. build/theme.py keeps 92 for the main site, which was not part
+     of the request, and theme.py cannot be edited from here anyway without
+     running build.py over the live root pages.
+     The media query is not optional. theme.py drops section to 64px under
+     760px, and it does so EARLIER in the cascade than this file, so the base
+     rule below would otherwise override it and make the phone looser than it
+     is today rather than tighter. */
+  section{padding:66px 0;}
+  .area-sec{padding:56px 0;}
+  @media(max-width:760px){
+    section{padding:48px 0;}
+    .area-sec{padding:44px 0;}
+  }
 """
 
 # the theme stylesheet is authored left to right, so mirror what it hard-codes
@@ -709,7 +733,19 @@ VAR_A_CSS = r"""
   .cmfam .f:nth-child(2){background:var(--dk-amber-pale);
     border-color:rgba(255,118,0,.30);border-top-color:#FF7600;}
   .cmfam .f:hover{box-shadow:0 12px 40px rgba(20,28,44,.15);}
-  .cmfam .x{border-top-color:rgba(20,28,44,.12);}
+  .cmfam .x{color:var(--dk-blue-deep);border-top-color:rgba(20,28,44,.12);}
+
+  /* The small uppercase labels. There are eleven of these on the microsite in
+     #8C6500, and leaving them gold put a gold eyebrow inside the two cards this
+     variant tints pale blue, and two labels of identical role in one context
+     card in two different hues. They all move to #1B4FC4, which is 6.3:1 on the
+     tint and 7.1:1 on white, clear of AA at their 10.5px to 13px sizes.
+     Not in this list, on purpose: .cmtier-a and theme's .section-tag, which are
+     pills with their own warm background rather than labels on a card, and
+     .cmpr .p-end .k, which is the red scenario label and wins at 0,3,0 against
+     the 0,2,0 .cmpr .k below whatever order they sit in. */
+  .cmmod .d,.cmpd .k,.cmpr .k,.cmev-when,.split2-panel h3,
+  .cmfoot-brand .by{color:var(--dk-blue-deep);}
 
   /* The six configuration rows on the home page, the deck's grey field with
      one pale blue in it. Inputs is the one tinted, and the reason is in the
@@ -755,17 +791,25 @@ VAR_A_CSS = r"""
     border-color:#8EC5FF;color:#101827;}
   .cmrail a:hover .l,.cmrail a:focus-visible .l{color:#8EC5FF;}
 
+  /* The last stop is orange, but not the deck's #FF7600, and the reason is the
+     glyph. These three markers carry a 900 weight numeral in white, and white
+     on #FF7600 measures 2.68:1, under even the 3:1 floor, while the blue
+     siblings of the same marker sit at 5.06. The site already knew this: the
+     rail darkens its glyph rather than put white on --sun. So the orange moves
+     to the stop that can carry white, #C45213 at 4.55 and #A8430C at 6.05.
+     .cmfl keeps the pale fill with a dark numeral instead, which is the other
+     way to end a sequence in orange and measures 4.89. */
   .cmst .n{background:linear-gradient(135deg,var(--dk-blue),var(--dk-blue-deep));}
-  .cmsts .cmst:last-child .n{background:linear-gradient(135deg,#FF7600,#C45213);}
+  .cmsts .cmst:last-child .n{background:linear-gradient(135deg,#C45213,#A8430C);}
   .cmst .d{color:var(--dk-blue-deep);}
   .cmst{border-top-color:rgba(204,153,0,.30);}
 
   .step::before{background:linear-gradient(135deg,var(--dk-blue),var(--dk-blue-deep));}
-  .steps .step:last-child::before{background:linear-gradient(135deg,#FF7600,#C45213);}
+  .steps .step:last-child::before{background:linear-gradient(135deg,#C45213,#A8430C);}
 
   /* three numbered pressure cards on the context page, same rule */
   .cmpr .n{background:var(--dk-blue);}
-  .cmpr .p:last-child .n{background:#FF7600;}
+  .cmpr .p:last-child .n{background:#C45213;}
   .cmpr .mods span{color:var(--dk-blue-deep);}
   .cmpr .p-top p,.cmpr dd{color:var(--text-muted);}
 
@@ -824,13 +868,26 @@ VAR_A_CSS = r"""
   .cmsx .s .go{color:var(--dk-blue-deep);}
   .cmsx .s li,.cmmod li{border-top-color:var(--dk-blue-line);}
   .cmwf .w dt{color:var(--dk-blue-deep);}
-  .cmtbl th{background:var(--dk-blue-pale);color:var(--dk-blue-deep);
-    border-bottom-color:rgba(39,102,232,.26);}
-  .cmtbl tr:hover td{background:rgba(234,242,251,.75);}
+  /* .cmtbl is not here. Its CSS exists at the top of this file but nothing in
+     the generator emits the class, so a rule for it would paint nothing. The
+     three .cmag rules below DO stay: that block is emitted, just gated behind
+     AGENDA_PUBLIC, so it has to be right for the day that flag flips. */
   .cmag-t{background:rgba(234,242,251,.72);color:var(--dk-blue-deep);}
   .cmag-k{color:var(--dk-blue-deep);border-color:rgba(39,102,232,.40);}
   .cmag-b li::before{background:var(--dk-blue);}
   .cmmeta span::before{background:var(--dk-blue);}
+  /* The tick marker is the only list bullet on the microsite and it ran an
+     #E0641E to #CC9900 gradient, neither end of which is a deck colour. It sits
+     about 20px under a station line this variant repainted blue, 72 times on
+     the capabilities page alone. */
+  .tick li::before{background:var(--dk-blue);}
+  /* The two remaining gold-soft panels on the capabilities page. The note bar
+     is 1172px wide and would outweigh the single tinted Core card if it took
+     the same pale blue, so it takes the neutral field the row cards already
+     use. The tier pill is 170px and reads as a status beside a number this
+     variant already turned blue, so that one does take the tint. */
+  .cmunits{background:#F3F4F6;border-color:var(--dk-grey-line);color:var(--text-muted);}
+  .cmtier-a{background:var(--dk-blue-pale);color:var(--dk-blue-deep);}
   .cmev.feat{background:var(--dk-blue-pale);border-color:rgba(39,102,232,.28);}
   .cmbadge{background:var(--dk-navy);color:#8EC5FF;}
   .cmses-d{background:linear-gradient(150deg,var(--dk-blue),var(--dk-blue-deep));}
