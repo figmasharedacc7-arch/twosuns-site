@@ -386,7 +386,6 @@ EN = {
             ],
  'ag_note': 'Speakers are being confirmed and will be added here.',
  'ev_soon_h': 'Programme to be announced',
- 'ev_soon_p': 'The running order for the evening is being prepared. The detail and the speakers will be added here once they are confirmed.',
  'pd_tag': 'Practical details',
  'pd_rows': [
               ('Date', 'Wednesday, 25 November 2026'),
@@ -1470,7 +1469,6 @@ AR = {
             ],
  'ag_note': 'جارٍ تأكيد المتحدثين وستُضاف أسماؤهم هنا.',
  'ev_soon_h': 'البرنامج التفصيلي يُعلن لاحقًا',
- 'ev_soon_p': 'جارٍ إعداد برنامج الأمسية، وستُضاف تفاصيله وأسماء المتحدثين هنا بعد تأكيدها.',
  'pd_tag': 'تفاصيل عملية',
  'pd_rows': [
               ('التاريخ', 'الأربعاء 25 نوفمبر 2026'),

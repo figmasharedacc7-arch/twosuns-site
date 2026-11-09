@@ -833,6 +833,10 @@ VAR_A_CSS = r"""
     border-top:2px solid var(--gold);}
   .callout h3{color:#fff;}
   .callout p{color:#CED8E7;}
+  /* A callout whose heading is the whole message, the events programme panel,
+     keeps the 10px the theme leaves under a heading that has a paragraph to
+     separate itself from, which reads as an empty half of the box. */
+  .callout h3:only-child{margin-bottom:0;}
 
   /* ---- 4. the thin gold hairline under a title ---- */
   /* Deck pattern, unchanged in hue: #E0B321 is the site gold. A block pseudo
@@ -890,14 +894,11 @@ VAR_A_CSS = r"""
   .cmtier-a{background:var(--dk-blue-pale);color:var(--dk-blue-deep);}
 
   /* ---- 7. the framed pictures ---- */
-  /* The station pictures and the home page works figure. These were graded warm
-     on purpose and they now sit in a cool system, so an edge alone would have
-     drawn a line around the mismatch rather than settled it. The frame and the
-     picture carry the same gradient instead: a 2px border running #2766E8 into
-     #1B4FC4, and a veil that starts blue at the top and washes back to the
-     warm one it already had by the time it reaches the bottom. One hue, so the
-     eye reads a frame rather than a second accent arguing with the orange
-     ordinal sitting on top of it.
+  /* The eight station pictures and the home page works figure. They carry a 2px
+     frame whose gradient runs #2766E8 into #1B4FC4. One hue, so the eye reads a
+     frame rather than a second accent arguing with the ordinal sitting on top
+     of it, and with the pictures back in their own colours the frame is the
+     only thing joining them to the page.
      The border is transparent and the colour arrives as a background, because
      border-image ignores border-radius and these boxes are 16px rounded. The
      padding box keeps var(--gold-soft), which is what shows while the picture
@@ -907,9 +908,14 @@ VAR_A_CSS = r"""
   .cmst .ph,.cmfig{border:2px solid transparent;
     background:linear-gradient(var(--gold-soft),var(--gold-soft)) padding-box,
                linear-gradient(135deg,#2766E8,#1B4FC4) border-box;}
-  .cmst .ph::after,.cmfig::after{
-    background:linear-gradient(180deg,rgba(39,102,232,.26) 0%,rgba(39,102,232,.08) 42%,
-      rgba(255,246,226,.14) 100%);}
+  /* No veil on these nine. They were re-cut from the files the owner supplied,
+     without the colorchannelmixer grade the first cut baked in, so what the
+     page shows is the photograph as it was taken: blue sky, green scrub, an
+     orange excavator, high visibility vests. A wash of any colour over that
+     would be the grade coming back by another route, which is the thing being
+     undone. The gradient frame stays and now does the whole job of joining the
+     picture to the page. */
+  .cmst .ph::after,.cmfig::after{background:none;}
   .cmev.feat{background:var(--dk-blue-pale);border-color:rgba(39,102,232,.28);}
   .cmbadge{background:var(--dk-navy);color:#8EC5FF;}
   .cmses-d{background:linear-gradient(150deg,var(--dk-blue),var(--dk-blue-deep));}
@@ -1408,9 +1414,11 @@ def build_events(d):
                         e(d["ag_h"]), ag, e(d["ag_note"])))
     else:
         # .callout is the gold panel the home page already uses, so holding the
-        # programme back needs no styling of its own.
-        programme = ('<div class="callout"><h3>%s</h3><p>%s</p></div>\n'
-                     % (e(d["ev_soon_h"]), e(d["ev_soon_p"])))
+        # programme back needs no styling of its own. The line is the whole
+        # message, there is nothing to say about a programme that does not
+        # exist yet, so the panel carries the heading alone.
+        programme = ('<div class="callout"><h3>%s</h3></div>\n'
+                     % e(d["ev_soon_h"]))
 
     s += """<section class="band-alt">
   <div class="container">
