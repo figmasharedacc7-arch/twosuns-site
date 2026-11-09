@@ -1266,6 +1266,183 @@
   html[dir="rtl"] .section-heading{line-height:1.35;}
   html[dir="rtl"] .cta-band h2{line-height:1.4;}
   html[dir="rtl"] .cmev h3{line-height:1.4;}
+
+  :root{
+    /* the deck, measured. A name beginning dk is a deck colour. */
+    --dk-blue:#2766E8;        /* accent1, the structural accent */
+    --dk-blue-deep:#1B4FC4;   /* accent1 darkened, so type on a pale tint clears 4.5 */
+    --dk-blue-lit:#5A92F3;    /* accent6, for type and hairlines on navy */
+    --dk-blue-pale:#EAF2FB;   /* the tint that singles one card out */
+    --dk-blue-line:#CED8E7;   /* the deck card hairline */
+    --dk-navy:#141C2C;        /* the full width takeaway bar */
+    --dk-navy-2:#101827;      /* dk2, the rail */
+    --dk-grey-line:#E4E7EC;
+    --dk-amber-pale:#FFF5E8;  /* the second tint on deck slide 4 */
+    --dk-green:#0F7A4D;       /* accent4 darkened, so a label clears 4.5 on white */
+    --dk-red:#B22D38;         /* accent5 darkened, same reason */
+    --dk-red-pale:#FDF0F1;
+
+    /* the site tokens the deck repoints. Everything the deck and the site
+       already share, the orange and the gold, is left alone. */
+    --navy:#141C2C; --ink:#111827;
+    --text:#31415D; --text-muted:#5B6472;
+    --border:#CED8E7; --border-soft:#E4E7EC;
+    --shadow:0 4px 24px rgba(20,28,44,0.08),0 1px 4px rgba(0,0,0,0.06);
+    --shadow-lg:0 18px 48px rgba(20,28,44,0.14);
+  }
+
+  /* ---- 1. a neutral card field with one card singled out by a tint ---- */
+  /* Deck slide 4 runs six cards, four white, one pale orange, one pale green.
+     Slides 8, 10 and 14 run a grey field with exactly one pale blue. Both are
+     the same move: colour marks one thing out of many, it does not decorate
+     all of them. The four cards the home page runs are the platform families,
+     and they are not four of a kind. Core is the layer the other three attach
+     to, so it takes the deck's pale blue. Ray is the only one that is not a
+     domain at all but an assistant across all of them, so it takes the deck's
+     pale orange. Horizon and Pulse are the two domain families and stay white.
+     The four different coloured top borders this grid used to run were the
+     rainbow the deck avoids, so they go to one hairline and the tint carries
+     the difference. */
+  .cmfam .f{background:#fff;border:1px solid var(--dk-blue-line);
+    border-top:4px solid var(--dk-blue-line);}
+  .cmfam .f:nth-child(2),.cmfam .f:nth-child(3),.cmfam .f:nth-child(4){
+    border-top-color:var(--dk-blue-line);}
+  .cmfam .f:nth-child(1){background:var(--dk-blue-pale);
+    border-color:rgba(39,102,232,.28);border-top-color:var(--dk-blue);}
+  .cmfam .f:nth-child(2){background:var(--dk-amber-pale);
+    border-color:rgba(255,118,0,.30);border-top-color:#FF7600;}
+  .cmfam .f:hover{box-shadow:0 12px 40px rgba(20,28,44,.15);}
+  .cmfam .x{border-top-color:rgba(20,28,44,.12);}
+
+  /* The six configuration rows on the home page, the deck's grey field with
+     one pale blue in it. Inputs is the one tinted, and the reason is in the
+     copy: the other five rows describe the plant, and this one names the
+     historian, the laboratory, the ERP, the weighbridge and how often each
+     arrives. Nothing configured in the five above it stays true without it. */
+  .cmrows .r{background:#F3F4F6;border-color:var(--dk-grey-line);}
+  .cmrows .r.tint{background:var(--dk-blue-pale);border-color:rgba(39,102,232,.28);}
+
+  /* The eight practical detail cards on the events page, same field, same rule.
+     Entry is the tinted one: seven of the eight tell a guest what the evening
+     is, and that one tells them whether they can come through the door. */
+  .cmpd .p{background:#F3F4F6;border-color:var(--dk-grey-line);}
+  .cmpd .p.tint{background:var(--dk-blue-pale);border-color:rgba(39,102,232,.28);}
+
+  /* The capability map's three module columns already ran one tinted card, in
+     gold. The content reason was right and only the hue changes: Core is the
+     shared layer either side of which Horizon and Pulse sit. */
+  .cmmod{background:#fff;border-color:var(--dk-grey-line);}
+  .cmmod.core{background:var(--dk-blue-pale);border-color:rgba(39,102,232,.28);}
+  .cmmod li{border-top-color:var(--dk-blue-line);}
+
+  /* ---- 2. a sequence whose last step changes colour ---- */
+  /* Deck slides 12 and 17 number 01, 02, 03 in #2766E8 and 04 in #FF7600. The
+     microsite has four real sequences and each one gets it: the eight context
+     workflows in two groups of four, the six stops on a capability run, the six
+     stations under that run, and the numbered steps on two sector pages. The
+     orange is the deck's own accent2, which is the site orange, so the end of a
+     sequence is the one place the two palettes land on the same note. */
+  .cmfl .n{background:var(--dk-blue-pale);border-color:var(--dk-blue);
+    color:var(--dk-blue-deep);}
+  .cmfl .g .w:last-child .n{background:var(--dk-amber-pale);border-color:#FF7600;
+    color:#B24E00;}
+  .cmfl>h3{color:var(--dk-blue-deep);}
+  .cmfl>h3 b{background:#fff;}
+  .cmfl .mods span{color:var(--dk-blue-deep);}
+
+  .cmrail{background:linear-gradient(140deg,#1B2740,#101827);}
+  .cmrail .n{background:var(--dk-navy-2);border-color:rgba(90,146,243,.55);color:#8EC5FF;}
+  .cmrail .track a:last-child .n{border-color:#FF7600;color:#FFC98A;}
+  .cmrail .track::before{background:rgba(90,146,243,.42);}
+  .cmrail a:hover .n,.cmrail a:focus-visible .n{background:#8EC5FF;
+    border-color:#8EC5FF;color:#101827;}
+  .cmrail a:hover .l,.cmrail a:focus-visible .l{color:#8EC5FF;}
+
+  .cmst .n{background:linear-gradient(135deg,var(--dk-blue),var(--dk-blue-deep));}
+  .cmsts .cmst:last-child .n{background:linear-gradient(135deg,#FF7600,#C45213);}
+  .cmst .d{color:var(--dk-blue-deep);}
+  .cmst{border-top-color:rgba(204,153,0,.30);}
+
+  .step::before{background:linear-gradient(135deg,var(--dk-blue),var(--dk-blue-deep));}
+  .steps .step:last-child::before{background:linear-gradient(135deg,#FF7600,#C45213);}
+
+  /* three numbered pressure cards on the context page, same rule */
+  .cmpr .n{background:var(--dk-blue);}
+  .cmpr .p:last-child .n{background:#FF7600;}
+  .cmpr .mods span{color:var(--dk-blue-deep);}
+  .cmpr .p-top p,.cmpr dd{color:var(--text-muted);}
+
+  /* ---- 3. the dark navy bar that carries the takeaway ---- */
+  /* The deck drops a #17233A or #111827 bar across the full width of a slide
+     and puts the one line it wants remembered on it. Two things on this
+     microsite are exactly that: the closing call on every page, and the
+     callout that states what the whole decision flow comes down to. Both were
+     pale gold panels, which is how a takeaway looks when it is the same weight
+     as the body around it. The gold hairline on the top edge is the deck's
+     own rule, here marking the bar rather than a title. */
+  .cta-band{background:var(--dk-navy);border-top:2px solid var(--gold);
+    border-bottom:1px solid rgba(20,28,44,.5);}
+  .cta-band h2{color:#fff;}
+  .cta-band p{color:#CED8E7;}
+  .cta-band .btn-ghost{background:transparent;color:#fff;
+    border-color:rgba(255,255,255,.55);}
+  .cta-band .btn-ghost:hover{background:#fff;color:var(--dk-navy);}
+
+  .callout{background:var(--dk-navy-2);border:1px solid rgba(90,146,243,.32);
+    border-top:2px solid var(--gold);}
+  .callout h3{color:#fff;}
+  .callout p{color:#CED8E7;}
+
+  /* ---- 4. the thin gold hairline under a title ---- */
+  /* Deck pattern, unchanged in hue: #E0B321 is the site gold. A block pseudo
+     element sits at the inline start on its own, so Arabic needs no rule. */
+  .cmhero h1::after,.section-heading::after{content:"";display:block;width:74px;
+    height:2px;margin-top:16px;background:var(--gold);}
+  .cta-band h2::after,.callout h3::after{content:none;}
+
+  /* ---- 5. green and red, as the deck uses them: status, and almost never ---- */
+  /* The deck spends #169B62 sixteen times and #D83A45 three times across
+     seventeen slides, both as status. There is exactly one piece of status
+     content on this microsite in each direction, so each colour is used once.
+     Green marks the outcome field of a workflow, the line that says what
+     changes once the work runs. Red marks the scenario block at the foot of a
+     pressure card, the only place on the microsite that states what goes
+     wrong. Neither colour appears anywhere else, and neither carries body
+     copy: they carry a label over an unsaturated tint. */
+  .cmwf .w dt:nth-of-type(4){color:var(--dk-green);}
+  .cmpr .p-end{background:var(--dk-red-pale);border-top-color:rgba(178,45,56,.22);}
+  .cmpr .p-end .k{color:var(--dk-red);}
+  .cmpr .p-end p{color:var(--navy);}
+
+  /* ---- 6. the rest of the furniture, so the blue is the system and not a
+     stripe on two components ---- */
+  .cmnav{border-bottom-color:rgba(39,102,232,.18);box-shadow:0 1px 20px rgba(20,28,44,.07);}
+  .cmlinks a:hover,.cmlinks a.active{color:var(--dk-blue-deep);}
+  .cmlang{border-inline-color:rgba(39,102,232,.22);}
+  .cmlang .on{color:var(--dk-blue-deep);}
+  .cmfoot{border-top-color:var(--dk-blue);}
+  .cmfoot-links a:hover{color:var(--dk-blue-deep);}
+  .cmtier-n{color:var(--dk-blue-deep);}
+  .cmchips li{background:#fff;border-color:var(--dk-blue-line);}
+  .cmsx .s .go{color:var(--dk-blue-deep);}
+  .cmsx .s li,.cmmod li{border-top-color:var(--dk-blue-line);}
+  .cmwf .w dt{color:var(--dk-blue-deep);}
+  .cmtbl th{background:var(--dk-blue-pale);color:var(--dk-blue-deep);
+    border-bottom-color:rgba(39,102,232,.26);}
+  .cmtbl tr:hover td{background:rgba(234,242,251,.75);}
+  .cmag-t{background:rgba(234,242,251,.72);color:var(--dk-blue-deep);}
+  .cmag-k{color:var(--dk-blue-deep);border-color:rgba(39,102,232,.40);}
+  .cmag-b li::before{background:var(--dk-blue);}
+  .cmmeta span::before{background:var(--dk-blue);}
+  .cmev.feat{background:var(--dk-blue-pale);border-color:rgba(39,102,232,.28);}
+  .cmbadge{background:var(--dk-navy);color:#8EC5FF;}
+  .cmses-d{background:linear-gradient(150deg,var(--dk-blue),var(--dk-blue-deep));}
+  .cmpast li{background:#fff;border-color:var(--dk-grey-line);}
+  /* the panel's corner glow was a gold and orange bloom. Kept at the same
+     weight it had, re-pitched onto the deck blue, because a warm bloom on a
+     panel whose hairline is now blue grey read as a leftover. */
+  .split2-panel::after{background:radial-gradient(ellipse,rgba(39,102,232,.10) 0%,
+    rgba(39,102,232,.04) 45%,transparent 70%);}
 </style>
 <script>
 (function(){
@@ -1402,7 +1579,7 @@
     <div class="section-tag">التهيئة</div>
     <h2 class="section-heading">هيّئ TwoSuns وفق مصنعك</h2>
     <p class="section-sub">المصانع التي تتشابه أفرانها قد تحتاج قرارات مختلفة في اليوم نفسه. يُشكّل كل تطبيق حول أساس المصنع نفسه، وبيئته التشغيلية، ومستخدميه، ومناطقه، ومدخلاته، وتكاملاته، والقيمة المتوقعة، ويُهيّأ مع مسؤولي العمليات والجودة والنشاط التجاري قبل أن تنتج المنصة أي توصية.</p>
-    <div class="cmrows two"><div class="r"><b>المصنع والخطوط</b>خطوط الأفران والطواحين وماكينات التعبئة والصوامع، مع حدود تشغيلها</div><div class="r"><b>المواد الخام والوقود</b>كيمياء المحجر والمواد المصححة، والوقود بقيمته الحرارية ونسب الكبريت والكلور والرماد</div><div class="r"><b>المواصفات والتراخيص</b>رتب الأسمنت المنتجة، وتراخيص المداخن، وتراخيص الوقود، وتقارير التصدير والكربون</div><div class="r"><b>التنظيم والموافقات</b>الأدوار والتسلسل الإداري وسلاسل الموافقات ومستويات الصلاحية</div><div class="r"><b>الأسواق</b>المناطق والقنوات والعملاء وجهات التصدير</div><div class="r"><b>المدخلات</b>قاعدة البيانات التاريخية والمختبر ونظام ERP وميزان القبّان والمسوحات، ومعدل ورود كل منها</div></div>
+    <div class="cmrows two"><div class="r"><b>المصنع والخطوط</b>خطوط الأفران والطواحين وماكينات التعبئة والصوامع، مع حدود تشغيلها</div><div class="r"><b>المواد الخام والوقود</b>كيمياء المحجر والمواد المصححة، والوقود بقيمته الحرارية ونسب الكبريت والكلور والرماد</div><div class="r"><b>المواصفات والتراخيص</b>رتب الأسمنت المنتجة، وتراخيص المداخن، وتراخيص الوقود، وتقارير التصدير والكربون</div><div class="r"><b>التنظيم والموافقات</b>الأدوار والتسلسل الإداري وسلاسل الموافقات ومستويات الصلاحية</div><div class="r"><b>الأسواق</b>المناطق والقنوات والعملاء وجهات التصدير</div><div class="r tint"><b>المدخلات</b>قاعدة البيانات التاريخية والمختبر ونظام ERP وميزان القبّان والمسوحات، ومعدل ورود كل منها</div></div>
    </div>
   </div>
 </section>

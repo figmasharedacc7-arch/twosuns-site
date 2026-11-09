@@ -638,6 +638,210 @@ RTL_CSS = r"""
   html[dir="rtl"] .cmev h3{line-height:1.4;}
 """
 
+# =========================================================== VARIANT A, EXPERIMENT
+# The Yanbu TwoSuns September 22 deck palette, brought onto the cement microsite.
+# This is an experiment the owner asked to see, not a shipped decision. The site
+# wide ban on blue, green and red is suspended HERE ONLY, on purpose, because the
+# request was to see the deck's colours on the microsite.
+#
+# What the deck actually shares with the site already: its accent2 #FF7600 is the
+# site orange, and its accent3 #E0B321 is the site gold. What it adds is a blue
+# family around #2766E8, a navy #141C2C it drops takeaway bars onto, a cool body
+# grey, and green and red used perhaps twenty times in seventeen slides as status.
+#
+# THE GROUND. The deck's page wash is #F4F8FE, a very pale blue. The cream ground
+# SURVIVES here and the reason is structural, not sentimental. Take the home page:
+# of its five content sections, one is a plain ground, one is .band-warm, two are
+# photograph bands under a cream wash, and the last is the closing bar. Only ONE
+# section on that page is painted by --bg. Swapping --bg to the deck wash would
+# recolour that single section and leave the warm bands untouched beside it, which
+# is a patchwork, and recolouring the bands is both out of scope here and wrong for
+# photography that was graded warm on purpose. So the ground, the hero washes and
+# the band washes are all left exactly as they are, and the deck's colour arrives
+# on the furniture instead: cards, numbers, rails, rules, labels and bars. That is
+# also how the deck itself carries blue. Its pale wash is the quietest thing in the
+# file; the blue you actually see is #2766E8 on cards and numerals.
+#
+# Loaded after CEM_CSS and RTL_CSS, so on equal specificity these rules win.
+VAR_A_CSS = r"""
+  :root{
+    /* the deck, measured. A name beginning dk is a deck colour. */
+    --dk-blue:#2766E8;        /* accent1, the structural accent */
+    --dk-blue-deep:#1B4FC4;   /* accent1 darkened, so type on a pale tint clears 4.5 */
+    --dk-blue-lit:#5A92F3;    /* accent6, for type and hairlines on navy */
+    --dk-blue-pale:#EAF2FB;   /* the tint that singles one card out */
+    --dk-blue-line:#CED8E7;   /* the deck card hairline */
+    --dk-navy:#141C2C;        /* the full width takeaway bar */
+    --dk-navy-2:#101827;      /* dk2, the rail */
+    --dk-grey-line:#E4E7EC;
+    --dk-amber-pale:#FFF5E8;  /* the second tint on deck slide 4 */
+    --dk-green:#0F7A4D;       /* accent4 darkened, so a label clears 4.5 on white */
+    --dk-red:#B22D38;         /* accent5 darkened, same reason */
+    --dk-red-pale:#FDF0F1;
+
+    /* the site tokens the deck repoints. Everything the deck and the site
+       already share, the orange and the gold, is left alone. */
+    --navy:#141C2C; --ink:#111827;
+    --text:#31415D; --text-muted:#5B6472;
+    --border:#CED8E7; --border-soft:#E4E7EC;
+    --shadow:0 4px 24px rgba(20,28,44,0.08),0 1px 4px rgba(0,0,0,0.06);
+    --shadow-lg:0 18px 48px rgba(20,28,44,0.14);
+  }
+
+  /* ---- 1. a neutral card field with one card singled out by a tint ---- */
+  /* Deck slide 4 runs six cards, four white, one pale orange, one pale green.
+     Slides 8, 10 and 14 run a grey field with exactly one pale blue. Both are
+     the same move: colour marks one thing out of many, it does not decorate
+     all of them. The four cards the home page runs are the platform families,
+     and they are not four of a kind. Core is the layer the other three attach
+     to, so it takes the deck's pale blue. Ray is the only one that is not a
+     domain at all but an assistant across all of them, so it takes the deck's
+     pale orange. Horizon and Pulse are the two domain families and stay white.
+     The four different coloured top borders this grid used to run were the
+     rainbow the deck avoids, so they go to one hairline and the tint carries
+     the difference. */
+  .cmfam .f{background:#fff;border:1px solid var(--dk-blue-line);
+    border-top:4px solid var(--dk-blue-line);}
+  .cmfam .f:nth-child(2),.cmfam .f:nth-child(3),.cmfam .f:nth-child(4){
+    border-top-color:var(--dk-blue-line);}
+  .cmfam .f:nth-child(1){background:var(--dk-blue-pale);
+    border-color:rgba(39,102,232,.28);border-top-color:var(--dk-blue);}
+  .cmfam .f:nth-child(2){background:var(--dk-amber-pale);
+    border-color:rgba(255,118,0,.30);border-top-color:#FF7600;}
+  .cmfam .f:hover{box-shadow:0 12px 40px rgba(20,28,44,.15);}
+  .cmfam .x{border-top-color:rgba(20,28,44,.12);}
+
+  /* The six configuration rows on the home page, the deck's grey field with
+     one pale blue in it. Inputs is the one tinted, and the reason is in the
+     copy: the other five rows describe the plant, and this one names the
+     historian, the laboratory, the ERP, the weighbridge and how often each
+     arrives. Nothing configured in the five above it stays true without it. */
+  .cmrows .r{background:#F3F4F6;border-color:var(--dk-grey-line);}
+  .cmrows .r.tint{background:var(--dk-blue-pale);border-color:rgba(39,102,232,.28);}
+
+  /* The eight practical detail cards on the events page, same field, same rule.
+     Entry is the tinted one: seven of the eight tell a guest what the evening
+     is, and that one tells them whether they can come through the door. */
+  .cmpd .p{background:#F3F4F6;border-color:var(--dk-grey-line);}
+  .cmpd .p.tint{background:var(--dk-blue-pale);border-color:rgba(39,102,232,.28);}
+
+  /* The capability map's three module columns already ran one tinted card, in
+     gold. The content reason was right and only the hue changes: Core is the
+     shared layer either side of which Horizon and Pulse sit. */
+  .cmmod{background:#fff;border-color:var(--dk-grey-line);}
+  .cmmod.core{background:var(--dk-blue-pale);border-color:rgba(39,102,232,.28);}
+  .cmmod li{border-top-color:var(--dk-blue-line);}
+
+  /* ---- 2. a sequence whose last step changes colour ---- */
+  /* Deck slides 12 and 17 number 01, 02, 03 in #2766E8 and 04 in #FF7600. The
+     microsite has four real sequences and each one gets it: the eight context
+     workflows in two groups of four, the six stops on a capability run, the six
+     stations under that run, and the numbered steps on two sector pages. The
+     orange is the deck's own accent2, which is the site orange, so the end of a
+     sequence is the one place the two palettes land on the same note. */
+  .cmfl .n{background:var(--dk-blue-pale);border-color:var(--dk-blue);
+    color:var(--dk-blue-deep);}
+  .cmfl .g .w:last-child .n{background:var(--dk-amber-pale);border-color:#FF7600;
+    color:#B24E00;}
+  .cmfl>h3{color:var(--dk-blue-deep);}
+  .cmfl>h3 b{background:#fff;}
+  .cmfl .mods span{color:var(--dk-blue-deep);}
+
+  .cmrail{background:linear-gradient(140deg,#1B2740,#101827);}
+  .cmrail .n{background:var(--dk-navy-2);border-color:rgba(90,146,243,.55);color:#8EC5FF;}
+  .cmrail .track a:last-child .n{border-color:#FF7600;color:#FFC98A;}
+  .cmrail .track::before{background:rgba(90,146,243,.42);}
+  .cmrail a:hover .n,.cmrail a:focus-visible .n{background:#8EC5FF;
+    border-color:#8EC5FF;color:#101827;}
+  .cmrail a:hover .l,.cmrail a:focus-visible .l{color:#8EC5FF;}
+
+  .cmst .n{background:linear-gradient(135deg,var(--dk-blue),var(--dk-blue-deep));}
+  .cmsts .cmst:last-child .n{background:linear-gradient(135deg,#FF7600,#C45213);}
+  .cmst .d{color:var(--dk-blue-deep);}
+  .cmst{border-top-color:rgba(204,153,0,.30);}
+
+  .step::before{background:linear-gradient(135deg,var(--dk-blue),var(--dk-blue-deep));}
+  .steps .step:last-child::before{background:linear-gradient(135deg,#FF7600,#C45213);}
+
+  /* three numbered pressure cards on the context page, same rule */
+  .cmpr .n{background:var(--dk-blue);}
+  .cmpr .p:last-child .n{background:#FF7600;}
+  .cmpr .mods span{color:var(--dk-blue-deep);}
+  .cmpr .p-top p,.cmpr dd{color:var(--text-muted);}
+
+  /* ---- 3. the dark navy bar that carries the takeaway ---- */
+  /* The deck drops a #17233A or #111827 bar across the full width of a slide
+     and puts the one line it wants remembered on it. Two things on this
+     microsite are exactly that: the closing call on every page, and the
+     callout that states what the whole decision flow comes down to. Both were
+     pale gold panels, which is how a takeaway looks when it is the same weight
+     as the body around it. The gold hairline on the top edge is the deck's
+     own rule, here marking the bar rather than a title. */
+  .cta-band{background:var(--dk-navy);border-top:2px solid var(--gold);
+    border-bottom:1px solid rgba(20,28,44,.5);}
+  .cta-band h2{color:#fff;}
+  .cta-band p{color:#CED8E7;}
+  .cta-band .btn-ghost{background:transparent;color:#fff;
+    border-color:rgba(255,255,255,.55);}
+  .cta-band .btn-ghost:hover{background:#fff;color:var(--dk-navy);}
+
+  .callout{background:var(--dk-navy-2);border:1px solid rgba(90,146,243,.32);
+    border-top:2px solid var(--gold);}
+  .callout h3{color:#fff;}
+  .callout p{color:#CED8E7;}
+
+  /* ---- 4. the thin gold hairline under a title ---- */
+  /* Deck pattern, unchanged in hue: #E0B321 is the site gold. A block pseudo
+     element sits at the inline start on its own, so Arabic needs no rule. */
+  .cmhero h1::after,.section-heading::after{content:"";display:block;width:74px;
+    height:2px;margin-top:16px;background:var(--gold);}
+  .cta-band h2::after,.callout h3::after{content:none;}
+
+  /* ---- 5. green and red, as the deck uses them: status, and almost never ---- */
+  /* The deck spends #169B62 sixteen times and #D83A45 three times across
+     seventeen slides, both as status. There is exactly one piece of status
+     content on this microsite in each direction, so each colour is used once.
+     Green marks the outcome field of a workflow, the line that says what
+     changes once the work runs. Red marks the scenario block at the foot of a
+     pressure card, the only place on the microsite that states what goes
+     wrong. Neither colour appears anywhere else, and neither carries body
+     copy: they carry a label over an unsaturated tint. */
+  .cmwf .w dt:nth-of-type(4){color:var(--dk-green);}
+  .cmpr .p-end{background:var(--dk-red-pale);border-top-color:rgba(178,45,56,.22);}
+  .cmpr .p-end .k{color:var(--dk-red);}
+  .cmpr .p-end p{color:var(--navy);}
+
+  /* ---- 6. the rest of the furniture, so the blue is the system and not a
+     stripe on two components ---- */
+  .cmnav{border-bottom-color:rgba(39,102,232,.18);box-shadow:0 1px 20px rgba(20,28,44,.07);}
+  .cmlinks a:hover,.cmlinks a.active{color:var(--dk-blue-deep);}
+  .cmlang{border-inline-color:rgba(39,102,232,.22);}
+  .cmlang .on{color:var(--dk-blue-deep);}
+  .cmfoot{border-top-color:var(--dk-blue);}
+  .cmfoot-links a:hover{color:var(--dk-blue-deep);}
+  .cmtier-n{color:var(--dk-blue-deep);}
+  .cmchips li{background:#fff;border-color:var(--dk-blue-line);}
+  .cmsx .s .go{color:var(--dk-blue-deep);}
+  .cmsx .s li,.cmmod li{border-top-color:var(--dk-blue-line);}
+  .cmwf .w dt{color:var(--dk-blue-deep);}
+  .cmtbl th{background:var(--dk-blue-pale);color:var(--dk-blue-deep);
+    border-bottom-color:rgba(39,102,232,.26);}
+  .cmtbl tr:hover td{background:rgba(234,242,251,.75);}
+  .cmag-t{background:rgba(234,242,251,.72);color:var(--dk-blue-deep);}
+  .cmag-k{color:var(--dk-blue-deep);border-color:rgba(39,102,232,.40);}
+  .cmag-b li::before{background:var(--dk-blue);}
+  .cmmeta span::before{background:var(--dk-blue);}
+  .cmev.feat{background:var(--dk-blue-pale);border-color:rgba(39,102,232,.28);}
+  .cmbadge{background:var(--dk-navy);color:#8EC5FF;}
+  .cmses-d{background:linear-gradient(150deg,var(--dk-blue),var(--dk-blue-deep));}
+  .cmpast li{background:#fff;border-color:var(--dk-grey-line);}
+  /* the panel's corner glow was a gold and orange bloom. Kept at the same
+     weight it had, re-pitched onto the deck blue, because a warm bloom on a
+     panel whose hairline is now blue grey read as a leftover. */
+  .split2-panel::after{background:radial-gradient(ellipse,rgba(39,102,232,.10) 0%,
+    rgba(39,102,232,.04) 45%,transparent 70%);}
+"""
+
 
 def head(d, title, desc, page, extra_css=""):
     """Page head. Arabic sits one level deeper, so canonical and alternates differ.
@@ -673,7 +877,7 @@ def head(d, title, desc, page, extra_css=""):
 <meta name="twitter:description" content="{esc_d}">
 <meta name="twitter:image" content="{SITE}/og-twosuns.jpg">
 <link rel="icon" type="image/svg+xml" href="/logo-mini.svg">
-<style>{theme.CSS}{theme.REVEAL_CSS}{arch.CSS}{process.CSS}{CEM_CSS}{RTL_CSS}{extra_css}</style>
+<style>{theme.CSS}{theme.REVEAL_CSS}{arch.CSS}{process.CSS}{CEM_CSS}{RTL_CSS}{VAR_A_CSS}{extra_css}</style>
 {theme.REVEAL_HEAD}
 {theme.LEADLANDER}
 </head>
@@ -855,8 +1059,12 @@ def cta_band(heading, para, acts):
 """ % (e(heading), e(para), acts)
 
 
-def rows(items, two=False):
-    cells = "".join('<div class="r"><b>%s</b>%s</div>' % (e(k), e(v)) for k, v in items)
+def rows(items, two=False, tint=()):
+    """tint names the 1 based positions that carry the deck's pale blue, the one
+    card singled out of a neutral field. Colour only, the copy is untouched."""
+    cells = "".join('<div class="r%s"><b>%s</b>%s</div>'
+                    % (" tint" if i in tint else "", e(k), e(v))
+                    for i, (k, v) in enumerate(items, 1))
     return '<div class="cmrows%s">%s</div>' % (" two" if two else "", cells)
 
 
@@ -933,7 +1141,7 @@ def build_home(d):
     # optional: .imgsec .cmrows.two is the only rows form the CSS narrows inside
     # a band, so plain rows() would be stranded at three columns of 207px in a
     # 682px column. This is the pairing the four industry pages already run.
-    s += sec(rows(d["cfg_rows"], two=True), tag=d["cfg_tag"], h=d["cfg_h"],
+    s += sec(rows(d["cfg_rows"], two=True, tint=(6,)), tag=d["cfg_tag"], h=d["cfg_h"],
              p=d["cfg_p"], **band("cfg_kiln"))
 
     s += cta_band(d["home_close_h"], d["home_close_p"],
@@ -1102,8 +1310,11 @@ def build_events(d):
     eve = agenda(d["eve_rows"])
     ag = agenda(d["ag_rows"])
 
-    pd = "".join('<div class="p"><div class="k">%s</div><div class="v">%s</div></div>'
-                 % (e(k), e(v)) for k, v in d["pd_rows"])
+    # position 5 is Entry, the one of the eight that governs whether a guest
+    # gets through the door, so it is the card the deck's tint singles out.
+    pd = "".join('<div class="p%s"><div class="k">%s</div><div class="v">%s</div></div>'
+                 % (" tint" if i == 5 else "", e(k), e(v))
+                 for i, (k, v) in enumerate(d["pd_rows"], 1))
 
     if AGENDA_PUBLIC:
         programme = ("""<h3 class="sub-heading" style="margin-top:38px;font-size:22px;">%s</h3>
