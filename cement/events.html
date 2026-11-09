@@ -1491,6 +1491,28 @@
      variant already turned blue, so that one does take the tint. */
   .cmunits{background:#F3F4F6;border-color:var(--dk-grey-line);color:var(--text-muted);}
   .cmtier-a{background:var(--dk-blue-pale);color:var(--dk-blue-deep);}
+
+  /* ---- 7. the framed pictures ---- */
+  /* The station pictures and the home page works figure. These were graded warm
+     on purpose and they now sit in a cool system, so an edge alone would have
+     drawn a line around the mismatch rather than settled it. The frame and the
+     picture carry the same gradient instead: a 2px border running #2766E8 into
+     #1B4FC4, and a veil that starts blue at the top and washes back to the
+     warm one it already had by the time it reaches the bottom. One hue, so the
+     eye reads a frame rather than a second accent arguing with the orange
+     ordinal sitting on top of it.
+     The border is transparent and the colour arrives as a background, because
+     border-image ignores border-radius and these boxes are 16px rounded. The
+     padding box keeps var(--gold-soft), which is what shows while the picture
+     loads, so nothing changes before the image arrives. The img is positioned
+     against the padding box, so the border sits outside it and the picture is
+     not covered. */
+  .cmst .ph,.cmfig{border:2px solid transparent;
+    background:linear-gradient(var(--gold-soft),var(--gold-soft)) padding-box,
+               linear-gradient(135deg,#2766E8,#1B4FC4) border-box;}
+  .cmst .ph::after,.cmfig::after{
+    background:linear-gradient(180deg,rgba(39,102,232,.26) 0%,rgba(39,102,232,.08) 42%,
+      rgba(255,246,226,.14) 100%);}
   .cmev.feat{background:var(--dk-blue-pale);border-color:rgba(39,102,232,.28);}
   .cmbadge{background:var(--dk-navy);color:#8EC5FF;}
   .cmses-d{background:linear-gradient(150deg,var(--dk-blue),var(--dk-blue-deep));}
