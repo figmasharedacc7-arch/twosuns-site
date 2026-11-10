@@ -254,10 +254,15 @@ EN = {
             "November.",
  'ev_cta1': 'Arrange a Meeting',
  'ev_cta2': 'Discuss Your Needs',
- 'ev_up_tag': 'Where to find us',
- 'ev_up_h': 'Upcoming events',
- 'ev_up_p': "Message the team to arrange a meeting at either event, or use the Discuss Your "
-             "Needs form.",
+ # The two events are not the same kind of thing, so the page says which is
+ # which twice, once in the section label and once on the card itself,
+ # because a visitor who lands mid page sees only the card.
+ 'ev_up_tag': 'Conference',
+ 'ev_up_h': 'At AICCE29, open to delegates',
+ 'ev_up_p': "The conference is open to anyone registered with AUCBM. The team is there all "
+             "three days, Aiman El-Ramly speaks on 24 November, and you can arrange a meeting "
+             "around either.",
+ 'ev1_badge': 'Open to delegates',
  'ev1_when': '23 to 25 November 2026',
  'ev1_where': 'Heliopolis Congress Complex, Waldorf Astoria and Hilton Heliopolis Hotels, Cairo',
  'ev1_h': "AICCE29: 29th Arab International Cement and Building Materials Conference and "
@@ -276,6 +281,11 @@ EN = {
  'ses_when': 'Tuesday, 24 November 2026',
  'ses_time': '13:30 to 13:45',
  'ses_place': 'Heliopolis Congress Complex, Cairo',
+ 'ev_inv_tag': 'Private event',
+ 'ev_inv_h': 'A separate evening, by invitation',
+ 'ev_inv_p': "This one is not part of the conference programme and it is not open to delegates. "
+              "TwoSuns hosts it on 25 November, entry is by invitation and registration, and "
+              "places are limited.",
  'ev2_badge': 'By invitation only',
  'ev2_h': 'Transforming the Cement Industry',
  'ev2_kicker': 'An industry evening with TwoSuns',
@@ -1355,9 +1365,11 @@ AR = {
             "أيمن الرملي يوم 24 نوفمبر، ويستضيف تحوّل صناعة الأسمنت، وهي أمسية بالدعوة فقط لقادة الأسمنت، يوم 25 نوفمبر.",
  'ev_cta1': 'رتّب لقاءً',
  'ev_cta2': 'ناقش احتياجاتك',
- 'ev_up_tag': 'أين تجدنا',
- 'ev_up_h': 'الفعاليات القادمة',
- 'ev_up_p': 'راسل الفريق لترتيب لقاء في أي من الفعاليتين، أو استخدم نموذج ناقش احتياجاتك.',
+ 'ev_up_tag': 'المؤتمر',
+ 'ev_up_h': 'في AICCE29، مفتوح للمشاركين',
+ 'ev_up_p': 'المؤتمر مفتوح لكل من سجّل لدى الاتحاد العربي للأسمنت ومواد البناء. الفريق حاضر '
+             'الأيام الثلاثة كلها، ويتحدث أيمن الرملي يوم 24 نوفمبر، ويمكن ترتيب لقاء حول أي منهما.',
+ 'ev1_badge': 'مفتوح للمشاركين',
  'ev1_when': '23 إلى 25 نوفمبر 2026',
  'ev1_where': 'مجمع مؤتمرات مصر الجديدة، وفندقا والدورف أستوريا وهيلتون مصر الجديدة، القاهرة',
  'ev1_h': 'AICCE29: المؤتمر والمعرض العربي الدولي التاسع والعشرون للأسمنت ومواد البناء',
@@ -1375,6 +1387,10 @@ AR = {
  'ses_when': 'الثلاثاء 24 نوفمبر 2026',
  'ses_time': '13:30 إلى 13:45',
  'ses_place': 'مجمع مؤتمرات مصر الجديدة، القاهرة',
+ 'ev_inv_tag': 'فعالية خاصة',
+ 'ev_inv_h': 'أمسية منفصلة، بالدعوة',
+ 'ev_inv_p': 'هذه الأمسية ليست جزءًا من برنامج المؤتمر وليست مفتوحة للمشاركين فيه. '
+              'تستضيفها TwoSuns يوم 25 نوفمبر، والدخول بالدعوة والتسجيل، والمقاعد محدودة.',
  'ev2_badge': 'بالدعوة فقط',
  'ev2_h': 'تحوّل صناعة الأسمنت',
  'ev2_kicker': 'أمسية لقطاع الأسمنت مع TwoSuns',

@@ -1519,8 +1519,55 @@
      undone. The gradient frame stays and now does the whole job of joining the
      picture to the page. */
   .cmst .ph::after,.cmfig::after{background:none;}
-  .cmev.feat{background:var(--dk-blue-pale);border-color:rgba(39,102,232,.28);}
+  /* ---- 8. the two event cards ---- */
+  /* The page has to answer "is this one for me" from across the room. The
+     conference card is the open one, so it stays light and gains a blue top
+     edge and a lift. The evening is the closed one and the one being sold, so
+     it goes to full deep blue with the gold badge on it. One light card, one
+     dark card, and the answer arrives before any of the words do. */
+  .cmev{position:relative;}
+  .cmev:not(.feat),.cmses{box-shadow:0 10px 30px rgba(20,28,44,.09);
+    transition:transform .2s ease,box-shadow .2s ease;}
+  .cmev:not(.feat):hover,.cmses:hover{transform:translateY(-3px);
+    box-shadow:0 16px 38px rgba(20,28,44,.15);}
+  .cmev::before{content:"";position:absolute;inset:-1px -1px auto;height:4px;
+    border-radius:20px 20px 0 0;}
+  .cmev:not(.feat)::before{background:linear-gradient(90deg,var(--dk-blue),var(--dk-blue-lit));}
+
+  .cmev.feat{border:0;padding:34px 36px;
+    /* The start is #2259D0, not the #2766E8 used elsewhere. Measured against
+       the lightest point of the gradient, #2766E8 left the 15px claim line at
+       3.80 to 1 and the body at 3.98, both under 4.5. #2259D0 is one step
+       deeper, reads the same blue, and takes the worst line to 4.62. */
+    background:linear-gradient(150deg,#2259D0 0%,#1B4FC4 46%,#16203A 100%);
+    box-shadow:0 20px 50px rgba(27,79,196,.34);}
+  .cmev.feat::before{background:linear-gradient(90deg,var(--gold),#F97316);}
+  .cmev.feat h3{color:#fff;font-size:clamp(22px,2.7vw,31px);}
+  /* .k is the kicker, .l the one line claim under it */
+  .cmev.feat .k{color:#FFE3A8;font-weight:800;margin-bottom:4px;}
+  .cmev.feat .l{color:#CFE0FF;margin-bottom:12px;}
+  .cmev.feat p{color:#D8E5FA;}
+  .cmev.feat .cmmeta{color:#CFE0FF;}
+  .cmev.feat .cmmeta span::before{background:var(--gold);}
+  .cmev.feat .cmnote{color:rgba(255,255,255,.86);}
+  .cmev.feat .cmbadge{background:var(--gold);color:#141C2C;}
+  .cmev.feat .btn-ghost{background:transparent;color:#fff;
+    border-color:rgba(255,255,255,.62);}
+  .cmev.feat .btn-ghost:hover{background:#fff;color:var(--dk-blue-deep);}
+  @media(max-width:760px){.cmev.feat{padding:26px 22px;}}
+  /* The programme panel sits directly under the evening card. Navy on
+     deep blue stacked two dark blocks in a row and the pair read as one
+     heavy mass, so this one steps back to a light panel and lets the
+     card keep the weight. */
+  .callout.cmsoon{background:#fff;border:1px solid var(--dk-grey-line);
+    border-top:2px solid var(--gold);padding:19px 26px;}
+  .callout.cmsoon h3{color:var(--dk-navy);}
   .cmbadge{background:var(--dk-navy);color:#8EC5FF;}
+  /* Filled navy for the closed door, outlined for the open one. The pair
+     has to separate at a glance and from across the page, so the
+     difference is weight rather than hue. */
+  .cmbadge.open{background:var(--dk-blue-pale);color:var(--dk-blue-deep);
+    box-shadow:inset 0 0 0 1px rgba(39,102,232,.34);}
   .cmses-d{background:linear-gradient(150deg,var(--dk-blue),var(--dk-blue-deep));}
   .cmpast li{background:#fff;border-color:var(--dk-grey-line);}
   /* the panel's corner glow was a gold and orange bloom. Kept at the same
@@ -1578,11 +1625,12 @@
 <div class="sun-divider"></div>
 <section>
   <div class="container">
-    <div class="section-tag">Where to find us</div>
-    <h2 class="section-heading">Upcoming events</h2>
-    <p class="section-sub">Message the team to arrange a meeting at either event, or use the Discuss Your Needs form.</p>
+    <div class="section-tag">Conference</div>
+    <h2 class="section-heading">At AICCE29, open to delegates</h2>
+    <p class="section-sub">The conference is open to anyone registered with AUCBM. The team is there all three days, Aiman El-Ramly speaks on 24 November, and you can arrange a meeting around either.</p>
 
     <div class="cmev">
+      <div class="cmbadge open">Open to delegates</div>
       <div class="cmev-when">23 to 25 November 2026 &middot; Heliopolis Congress Complex, Waldorf Astoria and Hilton Heliopolis Hotels, Cairo</div>
       <h3>AICCE29: 29th Arab International Cement and Building Materials Conference and Exhibition</h3>
       <p>Organized by the Arab Union for Cement and Building Materials (AUCBM). The TwoSuns team attends all three days and can meet during the conference.</p>
@@ -1603,11 +1651,15 @@
 </section>
 <section class="band-alt">
   <div class="container">
+    <div class="section-tag">Private event</div>
+    <h2 class="section-heading">A separate evening, by invitation</h2>
+    <p class="section-sub">This one is not part of the conference programme and it is not open to delegates. TwoSuns hosts it on 25 November, entry is by invitation and registration, and places are limited.</p>
+
     <div class="cmev feat">
       <div class="cmbadge">By invitation only</div>
       <h3>Transforming the Cement Industry</h3>
-      <p style="font-weight:700;color:var(--navy);">An industry evening with TwoSuns</p>
-      <p style="margin-bottom:12px;">AI, better decisions and measurable business value</p>
+      <p class="k">An industry evening with TwoSuns</p>
+      <p class="l">AI, better decisions and measurable business value</p>
       <div class="cmmeta"><span>Wednesday, 25 November 2026</span><span>16:00 to 23:00</span><span>Sky Executive Resort, New Cairo</span><span>Business attire</span></div>
       <p style="margin-top:16px;">An invitation-only evening for cement producers in Egypt. The programme includes short talks on AI, digital twins and research in heavy industry, a panel of cement leaders on operations and decision-making, and a live demonstration of the TwoSuns Platform across one cement value chain, from the quarry face to cash collected. Dinner and networking follow.</p>
       <div class="acts"><a class="btn-cta" href="https://twosuns.ai/discuss.html?ask=Register+Your+Place">Register Your Place</a> <a class="btn-ghost" href="https://twosuns.ai/discuss.html?ask=Request+an+Invitation">Request an Invitation</a></div>
@@ -1615,7 +1667,7 @@
       <p class="cmnote">Hosted by TwoSuns, in partnership with the Korayem Group, organized by ZECO</p>
     </div>
 
-    <div class="callout"><h3>Programme to be announced</h3></div>
+    <div class="callout cmsoon"><h3>Programme to be announced</h3></div>
 
     <h3 class="sub-heading" style="margin-top:38px;font-size:22px;">Practical details</h3>
     <div class="cmpd"><div class="p"><div class="k">Date</div><div class="v">Wednesday, 25 November 2026</div></div><div class="p"><div class="k">Time</div><div class="v">16:00 to 23:00</div></div><div class="p"><div class="k">Venue</div><div class="v">Sky Executive Resort, New Cairo</div></div><div class="p"><div class="k">Dress code</div><div class="v">Business attire</div></div><div class="p tint"><div class="k">Entry</div><div class="v">By invitation, registration required</div></div><div class="p"><div class="k">Getting there</div><div class="v">Directions come with your confirmation.</div></div><div class="p"><div class="k">Photography</div><div class="v">Photos and video will be taken during the evening.</div></div><div class="p"><div class="k">Questions</div><div class="v">info@twosuns.ai or WhatsApp +1 250 859 6563</div></div></div>
