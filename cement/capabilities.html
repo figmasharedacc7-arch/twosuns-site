@@ -1534,31 +1534,34 @@
     border-radius:20px 20px 0 0;}
   .cmev:not(.feat)::before{background:linear-gradient(90deg,var(--dk-blue),var(--dk-blue-lit));}
 
-  .cmev.feat{border:0;padding:34px 36px;
-    /* The start is #2259D0, not the #2766E8 used elsewhere. Measured against
-       the lightest point of the gradient, #2766E8 left the 15px claim line at
-       3.80 to 1 and the body at 3.98, both under 4.5. #2259D0 is one step
-       deeper, reads the same blue, and takes the worst line to 4.62. */
-    background:linear-gradient(150deg,#2259D0 0%,#1B4FC4 46%,#16203A 100%);
-    box-shadow:0 20px 50px rgba(27,79,196,.34);}
-  .cmev.feat::before{background:linear-gradient(90deg,var(--gold),#F97316);}
-  .cmev.feat h3{color:#fff;font-size:clamp(22px,2.7vw,31px);}
-  /* .k is the kicker, .l the one line claim under it */
-  .cmev.feat .k{color:#FFE3A8;font-weight:800;margin-bottom:4px;}
-  .cmev.feat .l{color:#CFE0FF;margin-bottom:12px;}
-  .cmev.feat p{color:#D8E5FA;}
-  .cmev.feat .cmmeta{color:#CFE0FF;}
-  .cmev.feat .cmmeta span::before{background:var(--gold);}
-  .cmev.feat .cmnote{color:rgba(255,255,255,.86);}
-  .cmev.feat .cmbadge{background:var(--gold);color:#141C2C;}
-  .cmev.feat .btn-ghost{background:transparent;color:#fff;
-    border-color:rgba(255,255,255,.62);}
-  .cmev.feat .btn-ghost:hover{background:#fff;color:var(--dk-blue-deep);}
+  /* The evening card is the warm one. The band behind it is cream at
+     #FFEFCE, so a pale gold card would sink into it and a white one would
+     be the conference card again. Apricot is the one light tone that is
+     still clearly a different block against that cream, and it keeps the
+     page inside the orange and gold the rest of the site runs on. */
+  .cmev.feat{border:1px solid rgba(154,62,12,.26);padding:34px 36px;
+    background:linear-gradient(150deg,#FFE7D3 0%,#FFD9BC 52%,#FFCBA3 100%);
+    box-shadow:0 18px 44px rgba(154,62,12,.20);}
+  .cmev.feat::before{background:linear-gradient(90deg,#9A3E0C,#F97316);}
+  .cmev.feat h3{color:var(--dk-navy);font-size:clamp(22px,2.7vw,31px);}
+  /* .k is the kicker, .l the one line claim under it. #9A3E0C rather than
+     the #C45213 used elsewhere: measured against #FFCBA3, the darkest point
+     of the wash, #C45213 reads 3.14 to 1 and #9A3E0C reads 5.16. */
+  .cmev.feat .k{color:#9A3E0C;font-weight:800;margin-bottom:4px;}
+  .cmev.feat .l{color:rgba(20,28,44,.76);margin-bottom:12px;}
+  .cmev.feat p{color:rgba(20,28,44,.84);}
+  .cmev.feat .cmmeta{color:rgba(20,28,44,.80);}
+  .cmev.feat .cmmeta span::before{background:#9A3E0C;}
+  .cmev.feat .cmnote{color:rgba(20,28,44,.74);}
+  .cmev.feat .cmbadge{background:#9A3E0C;color:#fff;}
+  .cmev.feat .btn-ghost{background:transparent;color:var(--dk-navy);
+    border-color:rgba(20,28,44,.40);}
+  .cmev.feat .btn-ghost:hover{background:var(--dk-navy);color:#fff;
+    border-color:var(--dk-navy);}
   @media(max-width:760px){.cmev.feat{padding:26px 22px;}}
-  /* The programme panel sits directly under the evening card. Navy on
-     deep blue stacked two dark blocks in a row and the pair read as one
-     heavy mass, so this one steps back to a light panel and lets the
-     card keep the weight. */
+  /* The programme panel sits directly under the evening card. White keeps
+     the apricot card the one coloured block in the section rather than
+     making a second one of the panel. */
   .callout.cmsoon{background:#fff;border:1px solid var(--dk-grey-line);
     border-top:2px solid var(--gold);padding:19px 26px;}
   .callout.cmsoon h3{color:var(--dk-navy);}
