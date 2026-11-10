@@ -21,6 +21,10 @@ OUT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)),
 SITE = "https://twosuns.ai"
 BASE = "/cement/"
 DISCUSS = "https://twosuns.ai/discuss.html"
+# registration for the evening, exactly as the printed invitation gives it
+EVENTBRITE = ("https://www.eventbrite.com/e/"
+              "ai-cement-presentation-reception-tickets-2004099361138"
+              "?aff=oddtdtcreator")
 
 
 def e(s):
@@ -45,9 +49,11 @@ def ask(label):
     return DISCUSS + "?ask=" + urllib.parse.quote_plus(en) + "&amp;lang=ar"
 
 
-def btn(label, href=None, ghost=False):
+def btn(label, href=None, ghost=False, new_tab=False):
     cls = "btn-ghost" if ghost else "btn-cta"
-    return '<a class="%s" href="%s">%s</a>' % (cls, href or ask(label), e(label))
+    out = ' target="_blank" rel="noopener"' if new_tab else ""
+    return ('<a class="%s" href="%s"%s>%s</a>'
+            % (cls, href or ask(label), out, e(label)))
 
 
 # --------------------------------------------------------------- microsite CSS
@@ -959,6 +965,14 @@ VAR_A_CSS = r"""
   .callout.cmsoon{background:#fff;border:1px solid var(--dk-grey-line);
     border-top:2px solid var(--gold);padding:19px 26px;}
   .callout.cmsoon h3{color:var(--dk-navy);}
+  /* The invitation is printed, so the anchor it carries has to clear the
+     sticky nav when a reader arrives on it rather than land under it. */
+  .cmanch{scroll-margin-top:96px;}
+  .cmanch:focus{outline:none;}
+  .cmpd-l{display:block;margin-top:7px;font-size:13px;font-weight:800;
+    color:var(--dk-blue);text-decoration:none;
+    border-bottom:1px solid rgba(39,102,232,.35);width:fit-content;}
+  .cmpd-l:hover{color:var(--dk-blue-deep);border-bottom-color:currentColor;}
   .cmbadge{background:var(--dk-navy);color:#8EC5FF;}
   /* Filled navy for the closed door, outlined for the open one. The pair
      has to separate at a glance and from across the page, so the
@@ -1445,28 +1459,43 @@ def build_events(d):
 
     # position 5 is Entry, the one of the eight that governs whether a guest
     # gets through the door, so it is the card the deck's tint singles out.
+    def pd_val(v):
+        """A value is a sentence, or a sentence with a link under it. The
+        invitation prints a map link for the venue, and Getting there is the
+        cell a reader is in when they want it."""
+        if isinstance(v, tuple):
+            text, label, href = v
+            return ('%s<a class="cmpd-l" href="%s" target="_blank" '
+                    'rel="noopener">%s</a>' % (e(text), href, e(label)))
+        return e(v)
+
     pd = "".join('<div class="p%s"><div class="k">%s</div><div class="v">%s</div></div>'
-                 % (" tint" if i == 5 else "", e(k), e(v))
+                 % (" tint" if i == 5 else "", e(k), pd_val(v))
                  for i, (k, v) in enumerate(d["pd_rows"], 1))
 
-    if AGENDA_PUBLIC:
-        programme = ("""<h3 class="sub-heading" style="margin-top:38px;font-size:22px;">%s</h3>
+    # The printed invitation sends readers to events.html#agenda, so the three
+    # blocks it carries are on the page whatever AGENDA_PUBLIC says, and the
+    # anchor lands on them. Only the detailed running order is held back.
+    programme = ("""<h3 class="sub-heading cmanch" id="agenda" tabindex="-1"
+        style="margin-top:38px;font-size:22px;">%s</h3>
     <div class="cmag">%s</div>
-    <p class="cmnote">%s</p>
+""" % (e(d["eve_h"]), eve))
+
+    if AGENDA_PUBLIC:
+        programme += ("""    <p class="cmnote">%s</p>
 
     <h3 class="sub-heading" style="margin-top:38px;font-size:22px;">%s</h3>
     <div class="cmag">%s</div>
     <p class="cmnote">%s</p>
 """
-                     % (e(d["eve_h"]), eve, e(d["eve_note"]),
-                        e(d["ag_h"]), ag, e(d["ag_note"])))
+                      % (e(d["eve_note"]), e(d["ag_h"]), ag, e(d["ag_note"])))
     else:
         # .callout is the gold panel the home page already uses, so holding the
-        # programme back needs no styling of its own. The line is the whole
-        # message, there is nothing to say about a programme that does not
-        # exist yet, so the panel carries the heading alone.
-        programme = ('<div class="callout cmsoon"><h3>%s</h3></div>\n'
-                     % e(d["ev_soon_h"]))
+        # running order back needs no styling of its own. The line is the whole
+        # message, there is nothing to say about a detail that does not exist
+        # yet, so the panel carries the heading alone.
+        programme += ('    <div class="callout cmsoon"><h3>%s</h3></div>\n'
+                      % e(d["ev_soon_h"]))
 
     # The evening is a different kind of event from the conference, so it gets
     # its own section head rather than sitting as one more card under the
@@ -1497,7 +1526,8 @@ def build_events(d):
 """ % (e(d["ev_inv_tag"]), e(d["ev_inv_h"]), e(d["ev_inv_p"]),
        e(d["ev2_badge"]), e(d["ev2_h"]), e(d["ev2_kicker"]), e(d["ev2_line"]),
        e(d["ev2_when"]), e(d["ev2_time"]), e(d["ev2_place"]), e(d["ev2_dress"]),
-       e(d["ev2_p"]), btn(d["ev2_cta1"]), btn(d["ev2_cta2"], ghost=True), e(d["ev2_note"]),
+       e(d["ev2_p"]), btn(d["ev2_cta1"], href=EVENTBRITE, new_tab=True),
+       btn(d["ev2_cta2"], ghost=True), e(d["ev2_note"]),
        e(d["ev2_cred"]),
        programme, e(d["pd_tag"]), pd)
 

@@ -1562,6 +1562,14 @@
   .callout.cmsoon{background:#fff;border:1px solid var(--dk-grey-line);
     border-top:2px solid var(--gold);padding:19px 26px;}
   .callout.cmsoon h3{color:var(--dk-navy);}
+  /* The invitation is printed, so the anchor it carries has to clear the
+     sticky nav when a reader arrives on it rather than land under it. */
+  .cmanch{scroll-margin-top:96px;}
+  .cmanch:focus{outline:none;}
+  .cmpd-l{display:block;margin-top:7px;font-size:13px;font-weight:800;
+    color:var(--dk-blue);text-decoration:none;
+    border-bottom:1px solid rgba(39,102,232,.35);width:fit-content;}
+  .cmpd-l:hover{color:var(--dk-blue-deep);border-bottom-color:currentColor;}
   .cmbadge{background:var(--dk-navy);color:#8EC5FF;}
   /* Filled navy for the closed door, outlined for the open one. The pair
      has to separate at a glance and from across the page, so the
