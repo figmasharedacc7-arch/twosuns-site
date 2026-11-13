@@ -51,13 +51,17 @@ LABELS = {
     "svg_aria": "The cement production line as one run: the quarry face, crushing, "
                 "the raw mill, the preheater and kiln, the cooler, the cement mill, "
                 "and the silo the truck loads from.",
+    # The drawing is of the machines. The labels are the words the Pulse module
+    # list uses, so the reader meets one vocabulary across the two figures. Two
+    # of those modules cover two drawn stages each, and the name is split over
+    # the pair: crushing and raw mix, pyro process and cooling.
     "s1": "Quarry",
     "s2": "Crushing",
-    "s3": "Raw mill",
-    "s4": "Preheater and kiln",
-    "s5": "Cooler",
-    "s6": "Cement mill",
-    "s7": "Silo and dispatch",
+    "s3": "Raw Mix",
+    "s4": "Pyro Process",
+    "s5": "Cooling",
+    "s6": "Grinding and Product",
+    "s7": "Packing and Dispatch",
     "s1_d": "Limestone won at the face",
     "s2_d": "Sized for the mill",
     "s3_d": "Ground and blended",

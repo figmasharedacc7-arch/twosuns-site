@@ -1110,10 +1110,13 @@ EN = {
  "cx_close_cta2": "Explore the Platform",
 
  # the production line figure on the context page, drawn by process.py. The
- # seven stages are the physical run a producer works. The copy does not claim the
- # Pulse groups map onto them one for one, because they do not: cap_pl_groups holds
- # six groups against seven drawn stages, and maintenance and quality sit on the
- # whole line rather than on any single stage.
+ # seven stages are the physical run a producer works, and each one is named in the
+ # words the Pulse module list uses, so a reader meets the same vocabulary in both
+ # places. Crushing and Raw Mix and Pyro Process and Cooling each cover two drawn
+ # stages, so those names are split across the pair they cover. The copy still does
+ # not claim the modules map onto the stages one for one: Materials and Supply and
+ # Sustainability sit on the whole line rather than on any single stage, and
+ # cap_pl_groups is a shorter grouping again.
  "prc_tag": "The production line",
  "prc_h": "From the quarry face to the loaded truck",
  "prc_p": "Cost per tonne accumulates stage by stage along this line, from the face selected in the quarry to the silo released for loading. The Pulse capability groups sit where those decisions are taken.",
@@ -1122,15 +1125,15 @@ EN = {
                 "s1_d": "Limestone won at the face",
                 "s2": "Crushing",
                 "s2_d": "Sized for the mill",
-                "s3": "Raw mill",
+                "s3": "Raw Mix",
                 "s3_d": "Ground and blended",
-                "s4": "Preheater and kiln",
+                "s4": "Pyro Process",
                 "s4_d": "Raw meal burned to clinker",
-                "s5": "Cooler",
+                "s5": "Cooling",
                 "s5_d": "Cooled, heat recovered",
-                "s6": "Cement mill",
+                "s6": "Grinding and Product",
                 "s6_d": "Clinker ground to cement",
-                "s7": "Silo and dispatch",
+                "s7": "Packing and Dispatch",
                 "s7_d": "Held, loaded and released"},
 }
 
@@ -2178,15 +2181,15 @@ AR = {
                 "s1_d": "الحجر الجيري من واجهة المحجر",
                 "s2": "التكسير",
                 "s2_d": "تكسير إلى مقاس الطاحونة",
-                "s3": "طاحونة المواد الخام",
+                "s3": "الخلطة الخام",
                 "s3_d": "طحن وخلط",
-                "s4": "وحدة التكليس والفرن",
+                "s4": "العملية الحرارية",
                 "s4_d": "حرق الخلطة الخام إلى كلنكر",
-                "s5": "المبرد",
+                "s5": "التبريد",
                 "s5_d": "تبريد واستعادة حرارة",
-                "s6": "طاحونة الأسمنت",
+                "s6": "الطحن والمنتج",
                 "s6_d": "طحن الكلنكر إلى أسمنت",
-                "s7": "الصوامع والشحن",
+                "s7": "التعبئة والشحن",
                 "s7_d": "تخزين وتحميل وإفراج"},
  "cx_rp_tags": [["العملية الحرارية والتبريد",
                  "المواد والتوريد",
