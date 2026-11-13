@@ -1302,150 +1302,152 @@
   html[dir="rtl"] .cmev h3{line-height:1.4;}
 
   :root{
-    /* the deck, measured. A name beginning dk is a deck colour. */
-    --dk-blue:#2766E8;        /* accent1, the structural accent */
-    --dk-blue-deep:#1B4FC4;   /* accent1 darkened, so type on a pale tint clears 4.5 */
-    --dk-blue-lit:#5A92F3;    /* accent6, for type and hairlines on navy */
-    --dk-blue-pale:#EAF2FB;   /* the tint that singles one card out */
-    --dk-blue-line:#CED8E7;   /* the deck card hairline */
-    --dk-navy:#141C2C;        /* the full width takeaway bar */
-    --dk-navy-2:#101827;      /* dk2, the rail */
-    --dk-grey-line:#E4E7EC;
-    --dk-amber-pale:#FFF5E8;  /* the second tint on deck slide 4 */
+    /* the deck, measured, then re-pitched. A name beginning dk is a deck role. */
+    --dk-acc:#C45213;         /* accent1, the structural accent, the site orange */
+    --dk-acc-deep:#9A3E0C;    /* accent1 darkened, 6.8:1 on white, 5.8 on the tint */
+    --dk-acc-lit:#E89A5C;     /* accent6, for type and hairlines on the dark bar */
+    --dk-acc-pale:#FFEAD6;    /* the tint that singles one card out */
+    --dk-acc-line:#EEDFC9;    /* the deck card hairline */
+    --dk-gold:#8C6500;        /* accent2, the second mark and the end of a run */
+    --dk-gold-deep:#7A5A08;   /* accent2 for type, 6.4:1 on white */
+    --dk-gold-pale:#F7EDC8;   /* the second tint on deck slide 4 */
+    --dk-navy:#241A12;        /* the full width takeaway bar */
+    --dk-navy-2:#1B130D;      /* dk2, the rail */
+    --dk-grey-line:#EDE4D4;
     --dk-green:#0F7A4D;       /* accent4 darkened, so a label clears 4.5 on white */
     --dk-red:#B22D38;         /* accent5 darkened, same reason */
     --dk-red-pale:#FDF0F1;
 
-    /* the site tokens the deck repoints. Everything the deck and the site
-       already share, the orange and the gold, is left alone. */
-    --navy:#141C2C; --ink:#111827;
-    --text:#31415D; --text-muted:#5B6472;
-    --border:#CED8E7; --border-soft:#E4E7EC;
-    --shadow:0 4px 24px rgba(20,28,44,0.08),0 1px 4px rgba(0,0,0,0.06);
-    --shadow-lg:0 18px 48px rgba(20,28,44,0.14);
+    /* the site tokens the deck repoints. Both hues the deck and the site
+       already share, the orange and the gold, are left alone. */
+    --navy:#241A12; --ink:#2A231B;
+    --text:#3A3A3A; --text-muted:#5A554C;
+    --border:#EEDFC9; --border-soft:#F0E7D8;
+    --shadow:0 4px 24px rgba(60,50,30,0.08),0 1px 4px rgba(0,0,0,0.06);
+    --shadow-lg:0 18px 48px rgba(60,50,30,0.14);
   }
 
   /* ---- 1. a neutral card field with one card singled out by a tint ---- */
   /* Deck slide 4 runs six cards, four white, one pale orange, one pale green.
-     Slides 8, 10 and 14 run a grey field with exactly one pale blue. Both are
+     Slides 8, 10 and 14 run a grey field with exactly one tinted card. Both are
      the same move: colour marks one thing out of many, it does not decorate
      all of them. The four cards the home page runs are the platform families,
      and they are not four of a kind. Core is the layer the other three attach
-     to, so it takes the deck's pale blue. Ray is the only one that is not a
-     domain at all but an assistant across all of them, so it takes the deck's
-     pale orange. Horizon and Pulse are the two domain families and stay white.
-     The four different coloured top borders this grid used to run were the
-     rainbow the deck avoids, so they go to one hairline and the tint carries
-     the difference. */
-  .cmfam .f{background:#fff;border:1px solid var(--dk-blue-line);
-    border-top:4px solid var(--dk-blue-line);}
+     to, so it takes the pale orange. Ray is the only one that is not a domain
+     at all but an assistant across all of them, so it takes the pale gold.
+     Horizon and Pulse are the two domain families and stay white. The four
+     different coloured top borders this grid used to run were the rainbow the
+     deck avoids, so they go to one hairline and the tint carries the
+     difference. */
+  .cmfam .f{background:#fff;border:1px solid var(--dk-acc-line);
+    border-top:4px solid var(--dk-acc-line);}
   .cmfam .f:nth-child(2),.cmfam .f:nth-child(3),.cmfam .f:nth-child(4){
-    border-top-color:var(--dk-blue-line);}
-  .cmfam .f:nth-child(1){background:var(--dk-blue-pale);
-    border-color:rgba(39,102,232,.28);border-top-color:var(--dk-blue);}
-  .cmfam .f:nth-child(2){background:var(--dk-amber-pale);
-    border-color:rgba(255,118,0,.30);border-top-color:#FF7600;}
-  .cmfam .f:hover{box-shadow:0 12px 40px rgba(20,28,44,.15);}
-  .cmfam .x{color:var(--dk-blue-deep);border-top-color:rgba(20,28,44,.12);}
+    border-top-color:var(--dk-acc-line);}
+  .cmfam .f:nth-child(1){background:var(--dk-acc-pale);
+    border-color:rgba(196,82,19,.28);border-top-color:var(--dk-acc);}
+  .cmfam .f:nth-child(2){background:var(--dk-gold-pale);
+    border-color:rgba(140,101,0,.30);border-top-color:var(--dk-gold);}
+  .cmfam .f:hover{box-shadow:0 12px 40px rgba(60,50,30,.15);}
+  .cmfam .x{color:var(--dk-acc-deep);border-top-color:rgba(36,26,18,.12);}
 
   /* The small uppercase labels. There are eleven of these on the microsite in
-     #8C6500, and leaving them gold put a gold eyebrow inside the two cards this
-     variant tints pale blue, and two labels of identical role in one context
-     card in two different hues. They all move to #1B4FC4, which is 6.3:1 on the
-     tint and 7.1:1 on white, clear of AA at their 10.5px to 13px sizes.
+     #8C6500, and the two cards above are tinted, one pale orange and one pale
+     gold, so a gold eyebrow inside the gold card is a label the tint swallows.
+     They all move to #9A3E0C, which is 5.9:1 on the orange tint, 5.3 on the
+     gold one and 6.8 on white, clear of AA at their 10.5px to 13px sizes.
      Not in this list, on purpose: .cmtier-a and theme's .section-tag, which are
      pills with their own warm background rather than labels on a card, and
      .cmpr .p-end .k, which is the red scenario label and wins at 0,3,0 against
      the 0,2,0 .cmpr .k below whatever order they sit in. */
   .cmmod .d,.cmpd .k,.cmpr .k,.cmev-when,.split2-panel h3,
-  .cmfoot-brand .by{color:var(--dk-blue-deep);}
+  .cmfoot-brand .by{color:var(--dk-acc-deep);}
 
-  /* The six configuration rows on the home page, the deck's grey field with
-     one pale blue in it. Inputs is the one tinted, and the reason is in the
+  /* The six configuration rows on the home page, the deck's quiet field with
+     one tint in it. Inputs is the one tinted, and the reason is in the
      copy: the other five rows describe the plant, and this one names the
      historian, the laboratory, the ERP, the weighbridge and how often each
      arrives. Nothing configured in the five above it stays true without it. */
-  .cmrows .r{background:#F3F4F6;border-color:var(--dk-grey-line);}
-  .cmrows .r.tint{background:var(--dk-blue-pale);border-color:rgba(39,102,232,.28);}
+  .cmrows .r{background:#FBF3E4;border-color:var(--dk-grey-line);}
+  .cmrows .r.tint{background:var(--dk-acc-pale);border-color:rgba(196,82,19,.28);}
 
   /* The eight practical detail cards on the events page, same field, same rule.
      Entry is the tinted one: seven of the eight tell a guest what the evening
      is, and that one tells them whether they can come through the door. */
-  .cmpd .p{background:#F3F4F6;border-color:var(--dk-grey-line);}
-  .cmpd .p.tint{background:var(--dk-blue-pale);border-color:rgba(39,102,232,.28);}
+  .cmpd .p{background:#FBF3E4;border-color:var(--dk-grey-line);}
+  .cmpd .p.tint{background:var(--dk-acc-pale);border-color:rgba(196,82,19,.28);}
 
   /* The capability map's three module columns already ran one tinted card, in
      gold. The content reason was right and only the hue changes: Core is the
      shared layer either side of which Horizon and Pulse sit. */
   .cmmod{background:#fff;border-color:var(--dk-grey-line);}
-  .cmmod.core{background:var(--dk-blue-pale);border-color:rgba(39,102,232,.28);}
-  .cmmod li{border-top-color:var(--dk-blue-line);}
+  .cmmod.core{background:var(--dk-acc-pale);border-color:rgba(196,82,19,.28);}
+  .cmmod li{border-top-color:var(--dk-acc-line);}
 
   /* ---- 2. a sequence whose last step changes colour ---- */
-  /* Deck slides 12 and 17 number 01, 02, 03 in #2766E8 and 04 in #FF7600. The
+  /* Deck slides 12 and 17 number 01, 02, 03 in accent1 and 04 in accent2. The
      microsite has four real sequences and each one gets it: the eight context
      workflows in two groups of four, the six stops on a capability run, the six
      stations under that run, and the numbered steps on two sector pages. The
-     orange is the deck's own accent2, which is the site orange, so the end of a
-     sequence is the one place the two palettes land on the same note. */
-  .cmfl .n{background:var(--dk-blue-pale);border-color:var(--dk-blue);
-    color:var(--dk-blue-deep);}
-  .cmfl .g .w:last-child .n{background:var(--dk-amber-pale);border-color:#FF7600;
-    color:#B24E00;}
-  .cmfl>h3{color:var(--dk-blue-deep);}
+     run is orange and the arrival is gold, which is the pair the logo runs and
+     the one place a reader is meant to notice a change of colour at all. */
+  .cmfl .n{background:var(--dk-acc-pale);border-color:var(--dk-acc);
+    color:var(--dk-acc-deep);}
+  .cmfl .g .w:last-child .n{background:var(--dk-gold-pale);border-color:var(--dk-gold);
+    color:var(--dk-gold-deep);}
+  .cmfl>h3{color:var(--dk-acc-deep);}
   .cmfl>h3 b{background:#fff;}
-  .cmfl .mods span{color:var(--dk-blue-deep);}
+  .cmfl .mods span{color:var(--dk-acc-deep);}
 
-  .cmrail{background:linear-gradient(140deg,#1B2740,#101827);}
-  .cmrail .n{background:var(--dk-navy-2);border-color:rgba(90,146,243,.55);color:#8EC5FF;}
-  .cmrail .track a:last-child .n{border-color:#FF7600;color:#FFC98A;}
-  .cmrail .track::before{background:rgba(90,146,243,.42);}
-  .cmrail a:hover .n,.cmrail a:focus-visible .n{background:#8EC5FF;
-    border-color:#8EC5FF;color:#101827;}
-  .cmrail a:hover .l,.cmrail a:focus-visible .l{color:#8EC5FF;}
+  .cmrail{background:linear-gradient(140deg,#2C2016,#1B130D);}
+  .cmrail .n{background:var(--dk-navy-2);border-color:rgba(232,154,92,.55);color:#FFCBA3;}
+  .cmrail .track a:last-child .n{border-color:var(--dk-gold);color:#F3D08A;}
+  .cmrail .track::before{background:rgba(232,154,92,.42);}
+  .cmrail a:hover .n,.cmrail a:focus-visible .n{background:#FFCBA3;
+    border-color:#FFCBA3;color:#1B130D;}
+  .cmrail a:hover .l,.cmrail a:focus-visible .l{color:#FFCBA3;}
 
-  /* The last stop is orange, but not the deck's #FF7600, and the reason is the
-     glyph. These three markers carry a 900 weight numeral in white, and white
-     on #FF7600 measures 2.68:1, under even the 3:1 floor, while the blue
-     siblings of the same marker sit at 5.06. The site already knew this: the
-     rail darkens its glyph rather than put white on --sun. So the orange moves
-     to the stop that can carry white, #C45213 at 4.55 and #A8430C at 6.05.
-     .cmfl keeps the pale fill with a dark numeral instead, which is the other
-     way to end a sequence in orange and measures 4.89. */
-  .cmst .n{background:linear-gradient(135deg,var(--dk-blue),var(--dk-blue-deep));}
-  .cmsts .cmst:last-child .n{background:linear-gradient(135deg,#C45213,#A8430C);}
-  .cmst .d{color:var(--dk-blue-deep);}
+  /* These markers carry a 900 weight numeral in white, so both ends of a
+     gradient have to clear 4.5 against white, and the site orange does not:
+     white on #E0641E measures 3.49 and on the deck's own #FF7600 2.68, under
+     even the 3:1 floor. The run therefore darkens to #C45213 at 4.55 into
+     #9A3E0C at 6.84, and the gold arrival to #8C6500 at 5.28 into #7A5A08 at
+     6.38. .cmfl keeps the pale fill with a dark numeral instead, which is the
+     other way to end a sequence and measures 5.4. */
+  .cmst .n{background:linear-gradient(135deg,var(--dk-acc),var(--dk-acc-deep));}
+  .cmsts .cmst:last-child .n{background:linear-gradient(135deg,#8C6500,#7A5A08);}
+  .cmst .d{color:var(--dk-acc-deep);}
   .cmst{border-top-color:rgba(204,153,0,.30);}
 
-  .step::before{background:linear-gradient(135deg,var(--dk-blue),var(--dk-blue-deep));}
-  .steps .step:last-child::before{background:linear-gradient(135deg,#C45213,#A8430C);}
+  .step::before{background:linear-gradient(135deg,var(--dk-acc),var(--dk-acc-deep));}
+  .steps .step:last-child::before{background:linear-gradient(135deg,#8C6500,#7A5A08);}
 
   /* three numbered pressure cards on the context page, same rule */
-  .cmpr .n{background:var(--dk-blue);}
-  .cmpr .p:last-child .n{background:#C45213;}
-  .cmpr .mods span{color:var(--dk-blue-deep);}
+  .cmpr .n{background:var(--dk-acc);}
+  .cmpr .p:last-child .n{background:#8C6500;}
+  .cmpr .mods span{color:var(--dk-acc-deep);}
   .cmpr .p-top p,.cmpr dd{color:var(--text-muted);}
 
-  /* ---- 3. the dark navy bar that carries the takeaway ---- */
-  /* The deck drops a #17233A or #111827 bar across the full width of a slide
-     and puts the one line it wants remembered on it. Two things on this
-     microsite are exactly that: the closing call on every page, and the
-     callout that states what the whole decision flow comes down to. Both were
-     pale gold panels, which is how a takeaway looks when it is the same weight
-     as the body around it. The gold hairline on the top edge is the deck's
-     own rule, here marking the bar rather than a title. */
+  /* ---- 3. the dark bar that carries the takeaway ---- */
+  /* The deck drops a near black bar across the full width of a slide and puts
+     the one line it wants remembered on it. Two things on this microsite are
+     exactly that: the closing call on every page, and the callout that states
+     what the whole decision flow comes down to. Both were pale gold panels,
+     which is how a takeaway looks when it is the same weight as the body
+     around it. The bar is #241A12, the warm near black the site already runs
+     as --navy rather than a cool one, and the gold hairline on the top edge is
+     the deck's own rule, here marking the bar rather than a title. */
   .cta-band{background:var(--dk-navy);border-top:2px solid var(--gold);
-    border-bottom:1px solid rgba(20,28,44,.5);}
+    border-bottom:1px solid rgba(36,26,18,.5);}
   .cta-band h2{color:#fff;}
-  .cta-band p{color:#CED8E7;}
+  .cta-band p{color:#EEDFC9;}
   .cta-band .btn-ghost{background:transparent;color:#fff;
     border-color:rgba(255,255,255,.55);}
   .cta-band .btn-ghost:hover{background:#fff;color:var(--dk-navy);}
 
-  .callout{background:var(--dk-navy-2);border:1px solid rgba(90,146,243,.32);
+  .callout{background:var(--dk-navy-2);border:1px solid rgba(232,154,92,.32);
     border-top:2px solid var(--gold);}
   .callout h3{color:#fff;}
-  .callout p{color:#CED8E7;}
+  .callout p{color:#EEDFC9;}
   /* A callout whose heading is the whole message, the events programme panel,
      keeps the 10px the theme leaves under a heading that has a paragraph to
      separate itself from, which reads as an empty half of the box. */
@@ -1472,43 +1474,43 @@
   .cmpr .p-end .k{color:var(--dk-red);}
   .cmpr .p-end p{color:var(--navy);}
 
-  /* ---- 6. the rest of the furniture, so the blue is the system and not a
+  /* ---- 6. the rest of the furniture, so the accent is the system and not a
      stripe on two components ---- */
-  .cmnav{border-bottom-color:rgba(39,102,232,.18);box-shadow:0 1px 20px rgba(20,28,44,.07);}
-  .cmlinks a:hover,.cmlinks a.active{color:var(--dk-blue-deep);}
-  .cmlang{border-inline-color:rgba(39,102,232,.22);}
-  .cmlang .on{color:var(--dk-blue-deep);}
-  .cmfoot{border-top-color:var(--dk-blue);}
-  .cmfoot-links a:hover{color:var(--dk-blue-deep);}
-  .cmtier-n{color:var(--dk-blue-deep);}
-  .cmchips li{background:#fff;border-color:var(--dk-blue-line);}
-  .cmsx .s .go{color:var(--dk-blue-deep);}
-  .cmsx .s li,.cmmod li{border-top-color:var(--dk-blue-line);}
-  .cmwf .w dt{color:var(--dk-blue-deep);}
+  .cmnav{border-bottom-color:rgba(196,82,19,.18);box-shadow:0 1px 20px rgba(60,50,30,.07);}
+  .cmlinks a:hover,.cmlinks a.active{color:var(--dk-acc-deep);}
+  .cmlang{border-inline-color:rgba(196,82,19,.22);}
+  .cmlang .on{color:var(--dk-acc-deep);}
+  .cmfoot{border-top-color:var(--dk-acc);}
+  .cmfoot-links a:hover{color:var(--dk-acc-deep);}
+  .cmtier-n{color:var(--dk-acc-deep);}
+  .cmchips li{background:#fff;border-color:var(--dk-acc-line);}
+  .cmsx .s .go{color:var(--dk-acc-deep);}
+  .cmsx .s li,.cmmod li{border-top-color:var(--dk-acc-line);}
+  .cmwf .w dt{color:var(--dk-acc-deep);}
   /* .cmtbl is not here. Its CSS exists at the top of this file but nothing in
      the generator emits the class, so a rule for it would paint nothing. The
      three .cmag rules below DO stay: that block is emitted, just gated behind
      AGENDA_PUBLIC, so it has to be right for the day that flag flips. */
-  .cmag-t{background:rgba(234,242,251,.72);color:var(--dk-blue-deep);}
-  .cmag-k{color:var(--dk-blue-deep);border-color:rgba(39,102,232,.40);}
-  .cmag-b li::before{background:var(--dk-blue);}
-  .cmmeta span::before{background:var(--dk-blue);}
+  .cmag-t{background:rgba(255,234,214,.72);color:var(--dk-acc-deep);}
+  .cmag-k{color:var(--dk-acc-deep);border-color:rgba(196,82,19,.40);}
+  .cmag-b li::before{background:var(--dk-acc);}
+  .cmmeta span::before{background:var(--dk-acc);}
   /* The tick marker is the only list bullet on the microsite and it ran an
-     #E0641E to #CC9900 gradient, neither end of which is a deck colour. It sits
-     about 20px under a station line this variant repainted blue, 72 times on
-     the capabilities page alone. */
-  .tick li::before{background:var(--dk-blue);}
+     #E0641E to #CC9900 gradient, two hues on a 7px square sitting about 20px
+     under a station line, 72 times on the capabilities page alone. One flat
+     accent instead. */
+  .tick li::before{background:var(--dk-acc);}
   /* The two remaining gold-soft panels on the capabilities page. The note bar
      is 1172px wide and would outweigh the single tinted Core card if it took
-     the same pale blue, so it takes the neutral field the row cards already
-     use. The tier pill is 170px and reads as a status beside a number this
-     variant already turned blue, so that one does take the tint. */
-  .cmunits{background:#F3F4F6;border-color:var(--dk-grey-line);color:var(--text-muted);}
-  .cmtier-a{background:var(--dk-blue-pale);color:var(--dk-blue-deep);}
+     the same tint, so it takes the neutral field the row cards already use.
+     The tier pill is 170px and reads as a status beside a number this variant
+     paints with the accent, so that one does take the tint. */
+  .cmunits{background:#FBF3E4;border-color:var(--dk-grey-line);color:var(--text-muted);}
+  .cmtier-a{background:var(--dk-acc-pale);color:var(--dk-acc-deep);}
 
   /* ---- 7. the framed pictures ---- */
   /* The eight station pictures and the home page works figure. They carry a 2px
-     frame whose gradient runs #2766E8 into #1B4FC4. One hue, so the eye reads a
+     frame whose gradient runs #C45213 into #9A3E0C. One hue, so the eye reads a
      frame rather than a second accent arguing with the ordinal sitting on top
      of it, and with the pictures back in their own colours the frame is the
      only thing joining them to the page.
@@ -1520,7 +1522,7 @@
      not covered. */
   .cmst .ph,.cmfig{border:2px solid transparent;
     background:linear-gradient(var(--gold-soft),var(--gold-soft)) padding-box,
-               linear-gradient(135deg,#2766E8,#1B4FC4) border-box;}
+               linear-gradient(135deg,#C45213,#9A3E0C) border-box;}
   /* No veil on these nine. They were re-cut from the files the owner supplied,
      without the colorchannelmixer grade the first cut baked in, so what the
      page shows is the photograph as it was taken: blue sky, green scrub, an
@@ -1531,18 +1533,18 @@
   .cmst .ph::after,.cmfig::after{background:none;}
   /* ---- 8. the two event cards ---- */
   /* The page has to answer "is this one for me" from across the room. The
-     conference card is the open one, so it stays light and gains a blue top
+     conference card is the open one, so it stays light and gains an accent top
      edge and a lift. The evening is the closed one and the one being sold, so
-     it goes to full deep blue with the gold badge on it. One light card, one
-     dark card, and the answer arrives before any of the words do. */
+     it goes to the apricot wash with a solid badge on it. One pale card, one
+     warm card, and the answer arrives before any of the words do. */
   .cmev{position:relative;}
-  .cmev:not(.feat),.cmses{box-shadow:0 10px 30px rgba(20,28,44,.09);
+  .cmev:not(.feat),.cmses{box-shadow:0 10px 30px rgba(60,50,30,.09);
     transition:transform .2s ease,box-shadow .2s ease;}
   .cmev:not(.feat):hover,.cmses:hover{transform:translateY(-3px);
-    box-shadow:0 16px 38px rgba(20,28,44,.15);}
+    box-shadow:0 16px 38px rgba(60,50,30,.15);}
   .cmev::before{content:"";position:absolute;inset:-1px -1px auto;height:4px;
     border-radius:20px 20px 0 0;}
-  .cmev:not(.feat)::before{background:linear-gradient(90deg,var(--dk-blue),var(--dk-blue-lit));}
+  .cmev:not(.feat)::before{background:linear-gradient(90deg,var(--dk-acc),var(--dk-acc-lit));}
 
   /* The evening card is the warm one. The band behind it is cream at
      #FFEFCE, so a pale gold card would sink into it and a white one would
@@ -1558,14 +1560,14 @@
      the #C45213 used elsewhere: measured against #FFCBA3, the darkest point
      of the wash, #C45213 reads 3.14 to 1 and #9A3E0C reads 5.16. */
   .cmev.feat .k{color:#9A3E0C;font-weight:800;margin-bottom:4px;}
-  .cmev.feat .l{color:rgba(20,28,44,.76);margin-bottom:12px;}
-  .cmev.feat p{color:rgba(20,28,44,.84);}
-  .cmev.feat .cmmeta{color:rgba(20,28,44,.80);}
+  .cmev.feat .l{color:rgba(36,26,18,.76);margin-bottom:12px;}
+  .cmev.feat p{color:rgba(36,26,18,.84);}
+  .cmev.feat .cmmeta{color:rgba(36,26,18,.80);}
   .cmev.feat .cmmeta span::before{background:#9A3E0C;}
-  .cmev.feat .cmnote{color:rgba(20,28,44,.74);}
+  .cmev.feat .cmnote{color:rgba(36,26,18,.74);}
   .cmev.feat .cmbadge{background:#9A3E0C;color:#fff;}
   .cmev.feat .btn-ghost{background:transparent;color:var(--dk-navy);
-    border-color:rgba(20,28,44,.40);}
+    border-color:rgba(36,26,18,.40);}
   .cmev.feat .btn-ghost:hover{background:var(--dk-navy);color:#fff;
     border-color:var(--dk-navy);}
   @media(max-width:760px){.cmev.feat{padding:26px 22px;}}
@@ -1580,22 +1582,22 @@
   .cmanch{scroll-margin-top:96px;}
   .cmanch:focus{outline:none;}
   .cmpd-l{display:block;margin-top:7px;font-size:13px;font-weight:800;
-    color:var(--dk-blue);text-decoration:none;
-    border-bottom:1px solid rgba(39,102,232,.35);width:fit-content;}
-  .cmpd-l:hover{color:var(--dk-blue-deep);border-bottom-color:currentColor;}
-  .cmbadge{background:var(--dk-navy);color:#8EC5FF;}
-  /* Filled navy for the closed door, outlined for the open one. The pair
+    color:var(--dk-acc);text-decoration:none;
+    border-bottom:1px solid rgba(196,82,19,.35);width:fit-content;}
+  .cmpd-l:hover{color:var(--dk-acc-deep);border-bottom-color:currentColor;}
+  .cmbadge{background:var(--dk-navy);color:#FFCBA3;}
+  /* Filled near black for the closed door, outlined for the open one. The pair
      has to separate at a glance and from across the page, so the
      difference is weight rather than hue. */
-  .cmbadge.open{background:var(--dk-blue-pale);color:var(--dk-blue-deep);
-    box-shadow:inset 0 0 0 1px rgba(39,102,232,.34);}
-  .cmses-d{background:linear-gradient(150deg,var(--dk-blue),var(--dk-blue-deep));}
+  .cmbadge.open{background:var(--dk-acc-pale);color:var(--dk-acc-deep);
+    box-shadow:inset 0 0 0 1px rgba(196,82,19,.34);}
+  .cmses-d{background:linear-gradient(150deg,var(--dk-acc),var(--dk-acc-deep));}
   .cmpast li{background:#fff;border-color:var(--dk-grey-line);}
   /* the panel's corner glow was a gold and orange bloom. Kept at the same
-     weight it had, re-pitched onto the deck blue, because a warm bloom on a
-     panel whose hairline is now blue grey read as a leftover. */
-  .split2-panel::after{background:radial-gradient(ellipse,rgba(39,102,232,.10) 0%,
-    rgba(39,102,232,.04) 45%,transparent 70%);}
+     weight it had, pitched onto the one accent, because two hues in a glow
+     behind a panel whose hairline is a single warm line read as a leftover. */
+  .split2-panel::after{background:radial-gradient(ellipse,rgba(196,82,19,.10) 0%,
+    rgba(196,82,19,.04) 45%,transparent 70%);}
 </style>
 <script>
 (function(){
