@@ -215,6 +215,16 @@ CEM_CSS = r"""
   .cmchips{display:flex;flex-wrap:wrap;gap:9px;}
   .cmchips li{list-style:none;background:var(--bg2);border:1px solid var(--border-soft);
     border-radius:9px;padding:9px 14px;font-size:13.5px;font-weight:700;color:var(--navy);}
+  /* The nine shared facilities wrap to eight and one on a desktop row, and the
+     one left behind reads as an accident. Three equal columns divide nine
+     exactly and line up with the three module columns above it. Under 820px the
+     pills wrap again, where they sit two and three to a row and none is
+     stranded. */
+  @media(min-width:820px){
+    .cmchips.g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));}
+    .cmchips.g li{display:flex;align-items:center;justify-content:center;
+      text-align:center;}
+  }
   .cmnote{font-size:13px;color:var(--text-muted);margin-top:14px;line-height:1.65;font-style:italic;}
 
   /* THE CUSTOMER'S MIXER, in the empty column beside the panel on the concrete
@@ -1217,8 +1227,13 @@ def rows(items, two=False, tint=()):
     return '<div class="cmrows%s">%s</div>' % (" two" if two else "", cells)
 
 
-def chips(items):
-    return '<ul class="cmchips">%s</ul>' % "".join("<li>%s</li>" % e(i) for i in items)
+def chips(items, grid=False):
+    """A row of capability pills. grid=True lays them out in equal columns
+    instead of letting them wrap, which is what the nine shared facilities need:
+    the natural wrap puts eight on the first row and strands the ninth."""
+    return ('<ul class="cmchips%s">%s</ul>'
+            % (" g" if grid else "",
+               "".join("<li>%s</li>" % e(i) for i in items)))
 
 
 def ticks(items):
@@ -1348,7 +1363,7 @@ def capmap(d):
        mod("core", d["arch_core_h"], d["arch_core_d"], "", d["arch_core"]),
        mod("", d["arch_pl_h"], d["arch_pl_d"], d["arch_pl_c"], d["arch_pl"]),
        e(d["arch_t3_n"]), e(d["arch_t3_k"]), e(d["arch_t3_a"]),
-       e(d["arch_ray"]), chips(d["arch_t3"]), e(d["arch_t3_note"]),
+       e(d["arch_ray"]), chips(d["arch_t3"], grid=True), e(d["arch_t3_note"]),
        e(d["arch_units"]))
     return out
 

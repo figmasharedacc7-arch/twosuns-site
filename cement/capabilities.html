@@ -842,6 +842,16 @@
   .cmchips{display:flex;flex-wrap:wrap;gap:9px;}
   .cmchips li{list-style:none;background:var(--bg2);border:1px solid var(--border-soft);
     border-radius:9px;padding:9px 14px;font-size:13.5px;font-weight:700;color:var(--navy);}
+  /* The nine shared facilities wrap to eight and one on a desktop row, and the
+     one left behind reads as an accident. Three equal columns divide nine
+     exactly and line up with the three module columns above it. Under 820px the
+     pills wrap again, where they sit two and three to a row and none is
+     stranded. */
+  @media(min-width:820px){
+    .cmchips.g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));}
+    .cmchips.g li{display:flex;align-items:center;justify-content:center;
+      text-align:center;}
+  }
   .cmnote{font-size:13px;color:var(--text-muted);margin-top:14px;line-height:1.65;font-style:italic;}
 
   /* THE CUSTOMER'S MIXER, in the empty column beside the panel on the concrete
@@ -1658,7 +1668,7 @@
       <div class="cmtier-h"><span class="cmtier-n">03</span>
         <span class="cmtier-k">Shared facilities</span><span class="cmtier-a">Permission-based capability</span></div>
       <div class="cmray">Ray, the TwoSuns platform AI agent</div>
-      <ul class="cmchips"><li>Digital Twin</li><li>Optimization and Scenarios</li><li>Calendars</li><li>Spaces</li><li>Dashboards</li><li>Inventory</li><li>Energy and Resources</li><li>Product Quality</li><li>Logistics</li></ul>
+      <ul class="cmchips g"><li>Digital Twin</li><li>Optimization and Scenarios</li><li>Calendars</li><li>Spaces</li><li>Dashboards</li><li>Inventory</li><li>Energy and Resources</li><li>Product Quality</li><li>Logistics</li></ul>
       <p class="cmnote">Permissions govern inputs, visibility and actions throughout the platform.</p>
     </div>
 
