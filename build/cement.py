@@ -1126,6 +1126,32 @@ VAR_A_CSS = r"""
      colour, that the run is orange and the arrival is gold, and a cycle of four
      would overwrite it. The chips run five and nine to a group, where a cycle of
      four repeats visibly. */
+
+  /* ---- 11. tier 02's two domain cards open the sections that detail them ---- */
+  /* The capabilities page already carries a Horizon section and a Pulse section,
+     each with its six capability groups and its stage rail, a screen and a half
+     below the tier that names them. The tier was giving a reader the names and
+     leaving them to go and find the rest. The card keeps every line it had, and
+     the whole of it becomes the way in. Core is not a link: there is no Core
+     section on this page, and a card that looks clickable and goes nowhere is
+     worse than a card that never offered. */
+  .cmmod-a{display:flex;flex-direction:column;height:100%;
+    text-decoration:none;color:inherit;}
+  .cmmod-a ul{flex:1;}
+  .cmmod.go{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;}
+  .cmmod.go:hover,.cmmod.go:focus-within{transform:translateY(-3px);
+    border-color:var(--dk-acc);box-shadow:0 14px 34px rgba(60,50,30,.15);}
+  .cmmod-a:focus-visible{outline:2px solid var(--dk-acc-deep);outline-offset:4px;
+    border-radius:10px;}
+  .cmmod .go-l{display:flex;align-items:center;gap:8px;margin-top:13px;
+    padding-top:12px;border-top:1px solid var(--dk-acc-line);
+    font-size:12.5px;font-weight:800;color:var(--dk-acc-deep);line-height:1.4;}
+  .cmmod .go-l .ar{font-size:14px;line-height:1;transition:transform .18s ease;}
+  .cmmod.go:hover .go-l .ar{transform:translateY(2px);}
+  @media(prefers-reduced-motion:reduce){
+    .cmmod.go:hover,.cmmod.go:focus-within{transform:none;}
+    .cmmod.go:hover .go-l .ar{transform:none;}
+  }
 """
 
 
@@ -1446,10 +1472,18 @@ def capmap(d):
     columns either side of Core, and the shared facilities. This is the diagram the
     business plan carries as slide 5, as real bilingual markup rather than a raster,
     so the Arabic page gets Arabic and a phone gets a reflow."""
-    def mod(cls, h, dd, cnt, items):
+    def mod(cls, h, dd, cnt, items, go="", go_l=""):
         c = '<div class="d">%s%s</div>' % (e(dd), (" · " + e(cnt)) if cnt else "")
-        return ('<div class="cmmod %s"><h3>%s</h3>%s<ul>%s</ul></div>'
-                % (cls, e(h), c, "".join("<li>%s</li>" % e(i) for i in items)))
+        inner = ('<h3>%s</h3>%s<ul>%s</ul>'
+                 % (e(h), c, "".join("<li>%s</li>" % e(i) for i in items)))
+        if go:
+            # the arrow is the one part of the line that is decoration, so it is
+            # hidden from a screen reader, which already has the link's own text
+            inner = ('<a class="cmmod-a" href="#%s">%s<span class="go-l">%s'
+                     '<span class="ar" aria-hidden="true">&#8595;</span>'
+                     '</span></a>' % (go, inner, e(go_l)))
+            cls = (cls + " go").strip()
+        return '<div class="cmmod %s">%s</div>' % (cls, inner)
 
     out = """<section class="band-alt">
   <div class="container">
@@ -1486,9 +1520,11 @@ def capmap(d):
        e(d["arch_t1_n"]), e(d["arch_t1_k"]), e(d["arch_t1_a"]), e(d["arch_t1_who"]),
        chips(d["arch_t1"]), e(d["arch_t1_note"]),
        e(d["arch_t2_n"]), e(d["arch_t2_k"]), e(d["arch_t2_a"]),
-       mod("", d["arch_hz_h"], d["arch_hz_d"], d["arch_hz_c"], d["arch_hz"]),
+       mod("", d["arch_hz_h"], d["arch_hz_d"], d["arch_hz_c"], d["arch_hz"],
+           go="horizon", go_l=d["arch_go"] % d["arch_hz_h"]),
        mod("core", d["arch_core_h"], d["arch_core_d"], "", d["arch_core"]),
-       mod("", d["arch_pl_h"], d["arch_pl_d"], d["arch_pl_c"], d["arch_pl"]),
+       mod("", d["arch_pl_h"], d["arch_pl_d"], d["arch_pl_c"], d["arch_pl"],
+           go="pulse", go_l=d["arch_go"] % d["arch_pl_h"]),
        e(d["arch_t3_n"]), e(d["arch_t3_k"]), e(d["arch_t3_a"]),
        e(d["arch_ray"]), chips(d["arch_t3"], grid=True), e(d["arch_t3_note"]),
        e(d["arch_units"]))
@@ -1695,7 +1731,8 @@ def build_events(d):
 
 # ================================================================ CHECKS
 # ========================================================== SHARED PAGE PIECES
-def sec(body, band="", tag="", h="", p="", lede=False, shot="", side="r", clip=""):
+def sec(body, band="", tag="", h="", p="", lede=False, shot="", side="r", clip="",
+        sid=""):
     """One section. band is "", "band-alt" or "band-warm"; p renders as the section
     sub, or as a lede paragraph when the copy is long enough to want the wider type.
 
@@ -1704,6 +1741,9 @@ def sec(body, band="", tag="", h="", p="", lede=False, shot="", side="r", clip="
     frame the photograph keeps, "r" or "l"; the wash covers the other half and the
     copy sits there, so consecutive bands on a page alternate. A photograph
     replaces the band colour, so the two are never combined.
+
+    sid gives the section an id to be linked to from elsewhere on the page, and
+    the scroll margin that stops a reader landing underneath the sticky nav.
 
     clip names a loop that plays where that photograph sits, as the basename of
     a pair under cement/: <clip>.mp4 is the loop and the shot stays its poster,
@@ -1731,8 +1771,9 @@ def sec(body, band="", tag="", h="", p="", lede=False, shot="", side="r", clip="
                 '%s  <div class="container">\n   <div class="sec-split">\n%s    %s\n'
                 '   </div>\n  </div>\n</section>\n') % (side, keep, shot, vd, top, body)
     assert not clip, "a loop needs a shot to be its poster"
-    return '<section%s>\n  <div class="container">\n%s    %s\n  </div>\n</section>\n' % (
-        ' class="%s"' % band if band else "", top, body)
+    cls = " ".join(x for x in (band, "cmanch" if sid else "") if x)
+    return '<section%s%s>\n  <div class="container">\n%s    %s\n  </div>\n</section>\n' % (
+        ' id="%s"' % sid if sid else "", ' class="%s"' % cls if cls else "", top, body)
 
 
 def panel(h, items):
@@ -1915,9 +1956,9 @@ def build_capabilities(d):
               shot="capabilities")
     s += capmap(d)
     s += sec(stations("hz", d["cap_hz_groups"], d["cap_hz_run"], d["cap_hz_stops"]),
-             "", d["cap_hz_tag"], d["cap_hz_h"], d["cap_hz_p"])
+             "", d["cap_hz_tag"], d["cap_hz_h"], d["cap_hz_p"], sid="horizon")
     s += sec(stations("pl", d["cap_pl_groups"], d["cap_pl_run"], d["cap_pl_stops"]),
-             "band-alt", d["cap_pl_tag"], d["cap_pl_h"], d["cap_pl_p"])
+             "band-alt", d["cap_pl_tag"], d["cap_pl_h"], d["cap_pl_p"], sid="pulse")
     s += sec("", "", d["cap_adapt_tag"], d["cap_adapt_h"], d["cap_adapt_p"],
              lede=True, **band("cap_adapt"))
     s += cta_band(d["cap_close_h"], d["cap_close_p"], btn(d["cap_cta1"]))

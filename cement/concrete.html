@@ -1720,6 +1720,32 @@
      colour, that the run is orange and the arrival is gold, and a cycle of four
      would overwrite it. The chips run five and nine to a group, where a cycle of
      four repeats visibly. */
+
+  /* ---- 11. tier 02's two domain cards open the sections that detail them ---- */
+  /* The capabilities page already carries a Horizon section and a Pulse section,
+     each with its six capability groups and its stage rail, a screen and a half
+     below the tier that names them. The tier was giving a reader the names and
+     leaving them to go and find the rest. The card keeps every line it had, and
+     the whole of it becomes the way in. Core is not a link: there is no Core
+     section on this page, and a card that looks clickable and goes nowhere is
+     worse than a card that never offered. */
+  .cmmod-a{display:flex;flex-direction:column;height:100%;
+    text-decoration:none;color:inherit;}
+  .cmmod-a ul{flex:1;}
+  .cmmod.go{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;}
+  .cmmod.go:hover,.cmmod.go:focus-within{transform:translateY(-3px);
+    border-color:var(--dk-acc);box-shadow:0 14px 34px rgba(60,50,30,.15);}
+  .cmmod-a:focus-visible{outline:2px solid var(--dk-acc-deep);outline-offset:4px;
+    border-radius:10px;}
+  .cmmod .go-l{display:flex;align-items:center;gap:8px;margin-top:13px;
+    padding-top:12px;border-top:1px solid var(--dk-acc-line);
+    font-size:12.5px;font-weight:800;color:var(--dk-acc-deep);line-height:1.4;}
+  .cmmod .go-l .ar{font-size:14px;line-height:1;transition:transform .18s ease;}
+  .cmmod.go:hover .go-l .ar{transform:translateY(2px);}
+  @media(prefers-reduced-motion:reduce){
+    .cmmod.go:hover,.cmmod.go:focus-within{transform:none;}
+    .cmmod.go:hover .go-l .ar{transform:none;}
+  }
 </style>
 <script>
 (function(){

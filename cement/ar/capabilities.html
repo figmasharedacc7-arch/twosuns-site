@@ -1720,6 +1720,32 @@
      colour, that the run is orange and the arrival is gold, and a cycle of four
      would overwrite it. The chips run five and nine to a group, where a cycle of
      four repeats visibly. */
+
+  /* ---- 11. tier 02's two domain cards open the sections that detail them ---- */
+  /* The capabilities page already carries a Horizon section and a Pulse section,
+     each with its six capability groups and its stage rail, a screen and a half
+     below the tier that names them. The tier was giving a reader the names and
+     leaving them to go and find the rest. The card keeps every line it had, and
+     the whole of it becomes the way in. Core is not a link: there is no Core
+     section on this page, and a card that looks clickable and goes nowhere is
+     worse than a card that never offered. */
+  .cmmod-a{display:flex;flex-direction:column;height:100%;
+    text-decoration:none;color:inherit;}
+  .cmmod-a ul{flex:1;}
+  .cmmod.go{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;}
+  .cmmod.go:hover,.cmmod.go:focus-within{transform:translateY(-3px);
+    border-color:var(--dk-acc);box-shadow:0 14px 34px rgba(60,50,30,.15);}
+  .cmmod-a:focus-visible{outline:2px solid var(--dk-acc-deep);outline-offset:4px;
+    border-radius:10px;}
+  .cmmod .go-l{display:flex;align-items:center;gap:8px;margin-top:13px;
+    padding-top:12px;border-top:1px solid var(--dk-acc-line);
+    font-size:12.5px;font-weight:800;color:var(--dk-acc-deep);line-height:1.4;}
+  .cmmod .go-l .ar{font-size:14px;line-height:1;transition:transform .18s ease;}
+  .cmmod.go:hover .go-l .ar{transform:translateY(2px);}
+  @media(prefers-reduced-motion:reduce){
+    .cmmod.go:hover,.cmmod.go:focus-within{transform:none;}
+    .cmmod.go:hover .go-l .ar{transform:none;}
+  }
 </style>
 <script>
 (function(){
@@ -1785,7 +1811,7 @@
     <div class="cmtier">
       <div class="cmtier-h"><span class="cmtier-n">02</span>
         <span class="cmtier-k">الوحدات</span><span class="cmtier-a">وصول قائم على الصلاحيات</span></div>
-      <div class="cmmods"><div class="cmmod "><h3>Horizon</h3><div class="d">التنسيق التجاري · 6 وحدات</div><ul><li>الاستراتيجية وملاءمة المنتج للسوق</li><li>Omni Signals</li><li>Omni Plays</li><li>العقود والعروض</li><li>إدارة الطلبات والفوترة</li><li>المالية</li></ul></div><div class="cmmod core"><h3>Core</h3><div class="d">السياق المؤسسي المشترك</div><ul><li>التنظيم</li><li>الأهداف</li><li>قواعد العمل</li><li>العلاقات</li><li>سجل القرارات</li></ul></div><div class="cmmod "><h3>Pulse</h3><div class="d">التنفيذ التشغيلي · 7 وحدات</div><ul><li>المحجر</li><li>المواد والتوريد</li><li>التكسير والخلطة الخام</li><li>العملية الحرارية والتبريد</li><li>الطحن والمنتج</li><li>التعبئة والشحن</li><li>الاستدامة</li></ul></div></div>
+      <div class="cmmods"><div class="cmmod go"><a class="cmmod-a" href="#horizon"><h3>Horizon</h3><div class="d">التنسيق التجاري · 6 وحدات</div><ul><li>الاستراتيجية وملاءمة المنتج للسوق</li><li>Omni Signals</li><li>Omni Plays</li><li>العقود والعروض</li><li>إدارة الطلبات والفوترة</li><li>المالية</li></ul><span class="go-l">اطّلع على قدرات Horizon<span class="ar" aria-hidden="true">&#8595;</span></span></a></div><div class="cmmod core"><h3>Core</h3><div class="d">السياق المؤسسي المشترك</div><ul><li>التنظيم</li><li>الأهداف</li><li>قواعد العمل</li><li>العلاقات</li><li>سجل القرارات</li></ul></div><div class="cmmod go"><a class="cmmod-a" href="#pulse"><h3>Pulse</h3><div class="d">التنفيذ التشغيلي · 7 وحدات</div><ul><li>المحجر</li><li>المواد والتوريد</li><li>التكسير والخلطة الخام</li><li>العملية الحرارية والتبريد</li><li>الطحن والمنتج</li><li>التعبئة والشحن</li><li>الاستدامة</li></ul><span class="go-l">اطّلع على قدرات Pulse<span class="ar" aria-hidden="true">&#8595;</span></span></a></div></div>
     </div>
 
     <div class="cmtier">
@@ -1799,7 +1825,7 @@
     <div class="cmunits">الحرارة بوحدة kcal/kg كلنكر على أساس NCV. الطاقة بوحدة kWh لكل طن أسمنت. التكاليف لكل طن كلنكر أو أسمنت، بالجنيه المصري والدولار الأمريكي. ويُعرض ثاني أكسيد الكربون لكل طن كلنكر ولكل طن أسمنت كلٌّ على حدة.</div>
   </div>
 </section>
-<section>
+<section id="horizon" class="cmanch">
   <div class="container">
     <div class="section-tag">المجال التجاري</div>
     <h2 class="section-heading">Horizon</h2>
@@ -1807,7 +1833,7 @@
     <div class="cmrail"><div class="run">من قراءة السوق إلى النقد المحصّل</div><div class="track"><a href="#hz-1"><div class="n">01</div><div class="l">السوق</div></a><a href="#hz-2"><div class="n">02</div><div class="l">العملاء</div></a><a href="#hz-3"><div class="n">03</div><div class="l">المناقصات</div></a><a href="#hz-4"><div class="n">04</div><div class="l">التسعير</div></a><a href="#hz-5"><div class="n">05</div><div class="l">الحملات</div></a><a href="#hz-6"><div class="n">06</div><div class="l">الإيرادات</div></a></div></div><div class="cmsts"><div class="cmst shot" id="hz-1" tabindex="-1"><div class="ph"><div class="n" aria-hidden="true">01</div><img src="/cement/cap-hz-1.jpg" alt="" width="1000" height="667" loading="lazy" decoding="async"></div><div class="bd"><h3>ذكاء السوق والمنافسين</h3><div class="d">احتفظ برؤية منظمة لسوق الأسمنت الإقليمية وللمنتجين المتنافسين فيها.</div><ul class="tick"><li>الطلب الإقليمي والطاقة الإنتاجية المركّبة ونسبة استغلالها بحسب كل سوق</li><li>مصانع المنافسين وخطوطهم ومشروعاتهم المعلنة وأوضاع الاستيراد</li><li>جهات التصدير وطرق الشحن ومقارنات التكلفة الإجمالية عند الوصول</li><li>الأسعار المنشورة ومراجع أسعار الوقود وأسعار الصرف، مع المصدر والتاريخ</li><li>منظومات المالكين والاستشاريين والمقاولين والجهات الواصفة بحسب كل مشروع</li><li>موجزات السوق المُعدّة للمراجعة التجارية والتنفيذية</li></ul></div></div><div class="cmst shot" id="hz-2" tabindex="-1"><div class="ph"><div class="n" aria-hidden="true">02</div><img src="/cement/cap-hz-2.jpg" alt="" width="1000" height="667" loading="lazy" decoding="async"></div><div class="bd"><h3>العملاء والوكلاء والحسابات</h3><div class="d">نسّق العملاء والوكلاء والحسابات التي تسحب الأطنان، سائبةً ومعبّأةً.</div><ul class="tick"><li>سجلات الحسابات بحسب نوع العميل وشكل التسليم، سائبًا كان أو معبّأً</li><li>تغطية الوكلاء والموزعين بحسب المنطقة والمستودع والقناة</li><li>الرصيد المفوتر ووضع المتأخرات وسجل السداد بحسب كل حساب</li><li>سجل التواصل والالتزامات المقطوعة والأسئلة المفتوحة</li><li>كميات سحب العميل مقارنةً بالحجم المُلتزَم به</li><li>خطط الحسابات ومستويات العلاقة والإجراء التالي في كل حساب</li></ul></div></div><div class="cmst" id="hz-3" tabindex="-1"><div class="nm"><div class="hd"><div class="n" aria-hidden="true">03</div><h3>المناقصات وعقود التوريد بالكميات الكبيرة</h3></div><div class="d">احمل المناقصة من إعلانها إلى التأهيل وسعر العطاء واتفاقية التوريد الموقّعة.</div></div><div class="it"><ul class="tick"><li>استقبال مناقصات البنية التحتية والإسكان وتوريد التصدير</li><li>التأهيل بحسب رتبة الأسمنت والحجم وقدرة التسليم</li><li>تسعير العطاءات في ضوء تكلفة طن الأسمنت وتكلفة الشحن والطاقة الإنتاجية المتاحة</li><li>شروط العقد والالتزامات بالأحجام وبنود التصعيد السعري</li><li>قرارات التقدّم بالعطاءات والعطاءات المقدّمة وسجل ما عُرض</li><li>أداء العقد بالمقارنة بالأطنان المُلتزَم بها ونوافذ التسليم</li></ul></div></div><div class="cmst" id="hz-4" tabindex="-1"><div class="nm"><div class="hd"><div class="n" aria-hidden="true">04</div><h3>التسعير والعائد الصافي والعروض</h3></div><div class="d">ضع الأسعار واحتفظ بها في ضوء تكلفة التسليم للعميل والطاقة الإنتاجية المتاحة، مع قراءة العائد الصافي بعد الخصم والشحن والخصم الرجعي.</div></div><div class="it"><ul class="tick"><li>قوائم أسعار تسليم المصنع وقوائم أسعار التسليم للعميل، بحسب المنتج والقناة والمنطقة</li><li>مقارنة تكلفة التسليم للعميل وتكلفة الشحن بحسب جهة الوصول ووسيلة النقل</li><li>الموافقات على الخصومات والخصم الرجعي وشروط السداد</li><li>عروض تُعدّ وهامش ربح الطن ظاهر فيها قبل الالتزام</li><li>تتبُّع حركة الأسعار بالمقارنة بالسوق وبتكلفة الطن</li><li>تغييرات الأسعار مع من وافق عليها وتاريخ نفاذها</li></ul></div></div><div class="cmst" id="hz-5" tabindex="-1"><div class="nm"><div class="hd"><div class="n" aria-hidden="true">05</div><h3>الحملات والفعاليات وعلاقات أصحاب المصلحة</h3></div><div class="d">خطّط أعمال التواصل مع العملاء والجهات الواصفة والجهات التنظيمية والسوق الإقليمية.</div></div><div class="it"><ul class="tick"><li>خطط الحملات بحسب السوق، مع التقاويم وسلاسل الموافقات</li><li>محتوى فني للجهات الواصفة والاستشاريين والمقاولين</li><li>المشاركة في الفعاليات واللقاءات المرتَّبة، وأعمال المتابعة بعدها</li><li>سجلات التواصل مع الجهات التنظيمية والاتحادات والمجتمع المحلي</li><li>تنسيق الجمهور وجهات الاتصال عبر الوظائف</li><li>سجل التواصل المنقول إلى المحادثة التالية</li></ul></div></div><div class="cmst" id="hz-6" tabindex="-1"><div class="nm"><div class="hd"><div class="n" aria-hidden="true">06</div><h3>تنسيق الإيرادات وهامش الربح</h3></div><div class="d">اربط الخطة التجارية بالأطنان المنتَجة والنقد المحصّل.</div></div><div class="it"><ul class="tick"><li>خطط الأحجام والإيرادات بحسب السوق والمنتج والقناة</li><li>سجل الطلبات في ضوء الطاقة الإنتاجية المتاحة من الكلنكر والأسمنت</li><li>هامش ربح الطن بحسب العميل والمنتج وجهة الوصول</li><li>الإيرادات المفوترة وأعمار الذمم المدينة وحالة التحصيل بحسب كل سوق</li><li>تناقل المسؤولية من النشاط التجاري إلى التشغيل في الطلبات المقبولة</li><li>التوقعات والانحراف عن الخطة للمراجعة التنفيذية</li></ul></div></div></div>
   </div>
 </section>
-<section class="band-alt">
+<section id="pulse" class="band-alt cmanch">
   <div class="container">
     <div class="section-tag">المجال التشغيلي</div>
     <h2 class="section-heading">Pulse</h2>
