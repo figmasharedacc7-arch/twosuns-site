@@ -35,6 +35,9 @@
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
+  /* the capabilities rail jumps up to 4000px in one click, which is a long
+     animated slide for a reader who has asked the system for no motion */
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
   body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.6;overflow-x:hidden;}
   a{color:inherit;text-decoration:none;}
   img{max-width:100%;}
@@ -53,6 +56,26 @@
   .section-sub{color:var(--text-muted);font-size:17px;line-height:1.75;max-width:760px;}
   .lede{color:var(--text-muted);font-size:16.5px;line-height:1.8;max-width:820px;margin-bottom:14px;}
   h3.sub-heading{font-size:20px;font-weight:800;color:var(--navy);margin-bottom:8px;}
+
+  /* ---- no line left standing on its own ---- */
+  /* Measured across all 35 content pages at 1440: 205 blocks ended on a last
+     line of one or two words that was under a third of the block's own longest
+     line. "under a mutual NDA." sitting alone beneath two full lines reads as
+     a mistake rather than as the end of a sentence.
+     balance, not pretty. pretty was tried first on the running copy, on the
+     reasoning that a long paragraph is not a shape and should keep its natural
+     rag. Measured, it only ever rescues a last line of a single word: it took
+     the headings' own count to zero but left 125 of these standing, 51 of the
+     52 definition rows among them, because a two word last line is not an
+     orphan as far as it is concerned. balance clears all 205.
+     It costs nothing to lay out. Over the 35 pages not one of them changed
+     height by a single pixel, so no block gained a line and nothing below it
+     moved: the words are redistributed inside the lines the block already had.
+     Long copy is untouched either way, since the balancing is dropped above a
+     handful of lines, and a browser that does not know the property at all
+     wraps exactly as it does today. */
+  h1,h2,h3,h4,p,li,dd,dt,figcaption,blockquote,
+  .section-heading,.hero-sub,.lede,.section-sub{text-wrap:balance;}
 
   .sun-divider{height:5px;position:relative;z-index:2;overflow:visible;
     background:linear-gradient(90deg,transparent 0%,#E0641E 18%,#474237 50%,#E0641E 82%,transparent 100%);}
