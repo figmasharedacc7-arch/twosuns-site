@@ -1008,6 +1008,49 @@ VAR_A_CSS = r"""
      behind a panel whose hairline is a single warm line read as a leftover. */
   .split2-panel::after{background:radial-gradient(ellipse,rgba(196,82,19,.10) 0%,
     rgba(196,82,19,.04) 45%,transparent 70%);}
+
+  /* ---- 9. three more devices off the deck ---- */
+
+  /* THE EDGE RULE. Deck slides 4 and 13 mark an item with a coloured rule at
+     its inline start rather than with a border all the way round or a badge on
+     top: slide 13 runs four cards on a 6px bar, slide 4 six items on a 3px one,
+     and in both the rule is the only thing that says where an item begins. The
+     microsite has four card families that carry no mark at all, a white or
+     cream box with a hairline and a label, and between them they run about
+     forty cards over seven pages: the configuration and governance rows, the
+     workflow cards on use cases, the practical detail cards on the events page
+     and the sector cards. They all take the rule.
+     One hue, not the deck's four. The deck cycles blue, orange, gold and green
+     down a column of six, which reads as four categories, and these cards are
+     not four categories of anything. The rule here is structure, the same
+     decision the top borders on the family grid already took.
+     border-inline-start, so Arabic mirrors it with no second rule. */
+  .cmrows .r,.cmwf .w,.cmpd .p,.cmsx .s{border-inline-start:4px solid var(--dk-acc);}
+  /* the tinted card in a field sets border-color on all four edges at 0,3,0,
+     which would take the rule back to the hairline, so it is restated */
+  .cmrows .r.tint,.cmpd .p.tint{border-inline-start-color:var(--dk-acc);}
+
+  /* THE PILL CHIP. Slide 3 ends with a row of capabilities that cut across the
+     chain it has just drawn, and sets them as fully rounded outlined pills in
+     the accent rather than as filled tags. The microsite's chips are the same
+     content in the same position, the facilities shared across the modules
+     above them, so they take the same shape: white, a 999px radius, and the
+     outline and the label both in the accent. #9A3E0C on white is 6.8:1. */
+  .cmchips li{border-radius:999px;border-color:rgba(196,82,19,.42);
+    color:var(--dk-acc-deep);}
+
+  /* THE CLOSING LINE. Slides 3 and 13 both end on a qualifier, centred, bold
+     and in the accent, with air above it: the deck gives the line that says
+     what the figure does not claim as much weight as the figure. Two notes on
+     the microsite are exactly that, one under the workflow cards and one under
+     the measurement list, and both were a small grey italic line at the left
+     margin. The notes that sit inside a card, on the architecture tiers and on
+     the two event cards, are captions on the thing beside them rather than the
+     close of a section, so they keep what they had. */
+  .cmnote{text-align:center;font-style:normal;font-weight:700;font-size:14px;
+    color:var(--dk-acc-deep);margin-top:24px;}
+  .cmtier .cmnote,.cmev .cmnote{text-align:start;font-style:italic;font-weight:400;
+    font-size:13px;color:var(--text-muted);margin-top:14px;}
 """
 
 
