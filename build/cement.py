@@ -720,9 +720,6 @@ VAR_A_CSS = r"""
     --dk-navy:#241A12;        /* the full width takeaway bar */
     --dk-navy-2:#1B130D;      /* dk2, the rail */
     --dk-grey-line:#EDE4D4;
-    --dk-green:#0F7A4D;       /* accent4 darkened, so a label clears 4.5 on white */
-    --dk-red:#B22D38;         /* accent5 darkened, same reason */
-    --dk-red-pale:#FDF0F1;
 
     /* the site tokens the deck repoints. Both hues the deck and the site
        already share, the orange and the gold, are left alone. */
@@ -763,8 +760,8 @@ VAR_A_CSS = r"""
      gold one and 6.8 on white, clear of AA at their 10.5px to 13px sizes.
      Not in this list, on purpose: .cmtier-a and theme's .section-tag, which are
      pills with their own warm background rather than labels on a card, and
-     .cmpr .p-end .k, which is the red scenario label and wins at 0,3,0 against
-     the 0,2,0 .cmpr .k below whatever order they sit in. */
+     .cmpr .p-end .k, the scenario label, which is set below at 0,3,0 and wins
+     against the 0,2,0 .cmpr .k here whatever order the two sit in. */
   .cmmod .d,.cmpd .k,.cmpr .k,.cmev-when,.split2-panel h3,
   .cmfoot-brand .by{color:var(--dk-acc-deep);}
 
@@ -866,19 +863,26 @@ VAR_A_CSS = r"""
     height:2px;margin-top:16px;background:var(--gold);}
   .cta-band h2::after,.callout h3::after{content:none;}
 
-  /* ---- 5. green and red, as the deck uses them: status, and almost never ---- */
-  /* The deck spends #169B62 sixteen times and #D83A45 three times across
-     seventeen slides, both as status. There is exactly one piece of status
-     content on this microsite in each direction, so each colour is used once.
-     Green marks the outcome field of a workflow, the line that says what
-     changes once the work runs. Red marks the scenario block at the foot of a
-     pressure card, the only place on the microsite that states what goes
-     wrong. Neither colour appears anywhere else, and neither carries body
-     copy: they carry a label over an unsaturated tint. */
-  .cmwf .w dt:nth-of-type(4){color:var(--dk-green);}
-  .cmpr .p-end{background:var(--dk-red-pale);border-top-color:rgba(178,45,56,.22);}
-  .cmpr .p-end .k{color:var(--dk-red);}
-  .cmpr .p-end p{color:var(--navy);}
+  /* ---- 5. the two places that carried status colour ---- */
+  /* The deck spends a green sixteen times and a red three times across
+     seventeen slides, both as status, and the first cut of this variant spent
+     each of them once: green on the outcome field of a workflow, red on the
+     scenario block at the foot of a pressure card. The red was the larger of
+     the two by a long way. Three pale pink panels run the full width of the
+     three pressure cards and sit under half the context page, which made them
+     the biggest block of colour on it and the one thing the warm repaint had
+     not reached. Both colours are out, and the two jobs they were doing are
+     done inside the palette instead.
+     The scenario block goes back to the cream field and the rule the design
+     gives it, which already separates it from the white card above; only its
+     label is held at #9A3E0C, because the #C45213 the base file sets reads
+     4.05 on that cream and the label is 11.5px uppercase.
+     The outcome field is the fourth of four labels in a workflow and the one
+     that says what changes once the work runs, so it takes the gold this
+     variant already spends on the end of a run. 6.4:1 on white, against the
+     #9A3E0C its three siblings carry. */
+  .cmwf .w dt:nth-of-type(4){color:var(--dk-gold-deep);}
+  .cmpr .p-end .k{color:var(--dk-acc-deep);}
 
   /* ---- 6. the rest of the furniture, so the accent is the system and not a
      stripe on two components ---- */
