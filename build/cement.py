@@ -732,26 +732,24 @@ VAR_A_CSS = r"""
 
   /* ---- 1. a neutral card field with one card singled out by a tint ---- */
   /* Deck slide 4 runs six cards, four white, one pale orange, one pale green.
-     Slides 8, 10 and 14 run a grey field with exactly one tinted card. Both are
-     the same move: colour marks one thing out of many, it does not decorate
-     all of them. The four cards the home page runs are the platform families,
-     and they are not four of a kind. Core is the layer the other three attach
-     to, so it takes the pale orange. Ray is the only one that is not a domain
-     at all but an assistant across all of them, so it takes the pale gold.
-     Horizon and Pulse are the two domain families and stay white. The four
-     different coloured top borders this grid used to run were the rainbow the
-     deck avoids, so they go to one hairline and the tint carries the
-     difference. */
+     Slides 8, 10 and 14 run a grey field with exactly one tinted card. Colour
+     marks one thing out of many, it does not decorate all of them. Two card
+     fields on the microsite take it: the six configuration rows and the eight
+     practical detail cards, each with exactly one tinted, and the reason is in
+     the copy at both. Those rules are below.
+     The platform family grid used to be the third. It ran Core on a pale
+     orange and Ray on a pale gold, with Horizon and Pulse white, because Core
+     is the layer the other three attach to and Ray is the only one that is not
+     a domain at all. It is a grid of four and the cycle below is a cycle of
+     four, so it is the one place on the microsite where the two devices land
+     exactly on top of each other, and two tinted cards beside two white ones
+     read as uneven next to it. The grid goes to deck slide 13 instead: four
+     white cards, each on its own bar. What the tint was saying, the copy on
+     the cards already says in words. */
   .cmfam .f{background:#fff;border:1px solid var(--dk-acc-line);
     border-top:4px solid var(--dk-acc-line);}
-  .cmfam .f:nth-child(2),.cmfam .f:nth-child(3),.cmfam .f:nth-child(4){
-    border-top-color:var(--dk-acc-line);}
-  .cmfam .f:nth-child(1){background:var(--dk-acc-pale);
-    border-color:rgba(196,82,19,.28);border-top-color:var(--dk-acc);}
-  .cmfam .f:nth-child(2){background:var(--dk-gold-pale);
-    border-color:rgba(140,101,0,.30);border-top-color:var(--dk-gold);}
   .cmfam .f:hover{box-shadow:0 12px 40px rgba(60,50,30,.15);}
-  .cmfam .x{color:var(--dk-acc-deep);border-top-color:rgba(36,26,18,.12);}
+  .cmfam .x{border-top-color:rgba(36,26,18,.12);}
 
   /* The small uppercase labels. There are eleven of these on the microsite in
      #8C6500, and the two cards above are tinted, one pale orange and one pale
@@ -1111,11 +1109,23 @@ VAR_A_CSS = r"""
      label and onto the answer, where slide 13 also puts it. */
   .cmwf .w dd:nth-of-type(4){color:var(--navy);font-weight:600;}
 
+  /* The platform family grid is four cards and the cycle is four marks, so it
+     takes one each and nothing repeats: Core blue, Ray orange, Horizon gold,
+     Pulse green. The mark is the top bar the grid already carried, and the
+     line of capabilities at the foot of each card takes that card's colour. */
+  /* the colour is set on the same rule that paints the bar, because the base
+     file reaches these four cards through :nth-child too and a plain
+     .cmfam .f would lose to it on specificity for cards two, three and four */
+  .cmfam .f:nth-child(1){--m:#2766E8;--m-t:#1B4FC4;border-top-color:var(--m);}
+  .cmfam .f:nth-child(2){--m:#E0641E;--m-t:#B24E00;border-top-color:var(--m);}
+  .cmfam .f:nth-child(3){--m:#A67C00;--m-t:#8C6500;border-top-color:var(--m);}
+  .cmfam .f:nth-child(4){--m:#169B62;--m-t:#0F7A4D;border-top-color:var(--m);}
+  .cmfam .x{color:var(--m-t);}
+
   /* NOT cycled, on purpose. The four sequences already say something with
      colour, that the run is orange and the arrival is gold, and a cycle of four
      would overwrite it. The chips run five and nine to a group, where a cycle of
-     four repeats visibly. The platform family grid carries the other device,
-     one card tinted out of four. */
+     four repeats visibly. */
 """
 
 
