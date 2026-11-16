@@ -1646,6 +1646,71 @@
   .cmtier .cmnote,.cmev .cmnote{text-align:start;font-style:italic;font-weight:400;
     font-size:13px;color:var(--text-muted);margin-top:14px;}
 
+  /* ---- 10. the deck's four accents, cycling across the items in a group ---- */
+  /* The deck does not mark a group in one colour. Slide 4 sets six items in six,
+     slide 13 four cards in four, slide 3 numbers its chain in three and outlines
+     its cross-cutting pills in four. Blue, orange, gold and green, with a red
+     kept for the money and spent three times in seventeen slides.
+     What the deck never does is let any of them become the system. Its pages are
+     a pale field, its titles are near black, and an accent only ever lands on
+     the mark beside an item. That is the whole difference from the first cut of
+     this variant, where the blue was the nav, every lede, every badge, every
+     bullet and both rails, and the owner's verdict on it was that the blue was
+     not looking good. Here the four land on item marks and on nothing else:
+     the chrome, the headings, the buttons, the rails, the dark closing bars and
+     the photograph frames all stay on the logo's orange, gold and ink.
+     --m is the item's mark and --m-t the same colour darkened for type.
+     Measured, two of the deck's four cannot be a mark on white. A mark that
+     carries meaning has a 3 to 1 floor, and the deck's #FF7600 reads 2.68 on
+     white and its #E0B321 reads 1.97: on the deck they sit on a pale field, on
+     a white card they are a line you have to look for. The blue and the green
+     hold at 5.06 and 3.56 and stay exactly as the deck sets them. The orange
+     moves to the site's own sun #E0641E at 3.49 and the gold to #A67C00 at
+     3.82, both still plainly the same hue.
+     Every darkened value clears 4.5 as type, on white and on the cream the
+     scenario block uses: 7.09 and 6.24 for the blue, 5.27 and 4.64 for the
+     orange, 5.28 and 4.65 for the gold, 5.37 and 4.73 for the green. */
+  .cmrows .r,.cmwf .w,.cmpd .p,.cmsx .s,.cmpr .p{
+    --m:#2766E8;--m-t:#1B4FC4;}
+  .cmrows .r:nth-child(4n+2),.cmwf .w:nth-child(4n+2),.cmpd .p:nth-child(4n+2),.cmsx .s:nth-child(4n+2),.cmpr .p:nth-child(4n+2){
+    --m:#E0641E;--m-t:#B24E00;}
+  .cmrows .r:nth-child(4n+3),.cmwf .w:nth-child(4n+3),.cmpd .p:nth-child(4n+3),.cmsx .s:nth-child(4n+3),.cmpr .p:nth-child(4n+3){
+    --m:#A67C00;--m-t:#8C6500;}
+  .cmrows .r:nth-child(4n),.cmwf .w:nth-child(4n),.cmpd .p:nth-child(4n),.cmsx .s:nth-child(4n),.cmpr .p:nth-child(4n){
+    --m:#169B62;--m-t:#0F7A4D;}
+  /* A tinted card is the deck's other device, the one thing singled out of
+     many, and it steps out of the cycle rather than fighting it: the tint is
+     pale orange, so the mark on it is the orange. */
+  .cmrows .r.tint,.cmpd .p.tint{--m:#E0641E;--m-t:#B24E00;}
+
+  /* the mark itself: an edge rule on four families, the numbered badge on the
+     fifth, since that is the mark those cards already carry */
+  .cmrows .r,.cmwf .w,.cmpd .p,.cmsx .s{border-inline-start-color:var(--m);}
+  .cmrows .r.tint,.cmpd .p.tint{border-inline-start-color:var(--m);}
+  /* the badge is the one mark that carries type: a 14px 900 numeral in white,
+     which needs 4.5 and not 3, so it is filled with the darkened value. White
+     reads 7.09, 5.27, 5.28 and 5.37 on the four. */
+  .cmpr .n{background:var(--m-t);}
+  .cmpr .p:last-child .n{background:var(--m-t);}
+
+  /* and the type that belongs to the mark. On the deck a card's kicker is the
+     colour of its own rule, never of its neighbour's. */
+  .cmpd .p .k{color:var(--m-t);}
+  .cmpr .p .k{color:var(--m-t);}
+  .cmpr .p .mods span{color:var(--m-t);}
+  .cmsx .s .go{color:var(--m-t);}
+  .cmwf .w dt,.cmwf .w dt:nth-of-type(4){color:var(--m-t);}
+  /* the outcome field was the one label held apart in gold, which cannot stay
+     a hue now that gold is one of the four marks. The emphasis moves off the
+     label and onto the answer, where slide 13 also puts it. */
+  .cmwf .w dd:nth-of-type(4){color:var(--navy);font-weight:600;}
+
+  /* NOT cycled, on purpose. The four sequences already say something with
+     colour, that the run is orange and the arrival is gold, and a cycle of four
+     would overwrite it. The chips run five and nine to a group, where a cycle of
+     four repeats visibly. The platform family grid carries the other device,
+     one card tinted out of four. */
+
   /* TEAM GRID */
   .team{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:28px;}
   .tmb{position:relative;aspect-ratio:720/756;overflow:hidden;background:var(--navy);
