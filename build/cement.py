@@ -648,6 +648,196 @@ CEM_CSS = r"""
   }
 """
 
+# The capability map. Adapted from the workshop deck's architecture diagram,
+# which laid the three tiers against one numbered spine instead of stacking
+# three separate cards, and made every module expand in place.
+#
+# Two things in it were changed rather than copied.
+#
+# Colour. The deck put the input tiles and the shared facilities on a slate
+# blue, #2F5D8A on #FBFCFD with #123A63 text. That is a fourth hue and the site
+# is locked to the logo's orange, gold and black on cream, so those surfaces
+# are rebuilt here as white cards on the deck hairline, which is also what the
+# variant above does to every other card field on the microsite. The two module
+# columns keep their tint: it is not decoration there, it is the one thing the
+# diagram exists to say, which of the two operating domains a module belongs
+# to, and the gold and the orange carrying it are the brand's own.
+#
+# Contrast. Three colours came off the deck below AA and are corrected here.
+# The Horizon heading was #CC9900 on white, 2.6:1 against the 3:1 that 26px
+# bold needs, and is --dk-gold #8C6500 at 5.3:1; Pulse follows it to --dk-acc
+# #C45213 at 4.6:1 rather than stay bright on its own, which left the pair
+# looking mismatched. The gold expander badge was #8C6500 on #F3E3A6 at 4.1:1
+# and is --dk-gold-deep #7A5A08 at 5.0:1. The tier numerals were #B9B2A6 at
+# 2.1:1 and are #9A8F7E at 3.2:1. The bright gold and orange stay, on the 4px
+# module rails and the two connector lines, where nothing is read off them.
+#
+# Class names are all cma-. The deck's own names collide with this site: .mods
+# is already the module tag row on the pressures and the workflows, .core is
+# the middle card of the old three, and .n, .k, .d and .go are each used by
+# several unrelated blocks. A prefix is cheaper than scoping every one.
+CMA_CSS = r"""
+  .cma{background:#fff;border:1px solid var(--border);border-radius:22px;
+    box-shadow:var(--shadow-lg);padding:34px;margin-top:36px;text-align:start;
+    display:grid;gap:30px;}
+  .cma-row{display:grid;grid-template-columns:170px minmax(0,1fr);gap:24px;
+    align-items:start;}
+  .cma-row>*{min-width:0;}
+  .cma-lab .cma-n{display:block;font-size:34px;font-weight:300;color:#9A8F7E;
+    line-height:1;}
+  .cma-lab b{display:block;font-size:13px;font-weight:800;letter-spacing:1.2px;
+    text-transform:uppercase;color:var(--navy);margin-top:8px;line-height:1.35;}
+  .cma-lab small{display:block;font-size:12.5px;color:var(--text-muted);
+    margin-top:4px;line-height:1.5;}
+  .cma-cap{font-size:13.5px;color:var(--text-muted);line-height:1.6;}
+
+  /* ---- every module opens in place ---- */
+  /* <details>, so this needs no script, survives a page print, and opens when
+     the browser's own find-in-page lands inside one. The name is in the
+     summary, so the closed diagram is still a complete list to a reader, a
+     crawler and a screen reader, and the description is in the DOM either way. */
+  .cma summary{list-style:none;cursor:pointer;}
+  .cma summary::-webkit-details-marker{display:none;}
+  .cma details>summary::after{content:"+";flex:0 0 auto;width:20px;height:20px;
+    border-radius:50%;display:inline-flex;align-items:center;
+    justify-content:center;font-size:15px;font-weight:700;line-height:1;
+    transition:transform .2s;}
+  .cma details[open]>summary::after{transform:rotate(45deg);}
+
+  /* ---- 01 administration and inputs ---- */
+  .cma-admin{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;
+    margin-block:12px;align-items:stretch;}
+  /* The five tiles are one row of equal weight, so they take one height
+     between them rather than each sizing to its own name. "DCS Historian and
+     Customer Data" runs to three lines and left the other four looking
+     clipped. */
+  .cma-tile{background:#fff;border:1px solid var(--dk-acc-line);
+    border-radius:10px;min-width:0;display:flex;flex-direction:column;}
+  .cma-tile>summary{display:flex;flex:1;align-items:center;
+    justify-content:center;gap:8px;padding:11px 12px;text-align:center;
+    font-size:14px;color:var(--navy);font-weight:600;line-height:1.35;}
+  .cma-tile>summary::after{background:var(--dk-gold-pale);
+    color:var(--dk-gold-deep);font-size:13px;width:18px;height:18px;}
+  .cma-tile>p{padding:0 14px 12px;font-size:12.5px;line-height:1.55;
+    color:var(--text-muted);text-align:center;}
+  .cma-tile[open]{background:#FBF3E4;}
+
+  /* ---- 02 the two module columns either side of Core ---- */
+  /* The connectors are drawn outwards from the middle of the grid, half the
+     Core's own width plus the gap, so each one meets the dark panel exactly.
+     Logical properties, so the Arabic page draws them from the other side
+     without a second rule. */
+  .cma-grid{display:grid;grid-template-columns:minmax(0,1fr) 230px minmax(0,1fr);
+    gap:30px;align-items:stretch;position:relative;}
+  .cma-grid::before,.cma-grid::after{content:"";position:absolute;top:50%;
+    height:2px;width:30px;}
+  .cma-grid::before{background:var(--gold);inset-inline-start:calc(50% - 145px);}
+  .cma-grid::after{background:var(--sun);inset-inline-start:calc(50% + 115px);}
+  .cma-colh{display:flex;justify-content:space-between;align-items:flex-end;
+    gap:10px;margin-bottom:12px;}
+  .cma-colh h3{font-size:26px;font-weight:900;letter-spacing:.5px;line-height:1;}
+  .cma-colh span{display:block;font-size:13.5px;color:var(--text-muted);
+    margin-top:5px;line-height:1.4;}
+  .cma-colh em{font-style:normal;font-size:12.5px;color:var(--text-muted);
+    white-space:nowrap;}
+  .cma-hz .cma-colh h3{color:var(--dk-gold);}
+  .cma-pl .cma-colh h3{color:var(--dk-acc);}
+  .cma-list{display:grid;gap:8px;}
+  .cma-mi{border-radius:8px;font-size:15px;color:var(--navy);
+    transition:box-shadow .15s;}
+  .cma-mi>summary{display:flex;align-items:center;justify-content:space-between;
+    gap:10px;padding:10px 14px;line-height:1.4;}
+  .cma-mi>p{padding:0 14px 12px;font-size:13.5px;line-height:1.55;
+    color:var(--text-muted);}
+  .cma-mi[open]{box-shadow:0 8px 20px rgba(60,50,30,.10);}
+  .cma-hz .cma-mi{background:#FFFBEF;border:1px solid #F3E3A6;
+    border-inline-start:4px solid var(--gold);}
+  .cma-hz .cma-mi>summary::after{background:#F3E3A6;color:var(--dk-gold-deep);}
+  .cma-hz .cma-mi[open]{background:var(--dk-gold-pale);}
+  .cma-pl .cma-mi{background:#FFF8F2;border:1px solid #F8D9C2;
+    border-inline-start:4px solid var(--sun);}
+  .cma-pl .cma-mi>summary::after{background:#F8D9C2;color:var(--dk-acc-deep);}
+  .cma-pl .cma-mi[open]{background:var(--dk-acc-pale);}
+  .cma-go{display:inline-flex;align-items:center;gap:7px;margin-top:13px;
+    font-size:13px;font-weight:800;color:var(--dk-acc-deep);}
+  .cma-go:hover{color:var(--dk-acc);}
+  .cma-go:focus-visible{outline:2px solid var(--dk-acc-deep);outline-offset:4px;
+    border-radius:4px;}
+  .cma-arrow{font-size:14px;line-height:1;transition:transform .18s ease;}
+  .cma-go:hover .cma-arrow{transform:translateY(2px);}
+
+    /* Core runs the full height of the taller column rather than sitting at its
+     own size, because it is the one thing both columns attach to and a short
+     panel floating between them reads as a third, smaller module. Its content
+     is centred inside that height, where the two connectors meet it. */
+  .cma-core{background:var(--dk-navy);color:#fff;border-radius:16px;
+    padding:26px 18px;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;text-align:center;
+    box-shadow:0 18px 44px rgba(30,26,20,.25);position:relative;min-width:0;}
+  .cma-core h3{font-size:30px;font-weight:900;letter-spacing:1px;color:#fff;}
+  .cma-core .cma-k{color:#E3B21C;font-size:15px;margin-top:4px;
+    padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.18);
+    width:100%;line-height:1.35;}
+  .cma-core ul{list-style:none;margin-top:14px;display:grid;gap:9px;width:100%;}
+  .cma-ci>summary{display:flex;align-items:center;justify-content:center;gap:8px;
+    color:#fff;font-size:15.5px;line-height:1.35;}
+  .cma-ci>summary::after{background:rgba(255,255,255,.12);color:#E3B21C;
+    font-size:13px;width:18px;height:18px;}
+  .cma-ci>p{margin-top:6px;font-size:12.5px;line-height:1.5;color:#CFC6B6;
+    padding:0 4px;}
+  .cma-ci[open]>summary{color:#E3B21C;}
+
+  /* ---- 03 shared facilities ---- */
+  .cma-ray{display:flex;align-items:center;gap:12px;
+    background:linear-gradient(135deg,var(--sun),var(--sun-deep));color:#fff;
+    border-radius:12px;padding:13px 20px;font-weight:800;font-size:15px;
+    margin-bottom:14px;}
+  .cma-shared{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;
+    align-items:start;}
+  .cma-sf{background:#fff;border:1px solid var(--dk-acc-line);border-radius:12px;
+    min-width:0;}
+  .cma-sf>summary{display:flex;align-items:center;justify-content:space-between;
+    gap:10px;padding:13px 16px;font-size:15px;font-weight:700;color:var(--navy);
+    line-height:1.3;}
+  .cma-sf>summary::after{background:var(--dk-gold-pale);
+    color:var(--dk-gold-deep);}
+  .cma-sf>span{display:block;padding:0 16px 13px;font-size:13px;
+    color:var(--text-muted);line-height:1.45;}
+  .cma-sf[open]{background:#FBF3E4;box-shadow:0 8px 20px rgba(60,50,30,.08);}
+
+  .cma-foot{border-top:1px solid var(--border);padding-top:16px;font-size:13.5px;
+    color:var(--text-muted);line-height:1.7;}
+
+  /* Arabic sets no letter-spacing: it separates the joined letterforms. */
+  html[lang="ar"] .cma-lab b{letter-spacing:0;font-size:14px;}
+  html[lang="ar"] .cma-core h3,html[lang="ar"] .cma-colh h3{letter-spacing:0;}
+
+  /* The spine folds above its row, the three columns stack with Core still in
+     the middle, and the connectors go: stacked, they would be drawing a
+     relationship the layout no longer shows. */
+  @media(max-width:980px){
+    .cma{padding:22px;}
+    .cma-row{grid-template-columns:1fr;gap:14px;}
+    .cma-lab{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
+    .cma-lab .cma-n{font-size:22px;}
+    .cma-lab b{margin-top:0;}
+    .cma-lab small{margin-inline-start:auto;margin-top:0;}
+    .cma-grid{grid-template-columns:1fr;gap:18px;}
+    .cma-grid::before,.cma-grid::after{display:none;}
+    .cma-admin{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .cma-shared{grid-template-columns:repeat(2,minmax(0,1fr));}
+  }
+  @media(max-width:620px){
+    .cma-admin,.cma-shared{grid-template-columns:1fr;}
+    .cma-colh{flex-wrap:wrap;align-items:baseline;}
+    .cma-foot{font-size:12.5px;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .cma details>summary::after,.cma-arrow{transition:none;}
+    .cma-go:hover .cma-arrow{transform:none;}
+  }
+"""
+
 # the theme stylesheet is authored left to right, so mirror what it hard-codes
 RTL_CSS = r"""
   html[dir="rtl"] .tick li{padding-left:0;padding-right:22px;}
@@ -1216,7 +1406,7 @@ def head(d, title, desc, page, extra_css=""):
 <meta name="twitter:description" content="{esc_d}">
 <meta name="twitter:image" content="{SITE}/og-twosuns.jpg">
 <link rel="icon" type="image/svg+xml" href="/logo-mini.svg">
-<style>{theme.CSS}{theme.REVEAL_CSS}{arch.CSS}{process.CSS}{CEM_CSS}{RTL_CSS}{VAR_A_CSS}{extra_css}</style>
+<style>{theme.CSS}{theme.REVEAL_CSS}{arch.CSS}{process.CSS}{CEM_CSS}{CMA_CSS}{RTL_CSS}{VAR_A_CSS}{extra_css}</style>
 {theme.REVEAL_HEAD}
 {theme.LEADLANDER}
 </head>
@@ -1517,64 +1707,106 @@ def capmap(d):
     """The platform capability map: administration and inputs, the three module
     columns either side of Core, and the shared facilities. This is the diagram the
     business plan carries as slide 5, as real bilingual markup rather than a raster,
-    so the Arabic page gets Arabic and a phone gets a reflow."""
-    def mod(cls, h, dd, cnt, items, go="", go_l=""):
-        c = '<div class="d">%s%s</div>' % (e(dd), (" · " + e(cnt)) if cnt else "")
-        inner = ('<h3>%s</h3>%s<ul>%s</ul>'
-                 % (e(h), c, "".join("<li>%s</li>" % e(i) for i in items)))
-        if go:
-            # the arrow is the one part of the line that is decoration, so it is
-            # hidden from a screen reader, which already has the link's own text
-            inner = ('<a class="cmmod-a" href="#%s">%s<span class="go-l">%s'
-                     '<span class="ar" aria-hidden="true">&#8595;</span>'
-                     '</span></a>' % (go, inner, e(go_l)))
-            cls = (cls + " go").strip()
-        return '<div class="cmmod %s">%s</div>' % (cls, inner)
+    so the Arabic page gets Arabic and a phone gets a reflow.
 
-    out = """<section class="band-alt">
+    One card with a numbered spine down the start edge, rather than the three
+    separate cards this was before. The three tiers are one structure, and three
+    boxes stacked with a gap between them read as three unrelated diagrams.
+
+    Every module is a <details>. The names alone were a list of nouns a reader
+    outside the industry could not price, and the page had no room to spend a
+    paragraph on each of the thirty two. Closed, the diagram is the same quick
+    read it was; opened, a module explains itself in place. The summary carries
+    the name, so a closed <details> is still a complete capability list for a
+    screen reader and for a crawler, and the description is in the DOM either
+    way. No JavaScript: <details> opens on its own, and it opens when the page
+    is printed or when the browser searches text inside it."""
+    def det(cls, name, desc, tag="p"):
+        return ('<details class="%s"><summary><span>%s</span></summary>'
+                '<%s>%s</%s></details>' % (cls, e(name), tag, e(desc), tag))
+
+    def column(side, h, sub, cnt, names, descs, go, go_l):
+        items = "".join(det("cma-mi", n, dd) for n, dd in zip(names, descs))
+        return ('<div class="cma-%s">'
+                '<div class="cma-colh"><div><h3>%s</h3><span>%s</span></div>'
+                '<em>%s</em></div>'
+                '<div class="cma-list">%s</div>'
+                '<a class="cma-go" href="#%s">%s'
+                '<span class="cma-arrow" aria-hidden="true">&#8595;</span></a>'
+                '</div>'
+                % (side, e(h), e(sub), e(cnt), items, go, e(go_l)))
+
+    assert len(d["arch_t1"]) == len(d["arch_t1_dd"]), "every input tile needs its line"
+    assert len(d["arch_hz"]) == len(d["arch_hz_dd"]), "every Horizon module needs its line"
+    assert len(d["arch_core"]) == len(d["arch_core_dd"]), "every Core element needs its line"
+    assert len(d["arch_pl"]) == len(d["arch_pl_dd"]), "every Pulse module needs its line"
+    assert len(d["arch_t3"]) == len(d["arch_t3_dd"]), "every shared facility needs its line"
+
+    admin = "".join(det("cma-tile", n, dd)
+                    for n, dd in zip(d["arch_t1"], d["arch_t1_dd"]))
+    core = "".join('<li>%s</li>' % det("cma-ci", n, dd)
+                   for n, dd in zip(d["arch_core"], d["arch_core_dd"]))
+    shared = "".join(det("cma-sf", n, dd, tag="span")
+                     for n, dd in zip(d["arch_t3"], d["arch_t3_dd"]))
+
+    return """<section class="band-alt">
   <div class="container">
     <div class="section-tag">%s</div>
     <h2 class="section-heading">%s</h2>
     <p class="section-sub">%s</p>
 
-    <div class="cmtier">
-      <div class="cmtier-h"><span class="cmtier-n">%s</span>
-        <span class="cmtier-k">%s</span><span class="cmtier-a">%s</span></div>
-      <div class="cmtier-who">%s</div>
-      %s
-      <p class="cmnote">%s</p>
-    </div>
+    <div class="cma">
 
-    <div class="cmtier">
-      <div class="cmtier-h"><span class="cmtier-n">%s</span>
-        <span class="cmtier-k">%s</span><span class="cmtier-a">%s</span></div>
-      <div class="cmmods">%s%s%s</div>
-    </div>
+      <div class="cma-row">
+        <div class="cma-lab"><span class="cma-n">%s</span><b>%s</b><small>%s</small></div>
+        <div>
+          <p class="cma-cap">%s</p>
+          <div class="cma-admin">%s</div>
+          <p class="cma-cap">%s</p>
+        </div>
+      </div>
 
-    <div class="cmtier">
-      <div class="cmtier-h"><span class="cmtier-n">%s</span>
-        <span class="cmtier-k">%s</span><span class="cmtier-a">%s</span></div>
-      <div class="cmray">%s</div>
-      %s
-      <p class="cmnote">%s</p>
-    </div>
+      <div class="cma-row">
+        <div class="cma-lab"><span class="cma-n">%s</span><b>%s</b><small>%s</small></div>
+        <div class="cma-grid">
+          %s
+          <div class="cma-core">
+            <h3>%s</h3>
+            <div class="cma-k">%s</div>
+            <ul>%s</ul>
+          </div>
+          %s
+        </div>
+      </div>
 
-    <div class="cmunits">%s</div>
+      <div class="cma-row">
+        <div class="cma-lab"><span class="cma-n">%s</span><b>%s</b><small>%s</small></div>
+        <div>
+          <div class="cma-ray">%s</div>
+          <div class="cma-shared">%s</div>
+          <p class="cma-cap">%s</p>
+        </div>
+      </div>
+
+      <div class="cma-foot">%s</div>
+    </div>
   </div>
 </section>
 """ % (e(d["arch_tag"]), e(d["arch_h"]), e(d["arch_p"]),
-       e(d["arch_t1_n"]), e(d["arch_t1_k"]), e(d["arch_t1_a"]), e(d["arch_t1_who"]),
-       chips(d["arch_t1"]), e(d["arch_t1_note"]),
+       e(d["arch_t1_n"]), e(d["arch_t1_k"]), e(d["arch_t1_a"]),
+       e(d["arch_t1_who"]), admin, e(d["arch_t1_note"]),
        e(d["arch_t2_n"]), e(d["arch_t2_k"]), e(d["arch_t2_a"]),
-       mod("", d["arch_hz_h"], d["arch_hz_d"], d["arch_hz_c"], d["arch_hz"],
-           go="horizon", go_l=d["arch_go"] % d["arch_hz_h"]),
-       mod("core", d["arch_core_h"], d["arch_core_d"], "", d["arch_core"]),
-       mod("", d["arch_pl_h"], d["arch_pl_d"], d["arch_pl_c"], d["arch_pl"],
-           go="pulse", go_l=d["arch_go"] % d["arch_pl_h"]),
+       column("hz", d["arch_hz_h"], d["arch_hz_d"], d["arch_hz_c"],
+              d["arch_hz"], d["arch_hz_dd"], "horizon",
+              d["arch_go"] % d["arch_hz_h"]),
+       e(d["arch_core_h"]), e(d["arch_core_d"]), core,
+       column("pl", d["arch_pl_h"], d["arch_pl_d"], d["arch_pl_c"],
+              d["arch_pl"], d["arch_pl_dd"], "pulse",
+              d["arch_go"] % d["arch_pl_h"]),
        e(d["arch_t3_n"]), e(d["arch_t3_k"]), e(d["arch_t3_a"]),
-       e(d["arch_ray"]), chips(d["arch_t3"], grid=True), e(d["arch_t3_note"]),
+       e(d["arch_ray"]), shared, e(d["arch_t3_note"]),
        e(d["arch_units"]))
-    return out
+
 
 
 # ================================================================ EVENTS

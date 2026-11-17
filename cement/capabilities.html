@@ -1294,6 +1294,166 @@
     .area-sec{padding:44px 0;}
   }
 
+  .cma{background:#fff;border:1px solid var(--border);border-radius:22px;
+    box-shadow:var(--shadow-lg);padding:34px;margin-top:36px;text-align:start;
+    display:grid;gap:30px;}
+  .cma-row{display:grid;grid-template-columns:170px minmax(0,1fr);gap:24px;
+    align-items:start;}
+  .cma-row>*{min-width:0;}
+  .cma-lab .cma-n{display:block;font-size:34px;font-weight:300;color:#9A8F7E;
+    line-height:1;}
+  .cma-lab b{display:block;font-size:13px;font-weight:800;letter-spacing:1.2px;
+    text-transform:uppercase;color:var(--navy);margin-top:8px;line-height:1.35;}
+  .cma-lab small{display:block;font-size:12.5px;color:var(--text-muted);
+    margin-top:4px;line-height:1.5;}
+  .cma-cap{font-size:13.5px;color:var(--text-muted);line-height:1.6;}
+
+  /* ---- every module opens in place ---- */
+  /* <details>, so this needs no script, survives a page print, and opens when
+     the browser's own find-in-page lands inside one. The name is in the
+     summary, so the closed diagram is still a complete list to a reader, a
+     crawler and a screen reader, and the description is in the DOM either way. */
+  .cma summary{list-style:none;cursor:pointer;}
+  .cma summary::-webkit-details-marker{display:none;}
+  .cma details>summary::after{content:"+";flex:0 0 auto;width:20px;height:20px;
+    border-radius:50%;display:inline-flex;align-items:center;
+    justify-content:center;font-size:15px;font-weight:700;line-height:1;
+    transition:transform .2s;}
+  .cma details[open]>summary::after{transform:rotate(45deg);}
+
+  /* ---- 01 administration and inputs ---- */
+  .cma-admin{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;
+    margin-block:12px;align-items:stretch;}
+  /* The five tiles are one row of equal weight, so they take one height
+     between them rather than each sizing to its own name. "DCS Historian and
+     Customer Data" runs to three lines and left the other four looking
+     clipped. */
+  .cma-tile{background:#fff;border:1px solid var(--dk-acc-line);
+    border-radius:10px;min-width:0;display:flex;flex-direction:column;}
+  .cma-tile>summary{display:flex;flex:1;align-items:center;
+    justify-content:center;gap:8px;padding:11px 12px;text-align:center;
+    font-size:14px;color:var(--navy);font-weight:600;line-height:1.35;}
+  .cma-tile>summary::after{background:var(--dk-gold-pale);
+    color:var(--dk-gold-deep);font-size:13px;width:18px;height:18px;}
+  .cma-tile>p{padding:0 14px 12px;font-size:12.5px;line-height:1.55;
+    color:var(--text-muted);text-align:center;}
+  .cma-tile[open]{background:#FBF3E4;}
+
+  /* ---- 02 the two module columns either side of Core ---- */
+  /* The connectors are drawn outwards from the middle of the grid, half the
+     Core's own width plus the gap, so each one meets the dark panel exactly.
+     Logical properties, so the Arabic page draws them from the other side
+     without a second rule. */
+  .cma-grid{display:grid;grid-template-columns:minmax(0,1fr) 230px minmax(0,1fr);
+    gap:30px;align-items:stretch;position:relative;}
+  .cma-grid::before,.cma-grid::after{content:"";position:absolute;top:50%;
+    height:2px;width:30px;}
+  .cma-grid::before{background:var(--gold);inset-inline-start:calc(50% - 145px);}
+  .cma-grid::after{background:var(--sun);inset-inline-start:calc(50% + 115px);}
+  .cma-colh{display:flex;justify-content:space-between;align-items:flex-end;
+    gap:10px;margin-bottom:12px;}
+  .cma-colh h3{font-size:26px;font-weight:900;letter-spacing:.5px;line-height:1;}
+  .cma-colh span{display:block;font-size:13.5px;color:var(--text-muted);
+    margin-top:5px;line-height:1.4;}
+  .cma-colh em{font-style:normal;font-size:12.5px;color:var(--text-muted);
+    white-space:nowrap;}
+  .cma-hz .cma-colh h3{color:var(--dk-gold);}
+  .cma-pl .cma-colh h3{color:var(--dk-acc);}
+  .cma-list{display:grid;gap:8px;}
+  .cma-mi{border-radius:8px;font-size:15px;color:var(--navy);
+    transition:box-shadow .15s;}
+  .cma-mi>summary{display:flex;align-items:center;justify-content:space-between;
+    gap:10px;padding:10px 14px;line-height:1.4;}
+  .cma-mi>p{padding:0 14px 12px;font-size:13.5px;line-height:1.55;
+    color:var(--text-muted);}
+  .cma-mi[open]{box-shadow:0 8px 20px rgba(60,50,30,.10);}
+  .cma-hz .cma-mi{background:#FFFBEF;border:1px solid #F3E3A6;
+    border-inline-start:4px solid var(--gold);}
+  .cma-hz .cma-mi>summary::after{background:#F3E3A6;color:var(--dk-gold-deep);}
+  .cma-hz .cma-mi[open]{background:var(--dk-gold-pale);}
+  .cma-pl .cma-mi{background:#FFF8F2;border:1px solid #F8D9C2;
+    border-inline-start:4px solid var(--sun);}
+  .cma-pl .cma-mi>summary::after{background:#F8D9C2;color:var(--dk-acc-deep);}
+  .cma-pl .cma-mi[open]{background:var(--dk-acc-pale);}
+  .cma-go{display:inline-flex;align-items:center;gap:7px;margin-top:13px;
+    font-size:13px;font-weight:800;color:var(--dk-acc-deep);}
+  .cma-go:hover{color:var(--dk-acc);}
+  .cma-go:focus-visible{outline:2px solid var(--dk-acc-deep);outline-offset:4px;
+    border-radius:4px;}
+  .cma-arrow{font-size:14px;line-height:1;transition:transform .18s ease;}
+  .cma-go:hover .cma-arrow{transform:translateY(2px);}
+
+    /* Core runs the full height of the taller column rather than sitting at its
+     own size, because it is the one thing both columns attach to and a short
+     panel floating between them reads as a third, smaller module. Its content
+     is centred inside that height, where the two connectors meet it. */
+  .cma-core{background:var(--dk-navy);color:#fff;border-radius:16px;
+    padding:26px 18px;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;text-align:center;
+    box-shadow:0 18px 44px rgba(30,26,20,.25);position:relative;min-width:0;}
+  .cma-core h3{font-size:30px;font-weight:900;letter-spacing:1px;color:#fff;}
+  .cma-core .cma-k{color:#E3B21C;font-size:15px;margin-top:4px;
+    padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.18);
+    width:100%;line-height:1.35;}
+  .cma-core ul{list-style:none;margin-top:14px;display:grid;gap:9px;width:100%;}
+  .cma-ci>summary{display:flex;align-items:center;justify-content:center;gap:8px;
+    color:#fff;font-size:15.5px;line-height:1.35;}
+  .cma-ci>summary::after{background:rgba(255,255,255,.12);color:#E3B21C;
+    font-size:13px;width:18px;height:18px;}
+  .cma-ci>p{margin-top:6px;font-size:12.5px;line-height:1.5;color:#CFC6B6;
+    padding:0 4px;}
+  .cma-ci[open]>summary{color:#E3B21C;}
+
+  /* ---- 03 shared facilities ---- */
+  .cma-ray{display:flex;align-items:center;gap:12px;
+    background:linear-gradient(135deg,var(--sun),var(--sun-deep));color:#fff;
+    border-radius:12px;padding:13px 20px;font-weight:800;font-size:15px;
+    margin-bottom:14px;}
+  .cma-shared{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;
+    align-items:start;}
+  .cma-sf{background:#fff;border:1px solid var(--dk-acc-line);border-radius:12px;
+    min-width:0;}
+  .cma-sf>summary{display:flex;align-items:center;justify-content:space-between;
+    gap:10px;padding:13px 16px;font-size:15px;font-weight:700;color:var(--navy);
+    line-height:1.3;}
+  .cma-sf>summary::after{background:var(--dk-gold-pale);
+    color:var(--dk-gold-deep);}
+  .cma-sf>span{display:block;padding:0 16px 13px;font-size:13px;
+    color:var(--text-muted);line-height:1.45;}
+  .cma-sf[open]{background:#FBF3E4;box-shadow:0 8px 20px rgba(60,50,30,.08);}
+
+  .cma-foot{border-top:1px solid var(--border);padding-top:16px;font-size:13.5px;
+    color:var(--text-muted);line-height:1.7;}
+
+  /* Arabic sets no letter-spacing: it separates the joined letterforms. */
+  html[lang="ar"] .cma-lab b{letter-spacing:0;font-size:14px;}
+  html[lang="ar"] .cma-core h3,html[lang="ar"] .cma-colh h3{letter-spacing:0;}
+
+  /* The spine folds above its row, the three columns stack with Core still in
+     the middle, and the connectors go: stacked, they would be drawing a
+     relationship the layout no longer shows. */
+  @media(max-width:980px){
+    .cma{padding:22px;}
+    .cma-row{grid-template-columns:1fr;gap:14px;}
+    .cma-lab{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
+    .cma-lab .cma-n{font-size:22px;}
+    .cma-lab b{margin-top:0;}
+    .cma-lab small{margin-inline-start:auto;margin-top:0;}
+    .cma-grid{grid-template-columns:1fr;gap:18px;}
+    .cma-grid::before,.cma-grid::after{display:none;}
+    .cma-admin{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .cma-shared{grid-template-columns:repeat(2,minmax(0,1fr));}
+  }
+  @media(max-width:620px){
+    .cma-admin,.cma-shared{grid-template-columns:1fr;}
+    .cma-colh{flex-wrap:wrap;align-items:baseline;}
+    .cma-foot{font-size:12.5px;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .cma details>summary::after,.cma-arrow{transition:none;}
+    .cma-go:hover .cma-arrow{transform:none;}
+  }
+
   html[dir="rtl"] .tick li{padding-left:0;padding-right:22px;}
   html[dir="rtl"] .tick li::before{left:auto;right:0;}
   html[dir="rtl"] .step{padding:20px 68px 20px 22px;}
@@ -1847,29 +2007,41 @@
     <h2 class="section-heading">Two operating domains, one shared context</h2>
     <p class="section-sub">Horizon supports the market-facing work and Pulse supports the plant. Core holds the context both work from, and Ray works from the context available to each user and workflow. An order accepted in Horizon can inform grinding and dispatch planning in Pulse, and available capacity can inform the tonnes sales commits, while Core maintains continuity.</p>
 
-    <div class="cmtier">
-      <div class="cmtier-h"><span class="cmtier-n">01</span>
-        <span class="cmtier-k">Administration and inputs</span><span class="cmtier-a">Restricted access</span></div>
-      <div class="cmtier-who">TwoSuns implementation team and the producer's authorized system administrators</div>
-      <ul class="cmchips"><li>Admin and Security</li><li>Integrations</li><li>Market Data</li><li>DCS Historian and Customer Data</li><li>Uploads</li></ul>
-      <p class="cmnote">Permitted users contribute through module uploads, defined submissions and connected shared drives.</p>
-    </div>
+    <div class="cma">
 
-    <div class="cmtier">
-      <div class="cmtier-h"><span class="cmtier-n">02</span>
-        <span class="cmtier-k">Modules</span><span class="cmtier-a">Permission-based access</span></div>
-      <div class="cmmods"><div class="cmmod go"><a class="cmmod-a" href="#horizon"><h3>Horizon</h3><div class="d">Commercial coordination · 6 modules</div><ul><li>Strategy and Product Market Fit</li><li>Omni Signals</li><li>Omni Plays</li><li>Contracts and Offers</li><li>Order Management and Invoicing</li><li>Finance</li></ul><span class="go-l">See the Horizon capabilities<span class="ar" aria-hidden="true">&#8595;</span></span></a></div><div class="cmmod core"><h3>Core</h3><div class="d">Shared enterprise context</div><ul><li>Organization</li><li>Objectives</li><li>Business rules</li><li>Relationships</li><li>Decision history</li></ul></div><div class="cmmod go"><a class="cmmod-a" href="#pulse"><h3>Pulse</h3><div class="d">Operational execution · 7 modules</div><ul><li>Quarry</li><li>Materials and Supply</li><li>Crushing and Raw Mix</li><li>Pyro Process and Cooling</li><li>Grinding and Product</li><li>Packing and Dispatch</li><li>Sustainability</li></ul><span class="go-l">See the Pulse capabilities<span class="ar" aria-hidden="true">&#8595;</span></span></a></div></div>
-    </div>
+      <div class="cma-row">
+        <div class="cma-lab"><span class="cma-n">01</span><b>Administration and inputs</b><small>Restricted access</small></div>
+        <div>
+          <p class="cma-cap">TwoSuns implementation team and the producer's authorized system administrators</p>
+          <div class="cma-admin"><details class="cma-tile"><summary><span>Admin and Security</span></summary><p>Users, roles, permissions and the audit trail, managed by the TwoSuns team and authorized administrators.</p></details><details class="cma-tile"><summary><span>Integrations</span></summary><p>Read connections to ERP, DCS historian, lab systems and shared drives.</p></details><details class="cma-tile"><summary><span>Market Data</span></summary><p>Fuel benchmarks, exchange rates, freight and market signals used across Horizon and Pulse.</p></details><details class="cma-tile"><summary><span>DCS Historian and Customer Data</span></summary><p>Plant process history and the customer's own records, read without changing any control system.</p></details><details class="cma-tile"><summary><span>Uploads</span></summary><p>Survey sheets, reports and spreadsheets submitted by permitted users through module uploads.</p></details></div>
+          <p class="cma-cap">Permitted users contribute through module uploads, defined submissions and connected shared drives.</p>
+        </div>
+      </div>
 
-    <div class="cmtier">
-      <div class="cmtier-h"><span class="cmtier-n">03</span>
-        <span class="cmtier-k">Shared facilities</span><span class="cmtier-a">Permission-based capability</span></div>
-      <div class="cmray">Ray, the TwoSuns platform AI agent</div>
-      <ul class="cmchips g"><li>Digital Twin</li><li>Optimization and Scenarios</li><li>Calendars</li><li>Spaces</li><li>Dashboards</li><li>Inventory</li><li>Energy and Resources</li><li>Product Quality</li><li>Logistics</li></ul>
-      <p class="cmnote">Permissions govern inputs, visibility and actions throughout the platform.</p>
-    </div>
+      <div class="cma-row">
+        <div class="cma-lab"><span class="cma-n">02</span><b>Modules</b><small>Permission-based access</small></div>
+        <div class="cma-grid">
+          <div class="cma-hz"><div class="cma-colh"><div><h3>Horizon</h3><span>Commercial coordination</span></div><em>6 modules</em></div><div class="cma-list"><details class="cma-mi"><summary><span>Strategy and Product Market Fit</span></summary><p>Compares regions, channels and cement types against the plant's delivered cost and capacity, so the team prioritizes the volume that earns the most per tonne of clinker.</p></details><details class="cma-mi"><summary><span>Omni Signals</span></summary><p>Tracks price moves, competitor plant stops, tenders and export freight in one weekly view, each signal read against the plant's own cost and stock.</p></details><details class="cma-mi"><summary><span>Omni Plays</span></summary><p>Turns each signal into a commercial action with an owner and a deadline, so market changes reach the sales desk while they still matter.</p></details><details class="cma-mi"><summary><span>Contracts and Offers</span></summary><p>Checks every offer against plant cost, freight, clinker availability and margin floors, and routes it to the right approver before it reaches the customer.</p></details><details class="cma-mi"><summary><span>Order Management and Invoicing</span></summary><p>Matches each order to payment or credit limit and released cement, links every delivery note to its e-invoice, and keeps collections and claims traceable to the load.</p></details><details class="cma-mi"><summary><span>Finance</span></summary><p>Builds cost and margin per tonne from live plant decisions on fuel, product mix and dispatch, so finance sees the effect of a change within days, not at month end.</p></details></div><a class="cma-go" href="#horizon">See the Horizon capabilities<span class="cma-arrow" aria-hidden="true">&#8595;</span></a></div>
+          <div class="cma-core">
+            <h3>Core</h3>
+            <div class="cma-k">Shared enterprise context</div>
+            <ul><li><details class="cma-ci"><summary><span>Organization</span></summary><p>Plants, kiln lines, units, roles and reporting lines that every module works from.</p></details></li><li><details class="cma-ci"><summary><span>Objectives</span></summary><p>Targets for cost, output, quality and margin that every recommendation is judged against.</p></details></li><li><details class="cma-ci"><summary><span>Business rules</span></summary><p>Operating limits, approval chains and authority levels that every decision must respect.</p></details></li><li><details class="cma-ci"><summary><span>Relationships</span></summary><p>Customers, suppliers and contracts, and how each one connects to the plant.</p></details></li><li><details class="cma-ci"><summary><span>Decision history</span></summary><p>Every recommendation, approval and outcome, logged with its reason so the next decision starts from what was learned.</p></details></li></ul>
+          </div>
+          <div class="cma-pl"><div class="cma-colh"><div><h3>Pulse</h3><span>Operational execution</span></div><em>7 modules</em></div><div class="cma-list"><details class="cma-mi"><summary><span>Quarry</span></summary><p>Plans which faces and benches to draw from so the crusher receives a consistent blend and high-grade reserves last longer.</p></details><details class="cma-mi"><summary><span>Materials and Supply</span></summary><p>Keeps the stock of record for raw materials, fuels, clinker, cement and critical spares. Shows days of cover against real lead times, including LC, shipping and port clearance, and drafts reorders for approval.</p></details><details class="cma-mi"><summary><span>Crushing and Raw Mix</span></summary><p>Tracks kiln feed chemistry, lime saturation and the silica and alumina moduli, and proposes proportion corrections when quarry or corrective materials change.</p></details><details class="cma-mi"><summary><span>Pyro Process and Cooling</span></summary><p>Compares fuel mixes on cost per tonne of clinker within the kiln's heat, chemistry, feeder and permit limits, and shows which limit binds before any setpoint changes.</p></details><details class="cma-mi"><summary><span>Grinding and Product</span></summary><p>Keeps each cement type inside its standard and strength band while grinding no finer than it needs, which lowers kWh per tonne. Silos are released only when they are in spec.</p></details><details class="cma-mi"><summary><span>Packing and Dispatch</span></summary><p>Checks bag weight and price print, keeps every truck within its weight limit, and shows whether the queue is building at the packers or the bays, so trucks leave the gate on time.</p></details><details class="cma-mi"><summary><span>Sustainability</span></summary><p>Calculates CO2 per tonne of cement from the clinker factor, fuel mix and power the plant already records, and supports the carbon reporting that exports to the EU and GOEIC approvals require.</p></details></div><a class="cma-go" href="#pulse">See the Pulse capabilities<span class="cma-arrow" aria-hidden="true">&#8595;</span></a></div>
+        </div>
+      </div>
 
-    <div class="cmunits">Heat in kcal/kg clinker on an NCV basis. Power in kWh per tonne of cement. Costs per tonne of clinker or cement, in EGP and US$. CO2 per tonne of clinker and of cement shown separately.</div>
+      <div class="cma-row">
+        <div class="cma-lab"><span class="cma-n">03</span><b>Shared facilities</b><small>Permission-based capability</small></div>
+        <div>
+          <div class="cma-ray">Ray, the TwoSuns platform AI agent</div>
+          <div class="cma-shared"><details class="cma-sf"><summary><span>Digital Twin</span></summary><span>Interactive business and operations</span></details><details class="cma-sf"><summary><span>Optimization and Scenarios</span></summary><span>Alternatives, constraints and outcomes</span></details><details class="cma-sf"><summary><span>Calendars</span></summary><span>Operational, finance and other shared and private calendars</span></details><details class="cma-sf"><summary><span>Spaces</span></summary><span>Secure internal and external participation</span></details><details class="cma-sf"><summary><span>Dashboards</span></summary><span>Curated performance, insights and actions</span></details><details class="cma-sf"><summary><span>Inventory</span></summary><span>Stocks, quality, losses and reconciliation across operational stages</span></details><details class="cma-sf"><summary><span>Energy and Resources</span></summary><span>Operating and regulatory limits, utilization and calorific optimization</span></details><details class="cma-sf"><summary><span>Product Quality</span></summary><span>Stage quality, losses and improvement opportunities across the production workflow</span></details><details class="cma-sf"><summary><span>Logistics</span></summary><span>External supply chain and internal movements: material transfers, transport and dispatch</span></details></div>
+          <p class="cma-cap">Permissions govern inputs, visibility and actions throughout the platform.</p>
+        </div>
+      </div>
+
+      <div class="cma-foot">Heat in kcal/kg clinker on an NCV basis. Power in kWh per tonne of cement. Costs per tonne of clinker or cement, in EGP and US$. CO2 per tonne of clinker and of cement shown separately.</div>
+    </div>
   </div>
 </section>
 <section id="horizon" class="cmanch">

@@ -241,6 +241,85 @@ EN = {
               'Logistics',
             ],
  'arch_t3_note': 'Permissions govern inputs, visibility and actions throughout the platform.',
+ # ---- one line on what each module does ----
+ # Parallel to the name lists above, same order, so capmap() can zip them. It
+ # asserts the lengths match, which turns a half-written list into a failed
+ # build rather than a module that silently loses its description.
+ 'arch_t1_dd': [
+  "Users, roles, permissions and the audit trail, managed by the TwoSuns team "
+  "and authorized administrators.",
+  "Read connections to ERP, DCS historian, lab systems and shared drives.",
+  "Fuel benchmarks, exchange rates, freight and market signals used across "
+  "Horizon and Pulse.",
+  "Plant process history and the customer's own records, read without changing "
+  "any control system.",
+  "Survey sheets, reports and spreadsheets submitted by permitted users through "
+  "module uploads.",
+ ],
+ 'arch_hz_dd': [
+  "Compares regions, channels and cement types against the plant's delivered "
+  "cost and capacity, so the team prioritizes the volume that earns the most "
+  "per tonne of clinker.",
+  "Tracks price moves, competitor plant stops, tenders and export freight in "
+  "one weekly view, each signal read against the plant's own cost and stock.",
+  "Turns each signal into a commercial action with an owner and a deadline, so "
+  "market changes reach the sales desk while they still matter.",
+  "Checks every offer against plant cost, freight, clinker availability and "
+  "margin floors, and routes it to the right approver before it reaches the "
+  "customer.",
+  "Matches each order to payment or credit limit and released cement, links "
+  "every delivery note to its e-invoice, and keeps collections and claims "
+  "traceable to the load.",
+  "Builds cost and margin per tonne from live plant decisions on fuel, product "
+  "mix and dispatch, so finance sees the effect of a change within days, not "
+  "at month end.",
+ ],
+ 'arch_core_dd': [
+  "Plants, kiln lines, units, roles and reporting lines that every module "
+  "works from.",
+  "Targets for cost, output, quality and margin that every recommendation is "
+  "judged against.",
+  "Operating limits, approval chains and authority levels that every decision "
+  "must respect.",
+  "Customers, suppliers and contracts, and how each one connects to the plant.",
+  "Every recommendation, approval and outcome, logged with its reason so the "
+  "next decision starts from what was learned.",
+ ],
+ 'arch_pl_dd': [
+  "Plans which faces and benches to draw from so the crusher receives a "
+  "consistent blend and high-grade reserves last longer.",
+  "Keeps the stock of record for raw materials, fuels, clinker, cement and "
+  "critical spares. Shows days of cover against real lead times, including LC, "
+  "shipping and port clearance, and drafts reorders for approval.",
+  "Tracks kiln feed chemistry, lime saturation and the silica and alumina "
+  "moduli, and proposes proportion corrections when quarry or corrective "
+  "materials change.",
+  "Compares fuel mixes on cost per tonne of clinker within the kiln's heat, "
+  "chemistry, feeder and permit limits, and shows which limit binds before any "
+  "setpoint changes.",
+  "Keeps each cement type inside its standard and strength band while grinding "
+  "no finer than it needs, which lowers kWh per tonne. Silos are released only "
+  "when they are in spec.",
+  "Checks bag weight and price print, keeps every truck within its weight "
+  "limit, and shows whether the queue is building at the packers or the bays, "
+  "so trucks leave the gate on time.",
+  "Calculates CO2 per tonne of cement from the clinker factor, fuel mix and "
+  "power the plant already records, and supports the carbon reporting that "
+  "exports to the EU and GOEIC approvals require.",
+ ],
+ 'arch_t3_dd': [
+  "Interactive business and operations",
+  "Alternatives, constraints and outcomes",
+  "Operational, finance and other shared and private calendars",
+  "Secure internal and external participation",
+  "Curated performance, insights and actions",
+  "Stocks, quality, losses and reconciliation across operational stages",
+  "Operating and regulatory limits, utilization and calorific optimization",
+  "Stage quality, losses and improvement opportunities across the production "
+  "workflow",
+  "External supply chain and internal movements: material transfers, transport "
+  "and dispatch",
+ ],
  'arch_units': "Heat in kcal/kg clinker on an NCV basis. Power in kWh per tonne of cement. "
                 "Costs per tonne of clinker or cement, in EGP and US$. CO2 per tonne of "
                 "clinker and of cement shown separately.",
@@ -1359,6 +1438,73 @@ AR = {
               'الخدمات اللوجستية',
             ],
  'arch_t3_note': 'تحكم الصلاحيات المدخلات والرؤية والإجراءات في كل أنحاء المنصة.',
+ # ---- one line on what each module does ----
+ 'arch_t1_dd': [
+  "المستخدمون والأدوار والصلاحيات وسجل التدقيق، يديرها فريق TwoSuns ومسؤولو "
+  "النظام المعتمدون.",
+  "اتصالات قراءة مع نظام تخطيط الموارد وسجل DCS وأنظمة المعمل ومحركات الأقراص "
+  "المشتركة.",
+  "مؤشرات أسعار الوقود وأسعار الصرف والشحن وإشارات السوق المستخدمة في Horizon "
+  "وPulse.",
+  "تاريخ عمليات المصنع وسجلات العميل، تُقرأ دون تغيير أي نظام تحكم.",
+  "أوراق المسح والتقارير والجداول التي يرفعها المستخدمون المصرّح لهم عبر "
+  "الوحدات.",
+ ],
+ 'arch_hz_dd': [
+  "يقارن المناطق وقنوات البيع وأنواع الأسمنت مقابل تكلفة المصنع حتى التسليم "
+  "وطاقته، ليعطي الفريق الأولوية للكميات الأعلى عائدًا لكل طن كلنكر.",
+  "يتابع تحركات الأسعار وتوقفات مصانع المنافسين والمناقصات وأسعار شحن الصادرات "
+  "في عرض أسبوعي واحد، وتُقرأ كل إشارة مقابل تكلفة المصنع ومخزونه.",
+  "يحوّل كل إشارة إلى إجراء تجاري له مسؤول وموعد نهائي، لتصل تغيرات السوق إلى "
+  "مكتب المبيعات وهي لا تزال مؤثرة.",
+  "يراجع كل عرض مقابل تكلفة المصنع والنقل وتوفر الكلنكر والحد الأدنى للهامش، "
+  "ويوجّهه إلى صاحب الاعتماد المناسب قبل وصوله إلى العميل.",
+  "يطابق كل طلب مع السداد أو الحد الائتماني والأسمنت المُفرَج عنه، ويربط كل "
+  "إذن تسليم بفاتورته الإلكترونية، ويُبقي التحصيل والشكاوى قابلة للتتبع حتى "
+  "الحمولة.",
+  "يبني التكلفة والهامش لكل طن من قرارات المصنع الحية في الوقود ومزيج المنتجات "
+  "والشحن، فترى الإدارة المالية أثر أي تغيير خلال أيام، لا في نهاية الشهر.",
+ ],
+ 'arch_core_dd': [
+  "المصانع وخطوط الأفران والوحدات والأدوار وخطوط التبعية التي تعمل منها كل "
+  "الوحدات.",
+  "مستهدفات التكلفة والإنتاج والجودة والهامش التي تُقيَّم على أساسها كل توصية.",
+  "حدود التشغيل ومسارات الاعتماد ومستويات الصلاحية التي يجب أن يلتزم بها كل "
+  "قرار.",
+  "العملاء والموردون والعقود، وكيف يرتبط كل منها بالمصنع.",
+  "كل توصية واعتماد ونتيجة، مسجلة مع سببها، ليبدأ القرار التالي مما تم تعلمه.",
+ ],
+ 'arch_pl_dd': [
+  "يخطط الواجهات والمصاطب التي يُسحب منها لتصل إلى الكسارة خلطة متجانسة ويطول "
+  "عمر احتياطي الحجر عالي الجودة.",
+  "يحتفظ بالمخزون المعتمد للمواد الخام والوقود والكلنكر والأسمنت وقطع الغيار "
+  "الحرجة. يعرض أيام التغطية مقابل مدد التوريد الفعلية بما فيها الاعتمادات "
+  "المستندية والشحن والتخليص الجمركي، ويُعدّ طلبات إعادة الشراء للاعتماد.",
+  "يتابع كيمياء تغذية الفرن، معامل التشبع بالجير ومعاملي السيليكا والألومينا، "
+  "ويقترح تصحيح النسب عند تغيّر مواد المحجر أو المواد التصحيحية.",
+  "يقارن خلطات الوقود على أساس التكلفة لكل طن كلنكر ضمن حدود الحرارة والكيمياء "
+  "ومغذيات الوقود والتصاريح للفرن، ويوضح الحد المقيِّد قبل تغيير أي نقطة ضبط.",
+  "يُبقي كل نوع أسمنت ضمن نطاق المواصفة والمقاومة مع الطحن بالنعومة المطلوبة "
+  "فقط، ما يخفض الكيلووات ساعة لكل طن. ولا تُفرَج الصوامع إلا عند مطابقتها "
+  "للمواصفات.",
+  "يتحقق من وزن الشيكارة وطباعة السعر عليها، ويُبقي كل شاحنة ضمن حد حمولتها، "
+  "ويوضح هل يتكوّن الطابور عند ماكينات التعبئة أم عند أرصفة التحميل، لتخرج "
+  "الشاحنات من البوابة في موعدها.",
+  "يحسب CO2 لكل طن أسمنت من معامل الكلنكر وخلطة الوقود والكهرباء التي يسجلها "
+  "المصنع بالفعل، ويدعم تقارير الكربون التي يتطلبها التصدير إلى الاتحاد "
+  "الأوروبي وموافقات هيئة الرقابة على الصادرات والواردات.",
+ ],
+ 'arch_t3_dd': [
+  "تمثيل تفاعلي للأعمال والعمليات",
+  "البدائل والقيود والنتائج",
+  "تقويمات التشغيل والمالية وغيرها، المشتركة والخاصة",
+  "مشاركة آمنة داخلية وخارجية",
+  "الأداء والرؤى والإجراءات",
+  "الأرصدة والجودة والفاقد والتسوية عبر مراحل التشغيل",
+  "حدود التشغيل والحدود التنظيمية، والاستخدام وتحسين القيمة الحرارية",
+  "الجودة في كل مرحلة والفاقد وفرص التحسين عبر سير الإنتاج",
+  "سلسلة الإمداد الخارجية والحركة الداخلية: نقل المواد والنقل والشحن",
+ ],
  'arch_units': "الحرارة بوحدة kcal/kg كلنكر على أساس NCV. الطاقة بوحدة kWh لكل طن أسمنت. "
                 "التكاليف لكل طن كلنكر أو أسمنت، بالجنيه المصري والدولار الأمريكي. ويُعرض ثاني "
                 "أكسيد الكربون لكل طن كلنكر ولكل طن أسمنت كلٌّ على حدة.",
