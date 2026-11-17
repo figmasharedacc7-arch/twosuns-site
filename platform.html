@@ -895,9 +895,8 @@
   </div>
 </section>
 <section class="vidband vid-port" style="padding:96px 0;">
-  <video autoplay muted loop playsinline preload="metadata" poster="vid-port-poster.jpg" aria-hidden="true">
-    <source src="vid-port.mp4" type="video/mp4">
-  </video>
+  <video muted loop playsinline preload="none" poster="vid-port-poster.jpg"
+         data-src="vid-port.mp4" aria-hidden="true"></video>
   <div class="container">
     <h2>See the platform in your context</h2>
     <p>We can walk through the environment, the configured workflows and the deployment path that fits your organization.</p>
@@ -1004,6 +1003,30 @@
   setTimeout(function(){
     els.forEach(function(el){ if(!el.classList.contains('in')) show(el, 0); });
   }, 1500);
+})();
+</script><script>
+(function(){
+  var vs = [].slice.call(document.querySelectorAll(
+    '.vidband video[data-src],.imgsec video[data-src]'));
+  if(!vs.length) return;
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  function start(v){
+    if(v.getAttribute('src')) return;
+    v.setAttribute('src', v.getAttribute('data-src'));
+    var p = v.play();
+    if(p && p.catch) p.catch(function(){});
+  }
+
+  if(!('IntersectionObserver' in window)){ vs.forEach(start); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting) return;
+      io.unobserve(en.target);
+      start(en.target);
+    });
+  }, {rootMargin: '300px 0px'});
+  vs.forEach(function(v){ io.observe(v); });
 })();
 </script>
 </body>

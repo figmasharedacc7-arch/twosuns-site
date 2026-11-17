@@ -862,9 +862,8 @@
   </div>
 </section>
 <section class="imgsec imgsec-l imgsec-work area-sec">
-  <video autoplay muted loop playsinline preload="metadata" poster="vid-work-poster.jpg" aria-hidden="true">
-    <source src="vid-work.mp4" type="video/mp4">
-  </video>
+  <video muted loop playsinline preload="none" poster="vid-work-poster.jpg"
+         data-src="vid-work.mp4" aria-hidden="true"></video>
   <div class="container">
    <div class="sec-split">
     <div class="section-tag">Where to start</div>
@@ -884,9 +883,8 @@
   </div>
 </section>
 <section class="vidband vid-aerial" style="padding:96px 0;">
-  <video autoplay muted loop playsinline preload="metadata" poster="vid-aerial-poster.jpg" aria-hidden="true">
-    <source src="vid-aerial.mp4" type="video/mp4">
-  </video>
+  <video muted loop playsinline preload="none" poster="vid-aerial-poster.jpg"
+         data-src="vid-aerial.mp4" aria-hidden="true"></video>
   <div class="container">
     <h2>Configure TwoSuns around your organization</h2>
     <p>Each deployment is shaped around a use case, operating environment, users, regions, inputs, integrations and expected value. TwoSuns can begin with a focused proof of concept or a structured enterprise implementation and expand as adoption develops.</p>
@@ -1083,6 +1081,30 @@
   setTimeout(function(){
     els.forEach(function(el){ if(!el.classList.contains('in')) show(el, 0); });
   }, 1500);
+})();
+</script><script>
+(function(){
+  var vs = [].slice.call(document.querySelectorAll(
+    '.vidband video[data-src],.imgsec video[data-src]'));
+  if(!vs.length) return;
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  function start(v){
+    if(v.getAttribute('src')) return;
+    v.setAttribute('src', v.getAttribute('data-src'));
+    var p = v.play();
+    if(p && p.catch) p.catch(function(){});
+  }
+
+  if(!('IntersectionObserver' in window)){ vs.forEach(start); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting) return;
+      io.unobserve(en.target);
+      start(en.target);
+    });
+  }, {rootMargin: '300px 0px'});
+  vs.forEach(function(v){ io.observe(v); });
 })();
 </script>
 </body>

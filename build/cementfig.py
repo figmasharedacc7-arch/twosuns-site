@@ -36,14 +36,19 @@ FFMPEG = os.path.expanduser("~/bin/ffmpeg")
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(os.path.normpath(os.path.join(HERE, "..")), "cement")
 
-W, H = 1110, 612
+W, H = 1480, 816                   # the crop's own size, so no downscale
 CROP = "crop=1480:816:228:148"     # the truck, out of the 1920x1080 source
 BG = "0xFFF5DD"                    # measured off the rendered section
-CRF = "25"
+CRF = "20"
 
-GROUND_Y = 584                     # where the wheels meet
+# The ground line was placed by eye against a 1110x612 render, so it is held
+# here as a fraction of that frame and multiplied back up. Left as raw pixels it
+# would have drawn straight through the wheels the moment the output grew.
+REF_W, REF_H = 1110, 612
+GROUND_Y = int(round(584 * H / float(REF_H)))   # where the wheels meet
 GROUND_A = 0.34
-FADE = 320                         # pixels the line takes to reach full strength
+FADE = int(round(320 * W / float(REF_W)))       # pixels the line takes to full strength
+LINE_H = max(1, int(round(3 * H / float(REF_H))))
 
 # true red is the only thing with r-g>130 that also keeps blue; every orange on
 # the truck has b/g near zero, so this fires on the hazard stripes alone
@@ -52,9 +57,10 @@ GRADE = ("format=rgba,geq=r='r(X,Y)':g='g(X,Y)+0.37*r(X,Y)*(%s)'"
          ":b='b(X,Y)*(1-0.1*(%s))':a='alpha(X,Y)'" % (MASK, MASK))
 
 # the line, as its own source, with alpha ramped from nothing at each end
-LINE = ("color=c=0x2A2520:s=%dx3:r=25,format=rgba,"
+LINE = ("color=c=0x2A2520:s=%dx%d:r=25,format=rgba,"
         "geq=r='r(X,Y)':g='g(X,Y)':b='b(X,Y)'"
-        ":a='%.3f*min(1,min(X,%d-X)/%d)'" % (W, 255 * GROUND_A, W, FADE))
+        ":a='%.3f*min(1,min(X,%d-X)/%d)'"
+        % (W, LINE_H, 255 * GROUND_A, W, FADE))
 
 
 def main():

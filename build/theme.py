@@ -728,4 +728,45 @@ PARTICLES = """<script>
 """
 
 import reveal as _rv
-TAIL = FOOTER + PARTICLES + _rv.body_script() + "\n</body>\n</html>\n"
+# The motion bands, attached only once they are about to be seen.
+#
+# A <video> carrying autoplay and a source fetches the whole file the moment
+# the page parses, wherever on the page it sits and whatever the reader has
+# asked for, and preload does not hold that back. On the home page that was
+# vid-work and vid-aerial pulled down in full behind the fold, and pulled down
+# for a reader with reduced motion who is then shown the poster instead. The
+# microsite already does this; the main site never did, and its band files are
+# the heaviest on the site.
+#
+# Scoped to the bands on purpose. The hero's second and third clips also carry
+# data-src, and they belong to the rotator in herorot.py, which attaches them
+# on idle and cross-fades them on its own clock. A selector of video[data-src]
+# would start both of them the moment the hero scrolled into view, which is
+# every page load, and the rotation would be fighting it.
+BANDVID_JS = """<script>
+(function(){
+  var vs = [].slice.call(document.querySelectorAll(
+    '.vidband video[data-src],.imgsec video[data-src]'));
+  if(!vs.length) return;
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  function start(v){
+    if(v.getAttribute('src')) return;
+    v.setAttribute('src', v.getAttribute('data-src'));
+    var p = v.play();
+    if(p && p.catch) p.catch(function(){});
+  }
+
+  if(!('IntersectionObserver' in window)){ vs.forEach(start); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting) return;
+      io.unobserve(en.target);
+      start(en.target);
+    });
+  }, {rootMargin: '300px 0px'});
+  vs.forEach(function(v){ io.observe(v); });
+})();
+</script>"""
+
+TAIL = FOOTER + PARTICLES + _rv.body_script() + BANDVID_JS + "\n</body>\n</html>\n"

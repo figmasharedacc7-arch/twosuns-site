@@ -1,8 +1,15 @@
 """Hero rotation clips.
 
-The hero cycles through three golden-hour built-industry clips. hero-build.mp4
-came first and is left exactly as approved, so this script only produces the two
-that join it. Sources are the Envato originals in ~/Downloads.
+The hero cycles through three golden-hour built-industry clips. Sources are the
+Envato originals in ~/Downloads.
+
+hero-build.mp4 came first and set the look the other two are graded onto. Its
+cut is still exactly the one that was approved, the master's opening 15.9
+seconds, ungraded: it is re-cut here only so that it carries the same
+resolution and the same CRF as the two that join it, rather than staying the
+softest clip in the rotation it is supposed to set the standard for. A frame
+comparison put it at t=0.0 of its master with per channel gains of 1.004,
+1.002 and 1.011, which is no grade at all.
 
 Selection rule: the rotation has to read as one continuous mood, not a stock
 slideshow, so every clip is golden hour, wide and slow. Candidates were ranked
@@ -34,8 +41,17 @@ OUT = os.path.normpath(os.path.join(HERE, ".."))
 
 SEG = 10.0        # seconds cut from the source
 XF = 1.0          # loop crossfade, so each clip lands at 9.0s
-W, H = 1920, 1080
-CRF = "27"
+W, H = 2560, 1440
+# CRF 28, not the 23 this was first tried at, and not the 27 it used to carry.
+# Measured on hero-build's own master: 2560 at 23 is 4.10 Mbps and 7.8 MB, which
+# is indefensible for the one clip in the rotation that loads eagerly. 2560 at
+# 28 is 1.91 Mbps and 3.6 MB, against the 3.1 MB the 1920 CRF 27 file weighs
+# today. Half a megabyte buys the whole resolution step, so the hero is sharper
+# than it has ever been at very nearly the weight it already had.
+CRF = "28"
+# A ceiling for the peaks. CRF alone lets a second of heavy motion spend
+# whatever it likes, and these are backgrounds, not the subject of the page.
+MAXRATE, BUFSIZE = "3000k", "6000k"
 VERBOSE = bool(os.environ.get("VERBOSE"))
 
 # the levels every hero clip is matched to, measured off hero-build.mp4
@@ -45,6 +61,13 @@ REFERENCE = "hero-build.mp4"
 # a frame comparison confirmed (mean difference 1.4 per channel against that
 # source, 35.4 against any other). That source is therefore off limits here, a
 # second window of it would read as the hero stuttering rather than rotating.
+# name, source, start second, seconds to take. Not part of PLAN: this one is a
+# plain cut with no grade and no loop close, and it has to exist before the two
+# below can be measured against it.
+BASE = ("hero-build",
+        "apartment-construction-site-at-golden-sunset-2026-01-21-11-57-50-utc.mp4",
+        0.0, 15.9)
+
 PLAN = [
     ("hero-crane",
      "building-construction-crane-sunset-industrial-arch-2026-01-21-05-37-07-utc.mov",
@@ -90,12 +113,32 @@ def encode(name, src, start, gain=None):
          "-ss", "%.3f" % start, "-t", "%.3f" % XF, "-i", inp,
          "-filter_complex", fc, "-map", "[v]", "-an",
          "-c:v", "libx264", "-preset", "slow", "-crf", CRF,
+         "-maxrate", MAXRATE, "-bufsize", BUFSIZE,
          "-profile:v", "high", "-pix_fmt", "yuv420p",
          "-movflags", "+faststart", out])
     return out
 
 
+def encode_base():
+    """The reference clip: a straight cut, no regrade, no loop close."""
+    name, src, start, dur = BASE
+    out = os.path.join(OUT, name + ".mp4")
+    run([FFMPEG, "-v", "error", "-y",
+         "-ss", "%.3f" % start, "-t", "%.3f" % dur,
+         "-i", os.path.join(SRC, src),
+         "-vf", "scale=%d:%d:flags=lanczos,format=yuv420p,setsar=1" % (W, H),
+         "-an", "-c:v", "libx264", "-preset", "slow", "-crf", CRF,
+         "-maxrate", MAXRATE, "-bufsize", BUFSIZE,
+         "-profile:v", "high", "-pix_fmt", "yuv420p",
+         "-movflags", "+faststart", out])
+    run([FFMPEG, "-v", "error", "-y", "-ss", "1", "-i", out, "-frames:v", "1",
+         "-q:v", "4", os.path.join(OUT, name + "-poster.jpg")])
+    print("%-16s %5.2f MB   reference, ungraded"
+          % (name + ".mp4", os.path.getsize(out) / 1048576.0))
+
+
 def main():
+    encode_base()
     target = levels(os.path.join(OUT, REFERENCE))
     if VERBOSE:
         print("reference %-14s R%6.1f G%6.1f B%6.1f" % tuple([REFERENCE] + target))

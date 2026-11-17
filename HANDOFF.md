@@ -2,6 +2,81 @@
 
 Written 2026-08-28. Everything a fresh session needs.
 
+## In flight, 2026-11-16
+
+Two commits sit on main. The first is pushed and live, the second is not.
+
+**`14b750c`, pushed and live.** "No line left standing on its own". One rule
+in `theme.CSS`, `text-wrap:balance` on headings, ledes, subs, paragraphs, list
+items, definition rows and captions. It cleared all 205 one and two word
+orphan last lines across the 35 content pages, and no page changed height by a
+pixel. `pretty` was tried first and only rescues single word last lines, which
+left 125 standing, so it was replaced.
+
+**`d3466bb`, committed, NOT pushed. This is the one to ship.** Every video
+re-cut from its master. Resolutions and bitrates are in the commit message.
+Headlines: nothing is upscaled, CRF 28 with a ceiling picked off a measured
+sweep, hero-build goes 1920 to 2560 for a third of a megabyte, and the main
+site finally lazy-loads its bands, so total video weight goes 12.7 MB to
+31.3 MB while the home page's first load goes 6.2 MB down to 3.4 MB.
+
+To ship it:
+
+```bash
+cd ~/Documents/Claude/twosuns-live && git push origin main
+```
+
+Then confirm the Pages run for `d3466bb` reports completed/success at
+`https://api.github.com/repos/figmasharedacc7-arch/twosuns-site/actions/runs?per_page=3`.
+
+**Where the masters are, if anything needs recutting.** All in `~/Downloads`.
+
+| clip | master | cut |
+|---|---|---|
+| hero-build | apartment-construction-site-at-golden-sunset | t=0.0, 15.9s, ungraded, `BASE` in herovid.py |
+| hero-crane | building-construction-crane-sunset-industrial-arch | t=6.0, herovid.py |
+| hero-rise | aerial-shot-of-a-new-high-rise-building-under-cons | t=1.0, herovid.py |
+| vid-work | 561Z_11_hand_upload.mov, 4K ProRes | t=0.0, 12.92s, bandvid.py |
+| vid-aerial | aerial-view-of-a-large-cement-plant-and-industrial | t=1.0, 14.0s, bandvid.py |
+| vid-port | hong-kong-container-port-terminal | 7.12s master, forward then back |
+| band-dusk, band-works | named in cementvid.py's own PLAN | unchanged cuts |
+| mixer-truck | `animated-flat-design-cement-mixer-truck-driving...zip`, which holds `concrete-mixing-truck.mov`, ProRes 4444 with alpha | unchanged crop |
+
+**Two traps worth keeping.** `cementfig.py` takes its source as an argument
+and names it nowhere, and there is a second, wrong file in Downloads called
+`3d-animated-cement-mixer-truck-with-construction-w...mov` which is also
+ProRes 4444 and is a different truck entirely. It was used by mistake once and
+had to be restored from git. The right one is the flat design zip above.
+`cementfig.py` also used to place its ground line in raw pixels against a
+1110x612 frame; it now holds the position as a fraction, or the line draws
+through the wheels the moment the output grows.
+
+**Verifying video lazy-load needs a rendered page.** The browser pane does not
+render when its window is closed, and an unrendered page never fires an
+IntersectionObserver or a requestAnimationFrame, so the bands look broken when
+they are fine. Use headless Chrome and vary the window height:
+
+```bash
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --disable-gpu --user-data-dir=/tmp/cud --window-size=1440,4200 --virtual-time-budget=9000 --dump-dom http://127.0.0.1:8777/index.html | grep -o '<video[^>]*vid-[^>]*>'
+```
+
+At 1440x900 the bands must stay unattached, at 1440x4200 both home bands
+attach, and platform's attaches by 7000px where it actually sits.
+
+**Parked, not started, at the owner's instruction.** `research/arch-reference/
+workshop-architecture-reference.html`, copied out of Downloads on 2026-11-16.
+The owner likes the platform architecture design in it and wants it considered
+for the site after the videos land. That is the next thing to pick up.
+
+**Still unreferenced, still not deleted.** `cement/band-plant.mp4` is a byte
+identical copy of `vid-aerial.mp4`'s old version and `cement/cement-plant.mp4`
+is linked from nowhere. About 1.5 MB between them. Flagged, never authorised.
+
+**Careful with build.py.** `OUT` on line 24 is an absolute path to the live
+tree, so running it from any copy of the repo writes into the live site. Run
+it only from `twosuns-live/build`. Checked on 2026-11-16: it regenerates the
+root pages faithfully, so it is safe there.
+
 ## What exists right now
 
 **twosuns.ai** serves three separate things from one repo, `twosuns-site`:

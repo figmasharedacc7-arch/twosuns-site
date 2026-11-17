@@ -58,9 +58,8 @@ def hero(d, tall=False, wide=False):
 def vid_band(video, heading, para, primary, secondary, sec_href=None):
     """Closing band with a muted looping video behind it, as on the cement microsite."""
     return """<section class="vidband %s" style="padding:96px 0;">
-  <video autoplay muted loop playsinline preload="metadata" poster="%s-poster.jpg" aria-hidden="true">
-    <source src="%s.mp4" type="video/mp4">
-  </video>
+  <video muted loop playsinline preload="none" poster="%s-poster.jpg"
+         data-src="%s.mp4" aria-hidden="true"></video>
   <div class="container">
     <h2>%s</h2>
     <p>%s</p>
@@ -196,9 +195,8 @@ def build_home():
     </div>""" % (ACCENTS[i], i + 1, e(h), e(p))
 
     s += """<section class="imgsec imgsec-l imgsec-work area-sec">
-  <video autoplay muted loop playsinline preload="metadata" poster="vid-work-poster.jpg" aria-hidden="true">
-    <source src="vid-work.mp4" type="video/mp4">
-  </video>
+  <video muted loop playsinline preload="none" poster="vid-work-poster.jpg"
+         data-src="vid-work.mp4" aria-hidden="true"></video>
   <div class="container">
    <div class="sec-split">
     <div class="section-tag">Where to start</div>

@@ -53,9 +53,9 @@ OUT = os.path.join(REPO, "cement")
 
 SEG = 10.0            # seconds cut from the source
 XF = 1.0              # loop crossfade, so each clip lands at 9.0s
-W, H = 1760, 960      # 0.8 of the 2200x1200 the still bands are cut to
+W, H = 2560, 1396     # 2560 wide, at the 11:6 the still bands are cut to
 POSTER = (2200, 1200)
-CRF = "32"            # a background behind a wash, and 58 percent of it is covered
+CRF = "23"            # a wash covers the copy half, the other half is not covered
 VERBOSE = bool(os.environ.get("VERBOSE"))
 
 # The approved look. hero-plant.mp4 was graded to the palette and signed off
