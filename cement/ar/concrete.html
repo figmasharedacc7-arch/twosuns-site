@@ -759,6 +759,28 @@
   .cmhero.sh-usecases{--cmshot:url('/uc-hero.jpg');}
   .cmhero.sh-company{--cmshot:url('/company-hero.jpg');}
   .cmhero.sh-events{--cmshot:url('/events-hero.jpg');}
+  /* ---- a hero that plays ----
+     The photograph stays the section's background and the clip sits in a
+     layer over it, with the wash lifted on top of both. The wash is a
+     background layer on .cmhero itself, so a video child would otherwise
+     paint over the very gradient that keeps the copy readable. The overlay
+     takes var(--cmwash) rather than restating the gradient, so the right to
+     left flip, which redefines that one property, re-angles this along with
+     every other hero on the site.
+     The poster and the clip's first frame are the same picture, and the
+     object-position here is the background-position above, so nothing shifts
+     when the loop attaches. */
+  .cmhero.has-v>.cmhero-v{position:absolute;inset:0;z-index:0;}
+  .cmhero.has-v>.cmhero-v video{display:block;width:100%;height:100%;
+    object-fit:cover;object-position:center 30%;}
+  .cmhero.has-v>.cmhero-v::after{content:"";position:absolute;inset:0;
+    background:var(--cmwash);}
+  /* The wash covers the start half and clears by 80 percent, so whatever the
+     picture is of has to stand in the far strip. The still heroes solve that
+     by flipping the file, which is what sh-aerial does and says so; one clip
+     cannot ship twice, so the Arabic page mirrors it here instead and its
+     tower stands in the half that wash leaves clear. */
+  html[dir="rtl"] .cmhero.has-v>.cmhero-v video{transform:scaleX(-1);}
   .cmhero h1{font-size:clamp(32px,4.4vw,54px);font-weight:900;line-height:1.1;color:var(--navy);
     margin-bottom:20px;max-width:19ch;}
   .cmhero p.hero-sub{max-width:620px;}
@@ -1204,6 +1226,11 @@
     .cmhero,html[dir="rtl"] .cmhero{background-position:center,center;
       --cmwash:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,
         rgba(255,244,220,.58) 80%,rgba(255,242,214,.24) 100%);}
+    /* the wash is vertical here and symmetric, so there is no clear half to
+       carry the tower into and the mirror would only disagree with the still */
+    .cmhero.has-v>.cmhero-v video,
+    html[dir="rtl"] .cmhero.has-v>.cmhero-v video{object-position:center;
+      transform:none;}
     .cmfam,.cmrows,.cmrows.two,.cmmods,.cmpr{grid-template-columns:repeat(2,1fr);}
     .cmpd{grid-template-columns:repeat(2,1fr);}
     .cmsx{grid-template-columns:1fr;}
@@ -1969,7 +1996,7 @@
   function control(v){
     // the band's video sits in a layer behind the copy, so the button cannot
     // live beside it; both kinds hang it on the positioned box one level up
-    var host = v.closest('.cncmix') || v.closest('.imgsec');
+    var host = v.closest('.cncmix') || v.closest('.imgsec') || v.closest('.cmhero');
     if(!host) return;
     var b = document.createElement('button');
     b.type = 'button';

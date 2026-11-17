@@ -112,6 +112,28 @@ CEM_CSS = r"""
   .cmhero.sh-usecases{--cmshot:url('/uc-hero.jpg');}
   .cmhero.sh-company{--cmshot:url('/company-hero.jpg');}
   .cmhero.sh-events{--cmshot:url('/events-hero.jpg');}
+  /* ---- a hero that plays ----
+     The photograph stays the section's background and the clip sits in a
+     layer over it, with the wash lifted on top of both. The wash is a
+     background layer on .cmhero itself, so a video child would otherwise
+     paint over the very gradient that keeps the copy readable. The overlay
+     takes var(--cmwash) rather than restating the gradient, so the right to
+     left flip, which redefines that one property, re-angles this along with
+     every other hero on the site.
+     The poster and the clip's first frame are the same picture, and the
+     object-position here is the background-position above, so nothing shifts
+     when the loop attaches. */
+  .cmhero.has-v>.cmhero-v{position:absolute;inset:0;z-index:0;}
+  .cmhero.has-v>.cmhero-v video{display:block;width:100%;height:100%;
+    object-fit:cover;object-position:center 30%;}
+  .cmhero.has-v>.cmhero-v::after{content:"";position:absolute;inset:0;
+    background:var(--cmwash);}
+  /* The wash covers the start half and clears by 80 percent, so whatever the
+     picture is of has to stand in the far strip. The still heroes solve that
+     by flipping the file, which is what sh-aerial does and says so; one clip
+     cannot ship twice, so the Arabic page mirrors it here instead and its
+     tower stands in the half that wash leaves clear. */
+  html[dir="rtl"] .cmhero.has-v>.cmhero-v video{transform:scaleX(-1);}
   .cmhero h1{font-size:clamp(32px,4.4vw,54px);font-weight:900;line-height:1.1;color:var(--navy);
     margin-bottom:20px;max-width:19ch;}
   .cmhero p.hero-sub{max-width:620px;}
@@ -557,6 +579,11 @@ CEM_CSS = r"""
     .cmhero,html[dir="rtl"] .cmhero{background-position:center,center;
       --cmwash:linear-gradient(175deg,rgba(255,246,226,.95) 0%,rgba(255,246,226,.89) 55%,
         rgba(255,244,220,.58) 80%,rgba(255,242,214,.24) 100%);}
+    /* the wash is vertical here and symmetric, so there is no clear half to
+       carry the tower into and the mirror would only disagree with the still */
+    .cmhero.has-v>.cmhero-v video,
+    html[dir="rtl"] .cmhero.has-v>.cmhero-v video{object-position:center;
+      transform:none;}
     .cmfam,.cmrows,.cmrows.two,.cmmods,.cmpr{grid-template-columns:repeat(2,1fr);}
     .cmpd{grid-template-columns:repeat(2,1fr);}
     .cmsx{grid-template-columns:1fr;}
@@ -1301,7 +1328,7 @@ MOTION_JS = """<script>
   function control(v){
     // the band's video sits in a layer behind the copy, so the button cannot
     // live beside it; both kinds hang it on the positioned box one level up
-    var host = v.closest('.cncmix') || v.closest('.imgsec');
+    var host = v.closest('.cncmix') || v.closest('.imgsec') || v.closest('.cmhero');
     if(!host) return;
     var b = document.createElement('button');
     b.type = 'button';
@@ -1344,11 +1371,29 @@ def tail(d):
             + "\n</body>\n</html>\n")
 
 
-def hero(d, eyebrow, h1, sub, acts, shot=""):
+def hero(d, eyebrow, h1, sub, acts, shot="", vid=""):
     """shot names the hero photograph, as the sh- class defined in CEM_CSS.
-    Empty means the cement banner the home page carries."""
-    return """<section class="cmhero%s">
-  <div class="hero-glow"></div>
+    Empty means the cement banner the home page carries.
+
+    vid names a loop to play in place of that photograph, without its suffix:
+    the clip is vid.mp4 and the still is vid.jpg, which is the pair
+    build/cementvid.py writes, so the poster and the loop's first frame are the
+    same picture and there is nothing to see at the handover. The still stays
+    the section's CSS background underneath, so a browser that will not play
+    the clip, or a reader who has asked for less motion, gets the photograph
+    the page had before rather than an empty box. The src is withheld until
+    MOTION_JS attaches it, which is also what gives the loop its pause
+    control."""
+    v = ""
+    if vid:
+        if not os.path.exists(os.path.join(OUT, vid + ".mp4")):
+            raise SystemExit("the %s hero needs cement/%s.mp4" % (shot, vid))
+        v = ('<div class="cmhero-v">'
+             '<video data-src="%s%s.mp4" poster="%s%s.jpg"'
+             ' muted loop playsinline aria-hidden="true" tabindex="-1"></video>'
+             '</div>' % (BASE, vid, BASE, vid))
+    return """<section class="cmhero%s%s">
+  %s<div class="hero-glow"></div>
   <div class="container">
     <div class="hero-eyebrow"><span class="dot"></span>%s</div>
     <h1>%s</h1>
@@ -1357,7 +1402,8 @@ def hero(d, eyebrow, h1, sub, acts, shot=""):
   </div>
 </section>
 <div class="sun-divider"></div>
-""" % (" sh-" + shot if shot else "", e(eyebrow), e(h1), e(sub), acts)
+""" % (" sh-" + shot if shot else "", " has-v" if vid else "", v,
+       e(eyebrow), e(h1), e(sub), acts)
 
 
 def cta_band(heading, para, acts):
@@ -1864,7 +1910,7 @@ def build_context(d):
     s = head(d, d["cx_title"], d["cx_desc"], "context.html") + nav(d, "context.html")
     s += hero(d, d["cx_eyebrow"], d["cx_h1"], d["cx_sub"],
               btn(d["cx_cta1"]) + " " + btn(d["cx_cta2"], "capabilities.html", ghost=True),
-              shot="context")
+              shot="context", vid="context-hero")
     s += sec(pressures(d), "band-alt", d["cx_rp_tag"], d["cx_rp_h"], d["cx_rp_p"])
     s += sec(flows(d), "", d["cx_wf_tag"], d["cx_wf_h"], d["cx_wf_p"],
              **band("cx_wf"))
