@@ -134,6 +134,32 @@ PLAN = [
     ("context-hero",
      "aerial-view-of-cement-factory-at-sunrise-or-sunset-2026-10-01-14-57-45-utc.mov",
      3.5, (0.00, 1.00, 0.35), HERO, 7.0, "boomerang"),
+    # The capabilities hero. A silhouetted kiln line against a golden
+    # sunrise, which is the warmest thing in the set and needs the least
+    # grading of any clip here.
+    #
+    # It replaced an earlier cut of the band-works footage. That file turned
+    # out to be byte for byte the one band-works already uses, and band-works
+    # runs on the capabilities page and nowhere else, so the same drone shot
+    # would have played twice on a single page, once as this hero and once as
+    # a band below it. Worth checking the hash of a supplied clip against the
+    # ones already in the set before cutting it.
+    #
+    # Five seconds from 0.3, which is short for a hero, and the reason is the
+    # chimney. The stack vents through the whole clip and the plume grows: at
+    # one second it is a faint haze, by twelve it is a dense white billow a
+    # third of the frame tall. This page carries a Sustainability module and
+    # a CO2 per tonne footnote, so it opens on the part of the shot where the
+    # stack reads as a silhouette against the sun rather than as a smokestack
+    # at work. The window also leaves it at about a quarter across, which is
+    # inside the half the wash covers.
+    #
+    # Boomeranged, and here there was no choice to weigh: the shot travels
+    # 53.6 across nine seconds where the orbit that ghosted travelled 31.7,
+    # so a crossfade was never a candidate.
+    ("cap-hero",
+     "cement-plant-silhouette-at-golden-sunrise-2026-10-03-02-55-20-utc.mp4",
+     0.3, (0.00, 1.00, 0.35), HERO, 5.0, "boomerang"),
 ]
 
 

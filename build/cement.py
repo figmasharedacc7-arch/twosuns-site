@@ -102,7 +102,7 @@ CEM_CSS = r"""
      in the file rather than here: every other hero is cream and gold, and a
      deep blue band across the top read as a different site. */
   .cmhero.sh-context{--cmshot:url('/cement/context-hero.jpg');}
-  .cmhero.sh-capabilities{--cmshot:url('/cap-hero.jpg');}
+  .cmhero.sh-capabilities{--cmshot:url('/cement/cap-hero.jpg');}
   /* the Sectors hub takes the supplied plant aerial, flipped, so its tower
      stands in the half the wash leaves clear */
   .cmhero.sh-aerial{--cmshot:url('/cement/plant-aerial.jpg');}
@@ -2231,7 +2231,7 @@ def build_capabilities(d):
     s = head(d, d["cap_title"], d["cap_desc"], "capabilities.html") + nav(d, "capabilities.html")
     s += hero(d, d["cap_eyebrow"], d["cap_h1"], d["cap_sub"],
               btn(d["cap_cta1"]),
-              shot="capabilities")
+              shot="capabilities", vid="cap-hero")
     s += capmap(d)
     s += sec(stations("hz", d["cap_hz_groups"], d["cap_hz_run"], d["cap_hz_stops"]),
              "", d["cap_hz_tag"], d["cap_hz_h"], d["cap_hz_p"], sid="horizon")
